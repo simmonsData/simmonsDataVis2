@@ -7,8 +7,8 @@ router.route('/')
     .post(students.create);
 
 router.route('/:studentId')
-    .get(students.read);
-//    .put(students.update)
+    .get(students.read)
+    .put(students.update);
 //    .delete(students.delete);
 
 router.param('studentId', students.studentByID)

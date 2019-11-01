@@ -5,7 +5,8 @@ const mongoose = require('mongoose'),
 // Creates new student
 exports.create = (req, res) => {
     const student = new Student(req.body);
-    student.save = (err) => {
+
+    student.save( (err) => {
         if(err) {
             console.log(err);
             res.status(400).send(err);
@@ -15,7 +16,7 @@ exports.create = (req, res) => {
             console.log(student);
         }
     }
-};
+)};
 
 // Displays student
 exports.read = (req, res) => {
@@ -33,6 +34,25 @@ exports.list = (req, res) => {
       }
     });
 };
+
+exports.update = (req, res) => {
+    const student = req.student;
+    student.email = req.body.email;
+
+    const currentDate = new Date();
+    student.updated_at = currentDate;
+
+    student.save( (err) => {
+        if(err){
+            console.log(err);
+            res.status(400).send(err);
+        }
+        else{
+            res.json(student);
+            console.log(student);
+        }
+    });
+}
 
 exports.studentByID = (req, res, next, id) => {
     Student.findById(id).exec(function(err, student) {
