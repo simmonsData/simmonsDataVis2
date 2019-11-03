@@ -6,6 +6,7 @@ import EmailEntry from './pages/EmailEntry'
 
 //Components
 import Footer from './components/Footer'
+import Survey from './components/SurveyPage'
 
 import './styles/App.css'
 
@@ -14,7 +15,7 @@ function App() {
     <Router>
       <div className='container'>
         <main>
-          <Route exact path="/" component={EmailEntry} />
+          <Route exact path="/" component={Survey} />
         </main>
         <Footer/>
       </div>
