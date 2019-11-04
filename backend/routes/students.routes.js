@@ -8,8 +8,8 @@ router.route('/')
 
 router.route('/:studentId')
     .get(students.read)
-    .put(students.update);
-//    .delete(students.delete);
+    .put(students.update)
+    .delete(students.delete);
 
 router.param('studentId', students.studentByID)
 

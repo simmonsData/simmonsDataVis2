@@ -54,6 +54,21 @@ exports.update = (req, res) => {
     });
 }
 
+exports.delete = (req, res) => {
+    const student = req.student;
+
+    Student.findByIdAndRemove(student.id, function(err){
+        if(err){
+            console.log(err);
+            res.status(400).send(err);
+        }
+        else{
+            res.json(student);
+            console.log(student);
+        }
+    });
+}
+
 exports.studentByID = (req, res, next, id) => {
     Student.findById(id).exec(function(err, student) {
         if(err) {
