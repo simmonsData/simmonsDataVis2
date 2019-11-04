@@ -4,4 +4,4 @@
 
 cd into 'frontend' and run 'yarn start'
 
-backend will be run out of 'backend' folder once we start to build it
+for backend, cd into 'backend' and run 'node server.js'
