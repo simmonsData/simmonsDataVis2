@@ -4,6 +4,7 @@ const express = require('express'),
     morgan = require('morgan'),
     path = require('path'),
     config = require('./config'), 
+    passport = require('passport'),
     studentsRouter = require('../routes/students.routes');
 
 module.exports.init = function() {
@@ -17,6 +18,12 @@ module.exports.init = function() {
 
     //Body parsing middleware 
     app.use(bodyParser.json());
+
+    //Passport middleware
+    app.use(passport.initialize());
+
+    //Requires and calls passport function in passport.js
+    require("./passport")(passport);
 
     app.use('/api/students', studentsRouter);
 
@@ -33,7 +40,7 @@ module.exports.init = function() {
     If no path segments are passed, path.resolve() will return 
     the absolute path of the current working directory.
     */
-    res.sendFile(path.resolve(''));
+    res.sendFile(path.resolve('/'));
    });
 
    return app;

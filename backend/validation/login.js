@@ -5,8 +5,7 @@ module.exports = function validateRegisterInput(data) {
   // Holds any email validation errors
   let errors = {};
 
-  functions 
-    data.email =!isEmpty(data.email) ? data.email : "";
+    data.email = !isEmpty(data.email) ? data.email : "";
 
     // Checking if email is entered and valid
     if(Validator.isEmpty(data.email)){
