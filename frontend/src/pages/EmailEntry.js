@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import { Button, Header, Form, Grid } from 'semantic-ui-react'
+import { Button, Header, Form, Grid, Divider } from 'semantic-ui-react'
 
 //import { AuthContext } from "../context/auth";
 
@@ -27,7 +27,7 @@ function EmailEntry(props) {
       password2: this.state.password2
     };
     
-    this.props.registerUser(newUser, this.props.history); 
+    
   };
 
   function onLogin(e) {
@@ -37,13 +37,18 @@ function EmailEntry(props) {
   return(
 
     <div className='EmailEntry'>
-      <Header as='h1'>
-        Simmons Student Activity Survey
+      <Header as='h1' className='welcome'>
+        Welcome to our survey
       </Header>
-      <Header as='h3'>
-        Whatever you want to put here, doesn't matter
+      <Header as='h3' className='welcome'>
+        New users please register with your UFL email and fill out a survey
       </Header>
-      <Grid columns = {2} divided>
+      <Header as='h3' className='welcome'>
+      Returning users can edit their survey and view their results
+      </Header>
+      <Divider/>
+      <Divider/>
+      <Grid columns = {2} divided className='emailForms'>
         <Grid.Row>
           <Grid.Column>
             <Form className='emailInput' onSubmit={onRegister}>
