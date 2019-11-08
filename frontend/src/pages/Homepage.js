@@ -29,7 +29,7 @@ function Homepage(props) {
                         and support educators, program managers and policy makers on developing
                         strategic plan for engineering programs. This system is developed as part of the
                         NSF project: CAREER:Investigating Co-Curricular Participation of Students
-                        Underrepresented in Engineering. The full project description can be found on:
+                        Underrepresented in Engineering. The full project description can be found on: &nbsp;
                         <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1351156&HistoricalAwards=false">here
                         </a>.</p>
                     <p>This system uses public data and survives by your contributions. Please take your time
