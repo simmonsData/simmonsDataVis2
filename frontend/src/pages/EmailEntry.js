@@ -1,41 +1,41 @@
 import React, { useContext, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { Button, Header, Form, Grid, Divider } from 'semantic-ui-react'
-
-//import { AuthContext } from "../context/auth";
 
 import '../styles/EmailEntry.css'
 
 function EmailEntry(props) {
 
-  //const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
-  const [emailInput, setEmailInput] = useState('')
+  const [registerInput, setregisterInput] = useState('')
+  const [loginInput, setLoginInput] = useState('')
+  const [redirecting, setRedirecting] = useState(false)
 
-  function onChange(e) {
-    setEmailInput(e.target.value);
+  function registerChange(e) {
+    setregisterInput(e.target.value);
+  }
+
+  function loginChange(e) {
+    setLoginInput(e.target.value);
   }
   
   function onRegister(e) {
-    console.log(emailInput)
-    const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
-    };
-    
-    
-  };
+    console.log(registerInput)
+
+    setRedirecting(true);
+  }
 
   function onLogin(e) {
 
+    setRedirecting(true);
   }
 
-  return(
-
+  if (redirecting) {
+    return <Redirect to='/Homepage' />
+  } else {
+    return(
     <div className='EmailEntry'>
       <Header as='h1' className='welcome'>
         Welcome to our survey
@@ -59,16 +59,16 @@ function EmailEntry(props) {
                 <label>Email Address</label>
                 <input 
                   placeholder='Email' 
-                  onChange={onChange}
-                  value={emailInput}
-                  error={errors.emailInput}
+                  onChange={registerChange}
+                  value={registerInput}
+                  error={errors.registerInput}
                 />
               </Form.Field>
               <Button type='submit'>Submit</Button>
             </Form>
           </Grid.Column>
           <Grid.Column>
-          <Form className='emailInput' onSubmit={onLogin}>
+            <Form className='emailInput' onSubmit={onLogin}>
               <Header as='h5'>
                 I have submitted a survey
               </Header>
@@ -76,9 +76,9 @@ function EmailEntry(props) {
                 <label>Email Address</label>
                 <input 
                   placeholder='Email' 
-                  onChange={onChange}
-                  value={emailInput}
-                  error={errors.emailInput}
+                  onChange={loginChange}
+                  value={loginInput}
+                  error={errors.loginInput}
                 />
               </Form.Field>
               <Button type='submit'>Submit</Button>
@@ -86,8 +86,9 @@ function EmailEntry(props) {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-</div>
-  );
+    </div>
+    );
+  }
 }
 
 export default EmailEntry;

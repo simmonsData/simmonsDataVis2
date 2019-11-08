@@ -1,16 +1,29 @@
-import React from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
-import {Link} from 'react-router-dom';
-import {Grid, Image, Header, Container, Button, Divider, Segment} from 'semantic-ui-react'
+import React, { useState } from 'react';
+import {Redirect} from 'react-router-dom';
+import {Grid, Image, Header, Container, Button, Divider, Segment, GridColumn} from 'semantic-ui-react'
 import '../styles/Homepage.css'
+import { PromiseProvider } from 'mongoose';
 
-function Homepage() {
-    return (<div className="Homepage">
+function Homepage(props) {
 
+    const [toData, setToData] = useState(false);
+    const [toSurvey, setToSurvey] = useState(false);
+
+    function onDataPress() {
+        props.history.push('/data');
+    }
+
+    function onSurveyPress() {
+        props.history.push('/survey')
+    }
+
+    return (
+        <div className="homePage">
+            <Divider/>
             <Header as='h1' textAlign='center'>Engineering Out-Of-Class Activity Decision Support System</Header>
-
+            <Divider/>
             <Container text>
-                <Segment inverted color="black">
+                <Segment inverted color="grey">
                     <p>The OOCA Decision Support System aims at guiding students (i.e. especially
                         undergraduate engineering) on making decisions on professional development plan
                         and support educators, program managers and policy makers on developing
@@ -23,30 +36,29 @@ function Homepage() {
                         to complete data the survey. By doing so, you are helping to improve the system. Please note
                         that
                         you need to be at least 18 years old to take this survey.</p>
-
                 </Segment>
             </Container>
-
-            <Router>
-                <Grid relaxed columns='equal'>
-                    <Grid.Row>
-                        <Grid.Column textAlign='center'>
-                            <Link to='/Data'>
-                                <Button size='massive' color='red'>
-                                    Data
-                                </Button>
-                            </Link>
-                        </Grid.Column>
-                        <Grid.Column textAlign='center'>
-                            <Link to='/Survey'>
-                                <Button size='massive' color='red'>
-                                    Survey
-                                </Button>
-                            </Link>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </Router>
+            <Grid columns='2'>
+                <Grid.Column>
+                    <Button 
+                        onClick={onDataPress} 
+                        size='massive'
+                        className='router'>
+                        &nbsp; Data &nbsp;
+                    </Button>
+                </Grid.Column>
+                <Grid.Column>
+                    <Button 
+                        onClick={onSurveyPress} 
+                        size='massive'
+                        className='router'>
+                        Survey
+                    </Button>
+                </Grid.Column>
+            </Grid>
+            <Divider/>
+            <Divider/>
+            <Divider/>
         </div>
     );
 }

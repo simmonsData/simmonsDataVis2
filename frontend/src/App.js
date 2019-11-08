@@ -20,6 +20,8 @@ function App() {
               <main>
                   <Route exact path="/" component={EmailEntry} />
                   <Route exact path="/Homepage" component={Homepage} />
+                  <Route exact path="/survey" component={EmailEntry} />
+                  <Route exact path="/data" component={EmailEntry} />
               </main>
             <Footer/>
           </div>
