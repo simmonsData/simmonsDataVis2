@@ -141,24 +141,24 @@ exports.register = (req, res) => {
     }
 
     const email = req.body.email;
+
+    // Each entry in database is stored into student variable
     Student.find({}, (err, student) => {
         let matchFound = false;
         if(err){
             return res.status(400).send(err);
         }
+        // If student is not empty, tries to find a match between entered email and hashed email in database
         else if(student.length){
-
-            // Comparing each database entry's email with entered email
             student.forEach((currentStudent) => {
                 const isMatch = bcrypt.compareSync(email, currentStudent.email)
-
-                    // If there's a match, sets matchFound to true
                     if(isMatch){
                         matchFound = true;
                     }
             })
 
         }
+
         // If there are no students in the database or no matching email addresses, will create new entry
         if(!student.length || matchFound != true){
 
@@ -190,7 +190,7 @@ exports.register = (req, res) => {
                 })
             })
         }
-        // If matching email is found, returns "Emal already created"
+        // If matching email is found, returns "Email already created"
         else{
             return res.status(404).json({emailFound: "Email already created"}); 
         }
@@ -206,27 +206,30 @@ exports.login = (req, res) => {
     }
 
     const email = req.body.email;
+    let hashedEmail;
 
+    // Each entry in database is stored into student variable
     Student.find({}, (err, student) => {
         let matchFound = false;
         if(err){
             res.status(400).send(err);
         }
+        // If student is not empty, tries to find a match between entered email and hashed email in database
         else if(student.length){
-            // Comparing each database entry's email with entered email
             student.forEach((currentStudent) => {
-                console.log("email: " + currentStudent.email);
                 const isMatch = bcrypt.compareSync(email, currentStudent.email);
-                    // If there's a match, sets matchFound to true
                 if(isMatch){
                     matchFound = true;
+                    hashedEmail = currentStudent.email;
                 }
             })
         }
-        
+
+        // If match is found in the database, returns hashed email
         if(matchFound){
-            return res.json()
+            return res.json(hashedEmail);
         }
+        // If no match found, returns "Email not found"
         else{
             return res.json({emailNotFound: "Email not found"}); 
         }
