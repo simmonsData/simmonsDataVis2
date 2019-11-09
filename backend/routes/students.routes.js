@@ -6,7 +6,12 @@ router.route('/')
     .get(students.list)
     .post(students.create);
 
-router.route('/:studentId')
+// router.route('/:studentId')
+//     .get(students.read)
+//     .put(students.update)
+//     .delete(students.delete);
+
+router.route('/:studentEmail')
     .get(students.read)
     .put(students.update)
     .delete(students.delete);
@@ -19,7 +24,7 @@ router.route('/login')
 
 
 
-router.param('studentId', students.studentByID);
+// router.param('studentId', students.studentByID);
 // router.param('studentEmail', students.studentByEmail);
 
 module.exports = router;

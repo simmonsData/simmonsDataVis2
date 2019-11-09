@@ -8,6 +8,7 @@ const express = require('express'),
     studentsRouter = require('../routes/students.routes');
 
 module.exports.init = function() {
+    mongoose.set('useCreateIndex', true);
     mongoose.connect(config.db.uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
     //Initialize app

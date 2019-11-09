@@ -86,7 +86,6 @@ const studentSchema = new Schema({
         },
         phoneNumber: {
             type: Number,
-            unique: true,
             trim: true
         }
 
