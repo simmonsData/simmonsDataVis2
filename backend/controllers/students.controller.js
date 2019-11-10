@@ -208,6 +208,7 @@ exports.login = (req, res) => {
 
 // ROUTER.PARAM MIDDLEWARE
 
+// Middleware for locating student entry in database by their email
 exports.studentByEmail = (req, res, next, email) => {
     Student.find({}, (err, student) => {
         if(err){
