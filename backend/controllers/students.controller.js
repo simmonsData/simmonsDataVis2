@@ -10,42 +10,7 @@ const mongoose = require('mongoose'),
 
 // '/' Routes   
 
-// Creates new student
-exports.create = (req, res) => {
-    const {errors, isValid} = validateRegisterInput(req.body);
-    if(!isValid){
-        return res.status(400).json(errors);
-    }
-
-    // Trying to locate student in database
-    Student.findOne({email: req.body.email}).then(student => {
-        
-        if(student){
-            return res.status(400).json({ email: "Email already exists" });
-        }
-        // If student isn't found, will create new student 
-        // and save it to the database
-        else{
-            const student = new Student({
-                email: req.body.email
-            });
-
-            student.save( (err) => {
-                if(err) {
-                    console.log(err);
-                    res.status(400).send(err);
-                } 
-                else {
-                    res.json(student);
-                    console.log(student);
-                }
-            });
-        }
-    });
-    
-};
-
-// Lists all student information in the database
+// Lists all student information in the database - get request
 exports.list = (req, res) => {
     Student.find({}, (err, student) => {
       if(err){
@@ -60,12 +25,13 @@ exports.list = (req, res) => {
 
 // STUDENT ID ROUTES
 
-// Displays student information by id
+// Displays student information - get request
 exports.read = (req, res) => {
     res.json(req.student);
     // res.redirect();
 };
 
+// Updates student information - put request
 exports.update = (req, res) => {
     const student = req.student;
     student.email = req.body.email;
@@ -86,6 +52,7 @@ exports.update = (req, res) => {
     });
 }
 
+// Deletes student entry in database - delete request
 exports.delete = (req, res) => {
     const student = req.student;
 
@@ -103,36 +70,37 @@ exports.delete = (req, res) => {
 
 // REGISTER/LOGIN ROUTES
 
-// Tries to find student with given email address in the database
-function locateStudentInDatabase(email){
-    Student.find({}, (err, student) => {
-        console.log(student.length);
-        if(err){
-            return res.status(400).send(err);
-        }
-        else if(student.length){
-            console.log("looking into students");
-            // Comparing each database entry's email with entered email
-            student.forEach((currentStudent) => {
-                bcrypt.compare(email, currentStudent.email).then(isMatch => {
-                    // If there's a match, returns true
-                    console.log("isMatch: " + isMatch);
-                    if(isMatch){
-                        return true;
-                    }
-                });
+// // Tries to find student with given email address in the database
+// function locateStudentInDatabase(email){
+//     Student.find({}, (err, student) => {
+//         console.log(student.length);
+//         if(err){
+//             return res.status(400).send(err);
+//         }
+//         else if(student.length){
+//             console.log("looking into students");
+//             // Comparing each database entry's email with entered email
+//             student.forEach((currentStudent) => {
+//                 bcrypt.compare(email, currentStudent.email).then(isMatch => {
+//                     // If there's a match, returns true
+//                     console.log("isMatch: " + isMatch);
+//                     if(isMatch){
+//                         return true;
+//                     }
+//                 });
 
-            })
-            // If there is no match after looking at all email addresses, returns false
-        }
-        else{
-            console.log("returning false");
-            return false;
-        }
-    });
-    console.log("exiting")
-}
+//             })
+//             // If there is no match after looking at all email addresses, returns false
+//         }
+//         else{
+//             console.log("returning false");
+//             return false;
+//         }
+//     });
+//     console.log("exiting")
+// }
 
+// Registers a new student - post request
 exports.register = (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
     // Checks if email is entered with valid format
@@ -197,6 +165,7 @@ exports.register = (req, res) => {
     });
 }
 
+// Logins student by email address - post request
 exports.login = (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
 
@@ -239,27 +208,32 @@ exports.login = (req, res) => {
 
 // ROUTER.PARAM MIDDLEWARE
 
-exports.studentByID = (req, res, next, id) => {
-    Student.findById(id).exec(function(err, student) {
-        if(err) {
-            res.status(400).send(err);
-        } 
-        else {
-            req.student = student;
-            next();
-        }
-    });
-};
-
 exports.studentByEmail = (req, res, next, email) => {
-
-    Student.findOne({email: email}, function(err, student){
+    Student.find({}, (err, student) => {
         if(err){
             res.status(400).send(err);
         }
         else{
-            req.student = student;
-            next();
+            let matchFound = false;
+            let foundStudent;
+            // If student is not empty, tries to find a match between entered email and hashed email in database
+            if(student.length){
+                student.forEach((currentStudent) => {
+                    const isMatch = bcrypt.compareSync(email, currentStudent.email);
+                    if(isMatch){
+                        matchFound = true;
+                        foundStudent = currentStudent;
+                    }
+                })
+            }
+
+            if(matchFound){
+                req.student = foundStudent;
+                next();
+            }
+            else{
+                return res.json({studentNotFound: "Student not found"}); 
+            }
         }
     });
 }
