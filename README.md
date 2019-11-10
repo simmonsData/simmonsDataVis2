@@ -4,4 +4,4 @@
 
 cd into 'frontend' and run 'yarn start'
 
-for backend, cd into 'backend' and run 'node server.js'
+For backend, cd into 'backend' and run 'node server.js' or 'npx nodemon server.js'
