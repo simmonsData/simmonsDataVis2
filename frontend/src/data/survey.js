@@ -1228,19 +1228,19 @@ export default {
           "title": "E2020-2: Practical Ingenuity",
           "choices": [
            {
-            "value": "1",
+            "value": 1,
             "text": "Strongly Disagree"
            },
            {
-            "value": "2",
+            "value": 2,
             "text": "Disagree"
            },
            {
-            "value": "3",
+            "value": 3,
             "text": "Agree"
            },
            {
-            "value": "4",
+            "value": 4,
             "text": "Strongly Agree"
            }
           ],
@@ -1251,22 +1251,22 @@ export default {
           "name": "E3",
           "title": "E2020-3: Creativity",
           "choices": [
-           {
-            "value": "1",
-            "text": "Strongly Disagree"
-           },
-           {
-            "value": "2",
-            "text": "Disagree"
-           },
-           {
-            "value": "3",
-            "text": "Agree"
-           },
-           {
-            "value": "4",
-            "text": "Strongly Agree"
-           }
+            {
+                "value": 1,
+                "text": "Strongly Disagree"
+               },
+               {
+                "value": 2,
+                "text": "Disagree"
+               },
+               {
+                "value": 3,
+                "text": "Agree"
+               },
+               {
+                "value": 4,
+                "text": "Strongly Agree"
+               }
           ],
           "optionsCaption": "Select your opinion here"
          },
@@ -1275,22 +1275,22 @@ export default {
           "name": "E4",
           "title": "E2020-4: Communication",
           "choices": [
-           {
-            "value": "1",
-            "text": "Strongly Disagree"
-           },
-           {
-            "value": "2",
-            "text": "Disagree"
-           },
-           {
-            "value": "3",
-            "text": "Agree"
-           },
-           {
-            "value": "4",
-            "text": "Strongly Agree"
-           }
+            {
+                "value": 1,
+                "text": "Strongly Disagree"
+               },
+               {
+                "value": 2,
+                "text": "Disagree"
+               },
+               {
+                "value": 3,
+                "text": "Agree"
+               },
+               {
+                "value": 4,
+                "text": "Strongly Agree"
+               }
           ],
           "optionsCaption": "Select your opinion here"
          },
@@ -1299,22 +1299,22 @@ export default {
           "name": "E5",
           "title": "E2020-5: Business and Management",
           "choices": [
-           {
-            "value": "1",
-            "text": "Strongly Disagree"
-           },
-           {
-            "value": "2",
-            "text": "Disagree"
-           },
-           {
-            "value": "3",
-            "text": "Agree"
-           },
-           {
-            "value": "4",
-            "text": "Strongly Agree"
-           }
+            {
+                "value": 1/4,
+                "text": "Strongly Disagree"
+               },
+               {
+                "value": 2/4,
+                "text": "Disagree"
+               },
+               {
+                "value": 3/4,
+                "text": "Agree"
+               },
+               {
+                "value": 4/4,
+                "text": "Strongly Agree"
+               }
           ],
           "optionsCaption": "Select your opinion here"
          },
@@ -1323,22 +1323,22 @@ export default {
           "name": "E6",
           "title": "E2020-6: Leadership",
           "choices": [
-           {
-            "value": "1",
-            "text": "Strongly Disagree"
-           },
-           {
-            "value": "2",
-            "text": "Disagree"
-           },
-           {
-            "value": "3",
-            "text": "Agree"
-           },
-           {
-            "value": "4",
-            "text": "Strongly Agree"
-           }
+            {
+                "value": 1/4,
+                "text": "Strongly Disagree"
+               },
+               {
+                "value": 2/4,
+                "text": "Disagree"
+               },
+               {
+                "value": 3/4,
+                "text": "Agree"
+               },
+               {
+                "value": 4/4,
+                "text": "Strongly Agree"
+               }
           ],
           "optionsCaption": "Select your opinion here"
          },
@@ -1347,22 +1347,22 @@ export default {
           "name": "E7",
           "title": "E2020-7: High Ethical Standards",
           "choices": [
-           {
-            "value": "1",
-            "text": "Strongly Disagree"
-           },
-           {
-            "value": "2",
-            "text": "Disagree"
-           },
-           {
-            "value": "3",
-            "text": "Agree"
-           },
-           {
-            "value": "4",
-            "text": "Strongly Agree"
-           }
+            {
+                "value": 1/4,
+                "text": "Strongly Disagree"
+               },
+               {
+                "value": 2/4,
+                "text": "Disagree"
+               },
+               {
+                "value": 3/4,
+                "text": "Agree"
+               },
+               {
+                "value": 4/4,
+                "text": "Strongly Agree"
+               }
           ],
           "optionsCaption": "Select your opinion here"
          },
@@ -1371,22 +1371,22 @@ export default {
           "name": "E8",
           "title": "E2020-8: Professionalism",
           "choices": [
-           {
-            "value": "1",
-            "text": "Strongly Disagree"
-           },
-           {
-            "value": "2",
-            "text": "Disagree"
-           },
-           {
-            "value": "3",
-            "text": "Agree"
-           },
-           {
-            "value": "4",
-            "text": "Strongly Agree"
-           }
+            {
+                "value": 1/4,
+                "text": "Strongly Disagree"
+               },
+               {
+                "value": 2/4,
+                "text": "Disagree"
+               },
+               {
+                "value": 3/4,
+                "text": "Agree"
+               },
+               {
+                "value": 4/4,
+                "text": "Strongly Agree"
+               }
           ],
           "optionsCaption": "Select your opinion here"
          },
@@ -1395,22 +1395,22 @@ export default {
           "name": "E9",
           "title": "E2020-9: Dynamism, Agility, Resilience, and Flexibility",
           "choices": [
-           {
-            "value": "1",
-            "text": "Strongly Disagree"
-           },
-           {
-            "value": "2",
-            "text": "Disagree"
-           },
-           {
-            "value": "3",
-            "text": "Agree"
-           },
-           {
-            "value": "4",
-            "text": "Strongly Agree"
-           }
+            {
+                "value": 1/4,
+                "text": "Strongly Disagree"
+               },
+               {
+                "value": 2/4,
+                "text": "Disagree"
+               },
+               {
+                "value": 3/4,
+                "text": "Agree"
+               },
+               {
+                "value": 4/4,
+                "text": "Strongly Agree"
+               }
           ],
           "optionsCaption": "Select your opinion here"
          }
