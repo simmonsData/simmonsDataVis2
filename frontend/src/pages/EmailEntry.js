@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 
-import { Button, Header, Form } from 'semantic-ui-react'
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment,
+} from 'semantic-ui-react';
 
 import '../styles/EmailEntry.css'
 

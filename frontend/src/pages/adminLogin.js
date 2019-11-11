@@ -1,5 +1,6 @@
 import React from 'react';
 import site from '../components/site.css'
+
 import {
   Button,
   Form,
@@ -24,7 +25,9 @@ export default () => (
             placeholder="Password"
             type="password"
           />
-          <Button color="blue" fluid size="large">
+          <Button color="blue" fluid size="large"
+          >
+
             Login
           </Button>
         </Form>
