@@ -8,6 +8,7 @@ const express = require('express'),
     studentsRouter = require('../routes/students.routes');
 
 module.exports.init = function() {
+    mongoose.set('useCreateIndex', true);
     mongoose.connect(config.db.uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
     //Initialize app
@@ -40,7 +41,7 @@ module.exports.init = function() {
     If no path segments are passed, path.resolve() will return 
     the absolute path of the current working directory.
     */
-    res.sendFile(path.resolve('/'));
+    res.sendFile(path.resolve('/index.html'));
    });
 
    return app;
