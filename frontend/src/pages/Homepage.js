@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {Redirect} from 'react-router-dom';
 import {Grid, Image, Header, Container, Button, Divider, Segment, GridColumn} from 'semantic-ui-react'
 import '../styles/Homepage.css'
-import { PromiseProvider } from 'mongoose';
 
 function Homepage(props) {
 

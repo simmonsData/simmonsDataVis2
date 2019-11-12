@@ -14,6 +14,18 @@ module.exports.init = function() {
     //Initialize app
     const app = express();
 
+    app.use(function(req, res, next) {
+      res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+      res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+      );
+      next();
+    });
+
+    var cors = require('cors');
+    app.use(cors());
+
     //Enable request logging for development debugging
     app.use(morgan('dev'));
 

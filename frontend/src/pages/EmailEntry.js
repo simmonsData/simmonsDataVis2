@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 
 import { Button, Header, Form, Grid, Divider } from 'semantic-ui-react'
 
+import axios from 'axios'
+
 import '../styles/EmailEntry.css'
 
 function EmailEntry(props) {
@@ -21,15 +23,34 @@ function EmailEntry(props) {
     setLoginInput(e.target.value);
   }
   
-  function onRegister(e) {
-    console.log(registerInput)
+  async function onRegister() {
 
-    setRedirecting(true);
+    const response = await axios.post(
+      'http://localhost:8080/api/students/register',
+      { email: registerInput },
+      { headers: { 'Content-Type': 'application/json' } }
+    )
+    if(response.emailFound){
+      console.log('email already exists')
+    } else {
+      props.userLogged(registerInput);
+      setRedirecting(true);
+    }
   }
 
   function onLogin(e) {
 
-    setRedirecting(true);
+    const response = await axios.post(
+      'http://localhost:8080/api/students/login',
+      { email: loginInput },
+      { headers: { 'Content-Type': 'application/json' } }
+    )
+    if(response.emailNotFound){
+      console.log('email does not exists')
+    } else {
+      props.userLogged(loginInput);
+      setRedirecting(true);
+    }
   }
 
   if (redirecting) {

@@ -160,7 +160,7 @@ exports.register = (req, res) => {
         }
         // If matching email is found, returns "Email already created"
         else{
-            return res.status(404).json({emailFound: "Email already created"}); 
+            return res.status(200).json({emailFound: "Email already created"}); 
         }
     });
 }

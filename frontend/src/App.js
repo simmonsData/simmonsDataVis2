@@ -16,14 +16,14 @@ function App() {
 
   const[userID, setUserID] = useState('');
 
-  function userLogged(id) { setUserID(id) };
+  function userLogged(id) { setUserID(id);};
 
   return (
       <Router>
           <div className='container'>
             <Header/>
               <main>
-                  <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged} />}/>
+                  <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
                   <Route exact path="/Homepage" component={Homepage} />
                   <Route exact path="/survey" component={Homepage} />
                   <Route exact path="/data" component={Homepage} />
