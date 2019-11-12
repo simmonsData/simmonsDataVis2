@@ -30,24 +30,26 @@ function EmailEntry(props) {
       { email: registerInput },
       { headers: { 'Content-Type': 'application/json' } }
     )
-    if(response.emailFound){
+    if(response.data.emailFound){
       console.log('email already exists')
     } else {
+      console.log(response);
       props.userLogged(registerInput);
       setRedirecting(true);
     }
   }
 
-  function onLogin(e) {
+  async function onLogin(e) {
 
     const response = await axios.post(
       'http://localhost:8080/api/students/login',
       { email: loginInput },
       { headers: { 'Content-Type': 'application/json' } }
     )
-    if(response.emailNotFound){
+    if(response.data.emailNotFound){
       console.log('email does not exists')
     } else {
+      console.log(response);
       props.userLogged(loginInput);
       setRedirecting(true);
     }
