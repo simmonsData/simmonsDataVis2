@@ -3,15 +3,16 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //Pages
 import EmailEntry from './pages/EmailEntry'
+import adminLogin from './pages/adminLogin'
+import FormExampleCaptureValues from './pages/FormExampleCaptureValues'
 import Homepage from './pages/Homepage'
-import Survey from './pages/SurveyPage'
+import SurveyPage from './pages/SurveyPage';
 
 //Components
 import Header from './components/Header'
 import Footer from './components/Footer'
 
 import './styles/App.css'
-import SurveyPage from './pages/SurveyPage';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                   <Route exact path="/Homepage" component={Homepage} />
                   <Route exact path="/survey" component={SurveyPage} />
                   <Route exact path="/data" component={Homepage} />
+                  <Route exact path="/admin" component={FormExampleCaptureValues} />
               </main>
             <Footer/>
           </div>
