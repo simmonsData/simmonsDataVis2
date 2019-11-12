@@ -1,20 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-<<<<<<< HEAD
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Message,
-  Segment,
-} from 'semantic-ui-react';
-=======
 import { Button, Header, Form, Grid, Divider } from 'semantic-ui-react'
 
 import axios from 'axios'
->>>>>>> master
 
 import '../styles/EmailEntry.css'
 
