@@ -10,10 +10,10 @@
     "react-scripts": "3.2.0",
     "react-svg-radar-chart": "^1.2.0",
     "semantic-ui-react": "^0.88.1",
-    "survey-react": "^1.1.18",
+    "survey-react": "^1.1.19",
     "yarn": "^1.19.1"
   },
-  "proxy" :"http://localhost:8080",
+  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

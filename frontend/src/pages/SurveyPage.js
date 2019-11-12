@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as Survey from 'survey-react';
 import "survey-react/survey.css";
 import data from '../data/survey.js';
+import '../styles/SurveyPage.css';
 
 class SurveyPage extends Component {
     json = data;
@@ -22,8 +23,10 @@ class SurveyPage extends Component {
                 model={model}
                 onComplete={this.onComplete}
                 onValueChanged={this.onValueChanged}
+                className="survey"
             />
-            </div>
+            </div> 
+            
         ); 
     }
 }
