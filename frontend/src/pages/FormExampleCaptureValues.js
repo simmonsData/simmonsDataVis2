@@ -38,7 +38,7 @@ class FormExampleCaptureValues extends Component {
     const { name, password, submittedName, submittedPassword } = this.state
 
     return (
-      <div>
+      <div style={{height: '85vh'}}>
       <Grid centered columns={2}>
         <Grid.Column>
       <Header as="h1" textAlign="center">
