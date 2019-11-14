@@ -1,26 +1,13 @@
-h1 {
-    color:blue;
-    text-align: center;
-    font-family: times new roman;
-    color:#ffffff;
-}
-a {
-    color: #007bff;
-    text-decoration: none;
-    background-color: transparent;
-}
-body {
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+.homePage {
+    background-color: #ffffff;
 
-.container {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    flex-grow: 1;
-    height: 100vh;
+    align-items: center;
+    justify-content: flex-end;
+    height: 85vh;
+}
+
+a {
+    color:#00ccff;
 }
