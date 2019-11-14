@@ -22,8 +22,8 @@ class adminPanel extends Component {
     super(props);
 
   }
-  onCSVPress = () => {
-    this.props.history.push('/data');
+  onSurveyPress = () => {
+    this.props.history.push('/survey');
   }
 
   onStatisticsPress = () => {
@@ -50,8 +50,8 @@ class adminPanel extends Component {
       <
       Button primary size = "massive"
       onClick = {
-        this.onCSVPress
-      } > Download CSV File < /Button> <
+        this.onSurveyPress
+      } > Acess Surveys < /Button> <
       Button secondary size = "massive"
       onClick = {
         this.onStatisticsPress
