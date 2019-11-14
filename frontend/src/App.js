@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //Pages
 import EmailEntry from './pages/EmailEntry'
-import adminLogin from './pages/adminLogin'
-import FormExampleCaptureValues from './pages/FormExampleCaptureValues'
+import adminEntry from './pages/adminEntry'
 import Homepage from './pages/Homepage'
 import SurveyPage from './pages/SurveyPage';
 
@@ -29,7 +28,7 @@ function App() {
                   <Route exact path="/Homepage" component={Homepage} />
                   <Route exact path="/survey" component={SurveyPage} />
                   <Route exact path="/data" component={Homepage} />
-                  <Route exact path="/admin" component={FormExampleCaptureValues} />
+                  <Route exact path="/admin" component={adminEntry} />
               </main>
             <Footer/>
           </div>
