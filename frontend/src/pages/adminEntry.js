@@ -82,7 +82,7 @@ class adminEntry extends Component {
         this.handleSubmit
       } >
       <
-      Form.Group >
+      Form >
 
       <
 
@@ -106,7 +106,7 @@ class adminEntry extends Component {
       fluid size = "large"
       content = 'Submit' / >
       <
-      /Form.Group> < /
+      /Form> < /
       Form > <
       /Segment> < /
       Grid.Column > <

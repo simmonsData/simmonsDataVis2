@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 //Pages
 import EmailEntry from './pages/EmailEntry'
 import adminEntry from './pages/adminEntry'
+import adminPanel from './pages/adminPanel'
 import Homepage from './pages/Homepage'
 import SurveyPage from './pages/SurveyPage';
 
@@ -29,6 +30,7 @@ function App() {
                   <Route exact path="/survey" component={SurveyPage} />
                   <Route exact path="/data" component={Homepage} />
                   <Route exact path="/admin" component={adminEntry} />
+                  <Route exact path="/adminPanel" component={adminPanel} />
               </main>
             <Footer/>
           </div>
