@@ -1,0 +1,11 @@
+header {
+  height: 18vh;
+  background-color: #00abe7;
+
+  font-size: 40px;
+  font-weight: 750;
+  color: #f45d01;
+  text-shadow: -0.25px -0.25px 0 #000, 0.25px -0.25px 0 #000, -0.25px 0.25px 0 #000, 0.25px 0.25px 0 #000;
+  text-align: center;
+  padding-top: 15px;
+}
