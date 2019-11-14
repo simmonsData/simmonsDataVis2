@@ -22,18 +22,18 @@ class adminPanel extends Component {
     super(props);
 
   }
+  onCSVPress = () => {
+    this.props.history.push('/data');
+  }
 
+  onStatisticsPress = () => {
+    this.props.history.push('/survey');
+  }
 
 
 
   render() {
-    function onCSVPress() {
-      this.props.history.push('/data');
-    }
 
-    function onStatisticsPress() {
-      this.props.history.push('/survey');
-    }
 
     return ( <
       div class = "huge buttons"
@@ -50,11 +50,11 @@ class adminPanel extends Component {
       <
       Button primary size = "massive"
       onClick = {
-        onCSVPress
+        this.onCSVPress
       } > Download CSV File < /Button> <
       Button secondary size = "massive"
       onClick = {
-        onStatisticsPress
+        this.onStatisticsPress
       } > Access Statistics < /Button>  < /
       Grid.Column >
 
