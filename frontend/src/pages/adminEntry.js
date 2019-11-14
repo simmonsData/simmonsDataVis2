@@ -41,6 +41,8 @@ class adminEntry extends Component {
     if (password == "admin") {
       alert("Successful Login")
       this.props.history.push('/');
+    }else {
+      alert("Wrong Password")
     }
     /*this.props.dispatch(signUp(formData)).then(({isAuthenticated}) => {
             if (isAuthenticated) {
@@ -68,7 +70,8 @@ class adminEntry extends Component {
         2
       } >
       <
-      Grid.Column >
+
+      Grid.Column centered >
       <
       Header as = "h1"
       textAlign = "center" >
@@ -82,11 +85,9 @@ class adminEntry extends Component {
         this.handleSubmit
       } >
       <
-      Form.Group >
+      Form >
 
-      <
-
-      Form.Input
+      < Form.Input
 
       //fluid
       icon = "lock"
@@ -100,17 +101,18 @@ class adminEntry extends Component {
       }
       onChange = {
         this.handleChange
-      }
-      /> <
-      Form.Button Button color = "grey"
+      } />
+
+
+    <Form.Button Button color = "grey"
       fluid size = "large"
       content = 'Submit' / >
-      <
-      /Form.Group> < /
-      Form > <
-      /Segment> < /
-      Grid.Column > <
-      /Grid>
+      </Form>
+      < /Form >
+    </Segment>
+      < /Grid.Column >
+
+      </Grid>
 
 
       <
