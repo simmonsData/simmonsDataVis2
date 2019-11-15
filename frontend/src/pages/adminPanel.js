@@ -51,7 +51,7 @@ class adminPanel extends Component {
       Button primary size = "massive"
       onClick = {
         this.onSurveyPress
-      } > Acess Surveys < /Button> <
+      } > Access Surveys < /Button> <
       Button secondary size = "massive"
       onClick = {
         this.onStatisticsPress
