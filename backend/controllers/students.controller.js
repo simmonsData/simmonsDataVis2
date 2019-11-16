@@ -29,7 +29,6 @@ exports.list = (req, res) => {
 exports.read = (req, res) => {
     res.status(200);
     res.json(req.student);
-    // res.redirect();
 };
 
 // Updates student information - put request
