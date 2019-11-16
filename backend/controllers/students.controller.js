@@ -250,7 +250,7 @@ exports.studentByEmail = (req, res, next, email) => {
             //another for nomatch found that will allow to add new student without
                 //displaying {"studentNotFound":"Student not found"}
             else{
-                //return res.json({studentNotFound: "Student not found"});
+                return res.json({studentNotFound: "Student not found"});
             }
         }
     });
