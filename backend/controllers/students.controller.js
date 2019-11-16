@@ -27,6 +27,7 @@ exports.list = (req, res) => {
 
 // Displays student information - get request
 exports.read = (req, res) => {
+    res.status(200);
     res.json(req.student);
     // res.redirect();
 };
@@ -34,20 +35,18 @@ exports.read = (req, res) => {
 // Updates student information - put request
 exports.update = (req, res) => {
     const student = req.student;
-    student.email = req.body.email;
+    student.survey = req.body;
 
     const currentDate = new Date();
     student.updated_at = currentDate;
 
-    student.save( (err) => {
+    student.save((err) => {
         if(err){
-            console.log(err);
             res.status(400).send(err);
         }
         else{
+            res.status(200);
             res.json(student);
-            console.log(student);
-            // res.redirect();
         }
     });
 }
@@ -58,12 +57,11 @@ exports.delete = (req, res) => {
 
     Student.findByIdAndRemove(student.id, function(err){
         if(err){
-            console.log(err);
             res.status(400).send(err);
         }
         else{
+            res.status(200);
             res.json(student);
-            console.log(student);
         }
     });
 }
