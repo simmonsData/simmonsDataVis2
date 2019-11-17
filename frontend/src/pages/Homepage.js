@@ -16,6 +16,8 @@ function Homepage(props) {
         props.history.push('/survey')
     }
 
+    console.log(props.user)
+
     return (
         <div className="homePage">
             <Divider/>
