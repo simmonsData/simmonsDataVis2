@@ -1,25 +1,19 @@
-const mongoose = require('mongoose'), 
-    Student = require('../models/students.model'),
-    util = require('util'),
-    bcrypt = require("bcryptjs"),
-    jwt = require("jsonwebtoken"),
-    keys = require("../config/config"),
-    validateRegisterInput = require("../validation/register"),
+validateRegisterInput = require("../validation/register"),
     validateLoginInput = require("../validation/login");
 
 
-// '/' Routes   
+// '/' Routes
 
 // Lists all student information in the database - get request
 exports.list = (req, res) => {
     Student.find({}, (err, student) => {
-      if(err){
-        res.status(400).send(err);
-      }
-      else{
-        res.status(200);
-        res.json(student);
-      }
+        if(err){
+            res.status(400).send(err);
+        }
+        else{
+            res.status(200);
+            res.json(student);
+        }
     });
 };
 
@@ -187,37 +181,37 @@ exports.login = (req, res) => {
     }
     else {
 
-    const email = req.body.email;
-    let hashedEmail;
+        const email = req.body.email;
+        let hashedEmail;
 
-    // Each entry in database is stored into student variable
-    Student.find({}, (err, student) => {
-        let matchFound = false;
-        if (err) {
-            res.status(400).send(err);
-        }
-        // If student is not empty, tries to find a match between entered email and hashed email in database
-        else if (student.length) {
-            student.forEach((currentStudent) => {
-                const isMatch = bcrypt.compareSync(email, currentStudent.email);
-                if (isMatch) {
-                    matchFound = true;
-                    hashedEmail = currentStudent.email;
-                }
-            })
-        }
+        // Each entry in database is stored into student variable
+        Student.find({}, (err, student) => {
+            let matchFound = false;
+            if (err) {
+                res.status(400).send(err);
+            }
+            // If student is not empty, tries to find a match between entered email and hashed email in database
+            else if (student.length) {
+                student.forEach((currentStudent) => {
+                    const isMatch = bcrypt.compareSync(email, currentStudent.email);
+                    if (isMatch) {
+                        matchFound = true;
+                        hashedEmail = currentStudent.email;
+                    }
+                })
+            }
 
-        // If match is found in the database, returns hashed email
-        if (matchFound) {
-            return res.json(hashedEmail);
-        }
-        // If no match found, returns "Email not found"
-        else {
-            return res.status(400).json({emailNotFound: "Email not found"});
-        }
+            // If match is found in the database, returns hashed email
+            if (matchFound) {
+                return res.json(hashedEmail);
+            }
+            // If no match found, returns "Email not found"
+            else {
+                return res.status(400).json({emailNotFound: "Email not found"});
+            }
 
 
-    }); }
+        }); }
 }
 
 // ROUTER.PARAM MIDDLEWARE
@@ -248,7 +242,7 @@ exports.studentByEmail = (req, res, next, email) => {
                 validateRegisterInput(err);
             }
             //another for nomatch found that will allow to add new student without
-                //displaying {"studentNotFound":"Student not found"}
+            //displaying {"studentNotFound":"Student not found"}
             else{
                 return res.json({studentNotFound: "Student not found"});
             }
