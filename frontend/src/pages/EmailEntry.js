@@ -11,8 +11,8 @@ import '../styles/EmailEntry.css'
 
 function EmailEntry(props) {
 
-  const [errors, setErrors] = useState({});
-  const [errorsL, setErrorsL] = useState({});
+  const [errors, setErrors] = useState('');
+  const [errorsL, setErrorsL] = useState('');
   const [registerInput, setregisterInput] = useState('')
   const [loginInput, setLoginInput] = useState('')
   const [redirecting, setRedirecting] = useState(false)
@@ -70,8 +70,14 @@ function EmailEntry(props) {
           setRedirecting(true);
         })
         .catch(function (error) {
-          setErrors(error.response.data.email);
-          console.log(errors);
+
+          if(error.response.data.emailFound){
+            setErrors(error.response.data.emailFound);
+          }
+          else {
+            setErrors(error.response.data.email);
+          }
+          //setErrors(error.response.data.email);
         });
   }
 
@@ -93,13 +99,13 @@ function EmailEntry(props) {
       setRedirecting(true);
     })
         .catch(function (error) {
-          console.log(error.response.data.emailNotFound);
           if(error.response.data.emailNotFound){
             setErrorsL(error.response.data.emailNotFound);
           }
           else {
             setErrorsL(error.response.data.email);
           }
+
         });
   }
 
