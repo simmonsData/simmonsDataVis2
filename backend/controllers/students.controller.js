@@ -34,13 +34,14 @@ exports.read = (req, res) => {
 // Updates student information - put request
 exports.update = (req, res) => {
     const student = req.student;
-    student.survey = req.body;
+    student.survey = req.body.survey;
 
     const currentDate = new Date();
     student.updated_at = currentDate;
 
     student.save((err) => {
         if(err){
+            console.log(err);
             res.status(400).send(err);
         }
         else{
