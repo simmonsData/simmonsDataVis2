@@ -10,11 +10,11 @@ module.exports = function validateRegisterInput(data) {
 
     // Checking if email is entered and valid
     if (Validator.isEmpty(data.email)) {
-        errors.email = "Email Field is Required";
+        errors.email = "Error: Email Field is Required";
     }
     /*
     Checks if the email is a ".ufl.edu" email
-    Update: No longer need to valdiate for ".ufl.edu" email
+    Update: No longer need to validate for ".ufl.edu" email
      */
     /*else if (!(data.email.indexOf("@ufl.edu", data.email.length - "@ufl.edu".length) !== -1)) {
         errors.email = "Not a UFL email";
