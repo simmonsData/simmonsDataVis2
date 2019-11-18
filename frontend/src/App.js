@@ -27,7 +27,7 @@ function App() {
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
                   <Route exact path="/Homepage" component={Homepage} />
-                  <Route exact path="/survey" component={SurveyPage} />
+                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} id={userID} />}/>
                   <Route exact path="/data" component={Homepage} />
                   <Route exact path="/admin" component={FormExampleCaptureValues} />
               </main>

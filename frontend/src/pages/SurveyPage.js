@@ -22,15 +22,15 @@ class SurveyPage extends Component {
 
     onComplete = (result) => {
         // console.log("Complete! "+ JSON.stringify(result.data));
-
+        const id = this.props.id;
+        console.log(this.props.id);
         axios.put(
-            'http://localhost:8080/api/students/testUser@ufl.edu',
+            'http://localhost:8080/api/students/' + id,
             { survey: result.data },
             { headers: { 'Content-Type': 'application/json' } }
         )
         .then(res => {
             console.log(res);
-            console.log(res.data);
             this.setState({
                 redirecting: true
             })
@@ -42,9 +42,6 @@ class SurveyPage extends Component {
     };
 
     render() {
-        const {id} = this.props;
-        console.log(id);
-        
         const model = new Survey.Model(this.json);
 
         if(this.state.redirecting) {
