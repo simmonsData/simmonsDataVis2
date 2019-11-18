@@ -15,25 +15,25 @@ import './styles/App.css'
 
 function App() {
 
-  const[userID, setUserID] = useState('');
+    const[userID, setUserID] = useState('');
 
-  function userLogged(id) { setUserID(id);};
+    function userLogged(id) { setUserID(id);};
 
-  return (
-      <Router>
-          <div className='container'>
-            <Header/>
-              <main>
-                  <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
-                  <Route exact path="/Homepage" component={Homepage} />
-                  <Route exact path="/survey" component={SurveyPage} />
-                  <Route exact path="/data" component={Homepage} />
-                  <Route exact path="/admin" component={adminEntry} />
-              </main>
-            <Footer/>
-          </div>
-      </Router>
-  );
+    return (
+        <Router>
+            <div className='container'>
+                <Header/>
+                <main>
+                    <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
+                    <Route exact path="/Homepage" component={Homepage} />
+                    <Route exact path="/survey" component={SurveyPage} />
+                    <Route exact path="/data" component={Homepage} />
+                    <Route exact path="/admin" component={adminEntry} />
+                </main>
+                <Footer/>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

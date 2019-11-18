@@ -39,16 +39,16 @@ function Homepage(props) {
             </Container>
             <Grid columns='2'>
                 <Grid.Column>
-                    <Button 
-                        onClick={onDataPress} 
+                    <Button
+                        onClick={onDataPress}
                         size='massive'
                         className='router'>
                         &nbsp; Data &nbsp;
                     </Button>
                 </Grid.Column>
                 <Grid.Column>
-                    <Button 
-                        onClick={onSurveyPress} 
+                    <Button
+                        onClick={onSurveyPress}
                         size='massive'
                         className='router'>
                         Survey
