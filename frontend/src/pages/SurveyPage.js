@@ -7,20 +7,22 @@ import data from '../data/survey.js';
 import "survey-react/survey.css";
 import '../styles/SurveyPage.css';
 
-
-
-
 class SurveyPage extends Component {
-    // studentEmail = this.props;
+    constructor(props){
+        super(props);
+        this.state={
+            redirecting: false
+        }
+    }
     json = data;
     
-
-    onValueChanged(result) {
+    onValueChanged = (result) => {
         console.log("value change!");
     }
 
-    onComplete(result) {
+    onComplete = (result) => {
         // console.log("Complete! "+ JSON.stringify(result.data));
+
         axios.put(
             'http://localhost:8080/api/students/testUser@ufl.edu',
             { survey: result.data },
@@ -29,15 +31,26 @@ class SurveyPage extends Component {
         .then(res => {
             console.log(res);
             console.log(res.data);
+            this.setState({
+                redirecting: true
+            })
         })
         .catch(err => {
             console.log(err);
         })
 
-    }
+    };
 
     render() {
+        const {id} = this.props;
+        console.log(id);
+        
         const model = new Survey.Model(this.json);
+
+        if(this.state.redirecting) {
+            return <Redirect to='/data' />
+        }
+
         return (
             <div className="surveyjs">
             <Survey.Survey 
