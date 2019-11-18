@@ -33,6 +33,7 @@ function EmailEntry(props) {
     if(response.data.emailFound){
       console.log('email already exists')
     } else {
+      console.log(response);
       props.userLogged(registerInput);
       setRedirecting(true);
     }
@@ -48,6 +49,7 @@ function EmailEntry(props) {
     if(response.data.emailNotFound){
       console.log('email does not exists')
     } else {
+      console.log(response);
       props.userLogged(loginInput);
       setRedirecting(true);
     }
