@@ -1,3 +1,12 @@
+body {
+  background-image: url("../img/campus.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .container {
   display: flex;
   flex-direction: column;

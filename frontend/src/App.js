@@ -6,6 +6,7 @@ import EmailEntry from './pages/EmailEntry'
 import adminEntry from './pages/adminEntry'
 import Homepage from './pages/Homepage'
 import SurveyPage from './pages/SurveyPage';
+import DataPage from './pages/DataPage';
 
 //Components
 import Header from './components/Header'
@@ -22,12 +23,12 @@ function App() {
   return (
       <Router>
           <div className='container'>
-            <Header/>
+              <Header />
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
                   <Route exact path="/Homepage" component={Homepage} />
                   <Route exact path="/survey" component={SurveyPage} />
-                  <Route exact path="/data" component={Homepage} />
+                  <Route exact path="/data" component={DataPage} />
                   <Route exact path="/admin" component={adminEntry} />
               </main>
             <Footer/>

@@ -1,27 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Button, Header, Form, Grid, Divider } from 'semantic-ui-react'
+import { redirect } from 'react-router-dom'
 import RadarChart from 'react-svg-radar-chart';
 import 'react-svg-radar-chart/build/css/index.css';
 
 class SpiderChart extends React.Component {
 
+    
+
     render() {
 
         //Dataset for the SpiderChart. Entries in Label:Value. Value must be a int for the RadarChart to accept it.
-        const data = [
-            {
-                data: {
-                    E2: 1,
-                    E3: 0.75,
-                    E4: 1,
-                    E5: 0.5,
-                    E6: 0.75,
-                    E7: 0.5,
-                    E8: 0.25,
-                    E9: 0.25,
-                },
-                meta: { color: 'blue'}
-            }
-        ];
+        const dataFile = this.props
         
         //Captions for the SpiderChart. Entries in Label:Value. 
         const captions = {
@@ -70,12 +60,12 @@ class SpiderChart extends React.Component {
         };
 
         return (
-            <div>
+            <div class="container">
                 <RadarChart
                     captions={
                         captions
                     }
-                    data={data}
+                    data={dataFile}
                     options={defaultOptions}
                     size={450}
                 />

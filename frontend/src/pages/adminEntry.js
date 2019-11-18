@@ -61,7 +61,7 @@ class adminEntry extends Component {
     return ( <
       div style = {
         {
-          height: '75vh',
+          height: '85vh',
           background: "white"
         }
       } >
