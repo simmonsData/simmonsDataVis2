@@ -1,11 +1,16 @@
 header {
-  height: 18vh;
-  background-color: #00abe7;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 16px 0px;
+  margin-top: 0;
+  margin-bottom: 0;
 
   font-size: 40px;
   font-weight: 750;
   color: #f45d01;
   text-shadow: -0.25px -0.25px 0 #000, 0.25px -0.25px 0 #000, -0.25px 0.25px 0 #000, 0.25px 0.25px 0 #000;
   text-align: center;
-  padding-top: 15px;
+
+  background-color: #00abe7;
 }

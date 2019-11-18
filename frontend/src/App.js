@@ -17,9 +17,7 @@ import './styles/App.css'
 
 function App() {
 
-  const[user, setUser] = useState(
-    localStorage.getItem('userContext') || {poopy:'poop'}
-  );
+  const[user, setUser] = useState({});
 
   async function userLogged(id) {
     const response = await axios.get(
@@ -28,7 +26,6 @@ function App() {
     )
 
     setUser(response.data);
-    localStorage.setItem('userContext', response.data);
   };
 
   return (
