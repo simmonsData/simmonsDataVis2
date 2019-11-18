@@ -17,6 +17,7 @@ import './styles/App.css'
 
 function App() {
 
+<<<<<<< HEAD
   const[user, setUser] = useState({});
 
   async function userLogged(id) {
@@ -43,6 +44,27 @@ function App() {
           </div>
       </Router>
   );
+=======
+    const[userID, setUserID] = useState('');
+
+    function userLogged(id) { setUserID(id);};
+
+    return (
+        <Router>
+            <div className='container'>
+                <Header/>
+                <main>
+                    <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
+                    <Route exact path="/Homepage" component={Homepage} />
+                    <Route exact path="/survey" component={SurveyPage} />
+                    <Route exact path="/data" component={Homepage} />
+                    <Route exact path="/admin" component={adminEntry} />
+                </main>
+                <Footer/>
+            </div>
+        </Router>
+    );
+>>>>>>> develop
 }
 
 export default App;
