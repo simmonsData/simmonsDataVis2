@@ -64,14 +64,6 @@ function EmailEntry(props) {
         {email: registerInput},
         {headers: {'Content-Type': 'application/json'}}
     )
-<<<<<<< HEAD
-    if(response.data.emailFound){
-      console.log('email already exists')
-    } else {
-      props.userLogged(registerInput);
-      setRedirecting(true);
-    }
-=======
         .then(function (response) {
           console.log(response);
           props.userLogged(registerInput);
@@ -87,7 +79,6 @@ function EmailEntry(props) {
           }
           //setErrors(error.response.data.email);
         });
->>>>>>> develop
   }
 
   async function onLogin(e) {
@@ -99,21 +90,11 @@ function EmailEntry(props) {
       setErrors({});
     }
     const response = await axios.post(
-<<<<<<< HEAD
-      'http://localhost:8080/api/students/login',
-      { email: loginInput },
-      { headers: { 'Content-Type': 'application/json' } }
-    )
-    if(response.data.emailNotFound){
-      console.log('email does not exists')
-    } else {
-=======
         'http://localhost:8080/api/students/login',
         { email: loginInput },
         { headers: { 'Content-Type': 'application/json' } }
     ).then(function (response) {
       console.log(response);
->>>>>>> develop
       props.userLogged(loginInput);
       setRedirecting(true);
     })
