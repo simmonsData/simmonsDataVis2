@@ -8,6 +8,7 @@ import "survey-react/survey.css";
 import '../styles/SurveyPage.css';
 
 class SurveyPage extends Component {
+    // redirecting handles redirecting to data page
     constructor(props){
         super(props);
         this.state={
@@ -16,12 +17,16 @@ class SurveyPage extends Component {
     }
     json = data;
     
+    // Called when a question in the survey is changed/answered
     onValueChanged = (result) => {
         console.log("value change!");
     }
 
+    // Called when survey is submitted
     onComplete = (result) => {
         // console.log("Complete! "+ JSON.stringify(result.data));
+
+        // id is appended to route to make put request
         const id = this.props.id;
         console.log(this.props.id);
         axios.put(
@@ -31,6 +36,8 @@ class SurveyPage extends Component {
         )
         .then(res => {
             console.log(res);
+
+            // If put request is successful, sets redirecting to true
             this.setState({
                 redirecting: true
             })
@@ -44,6 +51,7 @@ class SurveyPage extends Component {
     render() {
         const model = new Survey.Model(this.json);
 
+        // Redirects to data page when survey is complete
         if(this.state.redirecting) {
             return <Redirect to='/data' />
         }
