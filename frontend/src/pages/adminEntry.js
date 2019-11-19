@@ -53,41 +53,61 @@ class adminEntry extends Component {
         style={{
           height: "75vh",
           background: "white"
-        }}
-      >
-        <Grid centered columns={2}>
-          <Grid.Column>
-            <Header as="h1" textAlign="center">
-              <div id="container"> Admin Login </div>{" "}
-            </Header>{" "}
-            <Segment>
-              <Form onSubmit={this.handleSubmit}>
-                <Form>
-                  <Form.Input
-                    //fluid
-                    icon="lock"
-                    iconPosition="left"
-                    //placeholder="Password"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={password}
-                    onChange={this.handleChange}
-                  />{" "}
-                  <Form.Button
-                    Button
-                    color="grey"
-                    fluid
-                    size="large"
-                    content="Submit"
-                  />
-                </Form>{" "}
-              </Form>{" "}
-            </Segment>{" "}
-          </Grid.Column>{" "}
-        </Grid>
-      </div>
-    );
+        }
+      } >
+      <
+      Grid centered columns = {
+        2
+      } >
+      <
+
+      Grid.Column centered >
+      <
+      Header as = "h1"
+      textAlign = "center" >
+      <
+      div id = 'container' > Admin Login < /div> < /
+      Header > <
+      Segment >
+      <
+
+      Form onSubmit = {
+        this.handleSubmit
+      } >
+      <
+      Form >
+
+      < Form.Input
+
+      //fluid
+      icon = "lock"
+      iconPosition = "left"
+      //placeholder="Password"
+      type = "password"
+      placeholder = 'Password'
+      name = 'password'
+      value = {
+        password
+      }
+      onChange = {
+        this.handleChange
+      } />
+
+
+    <Form.Button Button color = "grey"
+      fluid size = "large"
+      content = 'Submit' / >
+      </Form>
+      < /Form >
+    </Segment>
+      < /Grid.Column >
+
+      </Grid>
+
+
+      <
+      /div>
+    )
   }
 }
 
