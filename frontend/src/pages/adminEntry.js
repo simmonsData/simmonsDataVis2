@@ -57,7 +57,7 @@ class adminEntry extends Component {
       } >
       <
       Grid centered columns = {
-        2
+      1
       } >
       <
 
