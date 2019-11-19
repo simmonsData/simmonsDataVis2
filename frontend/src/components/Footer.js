@@ -7,7 +7,7 @@ import '../styles/Footer.css'
 function Footer () {
   return (
     <footer>
-      Survey is legal property of blah blah 2019 something
+      Survey is legal property of the University of Florida ©2019
     </footer>
   )
 }

@@ -5,6 +5,7 @@ import axios from 'axios';
 //Pages
 import EmailEntry from './pages/EmailEntry'
 import adminEntry from './pages/adminEntry'
+import adminPanel from './pages/adminPanel'
 import Homepage from './pages/Homepage'
 import SurveyPage from './pages/SurveyPage'
 import DataPage from './pages/DataPage'
@@ -38,6 +39,7 @@ function App() {
                   <Route exact path="/survey" component={SurveyPage} />
                   <Route exact path="/data" render={(props) => <DataPage {...props} user={user} />}/>
                   <Route exact path="/admin" component={adminEntry} />
+                  <Route exact path="/adminPanel" component={adminPanel} />
               </main>
             <Footer/>
           </div>
