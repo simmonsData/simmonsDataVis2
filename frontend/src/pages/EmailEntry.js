@@ -22,7 +22,7 @@ function EmailEntry(props) {
   function loginChange(e) {
     setLoginInput(e.target.value);
   }
-  
+
   async function onRegister() {
 
     const response = await axios.post(
@@ -80,8 +80,8 @@ function EmailEntry(props) {
               </Header>
               <Form.Field className='emailInput'>
                 <label>Email Address</label>
-                <input 
-                  placeholder='Email' 
+                <input
+                  placeholder='Email'
                   onChange={registerChange}
                   value={registerInput}
                   error={errors.registerInput}
@@ -97,8 +97,8 @@ function EmailEntry(props) {
               </Header>
               <Form.Field className='emailInput'>
                 <label>Email Address</label>
-                <input 
-                  placeholder='Email' 
+                <input
+                  placeholder='Email'
                   onChange={loginChange}
                   value={loginInput}
                   error={errors.loginInput}
