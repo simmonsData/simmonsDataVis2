@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import axios from 'axios';
 
 //Pages
 import EmailEntry from './pages/EmailEntry'
-import adminLogin from './pages/adminLogin'
-import FormExampleCaptureValues from './pages/FormExampleCaptureValues'
+import adminEntry from './pages/adminEntry'
 import Homepage from './pages/Homepage'
-import SurveyPage from './pages/SurveyPage';
+import SurveyPage from './pages/SurveyPage'
+import DataPage from './pages/DataPage'
 
 //Components
 import Header from './components/Header'
@@ -16,9 +17,17 @@ import './styles/App.css'
 
 function App() {
 
-  const[userID, setUserID] = useState('');
+  const[user, setUser] = useState({});
 
-  function userLogged(id) { setUserID(id);};
+  async function userLogged(id) {
+    const response = await axios.get(
+      'http://localhost:8080/api/students/' + id,
+      { headers: { 'Content-Type': 'application/json' } }
+    )
+
+    setUser(response.data);
+    console.log(user);
+  };
 
   return (
       <Router>
@@ -26,10 +35,10 @@ function App() {
             <Header/>
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
-                  <Route exact path="/Homepage" component={Homepage} />
-                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} id={userID} />}/>
-                  <Route exact path="/data" component={Homepage} />
-                  <Route exact path="/admin" component={FormExampleCaptureValues} />
+                  <Route exact path="/homepage" render={(props) => <Homepage {...props} user={user} />}/>
+                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} user={user} />} />
+                  <Route exact path="/data" render={(props) => <DataPage {...props} user={user} />}/>
+                  <Route exact path="/admin" component={adminEntry} />
               </main>
             <Footer/>
           </div>

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import * as Survey from 'survey-react';
@@ -26,11 +26,11 @@ class SurveyPage extends Component {
     onComplete = (result) => {
         // console.log("Complete! "+ JSON.stringify(result.data));
 
-        // id is appended to route to make put request
-        const id = this.props.id;
-        console.log(this.props.id);
+        // user is appended to route to make put request
+        const user = this.props.user;
+        console.log(this.props.user);
         axios.put(
-            'http://localhost:8080/api/students/' + id,
+            'http://localhost:8080/api/students/' + user,
             { survey: result.data },
             { headers: { 'Content-Type': 'application/json' } }
         )

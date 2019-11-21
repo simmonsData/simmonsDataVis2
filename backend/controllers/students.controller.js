@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'), 
+const mongoose = require('mongoose'),
     Student = require('../models/students.model'),
     util = require('util'),
     bcrypt = require("bcryptjs"),
@@ -8,18 +8,18 @@ const mongoose = require('mongoose'),
     validateLoginInput = require("../validation/login");
 
 
-// '/' Routes   
+// '/' Routes
 
 // Lists all student information in the database - get request
 exports.list = (req, res) => {
     Student.find({}, (err, student) => {
-      if(err){
-        res.status(400).send(err);
-      }
-      else{
-        res.status(200);
-        res.json(student);
-      }
+        if(err){
+            res.status(400).send(err);
+        }
+        else{
+            res.status(200);
+            res.json(student);
+        }
     });
 };
 
@@ -100,67 +100,76 @@ exports.delete = (req, res) => {
 
 // Registers a new student - post request
 exports.register = (req, res) => {
-    const { errors, isValid } = validateRegisterInput(req.body);
+    const {errors, isValid} = validateRegisterInput(req.body);
     // Checks if email is entered with valid format
-    if(!isValid){
-        return res.status(400).json(errors);
-    }
-
-    const email = req.body.email;
-
-    // Each entry in database is stored into student variable
-    Student.find({}, (err, student) => {
-        let matchFound = false;
-        if(err){
-            return res.status(400).send(err);
+    if (!isValid) {
+        if(errors){
+            //return res.json(errors);
+            res.status(400).send(errors);
         }
-        // If student is not empty, tries to find a match between entered email and hashed email in database
-        else if(student.length){
-            student.forEach((currentStudent) => {
-                const isMatch = bcrypt.compareSync(email, currentStudent.email)
-                    if(isMatch){
+        else {
+            return res.json(errors);
+        }
+        console.log(errors);
+    } else {
+
+        const email = req.body.email;
+
+        // Each entry in database is stored into student variable
+        Student.find({}, (err, student) => {
+            let matchFound = false;
+            if (err) {
+                return res.status(400).send(err);
+            }
+            // If student is not empty, tries to find a match between entered email and hashed email in database
+            else if (student.length) {
+                student.forEach((currentStudent) => {
+                    const isMatch = bcrypt.compareSync(email, currentStudent.email)
+                    if (isMatch) {
                         matchFound = true;
                     }
-            })
-
-        }
-
-        // If there are no students in the database or no matching email addresses, will create new entry
-        if(!student.length || matchFound != true){
-
-            // Making new student 
-            console.log("Creating new student");
-            const newStudent = new Student({
-                email: req.body.email
-            });
-
-            // Hashing email before saving into database
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newStudent.email, salt, (err, hash) => {
-                    if(err){
-                        throw err;
-                    }
-                    newStudent.email = hash;
-
-                    // Saving hashed email into database
-                    newStudent.save( (err) => {
-                        if(err) {
-                            console.log(err);
-                            return res.status(400).send(err);
-                        } 
-                        else {
-                            console.log(newStudent.email);
-                            return res.json(newStudent.email);
-                        }
-                    });      
                 })
-            })
-        }
-        // If matching email is found, returns "Email already created"
-        else{
-            return res.status(200).json({emailFound: "Email already created"}); 
-        }
-    });
+
+            }
+
+            // If there are no students in the database or no matching email addresses, will create new entry
+            if (!student.length || matchFound != true) {
+
+                // Making new student
+                console.log("Creating new student");
+                const newStudent = new Student({
+                    email: req.body.email
+                });
+
+                // Hashing email before saving into database
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newStudent.email, salt, (err, hash) => {
+                        if (err) {
+                            throw err;
+                        }
+                        newStudent.email = hash;
+
+                        // Saving hashed email into database
+                        newStudent.save((err) => {
+                            if (err) {
+                                console.log(err);
+                                return res.status(400).send(err);
+                            } else {
+                                console.log(newStudent.email);
+                                return res.json(newStudent.email);
+                            }
+                        });
+                    })
+                })
+            }
+            // If matching email is found, returns "Email already created"
+            else {
+                return res.status(400).json({emailFound: "Email already created"});
+                //return res.status(200).json({emailFound: "Email already created"});
+            }
+
+        });
+    }
 }
 
 // Logins student by email address - post request
@@ -169,39 +178,45 @@ exports.login = (req, res) => {
 
     // Checks if email is valid
     if(!isValid){
-        return res.status(400).json(errors);
+        if(errors){
+            //return res.json(errors);
+            res.status(400).send(errors);
+        }
+        console.log(errors);
     }
+    else {
 
-    const email = req.body.email;
-    let hashedEmail;
+        const email = req.body.email;
+        let hashedEmail;
 
-    // Each entry in database is stored into student variable
-    Student.find({}, (err, student) => {
-        let matchFound = false;
-        if(err){
-            res.status(400).send(err);
-        }
-        // If student is not empty, tries to find a match between entered email and hashed email in database
-        else if(student.length){
-            student.forEach((currentStudent) => {
-                const isMatch = bcrypt.compareSync(email, currentStudent.email);
-                if(isMatch){
-                    matchFound = true;
-                    hashedEmail = currentStudent.email;
-                }
-            })
-        }
+        // Each entry in database is stored into student variable
+        Student.find({}, (err, student) => {
+            let matchFound = false;
+            if (err) {
+                res.status(400).send(err);
+            }
+            // If student is not empty, tries to find a match between entered email and hashed email in database
+            else if (student.length) {
+                student.forEach((currentStudent) => {
+                    const isMatch = bcrypt.compareSync(email, currentStudent.email);
+                    if (isMatch) {
+                        matchFound = true;
+                        hashedEmail = currentStudent.email;
+                    }
+                })
+            }
 
-        // If match is found in the database, returns hashed email
-        if(matchFound){
-            return res.json(hashedEmail);
-        }
-        // If no match found, returns "Email not found"
-        else{
-            return res.json({emailNotFound: "Email not found"}); 
-        }
+            // If match is found in the database, returns hashed email
+            if (matchFound) {
+                return res.json(hashedEmail);
+            }
+            // If no match found, returns "Email not found"
+            else {
+                return res.status(400).json({emailNotFound: "Email not found"});
+            }
 
-    });
+
+        }); }
 }
 
 // ROUTER.PARAM MIDDLEWARE
@@ -229,9 +244,12 @@ exports.studentByEmail = (req, res, next, email) => {
             if(matchFound){
                 req.student = foundStudent;
                 next();
+              //  validateRegisterInput(err);
             }
+            //another for nomatch found that will allow to add new student without
+            //displaying {"studentNotFound":"Student not found"}
             else{
-                return res.json({studentNotFound: "Student not found"}); 
+                return res.json({studentNotFound: "Student not found"});
             }
         }
     });
