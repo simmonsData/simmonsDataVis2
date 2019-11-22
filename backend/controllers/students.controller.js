@@ -145,14 +145,14 @@ exports.register = (req, res) => {
                     newStudent.email = hash;
 
                     // Saving hashed email into database
-                    newStudent.save( (err) => {
+                    newStudent.save( (err, savedStudent) => {
                         if(err) {
                             console.log(err);
                             return res.status(400).send(err);
                         } 
                         else {
-                            console.log(newStudent.email);
-                            return res.json(newStudent.email);
+                            console.log(savedStudent.id);
+                            return res.json(savedStudent.id);
                         }
                     });      
                 })
@@ -175,7 +175,7 @@ exports.login = (req, res) => {
     }
 
     const email = req.body.email;
-    let hashedEmail;
+    let id;
 
     // Each entry in database is stored into student variable
     Student.find({}, (err, student) => {
@@ -189,17 +189,18 @@ exports.login = (req, res) => {
                 const isMatch = bcrypt.compareSync(email, currentStudent.email);
                 if(isMatch){
                     matchFound = true;
-                    hashedEmail = currentStudent.email;
+                    id = currentStudent.id;
                 }
             })
         }
 
         // If match is found in the database, returns hashed email
         if(matchFound){
-            return res.json(hashedEmail);
+            return res.json(id);
         }
         // If no match found, returns "Email not found"
         else{
+            res.status(400);
             return res.json({emailNotFound: "Email not found"}); 
         }
 
