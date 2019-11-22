@@ -27,7 +27,8 @@ exports.list = (req, res) => {
 
 // Displays student information - get request
 exports.read = (req, res) => {
-    res.json(req.student);
+    console.log(req.student.survey);
+    res.json(req.student.survey);
     // res.redirect();
 };
 
