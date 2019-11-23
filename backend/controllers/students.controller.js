@@ -35,7 +35,7 @@ exports.read = (req, res) => {
 // Updates student information - put request
 exports.update = (req, res) => {
     const student = req.student;
-    student.email = req.body.email;
+    student.survey = req.body.survey;
 
     const currentDate = new Date();
     student.updated_at = currentDate;
@@ -48,7 +48,6 @@ exports.update = (req, res) => {
         else{
             res.json(student);
             console.log(student);
-            // res.redirect();
         }
     });
 }
