@@ -151,6 +151,7 @@ exports.register = (req, res) => {
                             console.log(err);
                             return res.status(400).send(err);
                         } 
+                        // Returns student id
                         else {
                             console.log(savedStudent.id);
                             return res.json(savedStudent.id);
@@ -195,7 +196,7 @@ exports.login = (req, res) => {
             })
         }
 
-        // If match is found in the database, returns hashed email
+        // If match is found in the database, returns id
         if(matchFound){
             return res.json(id);
         }
@@ -210,7 +211,7 @@ exports.login = (req, res) => {
 
 // ROUTER.PARAM MIDDLEWARE
 
-// Middleware for locating student entry in database by their email
+// Middleware for locating student entry in database by their id
 exports.studentByID = (req, res, next, id) => {
     Student.findById(id).exec( (err, student) => {
         if(err){
@@ -222,31 +223,4 @@ exports.studentByID = (req, res, next, id) => {
             next();
         }
     });
-    // Student.find({}, (err, student) => {
-    //     if(err){
-    //         res.status(400).send(err);
-    //     }
-    //     else{
-    //         let matchFound = false;
-    //         let foundStudent;
-    //         // If student is not empty, tries to find a match between entered email and hashed email in database
-    //         if(student.length){
-    //             student.forEach((currentStudent) => {
-    //                 const isMatch = bcrypt.compareSync(email, currentStudent.email);
-    //                 if(isMatch){
-    //                     matchFound = true;
-    //                     foundStudent = currentStudent;
-    //                 }
-    //             })
-    //         }
-
-    //         if(matchFound){
-    //             req.student = foundStudent;
-    //             next();
-    //         }
-    //         else{
-    //             return res.json({studentNotFound: "Student not found"}); 
-    //         }
-    //     }
-    // });
 }
