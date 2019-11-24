@@ -3,6 +3,7 @@ import { Button, Header, Form, Grid, Divider } from 'semantic-ui-react'
 import { redirect } from 'react-router-dom'
 import RadarChart from 'react-svg-radar-chart';
 import 'react-svg-radar-chart/build/css/index.css';
+import data from '../data/data.js';
 
 class SpiderChart extends React.Component {
 
@@ -11,8 +12,12 @@ class SpiderChart extends React.Component {
     render() {
 
         //Dataset for the SpiderChart. Entries in Label:Value. Value must be a int for the RadarChart to accept it.
-        const dataFile = [{
+        const dataFile = [
+            {
             data: {
+                gender: 1,
+                race: 1,
+                major: 1,
                 E2: 0.25,
                 E3: 0.50,
                 E4: 0.75,
@@ -23,7 +28,40 @@ class SpiderChart extends React.Component {
                 E9: 1.0,
             },
             meta: {color: 'blue'} 
-        }]
+            },
+            {
+            data: {
+                gender: 2,
+                race: 2,
+                major: 2,
+                E2: 0.50,
+                E3: 0.75,
+                E4: 1.0,
+                E5: 0.75,
+                E6: 0.50,
+                E7: 0.25,
+                E8: 0.50,
+                E9: 1.0,
+            },
+            meta: {color: 'green'}
+            },
+            {
+            data: {
+                gender: 3,
+                race: 3,
+                major: 3,
+                E2: 0.75,
+                E3: 1.0,
+                E4: 0.50,
+                E5: 0.75,
+                E6: 0.25,
+                E7: 0.25,
+                E8: 0.25,
+                E9: 0.25,
+            },
+            meta: {color: 'red'}
+            }
+        ];
         
         //Captions for the SpiderChart. Entries in Label:Value. 
         const captions = {
