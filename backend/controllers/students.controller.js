@@ -104,19 +104,17 @@ exports.delete = (req, res) => {
 exports.register = (req, res) => {
     const {errors, isValid} = validateRegisterInput(req.body);
     // Checks if email is entered with valid format
-    if (!isValid) {
+
+    if(!isValid){
         if(errors){
             //return res.json(errors);
             res.status(400).send(errors);
         }
-        else {
-            return res.json(errors);
-        }
         console.log(errors);
-    } else {
-
+    }
+    else {
+        console.log(errors);
         const email = req.body.email;
-
         // Each entry in database is stored into student variable
         Student.find({}, (err, student) => {
             let matchFound = false;
@@ -131,18 +129,15 @@ exports.register = (req, res) => {
                         matchFound = true;
                     }
                 })
-
             }
 
             // If there are no students in the database or no matching email addresses, will create new entry
-            if (!student.length || matchFound != true) {
-
+            if (!student.length || matchFound !== true) {
                 // Making new student
                 console.log("Creating new student");
                 const newStudent = new Student({
                     email: req.body.email
                 });
-
                 // Hashing email before saving into database
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newStudent.email, salt, (err, hash) => {
@@ -150,7 +145,6 @@ exports.register = (req, res) => {
                             throw err;
                         }
                         newStudent.email = hash;
-
                         // Saving hashed email into database
                         newStudent.save((err) => {
                             if (err) {
@@ -171,8 +165,8 @@ exports.register = (req, res) => {
             }
 
         });
-    }
-}
+
+}}
 
 // Logins student by email address - post request
 exports.login = (req, res) => {
@@ -216,8 +210,6 @@ exports.login = (req, res) => {
             else {
                 return res.status(400).json({emailNotFound: "Email not found"});
             }
-
-
         }); }
 }
 
