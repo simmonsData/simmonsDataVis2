@@ -1,7 +1,9 @@
 const Validator = require("validator"),
     isEmpty = require("is-empty");
 
-module.exports = function validateRegisterInput(data) {
+//function validateLoginInput??????? Was set to validateRegisterInput
+
+module.exports = function validateLoginInput(data) {
     // Holds any email validation errors
     let errors = {};
 
