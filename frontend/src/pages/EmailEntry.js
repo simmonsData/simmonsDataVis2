@@ -1,13 +1,15 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {Redirect} from 'react-router-dom';
 
-import {Button, Header, Form, Grid, Divider, Segment, Label, Transition, List} from 'semantic-ui-react'
+import {Button, Header, Form, Grid, Divider, Segment, Label, Transition, List, Loader, Dimmer} from 'semantic-ui-react'
 
 import axios from 'axios'
 
 import '../styles/EmailEntry.css'
 
 function EmailEntry(props) {
+
+    /*NOTE: Autocomplete form-fields is OFF for testing purposes. Turn on before deployment*/
 
     const [errors, setErrors] = useState(''); //register error message
     const [errorsL, setErrorsL] = useState(''); //login error message
@@ -18,7 +20,8 @@ function EmailEntry(props) {
     const [isVisibleLoginErr, setIsVisibleLoginErr] = useState(false); //If the login error is visible
     const [copy,setCopy] = useState(''); //used to make copy of register error message
     const [copyL,setCopyL] = useState(''); //used to make copy of login error message
-    // const [isVisLoad, setIsVisLoad] = useState(false);
+    const [regLoad, setRegLoad] = useState (false);
+    const [loginLoad, setLoginLoad] =useState(false);
 
     //Used for manual error-checking/testing in console
     useEffect(() => {
@@ -29,6 +32,7 @@ function EmailEntry(props) {
             console.log("Currently: Register Errors are NOT visible.");
         }
     }, [isVisibleRegErr]);
+
     useEffect(() => {
         console.log("Login error is visible? " + isVisibleLoginErr + "\nError message: " + "'" + errorsL + "'");
         if (isVisibleLoginErr === true) {
@@ -38,8 +42,8 @@ function EmailEntry(props) {
         }
     }, [isVisibleLoginErr]);
 
-    function stringErr (string) {
-        return string.slice(0,string.length);
+    function stringErr(string) {
+        return string.slice(0, string.length);
         /*Used to keep track of the displayed error.
         Transition visibility is dependent on a valid error being displayed.
         If the error message is reset to null, then on the transition close,
@@ -48,30 +52,26 @@ function EmailEntry(props) {
         When the transition is closing, the label will display a "copy" of the original error string*/
     }
 
-    function handleRegisterErrors(){
-        if(errors !== "") {
+    function handleRegisterErrors() {
+        if (errors !== "") {
             setCopy(stringErr(errors));
-        }
-        else if(errors === ""){
+        } else if (errors === "") {
             setCopy(stringErr(copy));
         }
-        setErrors('');
-        //clears the error message
-        setIsVisibleRegErr(false);
-        //closes the error pop up
+        setRegLoad(false); //disables the loader and dimmer for register
+        setErrors(''); //clears the error message
+        setIsVisibleRegErr(false); //closes the error pop up
     }
 
-    function handleLoginErrors(){
-        if(errorsL !== "") {
+    function handleLoginErrors() {
+        if (errorsL !== "") {
             setCopyL(stringErr(errorsL));
-        }
-        else if(errorsL === ""){
+        } else if (errorsL === "") {
             setCopyL(stringErr(copyL));
         }
-        setErrorsL('');
-        //clears the error message
-        setIsVisibleLoginErr(false);
-        //closes the error pop up
+        setLoginLoad(false); //disables the loader and dimmer for login
+        setErrorsL(''); //clears the error message
+        setIsVisibleLoginErr(false); //closes the error pop up
     }
 
     function registerChange(e) {
@@ -79,8 +79,7 @@ function EmailEntry(props) {
         handleLoginErrors();
         setregisterInput(e.target.value);
         if (loginInput != null) {
-            setLoginInput('');
-            //removes any text in the login form
+            setLoginInput(''); //removes any text in the login form
         }
     }
 
@@ -89,19 +88,18 @@ function EmailEntry(props) {
         handleLoginErrors();
         setLoginInput(e.target.value);
         if (registerInput != null) {
-            setregisterInput('');
-            //removes any text in the register form
+            setregisterInput(''); //removes any text in the register form
         }
     }
 
     async function onRegister(e) {
-       handleLoginErrors();
-        if (loginInput != null) {
-            //removes any text in the login input form
+        setRegLoad(true); //displays the loader
+        handleLoginErrors();
+        //handleRegisterErrors();
+        if (loginInput != null) {//removes any text in the login input form
             setLoginInput('');
         }
-        if (errorsL != null) {
-            //closes the popup for login
+        if (errorsL != null) {//closes the popup for login
             setErrorsL('');
         }
         const response = await axios.post(
@@ -116,19 +114,23 @@ function EmailEntry(props) {
             })
             .catch(function (error) {
                 if (error.response.data.emailFound) {
+                    console.log(error.response.data.emailFound);
                     setErrors(error.response.data.emailFound);
+                    console.log(errors);
                 } else {
                     setErrors(error.response.data.email);
                 }
                 setIsVisibleRegErr(true);
                 setCopy(stringErr(errors));
             });
+        setRegLoad(false);
     }
 
     async function onLogin(e) {
+        setLoginLoad(true); //displays the loader
         handleRegisterErrors();
-        if (registerInput != null) {
-            //removes any text from the register input form
+        //handleLoginErrors();
+        if (registerInput != null) {//removes any text from the register input form
             setregisterInput('');
         }
         const response = await axios.post(
@@ -149,6 +151,7 @@ function EmailEntry(props) {
                 setIsVisibleLoginErr(true);
                 setCopyL(stringErr(errorsL));
             });
+        setLoginLoad(false);
     }
 
     if (redirecting) {
@@ -167,16 +170,20 @@ function EmailEntry(props) {
                 </Header>
                 <Divider/>
                 <Divider/>
-                <div className="emailForms">
-                    <Grid columns={2} divided className='emailForms'>
-                        <Grid.Row>
-                            <Grid.Column stretched>
-                                <Form className='emailInput' onSubmit={onRegister}>
-                                    <Header as='h5'>
-                                        I am a new user
-                                    </Header>
-                                    <Form.Field className='emailInput'>
-                                        <label>Email Address</label>
+                <Grid columns={2} divided className='emailForms'>
+                    <Grid.Row>
+                        <Grid.Column stretched>
+                            <Form className='emailInput' onSubmit={onRegister}>
+                                <Header as='h5'>
+                                    I am a new user
+                                </Header>
+                                <Form.Field className='emailInput'>
+                                    <label>Email Address</label>
+                                    <Form>
+                                        {/*nested form tag keeps loading element IN the input field*/}
+                                        <Dimmer active={regLoad} inverted>
+                                            <Loader disabled={!regLoad} inverted size="mini" inline></Loader>
+                                        </Dimmer>
                                         <input
                                             placeholder='Email'
                                             onChange={registerChange}
@@ -184,92 +191,95 @@ function EmailEntry(props) {
                                             value={registerInput}
                                             autoComplete="off"
                                         />
-                                    </Form.Field>
-                                </Form>
-                                <List className="emailInput">
-                                    <List.Item active={true}>
-                                        <Grid centered stretched>
+                                    </Form>
+                                </Form.Field>
+                            </Form>
+                            <List>
+                                <List.Item>
+                                    <Grid centered>
+                                        <Grid.Column textAlign="center">
+                                            <Button type='submit' onClick={onRegister} disabled={isVisibleRegErr}>
+                                                Submit
+                                            </Button>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+                                <List.Item>
+                                    <Transition
+                                        as={List}
+                                        duration={350}
+                                        divided
+                                        verticalAlign='middle'
+                                        animation={'zoom'}
+                                        visible={isVisibleRegErr}
+                                    >
+                                        <Grid>
                                             <Grid.Column textAlign="center">
-                                                <Button fluid type='submit' onClick={onRegister} disabled={isVisibleRegErr}>
-                                                    Submit
-                                                </Button>
+                                                <Label pointing color='red' size="small">
+                                                    <Segment.Inline size="small" color='red'>
+                                                        {isVisibleRegErr ? errors : copy}
+                                                    </Segment.Inline>
+                                                </Label>
                                             </Grid.Column>
                                         </Grid>
-                                    </List.Item>
-                                    <List.Item className='EmailEntryE'>
-                                        <Transition
-                                            as={List}
-                                            duration={350}
-                                            divided
-                                            verticalAlign='middle'
-                                            animation={'zoom'}
-                                            visible={isVisibleRegErr}
-                                        >
-                                            <Grid>
-                                                <Grid.Column textAlign="center">
-                                                    <Label pointing color='red' size="small">
-                                                        <Segment.Inline size="small" color='red'>
-                                                            {isVisibleRegErr ? errors : copy}
-                                                        </Segment.Inline>
-                                                    </Label>
-                                                </Grid.Column>
-                                            </Grid>
-                                        </Transition>
-                                    </List.Item>
-                                </List>
-                            </Grid.Column>
-                            <Grid.Column stretched>
-                                <Form className='emailInput' onSubmit={onLogin}>
-                                    <Header as='h5'>
-                                        I have submitted a survey
-                                    </Header>
-                                    <Form.Field className='emailInput'>
-                                        <label>Email Address</label>
+                                    </Transition>
+                                </List.Item>
+                            </List>
+                        </Grid.Column>
+                        <Grid.Column stretched>
+                            <Form className='emailInput' onSubmit={onLogin}>
+                                <Header as='h5'>
+                                    I have submitted a survey
+                                </Header>
+                                <Form.Field className='emailInput'>
+                                    <label>Email Address</label>
+                                    <Form>
+                                        <Dimmer active={loginLoad} inverted>
+                                            <Loader disabled={!loginLoad} inverted size="mini" inline></Loader>
+                                        </Dimmer>
                                         <input
                                             placeholder='Email'
                                             onChange={loginChange}
                                             onClick={loginChange}
                                             value={loginInput}
-                                            autoComplete="off"/>
-
-                                        {/*Probably turn ON autocomplete on deployment*/}
-
-                                    </Form.Field>
-                                </Form>
-                                <List className="emailInput">
-                                    <List.Item active={true}>
-                                        <Grid centered stretched>
+                                            autoComplete="off"
+                                        />
+                                    </Form>
+                                </Form.Field>
+                            </Form>
+                            <List>
+                                <List.Item>
+                                    <Grid centered>
+                                        <Grid.Column textAlign="center">
+                                            <Button type='submit' onClick={onLogin} disabled={isVisibleLoginErr}>
+                                                Submit
+                                            </Button>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+                                <List.Item>
+                                    <Transition
+                                        duration={350}
+                                        divided
+                                        verticalAlign='middle'
+                                        animation={'zoom'}
+                                        visible={isVisibleLoginErr}
+                                    >
+                                        <Grid>
                                             <Grid.Column textAlign="center">
-                                                <Button fluid type='submit' onClick={onLogin} disabled={isVisibleLoginErr}>
-                                                    Submit
-                                                </Button>
+                                                <Label pointing color='red' size="small">
+                                                    <Segment.Inline size="small" color='red'>
+                                                        {isVisibleLoginErr ? errorsL : copyL}
+                                                    </Segment.Inline>
+                                                </Label>
                                             </Grid.Column>
                                         </Grid>
-                                    </List.Item>
-                                    <List.Item className='EmailEntryE'>
-                                        <Transition
-                                            duration={350}
-                                            divided
-                                            verticalAlign='middle'
-                                            animation={'zoom'}
-                                            visible={isVisibleLoginErr}
-                                        >
-                                            <Grid>
-                                                <Grid.Column textAlign="center">
-                                                    <Label pointing color='red' size="small">
-                                                        <Segment.Inline size="small" color='red'>
-                                                            {isVisibleLoginErr ? errorsL : copyL}
-                                                        </Segment.Inline>
-                                                    </Label>
-                                                </Grid.Column>
-                                            </Grid>
-                                        </Transition>
-                                    </List.Item>
-                                </List>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </div>
+                                    </Transition>
+                                </List.Item>
+                            </List>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </div>
         );
     }
