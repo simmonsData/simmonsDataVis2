@@ -28,7 +28,8 @@ describe('Student Schema Unit Tests', function(){
 
         it('saves properly when email is provided', function(done){
             new Student({
-                email: student.email
+                email: student.email,
+                survey: student.survey
             }).save(function(err, student){
                 should.not.exist(err);
                 id = student._id;
@@ -44,13 +45,15 @@ describe('Student Schema Unit Tests', function(){
                 done();
             });
         });
+        it('throws an error when no email provided', function(done){
+            new Student({
+                survey: student.survey
+            }).save(function(err){
+                should.exist(err);
+                done();
+            });
+        });
     });
 
-    describe('Retriving from the database', function(){
-        this.timeout(500);
-
-        it('retrieves data from id', function(done){
-            
-        });
-    })
+    
 });

@@ -53,7 +53,7 @@ module.exports.init = function() {
     If no path segments are passed, path.resolve() will return 
     the absolute path of the current working directory.
     */
-    res.sendFile(path.resolve('/index.html'));
+    res.sendFile(path.resolve('../frontend/public/index.html'));
    });
 
    return app;
