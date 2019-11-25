@@ -11,6 +11,7 @@ class SpiderChart extends React.Component {
 
     render() {
 
+
         //Dataset for the SpiderChart. Entries in Label:Value. Value must be a int for the RadarChart to accept it.
         const dataFile = [
             {
