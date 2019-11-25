@@ -5,7 +5,7 @@ const students = require('../controllers/students.controller.js'),
 router.route('/')
     .get(students.list);
 
-router.route('/:studentEmail')
+router.route('/:studentId')
     .get(students.read)
     .put(students.update)
     .delete(students.delete);
@@ -17,6 +17,6 @@ router.route('/login')
     .post(students.login);
 
 
-router.param('studentEmail', students.studentByEmail);
+router.param('studentId', students.studentByID);
 
 module.exports = router;
