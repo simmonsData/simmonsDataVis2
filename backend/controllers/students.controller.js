@@ -27,14 +27,15 @@ exports.list = (req, res) => {
 
 // Displays student information - get request
 exports.read = (req, res) => {
-    res.json(req.student);
+    console.log(req.student.survey);
+    res.json(req.student.survey);
     // res.redirect();
 };
 
 // Updates student information - put request
 exports.update = (req, res) => {
     const student = req.student;
-    student.email = req.body.email;
+    student.survey = req.body.survey;
 
     const currentDate = new Date();
     student.updated_at = currentDate;
@@ -47,7 +48,6 @@ exports.update = (req, res) => {
         else{
             res.json(student);
             console.log(student);
-            // res.redirect();
         }
     });
 }
@@ -145,14 +145,15 @@ exports.register = (req, res) => {
                     newStudent.email = hash;
 
                     // Saving hashed email into database
-                    newStudent.save( (err) => {
+                    newStudent.save( (err, savedStudent) => {
                         if(err) {
                             console.log(err);
                             return res.status(400).send(err);
                         } 
+                        // Returns student id
                         else {
-                            console.log(newStudent.email);
-                            return res.json(newStudent.email);
+                            console.log(savedStudent.id);
+                            return res.json(savedStudent.id);
                         }
                     });      
                 })
@@ -175,7 +176,7 @@ exports.login = (req, res) => {
     }
 
     const email = req.body.email;
-    let hashedEmail;
+    let id;
 
     // Each entry in database is stored into student variable
     Student.find({}, (err, student) => {
@@ -189,17 +190,18 @@ exports.login = (req, res) => {
                 const isMatch = bcrypt.compareSync(email, currentStudent.email);
                 if(isMatch){
                     matchFound = true;
-                    hashedEmail = currentStudent.email;
+                    id = currentStudent.id;
                 }
             })
         }
 
-        // If match is found in the database, returns hashed email
+        // If match is found in the database, returns id
         if(matchFound){
-            return res.json(hashedEmail);
+            return res.json(id);
         }
         // If no match found, returns "Email not found"
         else{
+            res.status(400);
             return res.json({emailNotFound: "Email not found"}); 
         }
 
@@ -208,33 +210,16 @@ exports.login = (req, res) => {
 
 // ROUTER.PARAM MIDDLEWARE
 
-// Middleware for locating student entry in database by their email
-exports.studentByEmail = (req, res, next, email) => {
-    Student.find({}, (err, student) => {
+// Middleware for locating student entry in database by their id
+exports.studentByID = (req, res, next, id) => {
+    Student.findById(id).exec( (err, student) => {
         if(err){
-            res.status(400).send(err);
+            res.status(400);
+            res.json({studentNotFound: "Student not found"}); 
         }
         else{
-            let matchFound = false;
-            let foundStudent;
-            // If student is not empty, tries to find a match between entered email and hashed email in database
-            if(student.length){
-                student.forEach((currentStudent) => {
-                    const isMatch = bcrypt.compareSync(email, currentStudent.email);
-                    if(isMatch){
-                        matchFound = true;
-                        foundStudent = currentStudent;
-                    }
-                })
-            }
-
-            if(matchFound){
-                req.student = foundStudent;
-                next();
-            }
-            else{
-                return res.json({studentNotFound: "Student not found"}); 
-            }
+            req.student = student;
+            next();
         }
     });
 }

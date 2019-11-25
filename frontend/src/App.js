@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import axios from 'axios';
 
 //Pages
 import EmailEntry from './pages/EmailEntry'
 import adminEntry from './pages/adminEntry'
+import adminPanel from './pages/adminPanel'
 import Homepage from './pages/Homepage'
+<<<<<<< HEAD
 import SurveyPage from './pages/SurveyPage';
 import DataPage from './pages/DataPage';
+||||||| merged common ancestors
+import SurveyPage from './pages/SurveyPage';
+=======
+import SurveyPage from './pages/SurveyPage'
+import DataPage from './pages/DataPage'
+>>>>>>> develop
 
 //Components
 import Header from './components/Header'
@@ -16,9 +25,17 @@ import './styles/App.css'
 
 function App() {
 
-  const[userID, setUserID] = useState('');
+  const[user, setUser] = useState({});
 
-  function userLogged(id) { setUserID(id);};
+  async function userLogged(id) {
+    const response = await axios.get(
+      'http://localhost:8080/api/students/' + id,
+      { headers: { 'Content-Type': 'application/json' } }
+    )
+
+    setUser(response.data);
+    console.log(user);
+  };
 
   return (
       <Router>
@@ -26,10 +43,21 @@ function App() {
               <Header />
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
+<<<<<<< HEAD
                   <Route exact path="/Homepage" component={Homepage} />
                   <Route exact path="/survey" component={SurveyPage} />
                   <Route exact path="/data" component={DataPage} />
+||||||| merged common ancestors
+                  <Route exact path="/Homepage" component={Homepage} />
+                  <Route exact path="/survey" component={SurveyPage} />
+                  <Route exact path="/data" component={Homepage} />
+=======
+                  <Route exact path="/homepage" render={(props) => <Homepage {...props} user={user} />}/>
+                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} user={user} />} />
+                  <Route exact path="/data" render={(props) => <DataPage {...props} user={user} />}/>
+>>>>>>> develop
                   <Route exact path="/admin" component={adminEntry} />
+                  <Route exact path="/adminPanel" component={adminPanel} />
               </main>
             <Footer/>
           </div>

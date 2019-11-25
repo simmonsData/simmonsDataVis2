@@ -117,7 +117,7 @@ class SpiderChart extends React.Component {
                         captions
                     }
                     data={dataFile}
-                    options={defaultOptions}
+                        options={defaultOptions}
                     size={450}
                 />
             </div>
