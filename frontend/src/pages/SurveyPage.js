@@ -27,8 +27,8 @@ class SurveyPage extends Component {
         // console.log("Complete! "+ JSON.stringify(result.data));
 
         // user is appended to route to make put request
-        const id = this.props.id;
-        console.log(this.props.id);
+        const id = this.props.user;
+        console.log(this.props.user);
         axios.put(
             'http://localhost:8080/api/students/' + id,
             { survey: result.data },
