@@ -1,7 +1,10 @@
 .survey {
-  height: 10px;
-}
+   height: 10px;
+ }
 
 .surveyjs {
   width: 100vw;
+}
+.text {
+    color: black;
 }
