@@ -1,11 +1,40 @@
 
 .noData {
+  white-space:pre-line;
   background-color: #ffffff;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   max-width: 85vw;
+  overflow: hidden;
+}
+.homeSection{
+  white-space:pre;
+  width: 100%;
+  bottom: 0vh;
+  padding:16px 0px;
+  margin-bottom: 0px;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.foo {
+  height:auto;
+  white-space: pre;
+  overflow: hidden;
+  position: relative;
+  bottom: 0vh;
+  width: 100%;
+  padding: 14px 14px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: black;
+  background-color: #ffffff;
+}
+.text {
+  color: black;
 }
