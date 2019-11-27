@@ -42,7 +42,7 @@ class SurveyPage extends Component {
                 this.setState({
                     redirecting: true
                 })
-            }, 4000)
+            }, 3500)
 
         })
         .catch(err => {
