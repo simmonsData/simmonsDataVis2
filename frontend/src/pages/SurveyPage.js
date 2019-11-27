@@ -38,9 +38,12 @@ class SurveyPage extends Component {
             console.log(res);
 
             // If put request is successful, sets redirecting to true
-            this.setState({
-                redirecting: true
-            })
+            setTimeout( () => {
+                this.setState({
+                    redirecting: true
+                })
+            }, 4000)
+
         })
         .catch(err => {
             console.log(err);
@@ -50,9 +53,10 @@ class SurveyPage extends Component {
 
     render() {
         const model = new Survey.Model(this.json);
+        const {redirecting} = this.state;
 
         // Redirects to data page when survey is complete
-        if(this.state.redirecting) {
+        if(redirecting) {
             return <Redirect to='/data' />
         }
 
