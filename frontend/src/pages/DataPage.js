@@ -1,16 +1,22 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import { Button, Header, Form, Grid, Divider } from 'semantic-ui-react'
 import { redirect } from 'react-router-dom'
 import SpiderChart from '../components/SpiderChart'
+import data from '../data/data.js'
+
+const INITIAL_STATE = {
+    filter: [-1, -1, -1]       
+}
 
 class DataPage extends Component {
+
     state = {
         gender: "", // 1: Woman, 2: Man, 3: Trans, 4: Other, 5: I don't want to respond
         race: "", // 1: Asian, 2: Black, 3: Hispanic, 4: Pacific, 5: White, 6: Other, 7: Mix
         major: "", // 1: General Engineering, 2: Civil Engineering, 3: Construction
+        filter: INITIAL_STATE,
+        dataSets: [] // This should hold all of the data sets to be passed down and depicted in SpiderChart.js
     };
-
     
     constructor(props) {
         super(props);
@@ -21,82 +27,46 @@ class DataPage extends Component {
         };
     }
 
+    // Updates the filter array to the latest demographics. Then creates a new dataSet array to push onto the dataSets array 
+    // that gets passed onto SpiderChart.js. That will eventually have to include a way to get the average of each E# variable and create 
+    // a new array from that. 
+    addDataSet(e){
+        e.preventDefault();
+        this.setState({
+            filter: [this.state.gender, this.state.race, this.state.major]
+        })
+        // At this point, use the filter to filter the data import to get a dataSet. Need to create a way to have it so you can filter 
+        // on just 1 or 2 filters.
+        // dataSet = data.filter... etc. 
+        console.log("addDataSet called: ", this.state.dataSet);
+        console.log('Gender: ' + this.state.gender);
+        console.log('Race: ' + this.state.race);
+        console.log('Major: ' + this.state.major);
+        console.log('filters: ' + this.state.filter);
+    }
+
+    // Simply changes the state of the selected variable to the value of the DropDown menu.
     handleChange(e) {
         this.setState({
             [e.target.id]: e.target.value
         })
-        console.log('Selected ' + e.target.id + ':' + e.target.value);
-
+        //console.log('Selected ' + e.target.id + ': ' + this.state.gender);
     }
 
-    handleSubmit(event) {
-        console.log('Gender: ' + this.state.gender);
-        console.log('Race: ' + this.state.race);
-        console.log('Major: ' + this.state.major);
-
+    // Pops the last element of the array. 
+    removeDataSet(e) {
+        e.preventDefault();
+        this.state.dataSets.pop();
+        console.log("removeDataSet called: ");
     }
-
     render(){
-        const dataFile = [
-            {
-            data: {
-                gender: 1,
-                race: 1,
-                major: 1,
-                E2: 0.25,
-                E3: 0.50,
-                E4: 0.75,
-                E5: 1.0,
-                E6: 0.75,
-                E7: 0.50,
-                E8: 0.25,
-                E9: 1.0,
-            },
-            meta: {color: 'blue'} 
-            },
-            {
-            data: {
-                gender: 2,
-                race: 2,
-                major: 2,
-                E2: 0.50,
-                E3: 0.75,
-                E4: 1.0,
-                E5: 0.75,
-                E6: 0.50,
-                E7: 0.25,
-                E8: 0.50,
-                E9: 1.0,
-            },
-            meta: {color: 'green'}
-            },
-            {
-            data: {
-                gender: 3,
-                race: 3,
-                major: 3,
-                E2: 0.75,
-                E3: 1.0,
-                E4: 0.50,
-                E5: 0.75,
-                E6: 0.25,
-                E7: 0.25,
-                E8: 0.25,
-                E9: 0.25,
-            },
-            meta: {color: 'red'}
-            }
-        ];
-
         const genders = ['Woman', 'Man', 'Trans', 'Other', 'I don\'t want to respond'];
         const race = ['Asian', 'Black', 'Hispanic', 'Pacific', 'White', 'Other', 'Mix'];
         const major = ['General Engineering', 'Civil Engineering', 'Construction', 'Agricultural Engineering', 'Applied Engineering', 
         'Biomedical Engineering', 'Chemical Engineering', 'Electrical Engineering', 'Engineering Management', 'Engineering Physics', 
         'Engineering Science', 'Industrial Engineering', 'Materials Engineering', 'Mechanical Engineering', 'Nanoengineering', 
         'Nuclear Engineering', 'Other']
-        const buttons = [{
 
-        }]
         return (
             <div class="container">
                 <fieldset>
@@ -151,12 +121,13 @@ class DataPage extends Component {
                                     <option value="17">Other</option>
                                 </select>
                             </form>
-                            <button variant="primary" onClick={this.handleSubmit.bind(this)}>Add Dataset</button>
+                            <button variant="primary" onClick={this.addDataSet.bind(this)}>Add Dataset</button>
+                            <button variant="primary" onClick={this.removeDataSet.bind(this)}>Remove Dataset</button>
                         </div>
                     </div>
                 </fieldset>
                 <SpiderChart 
-                    dataFile = {this.dataFile}
+                    dataSets={this.state.dataSets}
                 />
             </div>
         )
@@ -164,44 +135,3 @@ class DataPage extends Component {
 }
 
 export default DataPage
-||||||| merged common ancestors
-=======
-import React, { useState } from 'react';
-import {Redirect} from 'react-router-dom';
-import {Grid, Image, Header, Container, Button, Divider, Segment, GridColumn} from 'semantic-ui-react'
-import '../styles/DataPage.css'
-
-function DataPage(props) {
-
-  function toSurvey() {
-    props.history.push('/survey');
-  }
-
-  const noDataView = 
-  <div className='noData'>
-    <Divider/>
-    <Header as='h1' textAlign='center'>No Data Available</Header>
-    <Divider/>
-    <Segment text basic>
-      <p>No data was found, if you would like to view data about yourself please take the survey</p>
-    </Segment>
-    <Button
-      primary
-      onClick={toSurvey}
-    >
-      To survey
-    </Button>
-  </div>;
-
-  return ( 
-    <div>
-      {props.user.age ? 
-      null :
-      noDataView
-      }
-    </div>
-  );
-}
-
-export default DataPage;
->>>>>>> develop

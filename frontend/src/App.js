@@ -7,15 +7,8 @@ import EmailEntry from './pages/EmailEntry'
 import adminEntry from './pages/adminEntry'
 import adminPanel from './pages/adminPanel'
 import Homepage from './pages/Homepage'
-<<<<<<< HEAD
 import SurveyPage from './pages/SurveyPage';
 import DataPage from './pages/DataPage';
-||||||| merged common ancestors
-import SurveyPage from './pages/SurveyPage';
-=======
-import SurveyPage from './pages/SurveyPage'
-import DataPage from './pages/DataPage'
->>>>>>> develop
 
 //Components
 import Header from './components/Header'
@@ -43,19 +36,9 @@ function App() {
               <Header />
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
-<<<<<<< HEAD
                   <Route exact path="/Homepage" component={Homepage} />
                   <Route exact path="/survey" component={SurveyPage} />
                   <Route exact path="/data" component={DataPage} />
-||||||| merged common ancestors
-                  <Route exact path="/Homepage" component={Homepage} />
-                  <Route exact path="/survey" component={SurveyPage} />
-                  <Route exact path="/data" component={Homepage} />
-=======
-                  <Route exact path="/homepage" render={(props) => <Homepage {...props} user={user} />}/>
-                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} user={user} />} />
-                  <Route exact path="/data" render={(props) => <DataPage {...props} user={user} />}/>
->>>>>>> develop
                   <Route exact path="/admin" component={adminEntry} />
                   <Route exact path="/adminPanel" component={adminPanel} />
               </main>

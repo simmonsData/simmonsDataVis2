@@ -6,7 +6,6 @@ import '../styles/Footer.css'
 
 const Footer = () => {
   return (
-<<<<<<< HEAD
     <footer id="footer">
       <div id="footerBG">
         <div className="footerright">
@@ -33,13 +32,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-||||||| merged common ancestors
-    <footer>
-      Survey is legal property of blah blah 2019 something
-=======
-    <footer>
-      Survey is legal property of the University of Florida ©2019
->>>>>>> develop
     </footer>
   )
 }
