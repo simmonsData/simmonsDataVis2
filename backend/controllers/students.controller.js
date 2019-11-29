@@ -27,10 +27,17 @@ exports.list = (req, res) => {
 
 // Displays student information - get request
 exports.read = (req, res) => {
-    console.log(req.student.survey);
-    res.json(req.student.survey);
-    // res.redirect();
+    console.log(req.student);
+    res.status(200);
+    res.json(req.student);
 };
+
+// Displays student survey information - get request
+exports.getSurveyInfo = (req, res) => {
+    console.log(req.student.survey);
+    res.status(200);
+    res.json(req.student.survey);
+}
 
 // Updates student information - put request
 exports.update = (req, res) => {

@@ -18,16 +18,20 @@ import './styles/App.css'
 
 function App() {
 
-  const[user, setUser] = useState({});
+  const[user, setUser] = useState('');
 
   async function userLogged(id) {
     const response = await axios.get(
       'http://localhost:8080/api/students/' + id,
       { headers: { 'Content-Type': 'application/json' } }
-    )
-
-    setUser(response.data);
-    console.log(user);
+    ).then(function (response){
+      console.log(response.data._id);
+      setUser(response.data._id);
+      console.log(user);
+    })
+      .catch(function (err){
+        response.send(err)
+    })
   };
 
   return (
