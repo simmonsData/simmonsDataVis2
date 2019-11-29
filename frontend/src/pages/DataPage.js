@@ -4,17 +4,12 @@ import { redirect } from 'react-router-dom'
 import SpiderChart from '../components/SpiderChart'
 import data from '../data/data.js'
 
-const INITIAL_STATE = {
-    filter: [-1, -1, -1]       
-}
-
 class DataPage extends Component {
 
     state = {
         gender: "", // 1: Woman, 2: Man, 3: Trans, 4: Other, 5: I don't want to respond
         race: "", // 1: Asian, 2: Black, 3: Hispanic, 4: Pacific, 5: White, 6: Other, 7: Mix
         major: "", // 1: General Engineering, 2: Civil Engineering, 3: Construction
-        filter: INITIAL_STATE,
         dataSets: [] // This should hold all of the data sets to be passed down and depicted in SpiderChart.js
     };
     
@@ -23,26 +18,80 @@ class DataPage extends Component {
         this.state = {
             gender: '-1',
             race: '-1',
-            major: '-1'
+            major: '-1',
+            dataSets: []
         };
     }
 
-    // Updates the filter array to the latest demographics. Then creates a new dataSet array to push onto the dataSets array 
-    // that gets passed onto SpiderChart.js. That will eventually have to include a way to get the average of each E# variable and create 
-    // a new array from that. 
+    // Creates a new dataSet array to push onto the dataSets array 
+    // that gets passed onto SpiderChart.js. T
     addDataSet(e){
-        e.preventDefault();
+        var filteredData = data;
+        
+        if (this.state.gender != -1){
+            filteredData = filteredData.filter(entry => {
+                return (entry.data.gender == this.state.gender);
+            })
+        }
+        
+        if (this.state.race != -1){
+            filteredData = filteredData.filter(entry => {
+                return (entry.data.gender == this.state.race);
+            })
+        }
+
+        if (this.state.major != -1){
+            filteredData = filteredData.filter(entry => {
+                return (entry.data.gender == this.state.major);
+            })
+        }
+        
+        console.log(filteredData);
+        var sumE2 = 0;
+        var sumE3 = 0;
+        var sumE4 = 0;
+        var sumE5 = 0;
+        var sumE6 = 0;
+        var sumE7 = 0;
+        var sumE8 = 0;
+        var sumE9 = 0;
+        var newDataSet = [];
+        var size = filteredData.length;
+        for (var entry in filteredData){
+            sumE2 += filteredData[entry].data.E2; 
+            sumE3 += filteredData[entry].data.E3; 
+            sumE4 += filteredData[entry].data.E4; 
+            sumE5 += filteredData[entry].data.E5; 
+            sumE6 += filteredData[entry].data.E6; 
+            sumE7 += filteredData[entry].data.E7; 
+            sumE8 += filteredData[entry].data.E8; 
+            sumE9 += filteredData[entry].data.E9;  
+        }
+
+        newDataSet = [{
+            data: {
+                gender: this.state.gender,
+                race: this.state.race,
+                major: this.state.major,
+                E2: sumE2/size,
+                E3: sumE3/size,
+                E4: sumE4/size,
+                E5: sumE5/size,
+                E6: sumE6/size,
+                E7: sumE7/size,
+                E8: sumE8/size,
+                E9: sumE9/size,
+            }
+        }]
+
         this.setState({
-            filter: [this.state.gender, this.state.race, this.state.major]
+            dataSets: this.state.dataSets.concat(newDataSet)
         })
-        // At this point, use the filter to filter the data import to get a dataSet. Need to create a way to have it so you can filter 
-        // on just 1 or 2 filters.
-        // dataSet = data.filter... etc. 
-        console.log("addDataSet called: ", this.state.dataSet);
+        
+        console.log("addDataSet called: ");
         console.log('Gender: ' + this.state.gender);
         console.log('Race: ' + this.state.race);
         console.log('Major: ' + this.state.major);
-        console.log('filters: ' + this.state.filter);
     }
 
     // Simply changes the state of the selected variable to the value of the DropDown menu.
@@ -55,9 +104,15 @@ class DataPage extends Component {
 
     // Pops the last element of the array. 
     removeDataSet(e) {
-        e.preventDefault();
-        this.state.dataSets.pop();
+        var index = this.state.dataSets.length - 1;
+        this.setState({
+            dataSets: this.state.dataSets.filter((_, i) => i != index)
+        });
         console.log("removeDataSet called: ");
+    }
+    // Prints the data set that gets passed to Spider Chart. 
+    test(e) {
+        console.log(this.state.dataSets);
     }
     render(){
         const genders = ['Woman', 'Man', 'Trans', 'Other', 'I don\'t want to respond'];
@@ -77,7 +132,7 @@ class DataPage extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <label>Gender:</label>
                                 <select value={this.state.value} id="gender" onChange={this.handleChange.bind(this)} value={this.state.gender}>
-                                    <option value="-1" disabled>Select gender here</option>
+                                    <option value="-1">None</option>
                                     <option value="1">Woman</option>
                                     <option value="2">Man</option>
                                     <option value="3">Trans</option>
@@ -88,7 +143,7 @@ class DataPage extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <label>Race/Ethnicty:</label>
                                 <select value={this.state.race} id="race" onChange={this.handleChange.bind(this)} value={this.state.race}>
-                                    <option value="-1" disabled>Select race here</option>
+                                    <option value="-1">None</option>
                                     <option value="1">Asian</option>
                                     <option value="2">Black or African American</option>
                                     <option value="3">Hispanic, Latino, or Spanish Origin</option>
@@ -101,7 +156,7 @@ class DataPage extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <label>Major:</label>
                                 <select value={this.state.major} id="major" onChange={this.handleChange.bind(this)} value={this.state.major}>
-                                    <option value="-1" disabled>Select major here</option>
+                                    <option value="-1">None</option>
                                     <option value="1">General Engineering</option>
                                     <option value="2">Civil Engineering</option>
                                     <option value="3">Construction</option>
@@ -123,6 +178,7 @@ class DataPage extends Component {
                             </form>
                             <button variant="primary" onClick={this.addDataSet.bind(this)}>Add Dataset</button>
                             <button variant="primary" onClick={this.removeDataSet.bind(this)}>Remove Dataset</button>
+                            <button variant="primary" onClick={this.test.bind(this)}>Print DataSets</button>
                         </div>
                     </div>
                 </fieldset>

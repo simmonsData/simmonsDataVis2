@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RadarChart from 'react-svg-radar-chart';
 import 'react-svg-radar-chart/build/css/index.css';
+import data from '../data/data.js'
 
 class SpiderChart extends React.Component {
 
@@ -8,7 +9,7 @@ class SpiderChart extends React.Component {
 
     render() {
         const dataSets = this.props;
-        console.log(dataSets);
+        //console.log(dataSets);
         //Dataset for the SpiderChart. Entries in Label:Value. Value must be a int for the RadarChart to accept it.
         
         

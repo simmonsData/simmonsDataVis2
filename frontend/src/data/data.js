@@ -16,6 +16,22 @@ export default [
         meta: {color: 'blue'} 
         },
         {
+            data: {
+                gender: 1,
+                race: 1,
+                major: 1,
+                E2: 0.75,
+                E3: 0.50,
+                E4: 0.25,
+                E5: 0,
+                E6: 0.25,
+                E7: 0.50,
+                E8: 0.75,
+                E9: 0.0,
+            },
+            meta: {color: 'blue'}
+        },
+        {
         data: {
             gender: 2,
             race: 2,
