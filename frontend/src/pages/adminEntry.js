@@ -33,9 +33,9 @@ class adminEntry extends Component {
     });
     if (password == "admin") {
       alert("Successful Login");
-      this.props.history.push("/");
+      this.props.history.push("/adminpanel");
     } else {
-      alert("Wrong Password");
+      alert("Unsuccessful Login");
     }
     /*this.props.dispatch(signUp(formData)).then(({isAuthenticated}) => {
             if (isAuthenticated) {

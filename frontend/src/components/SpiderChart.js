@@ -63,7 +63,7 @@ class SpiderChart extends React.Component {
             <div class="container">
                 <RadarChart
                     captions={captions}
-                    data={dataSets}
+                    data={data}
                     options={defaultOptions}
                     size={450}
                 />

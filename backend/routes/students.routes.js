@@ -10,6 +10,9 @@ router.route('/:studentId')
     .put(students.update)
     .delete(students.delete);
 
+router.route('/survey/:studentId')
+    .get(students.getSurveyInfo);
+
 router.route('/register')
     .post(students.register);
 

@@ -109,7 +109,7 @@ function EmailEntry(props) {
         )
             .then(function (response) {
                 console.log(response);
-                props.userLogged(registerInput);
+                props.userLogged(response.data);
                 setRedirecting(true);
             })
             .catch(function (error) {
@@ -138,8 +138,8 @@ function EmailEntry(props) {
             {email: loginInput},
             {headers: {'Content-Type': 'application/json'}}
         ).then(function (response) {
-            console.log(response);
-            props.userLogged(loginInput);
+            console.log(response.data);
+            props.userLogged(response.data);
             setRedirecting(true);
         })
             .catch(function (error) {

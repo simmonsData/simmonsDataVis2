@@ -18,16 +18,20 @@ import './styles/App.css'
 
 function App() {
 
-  const[user, setUser] = useState({});
+  const[user, setUser] = useState('');
 
   async function userLogged(id) {
     const response = await axios.get(
       'http://localhost:8080/api/students/' + id,
       { headers: { 'Content-Type': 'application/json' } }
-    )
-
-    setUser(response.data);
-    console.log(user);
+    ).then(function (response){
+      console.log(response.data._id);
+      setUser(response.data._id);
+      console.log(user);
+    })
+      .catch(function (err){
+        response.send(err)
+    })
   };
 
   return (
@@ -36,9 +40,9 @@ function App() {
               <Header />
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
-                  <Route exact path="/Homepage" component={Homepage} />
-                  <Route exact path="/survey" component={SurveyPage} />
-                  <Route exact path="/data" component={DataPage} />
+                  <Route exact path="/homepage" render={(props) => <Homepage {...props} user={user} />}/>
+                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} user={user} />} />
+                  <Route exact path="/data" render={(props) => <DataPage {...props} user={user} />}/>
                   <Route exact path="/admin" component={adminEntry} />
                   <Route exact path="/adminPanel" component={adminPanel} />
               </main>
