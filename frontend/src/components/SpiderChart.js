@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import RadarChart from 'react-svg-radar-chart';
 import 'react-svg-radar-chart/build/css/index.css';
-import data from '../data/data.js'
+import '../styles/SpiderChart.css';
 
 class SpiderChart extends React.Component {
 
     
 
     render() {
-        const dataSets = this.props;
-        //console.log(dataSets);
-        //Dataset for the SpiderChart. Entries in Label:Value. Value must be a int for the RadarChart to accept it.
-        
+        const dataSets = this.props;        
         
         //Captions for the SpiderChart. Entries in Label:Value. 
         const captions = {
@@ -36,9 +33,9 @@ class SpiderChart extends React.Component {
         const defaultOptions = {
             size: 200,
             axes: true, // show axes?
-            scales: 3, // show scale circles?
+            scales: 4, // show scale circles?
             captions: true, // show captions?
-            captionMargin: 10,
+            captionMargin: 35,
             dots: false, // show dots?
             zoomDistance: 1.2, // where on the axes are the captions?
             setViewBox: (options) => `-${options.captionMargin} 0 ${options.size + options.captionMargin * 2} ${options.size}`, // custom viewBox ?
@@ -49,7 +46,7 @@ class SpiderChart extends React.Component {
             captionProps: () => ({
               className: 'caption',
               textAnchor: 'middle',
-              fontSize: 10,
+              fontSize: 12,
               fontFamily: 'sans-serif'
             }),
             dotProps: () => ({
@@ -60,12 +57,12 @@ class SpiderChart extends React.Component {
         };
 
         return (
-            <div class="container">
-                <RadarChart
+            <div className="center">
+                <RadarChart 
                     captions={captions}
-                    data={data}
+                    data={dataSets.dataSets}
                     options={defaultOptions}
-                    size={450}
+                    size={500}
                 />
             </div>
         );

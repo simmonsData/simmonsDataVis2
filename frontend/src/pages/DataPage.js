@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Header, Form, Grid, Divider } from 'semantic-ui-react'
+import { Button, Header, Form, Grid, Divider, Segment, Label, Icon } from 'semantic-ui-react'
 import { redirect } from 'react-router-dom'
 import SpiderChart from '../components/SpiderChart'
 import data from '../data/data.js'
+import '../styles/DataPage.css'
 
 class DataPage extends Component {
 
@@ -10,7 +11,9 @@ class DataPage extends Component {
         gender: "", // 1: Woman, 2: Man, 3: Trans, 4: Other, 5: I don't want to respond
         race: "", // 1: Asian, 2: Black, 3: Hispanic, 4: Pacific, 5: White, 6: Other, 7: Mix
         major: "", // 1: General Engineering, 2: Civil Engineering, 3: Construction
-        dataSets: [] // This should hold all of the data sets to be passed down and depicted in SpiderChart.js
+        dataSets: [], // This should hold all of the data sets to be passed down and depicted in SpiderChart.js
+        color: 0, // index variable to cycle through colors.
+        numObservations: 0,
     };
     
     constructor(props) {
@@ -19,7 +22,9 @@ class DataPage extends Component {
             gender: '-1',
             race: '-1',
             major: '-1',
-            dataSets: []
+            dataSets: [],
+            color: 0,
+            numObservations: 0
         };
     }
 
@@ -33,19 +38,18 @@ class DataPage extends Component {
                 return (entry.data.gender == this.state.gender);
             })
         }
-        
+        console.log(filteredData);
         if (this.state.race != -1){
             filteredData = filteredData.filter(entry => {
-                return (entry.data.gender == this.state.race);
+                return (entry.data.race == this.state.race);
             })
         }
-
+        console.log(filteredData);
         if (this.state.major != -1){
             filteredData = filteredData.filter(entry => {
-                return (entry.data.gender == this.state.major);
+                return (entry.data.major == this.state.major);
             })
         }
-        
         console.log(filteredData);
         var sumE2 = 0;
         var sumE3 = 0;
@@ -57,6 +61,9 @@ class DataPage extends Component {
         var sumE9 = 0;
         var newDataSet = [];
         var size = filteredData.length;
+        this.setState({
+            numObservations: size
+        })
         for (var entry in filteredData){
             sumE2 += filteredData[entry].data.E2; 
             sumE3 += filteredData[entry].data.E3; 
@@ -67,6 +74,7 @@ class DataPage extends Component {
             sumE8 += filteredData[entry].data.E8; 
             sumE9 += filteredData[entry].data.E9;  
         }
+        var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
 
         newDataSet = [{
             data: {
@@ -81,17 +89,19 @@ class DataPage extends Component {
                 E7: sumE7/size,
                 E8: sumE8/size,
                 E9: sumE9/size,
-            }
+            },
+            meta: {color: "red"}
         }]
-
-        this.setState({
-            dataSets: this.state.dataSets.concat(newDataSet)
-        })
-        
         console.log("addDataSet called: ");
         console.log('Gender: ' + this.state.gender);
         console.log('Race: ' + this.state.race);
         console.log('Major: ' + this.state.major);
+        if (size == 0){
+            return false;
+        }
+        this.setState({
+            dataSets: this.state.dataSets.concat(newDataSet)
+        })
     }
 
     // Simply changes the state of the selected variable to the value of the DropDown menu.
@@ -123,13 +133,13 @@ class DataPage extends Component {
         'Nuclear Engineering', 'Other']
 
         return (
-            <div class="container">
+            <div class="box">
                 <fieldset>
                     <legend>E2020 Attributes by Groups</legend>
-
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <form onSubmit={this.handleSubmit}>
+                    <Grid columns={3}>
+                        <Grid.Column>
+                        <Segment>
+                        <Form onSubmit={this.handleSubmit} class="form-gender-col">
                                 <label>Gender:</label>
                                 <select value={this.state.value} id="gender" onChange={this.handleChange.bind(this)} value={this.state.gender}>
                                     <option value="-1">None</option>
@@ -139,8 +149,12 @@ class DataPage extends Component {
                                     <option value="4">Other</option>
                                     <option value="5">I don't want to respond</option>
                                 </select>
-                            </form>
-                            <form onSubmit={this.handleSubmit}>
+                            </Form>
+                        </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>
+                            <Form onSubmit={this.handleSubmit} class="form-race-col">
                                 <label>Race/Ethnicty:</label>
                                 <select value={this.state.race} id="race" onChange={this.handleChange.bind(this)} value={this.state.race}>
                                     <option value="-1">None</option>
@@ -152,8 +166,12 @@ class DataPage extends Component {
                                     <option value="6">Other</option>
                                     <option value="7">Mix</option>
                                 </select>
-                            </form>
-                            <form onSubmit={this.handleSubmit}>
+                            </Form>
+                            </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>
+                            <form onSubmit={this.handleSubmit} class="form-major-col">
                                 <label>Major:</label>
                                 <select value={this.state.major} id="major" onChange={this.handleChange.bind(this)} value={this.state.major}>
                                     <option value="-1">None</option>
@@ -176,11 +194,17 @@ class DataPage extends Component {
                                     <option value="17">Other</option>
                                 </select>
                             </form>
-                            <button variant="primary" onClick={this.addDataSet.bind(this)}>Add Dataset</button>
-                            <button variant="primary" onClick={this.removeDataSet.bind(this)}>Remove Dataset</button>
-                            <button variant="primary" onClick={this.test.bind(this)}>Print DataSets</button>
-                        </div>
-                    </div>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid>
+                    <Label size="big" floated="left">
+                        <Icon name='users'/>{this.state.numObservations}
+                    </Label>
+                    <Button.Group floated="right">
+                            <Button color='grey' attached="right" size="small" onClick={this.addDataSet.bind(this)}>Add Dataset</Button>
+                            <Button color="grey" attached="right" size="small" onClick={this.removeDataSet.bind(this)}>Remove Dataset</Button>
+                            <Button color="grey" attached="right" size="small" onClick={this.test.bind(this)}>Print DataSets</Button>
+                    </Button.Group>
                 </fieldset>
                 <SpiderChart 
                     dataSets={this.state.dataSets}

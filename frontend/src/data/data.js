@@ -18,7 +18,7 @@ export default [
         {
             data: {
                 gender: 1,
-                race: 1,
+                race: 2,
                 major: 1,
                 E2: 0.75,
                 E3: 0.50,
