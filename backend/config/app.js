@@ -4,7 +4,8 @@ const config = require('./config'),
 
 module.exports.start = function() {
     const app = express.init();
-    app.listen(config.port, () => 
-        console.log(`Server now running on port `, config.port)
+    const port = process.env.PORT || config.port;
+    app.listen(port, () => 
+        console.log(`Server now running on port `, port)
     );
 };
