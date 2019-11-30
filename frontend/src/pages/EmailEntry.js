@@ -1,7 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {Redirect} from 'react-router-dom';
 
-import {Button, Header, Form, Grid, Divider, Segment, Label, Transition, List, Loader, Dimmer} from 'semantic-ui-react'
+import {Button, Header, Form, Grid, Divider, Segment, Label, Transition, List, Loader, Dimmer} from 'semantic-ui-react';
 
 import axios from 'axios'
 
@@ -138,8 +137,6 @@ function EmailEntry(props) {
             {email: loginInput},
             {headers: {'Content-Type': 'application/json'}}
         ).then(function (response) {
-            console.log(response.data);
-            props.userLogged(response.data);
             setRedirecting(true);
         })
             .catch(function (error) {
@@ -155,7 +152,17 @@ function EmailEntry(props) {
     }
 
     if (redirecting) {
-        return <Redirect to='/Homepage'/>
+        return (
+            <div className='EmailEntry'>
+            <Divider/>
+            <Divider/>
+            <Header as='h1' className='welcome'>
+                A link to the survey has been sent to your email
+            </Header>
+            <Divider/>
+            <Divider/>
+        </div>
+        )
     } else {
         return (
             <div className='EmailEntry'>

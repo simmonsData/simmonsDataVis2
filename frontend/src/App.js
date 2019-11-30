@@ -40,9 +40,9 @@ function App() {
             <Header/>
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
-                  <Route exact path="/homepage" render={(props) => <Homepage {...props} user={user} />}/>
-                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} user={user} />} />
-                  <Route exact path="/data" render={(props) => <DataPage {...props} user={user} />}/>
+                  <Route exact path="/homepage/:userId" render={(props) => <Homepage {...props} user={user} />}/>
+                  <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} user={user} />} />
+                  <Route exact path="/data/:userId" render={(props) => <DataPage {...props} user={user} />}/>
                   <Route exact path="/admin" component={adminEntry} />
                   <Route exact path="/adminPanel" component={adminPanel} />
               </main>

@@ -6,6 +6,7 @@ const mongoose = require('mongoose'),
     keys = require("../config/config"),
     validateRegisterInput = require("../validation/register"),
     validateLoginInput = require("../validation/login");
+    emailSystem = require('./email.controller');
 
 
 // '/' Routes   
@@ -204,6 +205,7 @@ exports.login = (req, res) => {
 
         // If match is found in the database, returns id
         if(matchFound){
+            emailSystem.send(id, email);
             return res.json(id);
         }
         // If no match found, returns "Email not found"
