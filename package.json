@@ -1,0 +1,19 @@
+{
+  "name": "simmonsdatavis",
+  "version": "1.0.0",
+  "description": "## How to start",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/introNG2E/simmonsDataVis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/introNG2E/simmonsDataVis/issues"
+  },
+  "homepage": "https://github.com/introNG2E/simmonsDataVis#readme"
+}
