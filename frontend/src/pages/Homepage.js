@@ -6,11 +6,11 @@ import '../styles/Homepage.css'
 function Homepage(props) {
 
     function onDataPress() {
-        props.history.push('/data');
+        props.history.push('/data/' + props.getId);
     }
 
     function onSurveyPress() {
-        props.history.push('/survey')
+        props.history.push('/survey/' + props.getId);
     }
 
     return (

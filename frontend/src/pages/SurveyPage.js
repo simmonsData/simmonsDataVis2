@@ -35,8 +35,7 @@ class SurveyPage extends Component {
         // console.log("Complete! "+ JSON.stringify(result.data));
 
         // user is appended to route to make put request
-        const id = this.props.user;
-        console.log(this.props.user);
+        const id = this.props.getId;
         axios.put(
             'http://localhost:8080/api/students/' + id,
             { survey: result.data },
@@ -59,8 +58,8 @@ class SurveyPage extends Component {
 
     };
 
-    onHomePress(props) {
-        this.props.history.push('/Homepage');
+    onHomePress() {
+        this.props.history.push('/Homepage/' + this.props.getId);
     }
 
     openModal() {
@@ -78,7 +77,7 @@ class SurveyPage extends Component {
 
         // Redirects to data page when survey is complete
         if(redirecting) {
-            return <Redirect to='/data' />
+            return <Redirect to={'/data/' + this.props.getId} />
         }
 
         return (
