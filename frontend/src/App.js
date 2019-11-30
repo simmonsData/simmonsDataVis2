@@ -7,8 +7,8 @@ import EmailEntry from './pages/EmailEntry'
 import adminEntry from './pages/adminEntry'
 import adminPanel from './pages/adminPanel'
 import Homepage from './pages/Homepage'
-import SurveyPage from './pages/SurveyPage'
-import DataPage from './pages/DataPage'
+import SurveyPage from './pages/SurveyPage';
+import DataPage from './pages/DataPage';
 
 //Components
 import Header from './components/Header'
@@ -37,7 +37,7 @@ function App() {
   return (
       <Router>
           <div className='container'>
-            <Header/>
+              <Header />
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
                   <Route exact path="/homepage/:userId" render={(props) => <Homepage {...props} user={user} />}/>

@@ -49,20 +49,15 @@ class adminEntry extends Component {
     const { password, submittedPassword } = this.state;
 
     return (
-      <div
-        style={{
-          height: "75vh",
-          background: "white"
-        }}
-      >
-        <Grid centered columns={1}>
+      <div className="page">
+        <br></br>
+        <Grid centered columns={2}>
           <Grid.Column centered>
-            <Header as="h1" textAlign="center">
-              <div id="container"> Admin Login </div>{" "}
-            </Header>{" "}
             <Segment>
               <Form onSubmit={this.handleSubmit}>
-                <Form>
+                <div className="input">
+                
+                <div className="title">Admin Login</div>
                   <Form.Input
                     //fluid
                     icon="lock"
@@ -82,7 +77,7 @@ class adminEntry extends Component {
                     size="large"
                     content="Submit"
                   />
-                </Form>
+                </div>
               </Form>
             </Segment>
           </Grid.Column>

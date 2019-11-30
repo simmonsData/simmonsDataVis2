@@ -1433,17 +1433,10 @@ export default {
           "title": "Phone Number",
           "inputType": "tel",
           "placeHolder": "Enter your phone number here"
-         },
-         {
-          "type": "text",
-          "name": "email",
-          "title": "Email",
-          "inputType": "email",
-          "placeHolder": "Enter your email here"
          }
         ],
         "title": "Contact Information",
-        "description": "Would you mind receiving future questions about this survey? If so, would you mind sharing your phone number/email below?"
+        "description": "Would you mind receiving future questions about this survey? If so, would you mind sharing your phone number below?"
        }
       ],
       "title": "Other"

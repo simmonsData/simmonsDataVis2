@@ -28,8 +28,7 @@ class adminPanel extends Component {
       <div
         class="huge buttons"
         style={{
-          height: "75vh",
-          background: "white"
+          height: "85vh",
         }}
       >
         <Grid>
