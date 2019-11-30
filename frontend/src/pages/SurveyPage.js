@@ -32,13 +32,11 @@ class SurveyPage extends Component {
 
     // Called when survey is submitted
     onComplete = (result) => {
-        // console.log("Complete! "+ JSON.stringify(result.data));
-
-        // user is appended to route to make put request
+        // id is appended to route to make put request
         const id = this.props.user;
         console.log(this.props.user);
         axios.put(
-            'http://localhost:8080/api/students/' + id,
+            '/api/students/' + id,
             { survey: result.data },
             { headers: { 'Content-Type': 'application/json' } }
         )
@@ -73,8 +71,11 @@ class SurveyPage extends Component {
     }
 
     render() {
+
         const model = new Survey.Model(this.json);
         const {redirecting} = this.state;
+
+        
 
         // Redirects to data page when survey is complete
         if(redirecting) {

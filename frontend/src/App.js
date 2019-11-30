@@ -19,19 +19,35 @@ import './styles/App.css'
 function App() {
 
   const[user, setUser] = useState('');
+  const[surveyResults, setSurveyResults] = useState('');
 
   async function userLogged(id) {
     const response = await axios.get(
-      'http://localhost:8080/api/students/' + id,
+      '/api/students/' + id,
       { headers: { 'Content-Type': 'application/json' } }
     ).then(function (response){
       console.log(response.data._id);
       setUser(response.data._id);
       console.log(user);
+      // getSurvey(user);
     })
       .catch(function (err){
         response.send(err)
     })
+  };
+
+  async function getSurvey(user) {
+    const response = await axios.get(
+      '/api/students/survey' + user,
+      { headers: { 'Content-Type': 'application/json' } }
+    ).then(function (response){
+      console.log(response.data.survey);
+      setSurveyResults(response.data.survey);
+      console.log(surveyResults);
+    })
+      .catch(function (err){
+        response.send(err)
+      })
   };
 
   return (
@@ -41,8 +57,8 @@ function App() {
               <main>
                   <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
                   <Route exact path="/homepage" render={(props) => <Homepage {...props} user={user} />}/>
-                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} user={user} />} />
-                  <Route exact path="/data" render={(props) => <DataPage {...props} user={user} />}/>
+                  <Route exact path="/survey" render={(props) => <SurveyPage {...props} user={user} surveyResults={surveResults} />} />
+                  <Route exact path="/data" render={(props) => <DataPage {...props} user={user} surveyResults={surveResults} />}/>
                   <Route exact path="/admin" component={adminEntry} />
                   <Route exact path="/adminPanel" component={adminPanel} />
               </main>
