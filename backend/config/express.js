@@ -3,13 +3,13 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     path = require('path'),
-    config = require('./config'), 
+    // config = require('./config'), 
     passport = require('passport'),
     studentsRouter = require('../routes/students.routes');
 
 module.exports.init = function() {
     mongoose.set('useCreateIndex', true);
-    mongoose.connect(config.db.uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoose.connect(/*config.db.uri*/process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
     //Initialize app
     const app = express();
