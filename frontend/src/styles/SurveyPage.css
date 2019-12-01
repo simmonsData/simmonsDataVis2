@@ -1,7 +1,11 @@
 .survey {
-  height: 10px;
+  height: 15px;
+  display: flex;
 }
 
-Survey {
-  height: 85vh;
+.surveyjs {
+  width: 100vw;
+}
+.text {
+    color: black;
 }

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import axios from 'axios';
 
 //Pages
 import EmailEntry from './pages/EmailEntry'
 import adminEntry from './pages/adminEntry'
+import adminPanel from './pages/adminPanel'
 import Homepage from './pages/Homepage'
 import SurveyPage from './pages/SurveyPage';
+import DataPage from './pages/DataPage';
 
 //Components
 import Header from './components/Header'
@@ -15,20 +18,24 @@ import './styles/App.css'
 
 function App() {
 
-  const[userID, setUserID] = useState('');
-
-  function userLogged(id) { setUserID(id);};
+  function getIdFromUrl() {
+    const params = window.location.href.split('/')
+    return params[params.length - 1]
+  }
 
   return (
       <Router>
           <div className='container'>
-            <Header/>
+              <Header />
               <main>
-                  <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
-                  <Route exact path="/Homepage" component={Homepage} />
-                  <Route exact path="/survey" component={SurveyPage} />
-                  <Route exact path="/data" component={Homepage} />
-                  <Route exact path="/admin" component={adminEntry} />
+                  <Switch> 
+                    <Route exact path="/homepage/:userId" render={(props) => <Homepage {...props} getId={getIdFromUrl()} />}/>
+                    <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
+                    <Route exact path="/data/:userId" render={(props) => <DataPage {...props} getId={getIdFromUrl()} />}/>
+                    <Route exact path="/admin" component={adminEntry} />
+                    <Route exact path="/adminPanel" component={adminPanel} />
+                    <Route component={EmailEntry} /> 
+                  </Switch>
               </main>
             <Footer/>
           </div>
