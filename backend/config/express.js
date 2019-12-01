@@ -41,7 +41,7 @@ module.exports.init = function() {
     app.use('/api/students', studentsRouter);
 
     if(process.env.NODE_ENV === 'production'){
-      app.use(express.static('../frontend/client/build'));
+      app.use(express.static('../../frontend/client/build'));
       /* 
       Request Handeler for all other routes
       Sends a response (res) to go to the homepage for all 
@@ -55,7 +55,7 @@ module.exports.init = function() {
         If no path segments are passed, path.resolve() will return 
         the absolute path of the current working directory.
         */
-        res.sendFile(path.resolve('../frontend/public/index.html'));
+        res.sendFile(path.resolve('../../frontend/public/index.html'));
       });
     }
 
