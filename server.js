@@ -41,7 +41,7 @@ require("./passport")(passport);
 app.use('/api/students', studentsRouter);
 
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('frontend/client/build'));
+    app.use(express.static('frontend/build'));
 
     app.get('*', function(req, res) {
         res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
