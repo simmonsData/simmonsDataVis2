@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from 'axios';
 
 //Pages
@@ -18,33 +18,24 @@ import './styles/App.css'
 
 function App() {
 
-  const[user, setUser] = useState('');
-
-  async function userLogged(id) {
-    const response = await axios.get(
-      'http://localhost:8080/api/students/' + id,
-      { headers: { 'Content-Type': 'application/json' } }
-    ).then(function (response){
-      console.log(response.data._id);
-      setUser(response.data._id);
-      console.log(user);
-    })
-      .catch(function (err){
-        response.send(err)
-    })
-  };
+  function getIdFromUrl() {
+    const params = window.location.href.split('/')
+    return params[params.length - 1]
+  }
 
   return (
       <Router>
           <div className='container'>
               <Header />
               <main>
-                  <Route exact path="/" render={(props) => <EmailEntry {...props} userLogged={userLogged.bind(this)} />}/>
-                  <Route exact path="/homepage/:userId" render={(props) => <Homepage {...props} user={user} />}/>
-                  <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} user={user} />} />
-                  <Route exact path="/data/:userId" render={(props) => <DataPage {...props} user={user} />}/>
-                  <Route exact path="/admin" component={adminEntry} />
-                  <Route exact path="/adminPanel" component={adminPanel} />
+                  <Switch> 
+                    <Route exact path="/homepage/:userId" render={(props) => <Homepage {...props} getId={getIdFromUrl()} />}/>
+                    <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
+                    <Route exact path="/data/:userId" render={(props) => <DataPage {...props} getId={getIdFromUrl()} />}/>
+                    <Route exact path="/admin" component={adminEntry} />
+                    <Route exact path="/adminPanel" component={adminPanel} />
+                    <Route component={EmailEntry} /> 
+                  </Switch>
               </main>
             <Footer/>
           </div>
