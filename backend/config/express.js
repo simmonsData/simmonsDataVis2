@@ -40,21 +40,24 @@ module.exports.init = function() {
 
     app.use('/api/students', studentsRouter);
 
-   /* 
-   Request Handeler for all other routes
-   Sends a response (res) to go to the homepage for all 
-   routes not specified 
-   */ 
-  app.all('/*', function(req, res) {
-   
-    /*  
-    The path.resolve() method returns a string and resolves a 
-    sequence of paths or path segments into an absolute path.
-    If no path segments are passed, path.resolve() will return 
-    the absolute path of the current working directory.
-    */
-    res.sendFile(path.resolve('../frontend/public/index.html'));
-   });
+    if(process.env.NODE_ENV === 'production'){
+      app.use(express.static('../frontend/client/build'));
+      /* 
+      Request Handeler for all other routes
+      Sends a response (res) to go to the homepage for all 
+      routes not specified 
+      */ 
+      app.all('/*', function(req, res) {
+      
+        /*  
+        The path.resolve() method returns a string and resolves a 
+        sequence of paths or path segments into an absolute path.
+        If no path segments are passed, path.resolve() will return 
+        the absolute path of the current working directory.
+        */
+        res.sendFile(path.resolve('../frontend/public/index.html'));
+      });
+    }
 
    return app;
 }
