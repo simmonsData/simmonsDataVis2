@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 //Requires and calls passport function in passport.js
-require("./passport")(passport);
+require("./config/passport")(passport);
 
 app.use('/api/students', studentsRouter);
 
