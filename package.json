@@ -4,7 +4,7 @@
   "description": "## How to start",
   "main": "index.js",
   "scripts": {
-    "start": "cd backend && npm install && node server.js",
+    "start": "cd backend && npm install",
     "build": "cd frontend/ && npm install && npm run build"
   },
   "repository": {
