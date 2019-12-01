@@ -2,7 +2,7 @@ export default [
     {
         data: {
             gender: 1,
-            race: 1,
+            raceEthnicity: 1,
             major: 1,
             E2: 0.25,
             E3: 0.50,
@@ -18,7 +18,7 @@ export default [
         {
             data: {
                 gender: 1,
-                race: 2,
+                raceEthnicity: 2,
                 major: 1,
                 E2: 0.75,
                 E3: 0.50,
@@ -34,7 +34,7 @@ export default [
         {
         data: {
             gender: 2,
-            race: 2,
+            raceEthnicity: 2,
             major: 2,
             E2: 0.50,
             E3: 0.75,
@@ -50,7 +50,7 @@ export default [
         {
         data: {
             gender: 3,
-            race: 3,
+            raceEthnicity: 3,
             major: 3,
             E2: 0.75,
             E3: 1.0,

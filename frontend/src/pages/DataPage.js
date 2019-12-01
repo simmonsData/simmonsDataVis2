@@ -4,6 +4,7 @@ import { redirect } from 'react-router-dom'
 import SpiderChart from '../components/SpiderChart'
 import data from '../data/data.js'
 import '../styles/DataPage.css'
+import axios from 'axios';
 
 class DataPage extends Component {
 
@@ -20,7 +21,7 @@ class DataPage extends Component {
         super(props);
         this.state = {
             gender: '-1',
-            race: '-1',
+            raceEthnicity: '-1',
             major: '-1',
             dataSets: [],
             color: 0,
@@ -39,9 +40,9 @@ class DataPage extends Component {
             })
         }
         console.log(filteredData);
-        if (this.state.race != -1){
+        if (this.state.raceEthnicity != -1){
             filteredData = filteredData.filter(entry => {
-                return (entry.data.race == this.state.race);
+                return (entry.data.raceEthnicity == this.state.raceEthnicity);
             })
         }
         console.log(filteredData);
@@ -79,7 +80,7 @@ class DataPage extends Component {
         newDataSet = [{
             data: {
                 gender: this.state.gender,
-                race: this.state.race,
+                raceEthnicity: this.state.race,
                 major: this.state.major,
                 E2: sumE2/size,
                 E3: sumE3/size,
@@ -94,7 +95,7 @@ class DataPage extends Component {
         }]
         console.log("addDataSet called: ");
         console.log('Gender: ' + this.state.gender);
-        console.log('Race: ' + this.state.race);
+        console.log('Race: ' + this.state.raceEthnicity);
         console.log('Major: ' + this.state.major);
         if (size == 0){
             return false;
@@ -123,6 +124,40 @@ class DataPage extends Component {
     // Prints the data set that gets passed to Spider Chart. 
     test(e) {
         console.log(this.state.dataSets);
+    }
+
+    getMyData(e){
+        const id = this.props.getId;
+        var newDataSet = [];
+        console.log(id)
+        axios.get(
+            'http://localhost:8080/api/students/' + id,
+        )
+        .then(res => {
+            console.log(res);
+            newDataSet = [{
+                data: {
+                    gender: res.data.gender,
+                    raceEthnicity: res.data.raceEthnicity,
+                    major: res.data.major,
+                    E2: res.data.E2,
+                    E3: res.data.E3,
+                    E4: res.data.E4,
+                    E5: res.data.E5,
+                    E6: res.data.E6,
+                    E7: res.data.E7,
+                    E8: res.data.E8,
+                    E9: res.data.E9,
+                },
+                meta: {color: "purple"}
+            }]
+            this.setState({
+                dataSets: this.state.dataSets.concat(newDataSet)
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
     render(){
         const genders = ['Woman', 'Man', 'Trans', 'Other', 'I don\'t want to respond'];
@@ -156,7 +191,7 @@ class DataPage extends Component {
                             <Segment>
                             <Form onSubmit={this.handleSubmit} class="form-race-col">
                                 <label>Race/Ethnicty:</label>
-                                <select value={this.state.race} id="race" onChange={this.handleChange.bind(this)} value={this.state.race}>
+                                <select value={this.state.raceEthnicity} id="raceEthnicity" onChange={this.handleChange.bind(this)} value={this.state.raceEthnicity}>
                                     <option value="-1">None</option>
                                     <option value="1">Asian</option>
                                     <option value="2">Black or African American</option>
@@ -204,6 +239,7 @@ class DataPage extends Component {
                             <Button color='grey' attached="right" size="small" onClick={this.addDataSet.bind(this)}>Add Dataset</Button>
                             <Button color="grey" attached="right" size="small" onClick={this.removeDataSet.bind(this)}>Remove Dataset</Button>
                             <Button color="grey" attached="right" size="small" onClick={this.test.bind(this)}>Print DataSets</Button>
+                            <Button color="grey" attached="right" size="small" onClick={this.getMyData.bind(this)}>Get My Data</Button>
                     </Button.Group>
                 </fieldset>
                 <SpiderChart 
