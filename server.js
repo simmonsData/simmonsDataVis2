@@ -1,12 +1,11 @@
 const mongoose = require('mongoose'),  
     // config = require('./config'),  
-    express = require('./express'),
+    // express = require('./express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     path = require('path'),
-    // config = require('./config'), 
     passport = require('passport'),
-    studentsRouter = require('../routes/students.routes');
+    studentsRouter = require('./routes/students.routes');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -44,7 +43,7 @@ if(process.env.NODE_ENV === 'production'){
     app.use(express.static('frontend/build'));
 
     app.get('*', function(req, res) {
-        res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+        res.sendFile(path.resolve(__dirname, 'frontend/build', 'index.html'));
     });
 }
 
