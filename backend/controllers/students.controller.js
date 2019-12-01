@@ -28,18 +28,9 @@ exports.list = (req, res) => {
 
 // Displays student information - get request
 exports.read = (req, res) => {
-<<<<<<< HEAD
-    console.log(req.student.survey);
-    res.json(req.student.survey);
-    // res.redirect();
-||||||| merged common ancestors
-    res.json(req.student);
-    // res.redirect();
-=======
     console.log(req.student);
     res.status(200);
     res.json(req.student);
->>>>>>> 49e8a33a724e1147a2f2766941a676b3f2d61fe9
 };
 
 // Displays student survey information - get request
