@@ -9,7 +9,7 @@
     "server": "cd backend && npx nodemon server.js",
     "client": "cd frontend && yarn start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "cd frontend && npm install && yarn start"
+    "heroku-postbuild": "cd frontend && yarn && yarn run build"
   },
   "repository": {
     "type": "git",
