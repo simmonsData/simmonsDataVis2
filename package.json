@@ -23,5 +23,8 @@
   "homepage": "https://github.com/introNG2E/simmonsDataVis#readme",
   "dependencies": {
     "concurrently": "^5.0.0"
+  },
+  "engines": {
+    "node": "v12.12.0"
   }
 }
