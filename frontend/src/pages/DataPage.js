@@ -4,6 +4,7 @@ import { redirect } from 'react-router-dom'
 import SpiderChart from '../components/SpiderChart'
 import data from '../data/data.js'
 import '../styles/DataPage.css'
+import axios from 'axios';
 
 class DataPage extends Component {
 
@@ -20,7 +21,7 @@ class DataPage extends Component {
         super(props);
         this.state = {
             gender: '-1',
-            race: '-1',
+            raceEthnicity: '-1',
             major: '-1',
             dataSets: [],
             color: 0,
@@ -31,76 +32,84 @@ class DataPage extends Component {
     // Creates a new dataSet array to push onto the dataSets array 
     // that gets passed onto SpiderChart.js. T
     addDataSet(e){
-        var filteredData = data;
-        
-        if (this.state.gender != -1){
-            filteredData = filteredData.filter(entry => {
-                return (entry.data.gender == this.state.gender);
-            })
-        }
-        console.log(filteredData);
-        if (this.state.race != -1){
-            filteredData = filteredData.filter(entry => {
-                return (entry.data.race == this.state.race);
-            })
-        }
-        console.log(filteredData);
-        if (this.state.major != -1){
-            filteredData = filteredData.filter(entry => {
-                return (entry.data.major == this.state.major);
-            })
-        }
-        console.log(filteredData);
-        var sumE2 = 0;
-        var sumE3 = 0;
-        var sumE4 = 0;
-        var sumE5 = 0;
-        var sumE6 = 0;
-        var sumE7 = 0;
-        var sumE8 = 0;
-        var sumE9 = 0;
-        var newDataSet = [];
-        var size = filteredData.length;
-        this.setState({
-            numObservations: size
-        })
-        for (var entry in filteredData){
-            sumE2 += filteredData[entry].data.E2; 
-            sumE3 += filteredData[entry].data.E3; 
-            sumE4 += filteredData[entry].data.E4; 
-            sumE5 += filteredData[entry].data.E5; 
-            sumE6 += filteredData[entry].data.E6; 
-            sumE7 += filteredData[entry].data.E7; 
-            sumE8 += filteredData[entry].data.E8; 
-            sumE9 += filteredData[entry].data.E9;  
-        }
-        var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+        //var filteredData = data;
+        var filteredData = [];
 
-        newDataSet = [{
-            data: {
-                gender: this.state.gender,
-                race: this.state.race,
-                major: this.state.major,
-                E2: sumE2/size,
-                E3: sumE3/size,
-                E4: sumE4/size,
-                E5: sumE5/size,
-                E6: sumE6/size,
-                E7: sumE7/size,
-                E8: sumE8/size,
-                E9: sumE9/size,
-            },
-            meta: {color: "red"}
-        }]
-        console.log("addDataSet called: ");
-        console.log('Gender: ' + this.state.gender);
-        console.log('Race: ' + this.state.race);
-        console.log('Major: ' + this.state.major);
-        if (size == 0){
+        axios.get(
+            'http://localhost:8080/api/students/'
+        ).then(res => {
+            filteredData = res.data;
+            console.log(filteredData);
+            if (this.state.gender != -1){
+                filteredData = filteredData.filter(entry => {
+                    return (entry.survey.gender == this.state.gender);
+                })
+            }
+            if (this.state.raceEthnicity != -1){
+                filteredData = filteredData.filter(entry => {
+                    return (entry.survey.raceEthnicity == this.state.raceEthnicity);
+                })
+            }
+            if (this.state.major != -1){
+                filteredData = filteredData.filter(entry => {
+                    return (entry.survey.major == this.state.major);
+                })
+            }
+            console.log(filteredData);
+            var sumE2 = 0;
+            var sumE3 = 0;
+            var sumE4 = 0;
+            var sumE5 = 0;
+            var sumE6 = 0;
+            var sumE7 = 0;
+            var sumE8 = 0;
+            var sumE9 = 0;
+            var newDataSet = [];
+            var size = filteredData.length;
+            this.setState({
+                numObservations: size
+            })
+            for (var entry in filteredData){
+                sumE2 += filteredData[entry].survey.E2; 
+                sumE3 += filteredData[entry].survey.E3; 
+                sumE4 += filteredData[entry].survey.E4; 
+                sumE5 += filteredData[entry].survey.E5; 
+                sumE6 += filteredData[entry].survey.E6; 
+                sumE7 += filteredData[entry].survey.E7; 
+                sumE8 += filteredData[entry].survey.E8; 
+                sumE9 += filteredData[entry].survey.E9;  
+            }
+            var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+    
+            newDataSet = [{
+                data: {
+                    gender: this.state.gender,
+                    raceEthnicity: this.state.raceEthnicity,
+                    major: this.state.major,
+                    E2: (sumE2/size)/4,
+                    E3: (sumE3/size)/4,
+                    E4: (sumE4/size)/4,
+                    E5: (sumE5/size)/4,
+                    E6: (sumE6/size)/4,
+                    E7: (sumE7/size)/4,
+                    E8: (sumE8/size)/4,
+                    E9: (sumE9/size)/4,
+                },
+                meta: {color: "red"}
+            }]
+            console.log("addDataSet called: ");
+            console.log('Gender: ' + this.state.gender);
+            console.log('Race: ' + this.state.raceEthnicity);
+            console.log('Major: ' + this.state.major);
+            if (size == 0){
+                return false;
+            }
+            this.setState({
+                dataSets: this.state.dataSets.concat(newDataSet)
+            })
+        }).catch(err => {
+            console.log(err);
             return false;
-        }
-        this.setState({
-            dataSets: this.state.dataSets.concat(newDataSet)
         })
     }
 
@@ -123,6 +132,40 @@ class DataPage extends Component {
     // Prints the data set that gets passed to Spider Chart. 
     test(e) {
         console.log(this.state.dataSets);
+    }
+
+    componentDidMount(){
+        const id = this.props.getId;
+        var newDataSet = [];
+        console.log(id)
+        axios.get(
+            'http://localhost:8080/api/students/' + id,
+        )
+        .then(res => {
+            console.log(res);
+            newDataSet = [{
+                data: {
+                    gender: res.data.gender,
+                    raceEthnicity: res.data.raceEthnicity,
+                    major: res.data.major,
+                    E2: res.data.E2/4,
+                    E3: res.data.E3/4,
+                    E4: res.data.E4/4,
+                    E5: res.data.E5/4,
+                    E6: res.data.E6/4,
+                    E7: res.data.E7/4,
+                    E8: res.data.E8/4,
+                    E9: res.data.E9/4,
+                },
+                meta: {color: "green"}
+            }]
+            this.setState({
+                dataSets: this.state.dataSets.concat(newDataSet)
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
     render(){
         const genders = ['Woman', 'Man', 'Trans', 'Other', 'I don\'t want to respond'];
@@ -156,7 +199,7 @@ class DataPage extends Component {
                             <Segment>
                             <Form onSubmit={this.handleSubmit} class="form-race-col">
                                 <label>Race/Ethnicty:</label>
-                                <select value={this.state.race} id="race" onChange={this.handleChange.bind(this)} value={this.state.race}>
+                                <select value={this.state.raceEthnicity} id="raceEthnicity" onChange={this.handleChange.bind(this)} value={this.state.raceEthnicity}>
                                     <option value="-1">None</option>
                                     <option value="1">Asian</option>
                                     <option value="2">Black or African American</option>
