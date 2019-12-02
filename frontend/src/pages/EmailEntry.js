@@ -102,7 +102,7 @@ function EmailEntry(props) {
             setErrorsL('');
         }
         const response = await axios.post(
-            '/api/students/register',
+            'http://localhost:8080/api/students/register',
             {email: registerInput},
             {headers: {'Content-Type': 'application/json'}}
         )
@@ -133,7 +133,7 @@ function EmailEntry(props) {
             setregisterInput('');
         }
         const response = await axios.post(
-            '/api/students/login',
+            'http://localhost:8080/api/students/login',
             {email: loginInput},
             {headers: {'Content-Type': 'application/json'}}
         ).then(function (response) {

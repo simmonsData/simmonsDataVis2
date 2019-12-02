@@ -3,6 +3,7 @@ const mongoose = require('mongoose'),
     util = require('util'),
     bcrypt = require("bcryptjs"),
     jwt = require("jsonwebtoken"),
+    keys = require("../config/config"),
     validateRegisterInput = require("../validation/register"),
     validateLoginInput = require("../validation/login");
     emailSystem = require('./email.controller');
@@ -168,7 +169,7 @@ exports.register = (req, res) => {
         }
         // If matching email is found, returns "Email already created"
         else{
-            return res.status(400).json({emailFound: "Email already created"}); 
+            return res.status(200).json({emailFound: "Email already created"}); 
         }
     });
 }
