@@ -85,63 +85,40 @@ exports.register = (req, res) => {
     if(!isValid){
         return res.status(400).json(errors);
     }
-
-    const email = req.body.email;
-
-    // Each entry in database is stored into student variable
-    Student.find({}, (err, student) => {
-        let matchFound = false;
+    const studentEmail = req.body.email;
+    Student.findOne({email: studentEmail}, (err, student) => {
         if(err){
-            return res.status(400).send(err);
+            return res.status(400).send(err);          
         }
-        // If student is not empty, tries to find a match between entered email and hashed email in database
-        else if(student.length){
-            student.forEach((currentStudent) => {
-                const isMatch = bcrypt.compareSync(email, currentStudent.email)
-                    if(isMatch){
-                        matchFound = true;
-                    }
-            })
-
-        }
-
-        // If there are no students in the database or no matching email addresses, will create new entry
-        if(!student.length || matchFound != true){
-
-            // Making new student 
-            console.log("Creating new student");
-            const newStudent = new Student({
-                email: req.body.email
-            });
-
-            // Hashing email before saving into database
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newStudent.email, salt, (err, hash) => {
-                    if(err){
-                        throw err;
-                    }
-                    newStudent.email = hash;
-
-                    // Saving hashed email into database
-                    newStudent.save( (err, savedStudent) => {
-                        if(err) {
-                            console.log(err);
-                            return res.status(400).send(err);
-                        } 
-                        // Returns student id
-                        else {
-                            console.log(savedStudent.id);
-                            return res.json(savedStudent.id);
-                        }
-                    });      
-                })
-            })
-        }
-        // If matching email is found, returns "Email already created"
         else{
-            return res.status(400).json({emailFound: "Email already created"}); 
+            // No match found
+            if(student === null){
+                console.log("Creating new student");
+                const newStudent = new Student({
+                    email: req.body.email
+                });
+
+                // Saving email into database
+                newStudent.save( (err, savedStudent) => {
+                    if(err) {
+                        console.log(err);
+                        return res.status(400).send(err);
+                    } 
+                    // If match found, returns student id and email with link to survey is sent to given email 
+                    else {
+                        console.log(savedStudent.id);
+                        const id = savedStudent.id;
+                        emailSystem.send(id, studentEmail);
+                        return res.json(id);
+                    }
+                });
+            }
+            // Match found
+            else if(student !== null){
+                return res.status(400).json({emailFound: "Email already created"}); 
+            }
         }
-    });
+    })
 }
 
 // Logins student by email address - post request
