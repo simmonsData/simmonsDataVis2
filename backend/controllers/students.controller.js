@@ -125,43 +125,30 @@ exports.register = (req, res) => {
 exports.login = (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
 
-    // Checks if email is valid
+    // Checks if email is entered with valid format
     if(!isValid){
         return res.status(400).json(errors);
     }
-
-    const email = req.body.email;
-    let id;
-
-    // Each entry in database is stored into student variable
-    Student.find({}, (err, student) => {
-        let matchFound = false;
+    const studentEmail = req.body.email;
+    console.log(studentEmail);
+    Student.findOne({email: studentEmail}, (err, student) => {
         if(err){
-            res.status(400).send(err);
+            return res.status(400).send(err); 
         }
-        // If student is not empty, tries to find a match between entered email and hashed email in database
-        else if(student.length){
-            student.forEach((currentStudent) => {
-                const isMatch = bcrypt.compareSync(email, currentStudent.email);
-                if(isMatch){
-                    matchFound = true;
-                    id = currentStudent.id;
-                }
-            })
-        }
-
-        // If match is found in the database, returns id
-        if(matchFound){
-            emailSystem.send(id, email);
-            return res.json(id);
-        }
-        // If no match found, returns "Email not found"
         else{
-            res.status(400);
-            return res.json({emailNotFound: "Email not found"}); 
+            // If no match found, returns "Email not found"
+            if(student === null){
+                res.status(400);
+                return res.json({emailNotFound: "Email not found"}); 
+            }
+            // If match found, returns student id and email with link to survey is sent to given email 
+            else if(student !== null){
+                const id = student.id;
+                emailSystem.send(id, studentEmail);
+                return res.json(id);
+            }
         }
-
-    });
+    })
 }
 
 // ROUTER.PARAM MIDDLEWARE
