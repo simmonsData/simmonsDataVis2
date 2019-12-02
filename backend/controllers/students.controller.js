@@ -78,36 +78,6 @@ exports.delete = (req, res) => {
 
 // REGISTER/LOGIN ROUTES
 
-// // Tries to find student with given email address in the database
-// function locateStudentInDatabase(email){
-//     Student.find({}, (err, student) => {
-//         console.log(student.length);
-//         if(err){
-//             return res.status(400).send(err);
-//         }
-//         else if(student.length){
-//             console.log("looking into students");
-//             // Comparing each database entry's email with entered email
-//             student.forEach((currentStudent) => {
-//                 bcrypt.compare(email, currentStudent.email).then(isMatch => {
-//                     // If there's a match, returns true
-//                     console.log("isMatch: " + isMatch);
-//                     if(isMatch){
-//                         return true;
-//                     }
-//                 });
-
-//             })
-//             // If there is no match after looking at all email addresses, returns false
-//         }
-//         else{
-//             console.log("returning false");
-//             return false;
-//         }
-//     });
-//     console.log("exiting")
-// }
-
 // Registers a new student - post request
 exports.register = (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
