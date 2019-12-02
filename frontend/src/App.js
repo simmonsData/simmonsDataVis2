@@ -9,6 +9,7 @@ import adminPanel from './pages/adminPanel'
 import Homepage from './pages/Homepage'
 import SurveyPage from './pages/SurveyPage'
 import DataPage from './pages/DataPage'
+import StatisticsPage from './pages/StatisticsPage'
 
 //Components
 import Header from './components/Header'
@@ -41,6 +42,7 @@ function App() {
                   <Route exact path="/data" render={(props) => <DataPage {...props} user={user} />}/>
                   <Route exact path="/admin" component={adminEntry} />
                   <Route exact path="/adminPanel" component={adminPanel} />
+                  <Route exact path="/statistics" component={StatisticsPage} />
               </main>
             <Footer/>
           </div>

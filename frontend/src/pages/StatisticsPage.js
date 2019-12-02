@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component, useState} from 'react';
 import {
   Button,
   Form,
@@ -9,8 +9,9 @@ import {
   Container
 } from "semantic-ui-react";
 import { Route, withRouter, Redirect } from "react-router-dom";
+import axios from 'axios';
 
-class adminPanel extends Component {
+class StatisticsPage extends Component {
   constructor(props) {
     super(props);
   }
@@ -20,7 +21,7 @@ class adminPanel extends Component {
   };
 
   onStatisticsPress = () => {
-    this.props.history.push("/statistics");
+    this.props.history.push("/survey");
   };
 
   render() {
@@ -34,19 +35,15 @@ class adminPanel extends Component {
       >
         <Grid>
           <Grid.Column textAlign="center">
-            <Button primary size="massive" onClick={this.onSurveyPress}>
+            <Button primary size="medium" onClick={this.onSurveyPress}>
               {" "}
-              Access Surveys{" "}
+              Downloads All Statistics as CSV{" "}
             </Button>{" "}
-            <Button secondary size="massive" onClick={this.onStatisticsPress}>
-              {" "}
-              Access Statistics{" "}
-            </Button>{" "}
-          </Grid.Column>
+           </Grid.Column>
         </Grid>{" "}
       </div>
     );
   }
 }
 
-export default withRouter(adminPanel);
+export default withRouter(StatisticsPage);
