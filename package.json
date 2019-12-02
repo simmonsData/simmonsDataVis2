@@ -1,16 +1,24 @@
 {
-  "name": "backend",
+  "name": "simmonsdatavis",
   "version": "1.0.0",
-  "description": "",
+  "description": "## How to start",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/introNG2E/simmonsDataVis.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/introNG2E/simmonsDataVis/issues"
+  },
+  "homepage": "https://github.com/introNG2E/simmonsDataVis#readme",
   "dependencies": {
+    "concurrently": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
@@ -20,12 +28,13 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
+    "nodemailer": "^6.3.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "should": "^13.2.3",
     "validator": "^12.0.0"
   },
-  "devDependencies": {
-    "nodemon": "^1.19.4"
+  "engines": {
+    "node": "12.12.0"
   }
 }

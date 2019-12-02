@@ -35,10 +35,9 @@ class SurveyPage extends Component {
         // console.log("Complete! "+ JSON.stringify(result.data));
 
         // user is appended to route to make put request
-        const id = this.props.id;
-        console.log(this.props.id);
+        const id = this.props.getId;
         axios.put(
-            'http://localhost:8080/api/students/' + id,
+            '/api/students/' + id,
             { survey: result.data },
             { headers: { 'Content-Type': 'application/json' } }
         )
@@ -46,9 +45,12 @@ class SurveyPage extends Component {
             console.log(res);
 
             // If put request is successful, sets redirecting to true
-            this.setState({
-                redirecting: true
-            })
+            setTimeout( () => {
+                this.setState({
+                    redirecting: true
+                })
+            }, 3500)
+
         })
         .catch(err => {
             console.log(err);
@@ -56,8 +58,8 @@ class SurveyPage extends Component {
 
     };
 
-    onHomePress(props) {
-        this.props.history.push('/Homepage');
+    onHomePress() {
+        this.props.history.push('/Homepage/' + this.props.getId);
     }
 
     openModal() {
@@ -70,11 +72,15 @@ class SurveyPage extends Component {
     }
 
     render() {
+
         const model = new Survey.Model(this.json);
+        const {redirecting} = this.state;
+
+        
 
         // Redirects to data page when survey is complete
-        if(this.state.redirecting) {
-            return <Redirect to='/data' />
+        if(redirecting) {
+            return <Redirect to={'/data/' + this.props.getId} />
         }
 
         return (

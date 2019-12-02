@@ -1,7 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {Redirect} from 'react-router-dom';
 
-import {Button, Header, Form, Grid, Divider, Segment, Label, Transition, List, Loader, Dimmer} from 'semantic-ui-react'
+import {Button, Header, Form, Grid, Divider, Segment, Label, Transition, List, Loader, Dimmer} from 'semantic-ui-react';
 
 import axios from 'axios'
 
@@ -103,13 +102,13 @@ function EmailEntry(props) {
             setErrorsL('');
         }
         const response = await axios.post(
-            'http://localhost:8080/api/students/register',
+            '/api/students/register',
             {email: registerInput},
             {headers: {'Content-Type': 'application/json'}}
         )
             .then(function (response) {
                 console.log(response);
-                props.userLogged(registerInput);
+                props.userLogged(response.data);
                 setRedirecting(true);
             })
             .catch(function (error) {
@@ -134,12 +133,10 @@ function EmailEntry(props) {
             setregisterInput('');
         }
         const response = await axios.post(
-            'http://localhost:8080/api/students/login',
+            '/api/students/login',
             {email: loginInput},
             {headers: {'Content-Type': 'application/json'}}
         ).then(function (response) {
-            console.log(response);
-            props.userLogged(loginInput);
             setRedirecting(true);
         })
             .catch(function (error) {
@@ -155,7 +152,17 @@ function EmailEntry(props) {
     }
 
     if (redirecting) {
-        return <Redirect to='/Homepage'/>
+        return (
+            <div className='EmailEntry'>
+            <Divider/>
+            <Divider/>
+            <Header as='h1' className='welcome'>
+                A link to the survey has been sent to your email
+            </Header>
+            <Divider/>
+            <Divider/>
+        </div>
+        )
     } else {
         return (
             <div className='EmailEntry'>

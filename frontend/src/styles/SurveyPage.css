@@ -1,6 +1,7 @@
 .survey {
-   height: 10px;
- }
+  height: 15px;
+  display: flex;
+}
 
 .surveyjs {
   width: 100vw;

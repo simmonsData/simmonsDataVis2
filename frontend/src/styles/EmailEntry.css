@@ -1,11 +1,10 @@
 .EmailEntry {
-    background-color: #FFFFFF;
     align-self:flex-start;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: relative;
+    height: 85vh;
 }
 
 .emailInput {
@@ -16,8 +15,6 @@
     align-items: center;
 }
 
-
-.
 .welcome {
     flex-grow: 0;
     margin: 0;

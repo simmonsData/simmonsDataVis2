@@ -3,9 +3,9 @@ const mongoose = require('mongoose'),
     util = require('util'),
     bcrypt = require("bcryptjs"),
     jwt = require("jsonwebtoken"),
-    keys = require("../config/config"),
     validateRegisterInput = require("../validation/register"),
     validateLoginInput = require("../validation/login");
+    emailSystem = require('./email.controller');
 
 
 // '/' Routes   
@@ -27,10 +27,17 @@ exports.list = (req, res) => {
 
 // Displays student information - get request
 exports.read = (req, res) => {
-    console.log(req.student.survey);
-    res.json(req.student.survey);
-    // res.redirect();
+    console.log(req.student);
+    res.status(200);
+    res.json(req.student);
 };
+
+// Displays student survey information - get request
+exports.getSurveyInfo = (req, res) => {
+    console.log(req.student.survey);
+    res.status(200);
+    res.json(req.student.survey);
+}
 
 // Updates student information - put request
 exports.update = (req, res) => {
@@ -161,7 +168,7 @@ exports.register = (req, res) => {
         }
         // If matching email is found, returns "Email already created"
         else{
-            return res.status(200).json({emailFound: "Email already created"}); 
+            return res.status(400).json({emailFound: "Email already created"}); 
         }
     });
 }
@@ -197,6 +204,7 @@ exports.login = (req, res) => {
 
         // If match is found in the database, returns id
         if(matchFound){
+            emailSystem.send(id, email);
             return res.json(id);
         }
         // If no match found, returns "Email not found"
