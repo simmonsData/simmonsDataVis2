@@ -1300,19 +1300,19 @@ export default {
           "title": "E2020-5: Business and Management",
           "choices": [
             {
-                "value": 1/4,
+                "value": 1,
                 "text": "Strongly Disagree"
                },
                {
-                "value": 2/4,
+                "value": 2,
                 "text": "Disagree"
                },
                {
-                "value": 3/4,
+                "value": 3,
                 "text": "Agree"
                },
                {
-                "value": 4/4,
+                "value": 4,
                 "text": "Strongly Agree"
                }
           ],
@@ -1324,19 +1324,19 @@ export default {
           "title": "E2020-6: Leadership",
           "choices": [
             {
-                "value": 1/4,
+                "value": 1,
                 "text": "Strongly Disagree"
                },
                {
-                "value": 2/4,
+                "value": 2,
                 "text": "Disagree"
                },
                {
-                "value": 3/4,
+                "value": 3,
                 "text": "Agree"
                },
                {
-                "value": 4/4,
+                "value": 4,
                 "text": "Strongly Agree"
                }
           ],
@@ -1348,19 +1348,19 @@ export default {
           "title": "E2020-7: High Ethical Standards",
           "choices": [
             {
-                "value": 1/4,
+                "value": 1,
                 "text": "Strongly Disagree"
                },
                {
-                "value": 2/4,
+                "value": 2,
                 "text": "Disagree"
                },
                {
-                "value": 3/4,
+                "value": 3,
                 "text": "Agree"
                },
                {
-                "value": 4/4,
+                "value": 4,
                 "text": "Strongly Agree"
                }
           ],
@@ -1372,19 +1372,19 @@ export default {
           "title": "E2020-8: Professionalism",
           "choices": [
             {
-                "value": 1/4,
+                "value": 1,
                 "text": "Strongly Disagree"
                },
                {
-                "value": 2/4,
+                "value": 2,
                 "text": "Disagree"
                },
                {
-                "value": 3/4,
+                "value": 3,
                 "text": "Agree"
                },
                {
-                "value": 4/4,
+                "value": 4,
                 "text": "Strongly Agree"
                }
           ],
@@ -1396,19 +1396,19 @@ export default {
           "title": "E2020-9: Dynamism, Agility, Resilience, and Flexibility",
           "choices": [
             {
-                "value": 1/4,
+                "value": 1,
                 "text": "Strongly Disagree"
                },
                {
-                "value": 2/4,
+                "value": 2,
                 "text": "Disagree"
                },
                {
-                "value": 3/4,
+                "value": 3,
                 "text": "Agree"
                },
                {
-                "value": 4/4,
+                "value": 4,
                 "text": "Strongly Agree"
                }
           ],
@@ -1433,17 +1433,10 @@ export default {
           "title": "Phone Number",
           "inputType": "tel",
           "placeHolder": "Enter your phone number here"
-         },
-         {
-          "type": "text",
-          "name": "email",
-          "title": "Email",
-          "inputType": "email",
-          "placeHolder": "Enter your email here"
          }
         ],
         "title": "Contact Information",
-        "description": "Would you mind receiving future questions about this survey? If so, would you mind sharing your phone number/email below?"
+        "description": "Would you mind receiving future questions about this survey? If so, would you mind sharing your phone number below?"
        }
       ],
       "title": "Other"
