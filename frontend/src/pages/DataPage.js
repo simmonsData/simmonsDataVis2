@@ -145,17 +145,17 @@ class DataPage extends Component {
             console.log(res);
             newDataSet = [{
                 data: {
-                    gender: res.data.gender,
-                    raceEthnicity: res.data.raceEthnicity,
-                    major: res.data.major,
-                    E2: res.data.E2/4,
-                    E3: res.data.E3/4,
-                    E4: res.data.E4/4,
-                    E5: res.data.E5/4,
-                    E6: res.data.E6/4,
-                    E7: res.data.E7/4,
-                    E8: res.data.E8/4,
-                    E9: res.data.E9/4,
+                    gender: res.data.survey.gender,
+                    raceEthnicity: res.data.survey.raceEthnicity,
+                    major: res.data.survey.major,
+                    E2: res.data.survey.E2/4,
+                    E3: res.data.survey.E3/4,
+                    E4: res.data.survey.E4/4,
+                    E5: res.data.survey.E5/4,
+                    E6: res.data.survey.E6/4,
+                    E7: res.data.survey.E7/4,
+                    E8: res.data.survey.E8/4,
+                    E9: res.data.survey.E9/4,
                 },
                 meta: {color: "green"}
             }]

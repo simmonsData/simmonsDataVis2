@@ -102,16 +102,17 @@ function EmailEntry(props) {
             setErrorsL('');
         }
         const response = await axios.post(
-            '/api/students/register',
+            'http://localhost:8080/api/students/register',
             {email: registerInput},
             {headers: {'Content-Type': 'application/json'}}
         )
             .then(function (response) {
                 console.log(response);
-                props.userLogged(response.data);
+                // props.userLogged(response.data);
                 setRedirecting(true);
             })
             .catch(function (error) {
+                console.log(error);
                 if (error.response.data.emailFound) {
                     console.log(error.response.data.emailFound);
                     setErrors(error.response.data.emailFound);
@@ -133,7 +134,7 @@ function EmailEntry(props) {
             setregisterInput('');
         }
         const response = await axios.post(
-            '/api/students/login',
+            'http://localhost:8080/api/students/login',
             {email: loginInput},
             {headers: {'Content-Type': 'application/json'}}
         ).then(function (response) {
