@@ -5,6 +5,12 @@ const students = require('../controllers/students.controller.js'),
 router.route('/')
     .get(students.list);
 
+router.route('/data')
+    .get(students.surveysArray);
+
+router.route('/data/set')
+    .post(students.studentsByDataSet);
+
 router.route('/:studentId')
     .get(students.read)
     .put(students.update)
@@ -18,7 +24,6 @@ router.route('/register')
 
 router.route('/login')
     .post(students.login);
-
 
 router.param('studentId', students.studentByID);
 
