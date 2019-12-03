@@ -15,6 +15,16 @@ class StatisticsPage extends Component {
   constructor(props) {
     super(props);
   }
+  getDataSet(){
+  axios.get('http://localhost:8080/api/students/')
+  .then(function (response) {
+    console.log(response);
+    data = response;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
 
   onSurveyPress = () => {
     this.props.history.push("/survey");
@@ -29,8 +39,9 @@ class StatisticsPage extends Component {
       <div
         class="huge buttons"
         style={{
-          height: "75vh",
-          background: "white"
+          height: "85vh",
+          
+          
         }}
       >
         <Grid>
