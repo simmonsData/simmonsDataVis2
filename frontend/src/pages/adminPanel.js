@@ -31,7 +31,7 @@ class adminPanel extends Component {
           height: "85vh",
         }}
       >
-        <Grid>//added two buttons
+        <Grid>
           <Grid.Column textAlign="center">
             <Button primary size="massive" onClick={this.onSurveyPress}>
               {" "}
