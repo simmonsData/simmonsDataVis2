@@ -13,9 +13,10 @@
   white-space:pre;
   width: 100%;
   bottom: 0vh;
-  padding:16px 0px;
+  padding:4px 0px;
   margin-bottom: 0px;
-  position: fixed;
+  margin-top: 20px;
+  position: relative;
   left: 50%;
   transform: translate(-50%, -50%);
 }

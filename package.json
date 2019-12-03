@@ -3,20 +3,9 @@
   "version": "1.0.0",
   "description": "## How to start",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  "directories": {
+    "test": "tests"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/introNG2E/simmonsDataVis.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/introNG2E/simmonsDataVis/issues"
-  },
-  "homepage": "https://github.com/introNG2E/simmonsDataVis#readme",
   "dependencies": {
     "concurrently": "^5.0.0",
     "bcryptjs": "^2.4.3",
@@ -32,9 +21,23 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "should": "^13.2.3",
+    "supertest": "^4.0.2",
     "validator": "^12.0.0"
   },
-  "engines": {
-    "node": "12.12.0"
-  }
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/introNG2E/simmonsDataVis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/introNG2E/simmonsDataVis/issues"
+  },
+  "homepage": "https://github.com/introNG2E/simmonsDataVis#readme"
 }
