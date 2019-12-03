@@ -36,7 +36,7 @@ class DataPage extends Component {
         var filteredData = [];
 
         axios.get(
-            'http://localhost:8080/api/students/'
+            '/api/students/'
         ).then(res => {
             filteredData = res.data;
             console.log(filteredData);
@@ -139,7 +139,7 @@ class DataPage extends Component {
         var newDataSet = [];
         console.log(id)
         axios.get(
-            'http://localhost:8080/api/students/' + id,
+            '/api/students/' + id,
         )
         .then(res => {
             console.log(res);

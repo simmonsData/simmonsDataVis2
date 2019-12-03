@@ -37,7 +37,7 @@ class SurveyPage extends Component {
         // user is appended to route to make put request
         const id = this.props.getId;
         axios.put(
-            'http://localhost:8080/api/students/' + id,
+            '/api/students/' + id,
             { survey: result.data },
             { headers: { 'Content-Type': 'application/json' } }
         )
