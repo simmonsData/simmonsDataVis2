@@ -5,12 +5,6 @@ const should = require('should'),
 
 let app, agent, id;
 
-// 1) Register new email address - should pass
-// 2) Try to register old email address - should fail
-// 3) Try to register email in incorrect format - should fail
-// 4) Try to login with email in database - should pass
-// 5) Try to login with email not in database - should fail
-// 5) Try to login email in incorrect format - should fail
 describe('Student register,login, and CRUD tests', function(){
     this.timeout(10000);
 
