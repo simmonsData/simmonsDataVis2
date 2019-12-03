@@ -5,16 +5,14 @@ const should = require('should'),
     config = require('../config/config');
 
 const student = {
-    email: "mhubert@gmail.com",
+    email: "asdf@ufl.com",
     survey: {
-        general: {
-            question1: 13,
-            question2: "Male",
-            question3: "White"
-        }
+        age: 20,
+        gender: "Male",
+        activities: [1, 10]
     }
 }
-
+let id;
 describe('Student Schema Unit Tests', function(){
     before(function(done) {
         mongoose.connect(config.db.uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -23,7 +21,7 @@ describe('Student Schema Unit Tests', function(){
         done();
       });
     
-    describe('Saving to database', function(){
+    describe('Using the database', function(){
         this.timeout(10000);
 
         it('saves properly when email is provided', function(done){
@@ -53,7 +51,27 @@ describe('Student Schema Unit Tests', function(){
                 done();
             });
         });
+        it('selects correct student', function(done){
+            Student.findOne({email: 'asdf@ufl.com'})
+                .then((foundStudent) => {
+                    assert(foundStudent.email === student.email);
+                    done();
+                })
+                .catch((err) =>{
+                    console.log(err);
+                })
+        })
     });
 
+    after(function(done) {
+        if(id) {
+          Student.deleteOne({ _id: id }).exec(function() {
+            id = null;
+            done();
+          });
+        } else {
+          done();
+        }
+    });
     
 });
