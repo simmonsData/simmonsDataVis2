@@ -333,10 +333,6 @@ class DataPage extends Component {
         });
     }
 
-    // Prints the data set that gets passed to Spider Chart.
-    test(e) {
-    }
-
     componentDidMount() {
         this.onComplete('');
         const id = this.props.getId;
@@ -543,7 +539,7 @@ class DataPage extends Component {
                         </Grid.Column>
                         <Grid.Column>
                             <Segment>
-                                <form onSubmit={this.handleSubmit} class="form-major-col">
+                                <Form onSubmit={this.handleSubmit} class="form-major-col">
                                     <label>Major:</label>
                                     <select value={this.state.major} id="major" onChange={this.handleChange.bind(this)}>
                                         <option value="-1">None</option>
@@ -565,20 +561,20 @@ class DataPage extends Component {
                                         <option value="16">Nuclear Engineering</option>
                                         <option value="17">Other</option>
                                     </select>
-                                </form>
+                                </Form>
                             </Segment>
                         </Grid.Column>
                     </Grid>
-                    <Label size="big" floated="left">
+                    <Label style={{margin: '10px'}} size="big" floated="left">
                         <Icon name='users'/>{this.state.numObservations}
                     </Label>
                     <Button.Group floated="right">
-                        <Button color='grey' attached="right" size="small" onClick={this.addDataSet.bind(this)}>Add
-                            Dataset</Button>
-                        <Button color="grey" attached="right" size="small" onClick={this.removeDataSet.bind(this)}>Remove
-                            Dataset</Button>
-                        <Button color="grey" attached="right" size="small" onClick={this.test.bind(this)}>Print
-                            DataSets</Button>
+                        <Button style={{margin: '10px'}} color='grey' attached="right" size="small" onClick={this.addDataSet.bind(this)}>
+                            Add Dataset
+                        </Button>
+                        <Button style={{margin: '10px'}} color="grey" attached="right" size="small" onClick={this.removeDataSet.bind(this)}>
+                            Remove Dataset
+                        </Button>
                     </Button.Group>
                 </fieldset>
                 <SpiderChart
