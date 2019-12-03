@@ -23,6 +23,7 @@ function App() {
 
   function loggedIn() {
     // ...
+    return true;
   }
   function requireAuth(nextState, replace) {
    if (!loggedIn()) {
