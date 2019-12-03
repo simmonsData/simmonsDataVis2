@@ -1,67 +1,5 @@
-// import React, {Component, useState} from 'react';
-// import {
-//   Button,
-//   Form,
-//   Grid,
-//   Header,
-//   Message,
-//   Segment,
-//   Container
-// } from "semantic-ui-react";
-// import { Route, withRouter, Redirect } from "react-router-dom";
-// import axios from 'axios';
-// class StatisticsPage extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   getDataSet(){
-//   axios.get('http://localhost:8080/api/students/')
-//   .then(function (response) {
-//     console.log(response);
-    
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-// }
 
-//   onCSVPress = () => {
-//     axios.get('http://localhost:8080/api/students/')
-//   .then(function (response) {
-//     console.log(response);
-    
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-//   };
-
-//   render() {
-//     return (
-//       <div
-//         class="huge buttons"
-//         style={{
-//           height: "85vh",
-          
-          
-//         }}
-//       >
-//         <Grid>
-//           <Grid.Column textAlign="center">
-//             <Button primary size="medium" onClick={this.onCSVPress}>
-//               {" "}
-//               Downloads All Statistics as CSV{" "}
-//             </Button>{" "}
-//            </Grid.Column>
-//         </Grid>{" "}
-//       </div>
-//     );
-//   }
-// }
-
-// export default withRouter(StatisticsPage);
-
-
+//In Progress of Adding CSV button and download button
 import React, { Component } from 'react';
 import { Button, Header, Form, Grid, Divider, Segment, Label, Icon } from 'semantic-ui-react'
 import { redirect } from 'react-router-dom'
@@ -69,7 +7,7 @@ import SpiderChart from '../components/SpiderChart'
 import data from '../data/data.js'
 import '../styles/DataPage.css'
 import axios from 'axios';
-
+//import CsvDownload from 'react-json-to-csv' unable to import 
 class StatisticsPage extends Component {
 
     state = {
@@ -198,6 +136,26 @@ class StatisticsPage extends Component {
         console.log(this.state.dataSets);
     }
 
+    DownloadCSV(e) {
+      //const { Parser } = require('json2csv');
+              axios({
+        url: 'http://localhost:8080/api/students/', //your url
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+         const url = window.URL.createObjectURL(new Blob([response.data]));
+         const link = document.createElement('a');
+         link.href = url;
+         link.setAttribute('download', 'file.csv'); //or any other extension
+         document.body.appendChild(link);
+         link.click();
+      });
+    }
+    // Prints the data set that gets passed to Spider Chart. 
+    test(e) {
+        console.log(this.state.dataSets);
+    }
+
     componentDidMount(){
         const id = this.props.getId;
         var newDataSet = [];
@@ -310,7 +268,7 @@ class StatisticsPage extends Component {
                     <Button.Group floated="right">
                             <Button color='grey' attached="right" size="small" onClick={this.addDataSet.bind(this)}>Add Dataset</Button>
                             <Button color="grey" attached="right" size="small" onClick={this.removeDataSet.bind(this)}>Remove Dataset</Button>
-                            <Button color="grey" attached="right" size="small" onClick={this.test.bind(this)}>Print DataSets</Button>
+                            <Button color="grey" attached="right" size="small" onClick={this.DownloadCSV.bind(this)}>Download CSV</Button>
                     </Button.Group>
                 </fieldset>
                 <SpiderChart 
