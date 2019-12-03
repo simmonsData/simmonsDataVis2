@@ -108,10 +108,11 @@ function EmailEntry(props) {
         )
             .then(function (response) {
                 console.log(response);
-                props.userLogged(response.data);
+                // props.userLogged(response.data);
                 setRedirecting(true);
             })
             .catch(function (error) {
+                console.log(error);
                 if (error.response.data.emailFound) {
                     console.log(error.response.data.emailFound);
                     setErrors(error.response.data.emailFound);
