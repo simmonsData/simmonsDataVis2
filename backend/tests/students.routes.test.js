@@ -128,7 +128,40 @@ describe('Student register,login, and CRUD tests', function(){
             }
         })
     })
-
+    it('should be able to update a student\'s survey', function(done){
+        const updatedStudent = {
+            survey: {
+                age: 20,
+                gender: "Female",
+                phone: "1234567890"
+            }
+        }
+        agent.put('/api/students/' + id)
+            .send(updatedStudent)
+            .expect(200)
+            .end(function(err, res){
+                should.not.exist(err);
+                should.exist(res.body.survey);
+                res.body.survey.age.should.equal(20);
+                res.body.survey.gender.should.equal('Female');
+                res.body.survey.phone.should.equal("1234567890");
+                done();
+            });
+    })
+    it('should be able to delete a student', function(done){
+        agent.delete('/api/students/' + id)
+            .expect(200)
+            .end(function(err, res){
+                should.not.exist(err);
+                should.exist(res);
+                agent.get('/api/students/' + id)
+                    .expect(404)
+                    .end(function(err, res){
+                        id = undefined;
+                        done();
+                    })
+            })
+    })
     after(function(done) {
         console.log(id);
         if(id) {

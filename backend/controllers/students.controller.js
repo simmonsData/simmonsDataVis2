@@ -67,11 +67,12 @@ exports.delete = (req, res) => {
     Student.findByIdAndRemove(student.id, function(err){
         if(err){
             console.log(err);
-            res.status(400).send(err);
+            return res.status(400).send(err);
         }
         else{
-            res.json(student);
             console.log(student);
+            res.status(200);
+            return res.json(student);
         }
     });
 }
