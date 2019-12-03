@@ -88,7 +88,7 @@ class SurveyPage extends Component {
                     onValueChanged={this.onValueChanged}
                     className="survey"
                 />
-                <Divider fitted hidden/>
+                <Divider hidden/>
                 <Grid>
                     <Grid.Row centered stretched>
                         <Modal open={this.state.modalIsOpen} size="tiny" trigger={<Button basic color = "black"centered = {true} onClick={this.openModal}>
