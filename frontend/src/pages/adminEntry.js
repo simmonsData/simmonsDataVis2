@@ -18,6 +18,7 @@ class adminEntry extends Component {
   state = {
     password: "",
     submittedPassword: ""
+    
   };
 
   handleChange = (e, { name, value }) =>

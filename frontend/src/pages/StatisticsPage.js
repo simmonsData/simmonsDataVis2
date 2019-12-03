@@ -150,6 +150,7 @@ class StatisticsPage extends Component {
          document.body.appendChild(link);
          link.click();
       });
+      
     }
     // Prints the data set that gets passed to Spider Chart. 
     test(e) {

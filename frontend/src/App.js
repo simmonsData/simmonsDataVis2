@@ -21,6 +21,17 @@ import './styles/App.css'
 
 function App() {
 
+  function loggedIn() {
+    // ...
+  }
+  function requireAuth(nextState, replace) {
+   if (!loggedIn()) {
+      replace({
+        pathname: '/admin' // not working yet to prevent access of other pages
+      })
+   }
+  }
+
   function getIdFromUrl() {
     const params = window.location.href.split('/')
     return params[params.length - 1]
@@ -37,8 +48,8 @@ function App() {
                     <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
                     <Route exact path="/data/:userId" render={(props) => <DataPage {...props} getId={getIdFromUrl()} />}/>
                     <Route exact path="/admin" component={adminEntry} />
-                    <Route exact path="/adminPanel" component={adminPanel} />
-                    <Route exact path="/statistics" component={StatisticsPage} />
+                    <Route exact path="/adminPanel" component={adminPanel} onEnter = {requireAuth}/>
+                    <Route exact path="/statistics" component={StatisticsPage} onEnter = {requireAuth}/>
                     <Route component={EmailEntry} /> 
                   </Switch>
 
