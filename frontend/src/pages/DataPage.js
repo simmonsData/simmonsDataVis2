@@ -57,14 +57,8 @@ class DataPage extends Component {
         this.onHomePress = this.onHomePress.bind(this);
     }
 
-<<<<<<< HEAD
     onHomePress = () => {
-        console.log(this.props)
         this.props.history.push('/homepage/' + this.props.getId);
-=======
-    onHomePress() {
-        this.props.history.push('/Homepage/' + this.props.getId);
->>>>>>> develop
     }
 
 
@@ -467,7 +461,6 @@ class DataPage extends Component {
                 <Grid>
                     <Grid.Row stretched>
                         <Grid.Column centered stretched>
-<<<<<<< HEAD
                             <Modal open={this.state.modalIsOpen} centered={true}
                                    trigger={<Grid textAlign='center'><Button size='tiny' basic color="black"
                                                                              onClick={this.openModal}>
@@ -498,12 +491,6 @@ class DataPage extends Component {
                                     </Modal.Actions>
                                 </Modal.Content>
                             </Modal>
-=======
-                           <Grid textAlign='center'><Button size='tiny' basic color="black"
-                                                                             onClick={this.onHomePress}>
-                                       <Icon name='home'/>Home</Button>
-                                   </Grid>
->>>>>>> develop
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
