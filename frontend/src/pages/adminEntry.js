@@ -16,6 +16,7 @@ class adminEntry extends Component {
   state = {
     password: "",
     submittedPassword: ""
+    
   };
 
   handleChange = (e, { name, value }) =>
@@ -29,7 +30,7 @@ class adminEntry extends Component {
     this.setState({
       submittedPassword: password
     });
-    if (password == "admin") {
+    if (password == "admin") { //was unable to implement props to check admin password
       alert("Successful Login");
       this.props.history.push("/adminpanel");
     } else {
