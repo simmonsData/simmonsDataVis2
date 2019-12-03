@@ -457,36 +457,10 @@ class DataPage extends Component {
                 <Grid>
                     <Grid.Row stretched>
                         <Grid.Column centered stretched>
-                            <Modal open={this.state.modalIsOpen} centered={true}
-                                   trigger={<Grid textAlign='center'><Button size='tiny' basic color="black"
-                                                                             onClick={this.openModal}>
-                                       <Icon name='home'/> Home</Button>
-                                   </Grid>}>
-                                <Modal.Header>
-                                    <Grid>
-                                        <Grid.Row centered>
-                                            Would you like to return to the homepage?
-                                        </Grid.Row>
-                                    </Grid>
-                                </Modal.Header>
-                                <Modal.Content>
-                                    <Modal.Actions>
-                                        <Grid columns={2}>
-                                            <Grid.Row centered>
-                                                <Grid.Column>
-                                                    <Button size='large' color='green' onClick={this.onHomePress}>
-                                                        <Icon name='checkmark' color='black'/> <b
-                                                        className="text">Yes</b>
-                                                    </Button>
-                                                </Grid.Column>
-                                                <Button size='large' color='red' onClick={this.closeModal}>
-                                                    <Icon name='remove' color='black'/> <b className="text">No</b>
-                                                </Button>
-                                            </Grid.Row>
-                                        </Grid>
-                                    </Modal.Actions>
-                                </Modal.Content>
-                            </Modal>
+                        <Grid textAlign='center'><Button size='tiny' basic color="black"
+                                                                            onClick={this.onHomePress}>
+                                    <Icon name='home'/>Home</Button>
+                                </Grid>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
