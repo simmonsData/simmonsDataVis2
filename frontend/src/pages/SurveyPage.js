@@ -17,6 +17,7 @@ class SurveyPage extends Component {
             redirecting: false,
             modalIsOpen: false
         };
+        this.onComplete = this.onComplete.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.onHomePress = this.onHomePress.bind(this);
