@@ -15,6 +15,7 @@ import SpiderChart from '../components/SpiderChart'
 import '../styles/DataPage.css'
 import axios from 'axios';
 import {ResponsiveBar} from "@nivo/bar";
+import data from '../data/data.js';
 
 class DataPage extends Component {
 
@@ -23,7 +24,7 @@ class DataPage extends Component {
         race: "", // 1: Asian, 2: Black, 3: Hispanic, 4: Pacific, 5: White, 6: Other, 7: Mix
         major: "", // 1: General Engineering, 2: Civil Engineering, 3: Construction
         dataSets: [], // This should hold all of the data sets to be passed down and depicted in SpiderChart.js
-        color: 0, // index variable to cycle through colors.
+        graphColor: 0, // index variable to cycle through colors.
         numObservations: 0,
     };
 
@@ -34,6 +35,7 @@ class DataPage extends Component {
             raceEthnicity: '-1',
             major: '-1',
             dataSets: [],
+            graphColor: 1,
             color: 0,
             numObservations: 0,
             array: [],
@@ -246,8 +248,9 @@ class DataPage extends Component {
     // that gets passed onto SpiderChart.js. T
     addDataSet(e) {
         //var filteredData = data;
+        var colors = ["black", "aqua", "red", "yellow", "blue", "pink", "grey", "brown", "orange", "purple"]
         var filteredData = [];
-
+        
         axios.get(
             '/api/students/'
         ).then(res => {
@@ -290,7 +293,7 @@ class DataPage extends Component {
                 sumE8 += filteredData[entry].survey.E8;
                 sumE9 += filteredData[entry].survey.E9;
             }
-
+        
             newDataSet = [{
                 data: {
                     gender: this.state.gender,
@@ -305,14 +308,20 @@ class DataPage extends Component {
                     E8: (sumE8 / size) / 4,
                     E9: (sumE9 / size) / 4,
                 },
-                meta: {color: "red"}
+                meta: {color: colors[this.state.graphColor]}
             }]
             if (size === 0) {
                 return false;
             }
             this.setState({
-                dataSets: this.state.dataSets.concat(newDataSet)
+                dataSets: this.state.dataSets.concat(newDataSet),
+                graphColor: this.state.graphColor + 1
             })
+            if (this.state.graphColor > 9){
+                this.setState({
+                    graphColor: 0
+                })
+            }
         }).catch(err => {
             return false;
         })
