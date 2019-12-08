@@ -72,11 +72,8 @@ class SurveyPage extends Component {
     }
 
     render() {
-
         const model = new Survey.Model(this.json);
         const {redirecting} = this.state;
-
-        
 
         // Redirects to data page when survey is complete
         if(redirecting) {
