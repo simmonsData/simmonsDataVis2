@@ -30,11 +30,21 @@ Go into the develop branch and create two terminals. On one terminal,
 ```
     cd frontend && yarn start
 ```
-A page should automatically open up with the application. If not, open your browser to localhost:3000    
+A page should automatically open up with the application. If not, open your browser to localhost:3000.    
   
 To start the server, on the other terminal input, 
 ```
     cd backend && node server.js
 ```
 
-## Updata Database and Server Connections
+## Update Database and Server Connections
+To update database and server connections, if your project has a backend > config > config.js file locally, then change the following field to your desired database. 
+```
+    db: { 
+        uri: ''
+    } 
+```
+Otherwise you can manually input a database within the backend > config > express.js file on line 11 and change the following code
+```
+    process.env.MONGODB_URI || require('./config').db.uri
+```
