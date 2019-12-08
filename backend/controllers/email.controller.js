@@ -11,8 +11,13 @@ function establishTransport() {
   var transport = {
     host: 'smtp.gmail.com',
     auth: {
+<<<<<<< HEAD
       user: /*process.env.CREDS_EMAIL_USERNAME*/ creds.email.username,
       pass: /*process.env.CREDS_EMAIL_PASSWORD*/ creds.email.password
+=======
+      user: creds.email.username,
+      pass: creds.email.password
+>>>>>>> develop
     }
   }
 

@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -21,18 +21,9 @@ class SurveyPage extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.onHomePress = this.onHomePress.bind(this);
     }
-    json = data;
-
-
-    // Called when a question in the survey is changed/answered
-    onValueChanged = (result) => {
-
-        console.log("value change!");
-    }
 
     // Called when survey is submitted
-    onComplete = (result) => {
-        // console.log("Complete! "+ JSON.stringify(result.data));
+    onComplete (result) {
 
         // user is appended to route to make put request
         const id = this.props.getId;
@@ -42,7 +33,6 @@ class SurveyPage extends Component {
             { headers: { 'Content-Type': 'application/json' } }
         )
         .then(res => {
-            console.log(res);
 
             // If put request is successful, sets redirecting to true
             setTimeout( () => {
@@ -63,7 +53,6 @@ class SurveyPage extends Component {
     }
 
     openModal() {
-        console.log('wow');
         this.setState({modalIsOpen: true});
     }
 
@@ -72,7 +61,7 @@ class SurveyPage extends Component {
     }
 
     render() {
-        const model = new Survey.Model(this.json);
+        const model = new Survey.Model(data);
         const {redirecting} = this.state;
 
         // Redirects to data page when survey is complete
@@ -85,10 +74,9 @@ class SurveyPage extends Component {
                 <Survey.Survey
                     model={model}
                     onComplete={this.onComplete}
-                    onValueChanged={this.onValueChanged}
                     className="survey"
                 />
-                <Divider fitted hidden/>
+                <Divider hidden/>
                 <Grid>
                     <Grid.Row centered stretched>
                         <Modal open={this.state.modalIsOpen} size="tiny" trigger={<Button basic color = "black"centered = {true} onClick={this.openModal}>

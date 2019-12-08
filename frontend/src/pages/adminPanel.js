@@ -20,7 +20,7 @@ class adminPanel extends Component {
   };
 
   onStatisticsPress = () => {
-    this.props.history.push("/survey");
+    this.props.history.push("/statistics");
   };
 
   render() {

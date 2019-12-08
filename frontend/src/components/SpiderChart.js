@@ -3,7 +3,7 @@ import RadarChart from 'react-svg-radar-chart';
 import 'react-svg-radar-chart/build/css/index.css';
 import '../styles/SpiderChart.css';
 
-class SpiderChart extends React.Component {
+class SpiderChart extends Component {
 
     
 
@@ -46,7 +46,7 @@ class SpiderChart extends React.Component {
             captionProps: () => ({
               className: 'caption',
               textAnchor: 'middle',
-              fontSize: 12,
+              fontSize: 15,
               fontFamily: 'sans-serif'
             }),
             dotProps: () => ({
