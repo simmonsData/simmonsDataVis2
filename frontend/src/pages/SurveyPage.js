@@ -80,7 +80,7 @@ class SurveyPage extends Component {
                 <Divider hidden/>
                 <Grid>
                     <Grid.Row centered stretched>
-                        <Modal open={this.state.modalIsOpen} size="tiny" trigger={<Button basic color = "black"centered = {true} onClick={this.openModal}>
+                        <Modal open={this.state.modalIsOpen} size="tiny" trigger={<Button basic color = "black" centered = {"true"} onClick={this.openModal}>
                                 <Icon name='home'/> Home
                             </Button>}
                     >
