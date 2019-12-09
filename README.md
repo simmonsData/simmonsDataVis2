@@ -26,7 +26,11 @@ Data Page
 Admin Page
 
 ## Run Project
-Go into the develop branch and create two terminals. On one terminal,
+Go into the develop branch 
+```
+    git checkout develop
+```
+and create two terminals. On one terminal,
 ```
     cd frontend && npm install && yarn start
 ```
