@@ -35,7 +35,7 @@ class SurveyPage extends Component {
         )
         .then(res => {
 
-            // If put request is successful, sets redirecting to true
+            // If put request is successful, sets redirecting to true after a certain time
             setTimeout( () => {
                 this.setState({
                     redirecting: true
