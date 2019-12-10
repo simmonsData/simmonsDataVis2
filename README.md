@@ -24,10 +24,10 @@ Data Page
 ![alt test](frontend/src/img/data_2.png)
 
 Admin Login Page
-![alt test](frontend/src/adminlogin.png)
+![alt test](frontend/src/img/adminlogin.jpeg)
 
 Admin Statistics Page
-![alt test](frontend/src/img/adminstats.png)
+![alt test](frontend/src/img/adminstats.jpeg)
 
 ## Run Project
 Go into the develop branch 
