@@ -1,5 +1,4 @@
 const mongoose = require('mongoose'),  
-    // config = require('./config'),  
     express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
@@ -11,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect(/*config.db.uri*/process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || require('./config').db.uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');

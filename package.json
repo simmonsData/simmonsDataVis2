@@ -1,7 +1,7 @@
 {
   "name": "simmonsdatavis",
   "version": "1.0.0",
-  "description": "## How to start",
+  "description": "This web application is a survey taking and data visualization website where students complete a survey and can view their qualities, such as Creativity and Communication, displayed in a spider chart. Students can compare their results with other survey takers by adding dataset(s) by gender, race/ethnicity, and/or major. Students can also look at a bar chart which uses other students survey results on the activities that can improve specific qualities.",
   "main": "server.js",
   "directories": {
     "test": "tests"
@@ -10,8 +10,7 @@
     "concurrently": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "chai": "^4.2.0",
-    "concurrently": "^5.0.0",
+    "chai": "^4.2.0", 
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "is-empty": "^1.2.0",
