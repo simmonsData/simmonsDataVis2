@@ -27,11 +27,6 @@
   "devDependencies": {},
   "scripts": {
     "test": "mocha backend/tests",
-    "install-all": "concurrently \"npm install\" \"cd frontend && npm install\"",
-    "frontend": "cd frontend && npm start",
-    "backend": "nodemon backend/server.js",
-    "dev": "concurrently \"nodemon backend/server.js\" \"cd frontend && npm run start\"",
-    "build": "cd frontend && npm build",
     "start": "node backend/server.js",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
