@@ -26,9 +26,15 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha backend/tests",
-    "start": "node backend/server.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "test": "mocha server/tests",
+    "install-all": "concurrently \"npm install\" \"npm run install-client\"",
+    "install-client": "cd client && npm install",
+    "client": "npm start --prefix client",
+    "server": "nodemon server/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm run build",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run install-client && npm run build",
   },
   "repository": {
     "type": "git",
