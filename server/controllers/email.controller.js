@@ -15,7 +15,7 @@ function establishTransport() {
     }
   }
 
-  var transporter = nodemailer.createTransport(transport)
+  let transporter = nodemailer.createTransport(transport)
 
   transporter.verify((error, success) => {
     if (error) {
