@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '../styles/Footer.css';
-import Logo from '../img/simmons-bktagline-2.png';
+// import Logo from '../img/simmons-bktagline-2.png';
 
 const Footer = () => {
   return (
@@ -22,7 +22,6 @@ const Footer = () => {
           <div class="copyright">
           Copyright © 2019 Anh Chau
           </div>
-          <img src={Logo} width="222" height="40"/>
         </div>
       </div>
     </footer>
