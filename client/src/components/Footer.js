@@ -1,7 +1,6 @@
 import React from 'react';
 
 import '../styles/Footer.css';
-// import Logo from '../img/simmons-bktagline-2.png';
 
 const Footer = () => {
   return (
