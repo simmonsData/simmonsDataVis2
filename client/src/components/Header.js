@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Grid, Image, Menu} from 'semantic-ui-react'
+import {Button,Grid, Image, Menu} from 'semantic-ui-react'
 
 import '../styles/App.css'
 import '../styles/Header.css'
 
 import Logo from '../img/simmons-bktagline-2.png';
 
+function handleItemClick(e, name) {
+
+}
 function Header () {
+  //const [clicked, setClicked] = useState(0);
+  //handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  //const {activeItem} = this.state;
+
   return (
     <header>
       <Grid id="headerMenu" columns={3} verticalAlign="middle">
@@ -27,9 +34,9 @@ function Header () {
          </Grid.Column>
 
           <Grid.Column id="rightColumn" floated="right">
-            <Button className="menuText" as={Link} to='/login'><span>Login/Register</span></Button>
+            <Button className="menuText" as={Link} to='/login'>Login/Register</Button>
             <Menu.Item as={Link} to='/survey'>
-              <Button id="surveyButtonMenu" >Take Survey</Button>
+              <Button id="surveyButtonMenu">Take Survey</Button>
             </Menu.Item>
           </Grid.Column>
         </Grid.Row>

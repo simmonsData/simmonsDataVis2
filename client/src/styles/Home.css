@@ -15,3 +15,8 @@
     display: flex;
     justify-content: center;
 }
+
+.textBody .btn:hover {
+    background-color: #a02c3b;
+    color: white;
+}

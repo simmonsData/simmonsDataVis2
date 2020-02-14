@@ -28,6 +28,10 @@ header {
   font-size: 115%;
 }
 
+#surveyButtonMenu:hover {
+  background-color: #a02c3b;
+}
+
 #headerMenu .menuText {
   background-color: transparent;
   margin-top: 5px;
