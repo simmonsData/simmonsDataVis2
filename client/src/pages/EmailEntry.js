@@ -144,9 +144,6 @@ function EmailEntry(props) {
     } else {
         return (
             <div className='EmailEntry'>
-                <Header as='h1' className='welcome'>
-                    Welcome to our survey
-                </Header>
                 <Header as='h3' className='welcome'>
                     New users please register with your email and fill out a survey
                 </Header>
