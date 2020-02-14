@@ -13,10 +13,11 @@ footer {
   color: white;
 }
 
-.footerleft {
-  float: left
+footer .footerleft {
+  float: left;
 }
 
-.footerright {
-  float: right
+footer .footerright {
+  float: right;
+  padding-right: 0.75rem;
 }
