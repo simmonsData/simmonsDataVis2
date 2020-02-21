@@ -1,6 +1,4 @@
 header {
-  /* background-color: #c93448; */
-  /* background-color: #a32638; */
   margin: 0;
   width: 100%;
   text-shadow: -0.25px -0.25px 0 #000, 0.25px -0.25px 0 #000, -0.25px 0.25px 0 #000, 0.25px 0.25px 0 #000;
@@ -12,6 +10,7 @@ header {
   padding-left: 1em;
   padding-bottom: 1em;
 }
+
 #logo {
   width: 16em;
   height: 3em; 
@@ -38,6 +37,7 @@ header {
   font-weight: 550;
   font-size: 125%;
   font-family: Verdana,sans-serif;
+  text-shadow: none;
 }
 
 #headerMenu .menuText:hover {

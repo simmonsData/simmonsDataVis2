@@ -31,14 +31,7 @@ function Header () {
             </Button>
           </Grid.Column>
           <Grid.Column width="2">
-            <Button 
-              className="menuText" 
-              as={Link} 
-              to='https://faculty.eng.ufl.edu/simmons-research-lab/about/' 
-              name="aboutUs"
-              >
-                About Us
-            </Button>
+            <a className="menuText"  href='https://faculty.eng.ufl.edu/simmons-research-lab/about/'>About Us</a> 
           </Grid.Column>
 
           <Grid.Column width="5"/>
