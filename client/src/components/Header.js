@@ -8,13 +8,6 @@ import '../styles/Header.css'
 import Logo from '../img/simmons-bktagline-2.png';
 
 function Header () {
-  // const [backgroundColor, setBackgroundColor] = useState('#c93448');
-  // const [textColor, setTextColor] = useState('white');
-  // const [activeItem, setActiveItem] = useState('home');
-
-  // function selectedItem(name) {
-  //   setActiveItem(name);
-  // }
 
   return (
     <header>
@@ -32,8 +25,6 @@ function Header () {
               name="home"
               as={Link} 
               to='/' 
-              // onClick={() => setActiveItem(name)}
-              // style={}
               active
               >
                 Home
@@ -45,8 +36,6 @@ function Header () {
               as={Link} 
               to='https://faculty.eng.ufl.edu/simmons-research-lab/about/' 
               name="aboutUs"
-              
-              // onClick={() => setActiveItem(name)}
               >
                 About Us
             </Button>
