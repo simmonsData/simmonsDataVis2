@@ -34,12 +34,10 @@ header {
 
 #headerMenu .menuText {
   background-color: transparent;
-  margin-top: 5px;
   color: black;
   font-weight: 550;
-  font-size: 130%;
+  font-size: 125%;
   font-family: Verdana,sans-serif;
-  margin-left: 2rem;
 }
 
 #headerMenu .menuText:hover {
@@ -65,4 +63,4 @@ header {
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
-  } */
+} */

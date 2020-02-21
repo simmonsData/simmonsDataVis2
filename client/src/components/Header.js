@@ -7,34 +7,55 @@ import '../styles/Header.css'
 
 import Logo from '../img/simmons-bktagline-2.png';
 
-function handleItemClick(e, name) {
-
-}
 function Header () {
-  //const [clicked, setClicked] = useState(0);
-  //handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-  //const {activeItem} = this.state;
+  // const [backgroundColor, setBackgroundColor] = useState('#c93448');
+  // const [textColor, setTextColor] = useState('white');
+  // const [activeItem, setActiveItem] = useState('home');
+
+  // function selectedItem(name) {
+  //   setActiveItem(name);
+  // }
 
   return (
     <header>
       <Grid id="headerMenu" columns={3} verticalAlign="middle">
         <Grid.Row>
-          <Grid.Column id="leftColumn">
-            <Image id="logo" src={Logo}></Image>
+          <Grid.Column width="3">
+              <Image id="logo" src={Logo}></Image>
+          </Grid.Column>
+
+          <Grid.Column width="1">
             <Button 
               color='#a32638' 
               className="menuText" 
               textAlign="left" 
+              name="home"
               as={Link} 
               to='/' 
-              active>
+              // onClick={() => setActiveItem(name)}
+              // style={}
+              active
+              >
                 Home
             </Button>
-            <Button className="menuText" as={Link} to='/'>About Us</Button>
-         </Grid.Column>
+          </Grid.Column>
+          <Grid.Column width="2">
+            <Button 
+              className="menuText" 
+              as={Link} 
+              to='https://faculty.eng.ufl.edu/simmons-research-lab/about/' 
+              name="aboutUs"
+              
+              // onClick={() => setActiveItem(name)}
+              >
+                About Us
+            </Button>
+          </Grid.Column>
 
-          <Grid.Column id="rightColumn" floated="right">
-            <Button className="menuText" as={Link} to='/login'>Login/Register</Button>
+          <Grid.Column width="5"/>
+
+          <Grid.Column id="rightColumn" width="1">
+            <Button className="menuText loginReg" as={Link} to='/login'>Login/Register</Button>
             <Menu.Item as={Link} to='/survey'>
               <Button id="surveyButtonMenu">Take Survey</Button>
             </Menu.Item>
