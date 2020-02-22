@@ -1,0 +1,22 @@
+.textBody h1{
+    font-size: 4em;
+    margin-top: 3em;
+}
+
+.textBody .btn {
+    background-color: #c93448;
+    border-radius: 20px;
+    color: white;
+    width: 16em;
+    height: 3em;
+    font-size: 1.5em;
+    margin: auto;
+    padding: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.textBody .btn:hover {
+    background-color: #a02c3b;
+    color: white;
+}

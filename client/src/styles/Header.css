@@ -1,16 +1,47 @@
 header {
-  height: 18vh;
-  background-color: #a32638;
+  margin: 0;
   width: 100%;
-  font-size: 4vh;
-  font-weight: 500;
-  color: #ffffff;
   text-shadow: -0.25px -0.25px 0 #000, 0.25px -0.25px 0 #000, -0.25px 0.25px 0 #000, 0.25px 0.25px 0 #000;
   text-align: center;
-  padding-top: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 15px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Verdana,sans-serif;
   display: block;
+  white-space: nowrap;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
 }
+
+#logo {
+  width: 16em;
+  height: 3em; 
+  margin-top: 5px;
+  display: inline;
+  float: left;
+}
+#surveyButtonMenu {
+  border-radius: 20px;
+  background-color: #c93448;
+  color: white;
+  width: 12em;
+  height: 4em;
+  font-size: 115%;
+}
+
+#surveyButtonMenu:hover {
+  background-color: #a02c3b;
+}
+
+#headerMenu .menuText {
+  background-color: transparent;
+  color: black;
+  font-weight: 550;
+  font-size: 125%;
+  font-family: Verdana,sans-serif;
+  text-shadow: none;
+}
+
+#headerMenu .menuText:hover {
+  text-decoration: underline;
+  color: rgb(66, 63, 63);
+}
+
