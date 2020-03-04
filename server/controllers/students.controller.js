@@ -165,12 +165,12 @@ exports.login = (req, res) => {
                 bcrypt.compare(studentPassword, student.password).then(passwordMatch => {
                     if(passwordMatch){
                         const id = student.id;
-                        emailSystem.send(id, studentEmail);
+    //                  emailSystem.send(id, studentEmail);
                         return res.json(id);
                     }
                     else{
                         res.status(400);
-                        return res.json({incorrectPassword: "Password is incorrect"});          // Change email and password to have same error messages
+                        return res.json({incorrectPassword: "Password is incorrect"});          // Change email and password to have same error messages (notFound error)
                     }
                 });
                 

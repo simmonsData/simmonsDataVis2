@@ -13,14 +13,16 @@ function EmailEntry(props) {
     const [errors, setErrors] = useState(''); //register error message
     const [errorsL, setErrorsL] = useState(''); //login error message
     const [registerInput, setregisterInput] = useState('');
+    const [registerPasswordInput, setRegisterPasswordInput] = useState('');
     const [loginInput, setLoginInput] = useState('');
+    const [loginPasswordInput, setLoginPasswordInput] = useState('');
     const [redirecting, setRedirecting] = useState(false);
     const [isVisibleRegErr, setIsVisibleRegErr] = useState(false); //If the register error is visible
     const [isVisibleLoginErr, setIsVisibleLoginErr] = useState(false); //If the login error is visible
     const [copy,setCopy] = useState(''); //used to make copy of register error message
     const [copyL,setCopyL] = useState(''); //used to make copy of login error message
     const [regLoad, setRegLoad] = useState (false);
-    const [loginLoad, setLoginLoad] =useState(false);
+    const [loginLoad, setLoginLoad] = useState(false);
 
     function stringErr(string) {
         return string.slice(0, string.length);
@@ -61,6 +63,21 @@ function EmailEntry(props) {
         if (loginInput != null) {
             setLoginInput(''); //removes any text in the login form
         }
+        if(loginPasswordInput != null) {
+            setLoginPasswordInput('');
+        }
+    }
+
+    function registerPasswordChange(e) {
+        handleRegisterErrors();
+        handleLoginErrors();
+        setRegisterPasswordInput(e.target.value);
+        if (loginInput != null) {
+            setLoginInput(''); //removes any text in the login form
+        }
+        if(loginPasswordInput != null) {
+            setLoginPasswordInput('');
+        }
     }
 
     function loginChange(e) {
@@ -68,7 +85,21 @@ function EmailEntry(props) {
         handleLoginErrors();
         setLoginInput(e.target.value);
         if (registerInput != null) {
-            setregisterInput(''); //removes any text in the register form
+            setregisterInput(''); //removes any text in the email register form
+        }
+        if(registerPasswordInput != null) {
+            setRegisterPasswordInput('');
+        }
+    }
+    function loginPasswordChange(e) {
+        handleRegisterErrors();
+        handleLoginErrors();
+        setLoginPasswordInput(e.target.value);
+        if (registerInput != null) {
+            setregisterInput(''); //removes any text in the email register form
+        }
+        if(registerPasswordInput != null) {
+            setRegisterPasswordInput('');
         }
     }
 
@@ -94,8 +125,12 @@ function EmailEntry(props) {
             .catch(function (error) {
                 if (error.response.data.emailFound) {
                     setErrors(error.response.data.emailFound);
-                } else {
+                } 
+                else if(error.response.data.email){
                     setErrors(error.response.data.email);
+                }
+                else if(error.response.data.password){
+                    setErrors(error.response.data.password);
                 }
                 setIsVisibleRegErr(true);
                 setCopy(stringErr(errors));
@@ -109,6 +144,9 @@ function EmailEntry(props) {
         //handleLoginErrors();
         if (registerInput != null) {//removes any text from the register input form
             setregisterInput('');
+        }
+        if(registerPasswordInput != null) {
+            setRegisterPasswordInput('');
         }
         await axios.post(
             '/api/students/login',
@@ -175,6 +213,21 @@ function EmailEntry(props) {
                                         />
                                     </Form>
                                 </Form.Field>
+                                <Form.Field className='passwordInput'>
+                                    <label>Password</label>
+                                    <Form>
+                                        <Dimmer active={regLoad} inverted>
+                                            <Loader disabled={!regLoad} inverted size="mini" inline></Loader>
+                                        </Dimmer>
+                                        <input
+                                            placeholder='Password'
+                                            onChange={registerPasswordChange}
+                                            onClick={registerPasswordChange}
+                                            value={registerPasswordInput}
+                                            autoComplete="off"
+                                        />
+                                    </Form>
+                                </Form.Field>
                             </Form>
                             <List>
                                 <List.Item>
@@ -224,6 +277,21 @@ function EmailEntry(props) {
                                             onChange={loginChange}
                                             onClick={loginChange}
                                             value={loginInput}
+                                            autoComplete="off"
+                                        />
+                                    </Form>
+                                </Form.Field>
+                                <Form.Field className='passwordInput'>
+                                    <label>Password</label>
+                                    <Form>
+                                        <Dimmer active={loginLoad} inverted>
+                                            <Loader disabled={!loginLoad} inverted size="mini" inline></Loader>
+                                        </Dimmer>
+                                        <input
+                                            placeholder='Password'
+                                            onChange={loginPasswordChange}
+                                            onClick={loginPasswordChange}
+                                            value={loginPasswordInput}
                                             autoComplete="off"
                                         />
                                     </Form>
