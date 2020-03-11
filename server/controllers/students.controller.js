@@ -98,18 +98,22 @@ exports.register = (req, res) => {
                 // Hashing password before saving into the database
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newStudent.password, salt, (err, hash) => {
-                        if (err) 
+                        if (err){
+                            //console.log(err);
                             throw err;
+                        }
+                        console.log("hash: " + hash);
                         newStudent.password = hash;
                         newStudent
                             .save()
                             .then( (student) => {
-                                const id = savedStudent.id;
+                                const id = student.id;
+                                //console.log("id: " + id);
                                 emailSystem.send(id, studentEmail);
                                 return res.json(id);
                             })
                             .catch( (err) => {
-                                console.log(error)
+                                console.log(err)
                                 return res.status(400).send(err);
                             });
                     })
@@ -149,7 +153,7 @@ exports.login = (req, res) => {
     }
     const studentEmail = req.body.email;
     const studentPassword = req.body.password;
-    
+
     Student.findOne({email: studentEmail}, (err, student) => {
         if(err){
             return res.status(400).send(err); 
@@ -162,6 +166,7 @@ exports.login = (req, res) => {
             }
             // If match found, returns student id and email with link to survey is sent to given email 
             else if(student !== null){
+                //console.log("comparing passwords");
                 bcrypt.compare(studentPassword, student.password).then(passwordMatch => {
                     if(passwordMatch){
                         const id = student.id;
@@ -170,7 +175,7 @@ exports.login = (req, res) => {
                     }
                     else{
                         res.status(400);
-                        return res.json({incorrectPassword: "Password is incorrect"});          // Change email and password to have same error messages (notFound error)
+                        return res.json({emailPasswordIncorrect: "Your email/password is incorrect"});          // Change email and password to have same error messages (notFound error)
                     }
                 });
                 

@@ -115,7 +115,10 @@ function EmailEntry(props) {
         }
         await axios.post(
             '/api/students/register',
-            {email: registerInput},
+            {
+             email: registerInput,
+             password: registerPasswordInput
+            },
             {headers: {'Content-Type': 'application/json'}}
         )
             .then(function (response) {
@@ -150,20 +153,28 @@ function EmailEntry(props) {
         }
         await axios.post(
             '/api/students/login',
-            {email: loginInput},
+            {
+             email: loginInput,
+             password: loginPasswordInput
+            },
             {headers: {'Content-Type': 'application/json'}}
         ).then(function (response) {
+            console.log(response);
             setRedirecting(true);
         })
-            .catch(function (error) {
-                if (error.response.data.emailNotFound) {
-                    setErrorsL(error.response.data.emailNotFound);
-                } else {
-                    setErrorsL(error.response.data.email);
-                }
-                setIsVisibleLoginErr(true);
-                setCopyL(stringErr(errorsL));
-            });
+         .catch(function (error) {
+            if (error.response.data.emailNotFound) {
+                setErrorsL(error.response.data.emailNotFound);
+            } 
+            else if(error.response.data.emailPasswordIncorrect){
+                setErrorsL(error.response.data.emailPasswordIncorrect);
+            }
+            else {
+                setErrorsL(error.response.data.email);
+            }
+            setIsVisibleLoginErr(true);
+            setCopyL(stringErr(errorsL));
+        });
         setLoginLoad(false);
     }
 
@@ -225,6 +236,7 @@ function EmailEntry(props) {
                                             onClick={registerPasswordChange}
                                             value={registerPasswordInput}
                                             autoComplete="off"
+                                            type="password"
                                         />
                                     </Form>
                                 </Form.Field>
@@ -293,6 +305,7 @@ function EmailEntry(props) {
                                             onClick={loginPasswordChange}
                                             value={loginPasswordInput}
                                             autoComplete="off"
+                                            type="password"
                                         />
                                     </Form>
                                 </Form.Field>
