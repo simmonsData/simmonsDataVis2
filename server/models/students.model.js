@@ -8,6 +8,10 @@ const studentSchema = new Schema({
         unique: true,
         required: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     updated_at : Date,
     created_at : Date,
     survey: {
