@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-
+import {Redirect} from 'react-router-dom';
 import {Button, Header, Form, Grid, Divider, Segment, Label, Transition, List, Loader, Dimmer} from 'semantic-ui-react';
-
-import axios from 'axios'
+import axios from 'axios';
 
 import '../styles/EmailEntry.css'
 
@@ -16,13 +15,15 @@ function EmailEntry(props) {
     const [registerPasswordInput, setRegisterPasswordInput] = useState('');
     const [loginInput, setLoginInput] = useState('');
     const [loginPasswordInput, setLoginPasswordInput] = useState('');
-    const [redirecting, setRedirecting] = useState(false);
+    const [redirectingRegister, setRedirectingRegister] = useState(false);
+    const [redirectingLogin, setRedirectingLogin] = useState(false);
     const [isVisibleRegErr, setIsVisibleRegErr] = useState(false); //If the register error is visible
     const [isVisibleLoginErr, setIsVisibleLoginErr] = useState(false); //If the login error is visible
     const [copy,setCopy] = useState(''); //used to make copy of register error message
     const [copyL,setCopyL] = useState(''); //used to make copy of login error message
     const [regLoad, setRegLoad] = useState (false);
     const [loginLoad, setLoginLoad] = useState(false);
+    const [userId, setUserId] = useState('');
 
     function stringErr(string) {
         return string.slice(0, string.length);
@@ -123,7 +124,7 @@ function EmailEntry(props) {
         )
             .then(function (response) {
                 // props.userLogged(response.data);
-                setRedirecting(true);
+                setRedirectingRegister(true);
             })
             .catch(function (error) {
                 if (error.response.data.emailFound) {
@@ -159,8 +160,9 @@ function EmailEntry(props) {
             },
             {headers: {'Content-Type': 'application/json'}}
         ).then(function (response) {
-            console.log(response);
-            setRedirecting(true);
+            console.log(response.data);
+            setUserId(response.data);
+            setRedirectingLogin(true);
         })
          .catch(function (error) {
             if (error.response.data.emailNotFound) {
@@ -178,19 +180,25 @@ function EmailEntry(props) {
         setLoginLoad(false);
     }
 
-    if (redirecting) {
+    if (redirectingRegister) {
         return (
             <div className='EmailEntry'>
-            <Divider/>
-            <Divider/>
-            <Header as='h1' className='welcome'>
-                A link to the survey has been sent to your email
-            </Header>
-            <Divider/>
-            <Divider/>
-        </div>
+                <Divider/>
+                <Divider/>
+                <Header as='h1' className='welcome'>
+                    A link to the survey has been sent to your email
+                </Header>
+                <Divider/>
+                <Divider/>
+            </div>
         )
-    } else {
+    } 
+    else if (redirectingLogin) {
+        return (
+            <Redirect to={'/homepage/' + userId}></Redirect>
+        )
+    }
+    else {
         return (
             <div className='EmailEntry'>
                 <Header as='h3' className='welcome'>

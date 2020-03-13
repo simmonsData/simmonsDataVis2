@@ -46,7 +46,7 @@ function App() {
 
                   <Switch> 
                     <Route exact path="/homepage/:userId" render={(props) => <Homepage {...props} getId={getIdFromUrl()} />}/>
-                    <Route exact path="/survey/" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
+                    <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
                     <Route exact path="/data/:userId" render={(props) => <DataPage {...props} getId={getIdFromUrl()} />}/>
                     <Route exact path="/admin" component={adminEntry} />
                     <Route exact path="/adminPanel" component={adminPanel} onEnter = {requireAuth}/>
