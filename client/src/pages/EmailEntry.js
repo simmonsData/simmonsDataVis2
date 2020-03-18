@@ -271,7 +271,7 @@ function EmailEntry(props) {
                                             <Loader disabled={!regLoad} inverted size="mini" inline></Loader>
                                         </Dimmer>
                                         <input
-                                            placeholder='Password'
+                                            placeholder='Confirm'
                                             onChange={confirmRegisterPasswordChange}
                                             onClick={confirmRegisterPasswordChange}
                                             value={confirmRegisterPasswordInput}
