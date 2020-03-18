@@ -163,6 +163,8 @@ function EmailEntry(props) {
             console.log(response.data);
             setUserId(response.data);
             setRedirectingLogin(true);
+            // localStorage.setItem('id', response.data);
+            // localStorage.setItem('loggedIn', true);
         })
          .catch(function (error) {
             if (error.response.data.emailNotFound) {
@@ -201,21 +203,22 @@ function EmailEntry(props) {
     else {
         return (
             <div className='EmailEntry'>
-                <Header as='h3' className='welcome'>
+                {/* <Header as='h3' className='welcome'>
                     New users please register with your email and fill out a survey
                 </Header>
                 <Header as='h3' className='welcome'>
                     Returning users can edit their survey and view their results
                 </Header>
                 <Divider/>
-                <Divider/>
+                <Divider/> */}
                 <Grid columns={2} divided className='emailForms'>
                     <Grid.Row>
                         <Grid.Column stretched>
                             <Form className='emailInput' onSubmit={onRegister}>
-                                <Header as='h5'>
-                                    I am a new user
+                                <Header as='h2'>
+                                    Register
                                 </Header>
+                                <Divider/>
                                 <Form.Field className='emailInput'>
                                     <label>Email Address</label>
                                     <Form>
@@ -283,9 +286,10 @@ function EmailEntry(props) {
                         </Grid.Column>
                         <Grid.Column stretched>
                             <Form className='emailInput' onSubmit={onLogin}>
-                                <Header as='h5'>
-                                    I have submitted a survey
+                                <Header as='h2'>
+                                    Login
                                 </Header>
+                                <Divider/>
                                 <Form.Field className='emailInput'>
                                     <label>Email Address</label>
                                     <Form>
