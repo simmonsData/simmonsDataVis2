@@ -228,7 +228,7 @@ function EmailEntry(props) {
                     <Grid.Row>
                         <Grid.Column stretched>
                             <Form className='emailInput' onSubmit={onRegister}>
-                                <Header as='h2'>
+                                <Header as='h1'>
                                     Register
                                 </Header>
                                 <Divider/>
@@ -315,7 +315,7 @@ function EmailEntry(props) {
                         </Grid.Column>
                         <Grid.Column stretched>
                             <Form className='emailInput' onSubmit={onLogin}>
-                                <Header as='h2'>
+                                <Header as='h1'>
                                     Login
                                 </Header>
                                 <Divider/>

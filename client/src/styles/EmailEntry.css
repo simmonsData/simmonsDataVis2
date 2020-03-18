@@ -26,6 +26,11 @@
     padding-top: 100;
 }
 
+.ui.form .field>label {
+    font-size: 1.14em;
+    font-weight: 550;
+}
+
 /*Applied to the list containing
   the transition; prevents the
   rest of the page contents from moving*/
