@@ -8,7 +8,7 @@
     padding-bottom: 8em;
 }
 
-.emailInput, .passwordInput {
+.emailInput, .passwordInput, .confirmPasswordInput {
     align-self: flex-start;
     flex: 2;
     display: flex;

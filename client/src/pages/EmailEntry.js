@@ -13,6 +13,7 @@ function EmailEntry(props) {
     const [errorsL, setErrorsL] = useState(''); //login error message
     const [registerInput, setregisterInput] = useState('');
     const [registerPasswordInput, setRegisterPasswordInput] = useState('');
+    const [confirmRegisterPasswordInput, setConfirmRegisterPasswordInput] = useState('');
     const [loginInput, setLoginInput] = useState('');
     const [loginPasswordInput, setLoginPasswordInput] = useState('');
     const [redirectingRegister, setRedirectingRegister] = useState(false);
@@ -73,6 +74,18 @@ function EmailEntry(props) {
         handleRegisterErrors();
         handleLoginErrors();
         setRegisterPasswordInput(e.target.value);
+        if (loginInput != null) {
+            setLoginInput(''); //removes any text in the login form
+        }
+        if(loginPasswordInput != null) {
+            setLoginPasswordInput('');
+        }
+    }
+
+    function confirmRegisterPasswordChange(e){
+        handleRegisterErrors();
+        handleLoginErrors();
+        setConfirmRegisterPasswordInput(e.target.value);
         if (loginInput != null) {
             setLoginInput(''); //removes any text in the login form
         }
@@ -246,6 +259,22 @@ function EmailEntry(props) {
                                             onChange={registerPasswordChange}
                                             onClick={registerPasswordChange}
                                             value={registerPasswordInput}
+                                            autoComplete="off"
+                                            type="password"
+                                        />
+                                    </Form>
+                                </Form.Field>
+                                <Form.Field className='confirmPasswordInput'>
+                                    <label>Confirm Password</label>
+                                    <Form>
+                                        <Dimmer active={regLoad} inverted>
+                                            <Loader disabled={!regLoad} inverted size="mini" inline></Loader>
+                                        </Dimmer>
+                                        <input
+                                            placeholder='Password'
+                                            onChange={confirmRegisterPasswordChange}
+                                            onClick={confirmRegisterPasswordChange}
+                                            value={confirmRegisterPasswordInput}
                                             autoComplete="off"
                                             type="password"
                                         />
