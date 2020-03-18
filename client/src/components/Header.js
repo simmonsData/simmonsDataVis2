@@ -38,7 +38,7 @@ function Header () {
 
           <Grid.Column id="rightColumn" width="1">
             <Button className="menuText loginReg" as={Link} to='/access'>Login/Register</Button>
-            <Menu.Item as={Link} to='/access'>
+            <Menu.Item as={Link} to='/survey/'>
               <Button id="surveyButtonMenu">Take Survey</Button>
             </Menu.Item>
           </Grid.Column>
