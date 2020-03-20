@@ -19,9 +19,7 @@ function Header () {
 
           <Grid.Column width="1">
             <Button 
-              color='#a32638' 
               className="menuText" 
-              textAlign="left" 
               name="home"
               as={Link} 
               to='/' 
@@ -33,8 +31,11 @@ function Header () {
           <Grid.Column width="2">
             <a className="menuText"  href='https://faculty.eng.ufl.edu/simmons-research-lab/about/'>About Us</a> 
           </Grid.Column>
+          <Grid.Column width="2">
+            <Button className="menuText" name="dashboard" as={Link} to='/dashboard'>Dashboard</Button>
+          </Grid.Column>
 
-          <Grid.Column width="5"/>
+          <Grid.Column width="3"/>
 
           <Grid.Column id="rightColumn" width="1">
             <Button className="menuText loginReg" as={Link} to='/login'>Login/Register</Button>

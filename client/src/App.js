@@ -12,6 +12,7 @@ import DataPage from './pages/DataPage'
 import StatisticsPage from './pages/StatisticsPage'
 
 import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
 
 //Components
 import Header from './components/Header'
@@ -52,6 +53,7 @@ function App() {
                     <Route exact path="/adminPanel" component={adminPanel} onEnter = {requireAuth}/>
                     <Route exact path="/statistics" component={StatisticsPage} onEnter = {requireAuth}/>
                     <Route exact path="/login" component={EmailEntry}></Route>
+                    <Route exact path="/dashboard" component={Dashboard}></Route>
                     <Route component={Home} /> 
                   </Switch>
 
