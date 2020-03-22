@@ -104,6 +104,9 @@ function EmailEntry(props) {
         if(registerPasswordInput != null) {
             setRegisterPasswordInput('');
         }
+        if(confirmRegisterPasswordInput != null){
+            setConfirmRegisterPasswordInput('');
+        }
     }
     function loginPasswordChange(e) {
         handleRegisterErrors();
@@ -114,6 +117,9 @@ function EmailEntry(props) {
         }
         if(registerPasswordInput != null) {
             setRegisterPasswordInput('');
+        }
+        if(confirmRegisterPasswordInput != null){
+            setConfirmRegisterPasswordInput('');
         }
     }
 
@@ -149,6 +155,9 @@ function EmailEntry(props) {
                 else if(error.response.data.password){
                     setErrors(error.response.data.password);
                 }
+                else if(error.response.data.password2){
+                    setErrors(error.response.data.password2);
+                }
                 setIsVisibleRegErr(true);
                 setCopy(stringErr(errors));
             });
@@ -180,15 +189,18 @@ function EmailEntry(props) {
             // localStorage.setItem('loggedIn', true);
         })
          .catch(function (error) {
-            if (error.response.data.emailNotFound) {
-                setErrorsL(error.response.data.emailNotFound);
-            } 
+            if(error.response.data.email){
+                setErrorsL(error.response.data.email);
+            }
+            else if(error.response.data.password){
+                setErrorsL(error.response.data.password);
+            }
             else if(error.response.data.emailPasswordIncorrect){
                 setErrorsL(error.response.data.emailPasswordIncorrect);
             }
-            else {
-                setErrorsL(error.response.data.email);
-            }
+            else if (error.response.data.emailPasswordIncorrect) {
+                setErrorsL(error.response.data.emailPasswordIncorrect);
+            } 
             setIsVisibleLoginErr(true);
             setCopyL(stringErr(errorsL));
         });

@@ -153,24 +153,24 @@ exports.login = (req, res) => {
     }
     const studentEmail = req.body.email;
     const studentPassword = req.body.password;
-
+   
     Student.findOne({email: studentEmail}, (err, student) => {
         if(err){
             return res.status(400).send(err); 
         }
         else{
-            // If no match found, returns "Email not found"
+            // If no email found, returns error
             if(student === null){
                 res.status(400);
-                return res.json({emailNotFound: "Email not found"}); 
+                return res.json({emailPasswordIncorrect: "Your email/password is incorrect"}); 
             }
-            // If match found, returns student id and email with link to survey is sent to given email 
+            // If match found, returns student id and email
             else if(student !== null){
-                //console.log("comparing passwords");
+                // console.log("comparing passwords");
                 bcrypt.compare(studentPassword, student.password).then(passwordMatch => {
                     if(passwordMatch){
                         const id = student.id;
-    //                  emailSystem.send(id, studentEmail);
+                        // emailSystem.send(id, studentEmail);
                         return res.json(id);
                     }
                     else{
