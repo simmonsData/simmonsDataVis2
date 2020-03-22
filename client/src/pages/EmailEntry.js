@@ -137,7 +137,8 @@ function EmailEntry(props) {
             '/api/students/register',
             {
              email: registerInput,
-             password: registerPasswordInput
+             password: registerPasswordInput,
+             password2: confirmRegisterPasswordInput
             },
             {headers: {'Content-Type': 'application/json'}}
         )
