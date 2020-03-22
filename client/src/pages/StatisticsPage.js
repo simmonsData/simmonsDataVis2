@@ -130,10 +130,6 @@ class StatisticsPage extends Component {
         });
         console.log("removeDataSet called: ");
     }
-    // Prints the data set that gets passed to Spider Chart. 
-    test(e) {
-        console.log(this.state.dataSets);
-    }
 
     DownloadCSV(e) {
       //const { Parser } = require('json2csv');
@@ -206,7 +202,7 @@ class StatisticsPage extends Component {
                         <Segment>
                         <Form onSubmit={this.handleSubmit} class="form-gender-col">
                                 <label>Gender:</label>
-                                <select value={this.state.value} id="gender" onChange={this.handleChange.bind(this)} value={this.state.gender}>
+                                <select value={this.state.value} id="gender" onChange={this.handleChange.bind(this)} >
                                     <option value="-1">None</option>
                                     <option value="1">Woman</option>
                                     <option value="2">Man</option>
@@ -221,7 +217,7 @@ class StatisticsPage extends Component {
                             <Segment>
                             <Form onSubmit={this.handleSubmit} class="form-race-col">
                                 <label>Race/Ethnicty:</label>
-                                <select value={this.state.raceEthnicity} id="raceEthnicity" onChange={this.handleChange.bind(this)} value={this.state.raceEthnicity}>
+                                <select value={this.state.raceEthnicity} id="raceEthnicity" onChange={this.handleChange.bind(this)} >
                                     <option value="-1">None</option>
                                     <option value="1">Asian</option>
                                     <option value="2">Black or African American</option>
@@ -238,7 +234,7 @@ class StatisticsPage extends Component {
                             <Segment>
                             <form onSubmit={this.handleSubmit} class="form-major-col">
                                 <label>Major:</label>
-                                <select value={this.state.major} id="major" onChange={this.handleChange.bind(this)} value={this.state.major}>
+                                <select value={this.state.major} id="major" onChange={this.handleChange.bind(this)} >
                                     <option value="-1">None</option>
                                     <option value="1">General Engineering</option>
                                     <option value="2">Civil Engineering</option>
