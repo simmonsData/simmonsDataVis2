@@ -4,7 +4,7 @@ import SpiderChart from '../components/SpiderChart'
 import '../styles/DataPage.css'
 import axios from 'axios';
 import {ResponsiveBar} from "@nivo/bar";
-import data from '../data/data.js';
+//import data from '../data/data.js';
 
 class DataPage extends Component {
     state = {
@@ -230,24 +230,24 @@ class DataPage extends Component {
             '/api/students/'
         ).then(res => {
             filteredData = res.data;
-            if (this.state.gender != -1) { //swap to !=
+            if (this.state.gender !== -1) { //swap to !=
                 filteredData = filteredData.filter(entry => {
                     this.setState({bgGender: Number(this.state.gender)});
                     return (entry.survey.gender === this.state.gender);
                 })
-            } else if (this.state.gender == -1) {
+            } else if (this.state.gender === -1) {
                 this.setState({bgGender: 0});
                 /* this.setState({bgGender: 0});*/
             }
-            if (this.state.raceEthnicity != -1) { //swap to !=
+            if (this.state.raceEthnicity !== -1) { //swap to !=
                 filteredData = filteredData.filter(entry => {
                     this.setState({bgRace: Number(this.state.raceEthnicity)});
                     return (entry.survey.raceEthnicity === this.state.raceEthnicity);
                 })
-            } else if (this.state.raceEthnicity == -1) {
+            } else if (this.state.raceEthnicity === -1) {
                 this.setState({bgRace: 0});
             }
-            if (this.state.major != -1) { //swap to !=
+            if (this.state.major !== -1) { //swap to !=
                 filteredData = filteredData.filter(entry => {
                     this.setState({bgMajor: Number(this.state.major)});
                     return (entry.survey.major === this.state.major);
@@ -399,13 +399,13 @@ class DataPage extends Component {
 
     onComplete = ([genderBg, raceBg, majorBg]) => {
         console.log(this.state.con);
-        if (this.state.gender === -1 && genderBg != 0) {
+        if (this.state.gender === -1 && genderBg !== 0) {
             this.setState({bgGender: 0});
         }
-        if (this.state.raceEthnicity === -1 && raceBg != 0) {
+        if (this.state.raceEthnicity === -1 && raceBg !== 0) {
             this.setState({bgRace: 0});
         }
-        if (this.state.major === -1 && majorBg != 0) {
+        if (this.state.major === -1 && majorBg !== 0) {
             this.setState({bgMajor: 0});
         }
         this.setState({bgGender: genderBg});
@@ -458,17 +458,17 @@ class DataPage extends Component {
         console.log(this.state.bgRace);
         console.log(this.state.bgMajor);
         let concept = "";
-        if (this.state.bgMajor == 0) {
-            if (this.state.bgRace != 0) {
-                if (this.state.bgGender == 0) {
+        if (this.state.bgMajor === 0) {
+            if (this.state.bgRace !== 0) {
+                if (this.state.bgGender === 0) {
                     //RACE specified
                     concept += (raceStr);
                 } else {
                     //GENDER and RACE specified
                     concept += (genStr + " and " + raceStr);
                 }
-            } else if (this.state.bgRace == 0) {
-                if (this.state.bgGender == 0) {
+            } else if (this.state.bgRace === 0) {
+                if (this.state.bgGender === 0) {
                     //Gender, race, amd major are ALL unspecified
                     concept += ("All Users");
                 } else {
@@ -476,9 +476,9 @@ class DataPage extends Component {
                     concept += (genStr);
                 }
             }
-        } else if (this.state.bgMajor != 0) {
-            if (this.state.bgRace != 0) {
-                if (this.state.bgGender == 0) {
+        } else if (this.state.bgMajor !== 0) {
+            if (this.state.bgRace !== 0) {
+                if (this.state.bgGender === 0) {
                     //RACE and MAJOR specified
                     concept += (raceStr + " and " + majStr);
                 } else {
@@ -486,8 +486,8 @@ class DataPage extends Component {
                     //GENDER, RACE, AND MAJOR specified
                     concept += (genStr + ", " + raceStr + ", and " + majStr);
                 }
-            } else if (this.state.bgRace == 0) {
-                if (this.state.bgGender == 0) {
+            } else if (this.state.bgRace === 0) {
+                if (this.state.bgGender === 0) {
                     //MAJOR specified
                     concept += (majStr);
                 } else {
