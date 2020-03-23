@@ -297,7 +297,8 @@ export default {
                         {
                             type: "radiogroup",
                             name: "field",
-                            title: "What is your major?",
+                            title: "What is your specific major in Engineering or Construction?",
+                            visibleIf: "{major} = '3'",
                             isRequired: true,
                             choices: [
                                 {
@@ -425,6 +426,7 @@ export default {
                             type: "radiogroup",
                             name: "intendedMajor",
                             title: "What major do you intend to switch to?",
+                            visibleIf: "{intendToSwitch} = '1'",
                             isRequired: true,
                             choices: [
                                 {
@@ -562,7 +564,7 @@ export default {
                                     value: "20",
                                     text: "Other student clubs & organization?"
                                 }
-                            ],
+                            ]}]}],
                             navigationButtonsVisibility: "show"
                         },
 
@@ -571,77 +573,63 @@ export default {
                             name: "pagePrompt",
                             elements: [
                                 {
-                                    type: "radiogroup",
+                                    type: "matri",
                                     name: "participate",
                                     title: "To what extent do you agree the following reasons could prompt you to participate in out-of-classroom activities?",
                                     isRequired: true,
-                                    rateValues: [
+                                    columns: [
                                         {value: 1, text: "Strongly Disagree"},
                                         {value: 2, text: "Disagree"},
                                         {value: 3, text: "Agree"},
                                         {value: 4, text: "Strongly Agree"}
                                     ],
-                                    choices: [
+                                    rows: [
                                         {
-                                            name: "noOCAReason1",
-                                            value: "1",
+                                            value: "noOCAReason1",
                                             text: "Because I could afford the costs/expenses"
                                         },
                                         {
-                                            name: "noOCAReason2",
-                                            value: "2",
+                                            value: "noOCAReason2",
                                             text: "Because I had the time"
                                         },
                                         {
-                                            name: "noOCAReason3",
-                                            value: "3",
+                                            value: "noOCAReason3",
                                             text: "Because I was provided information concerning the activities"
                                         },
                                         {
-                                            name: "noOCAReason4",
-                                            value: "4",
+                                            value: "noOCAReason4",
                                             text: "Because I agree with the goals of the organization"
                                         },
                                         {
-                                            name: "noOCAReason5",
-                                            value: "5",
+                                            value: "noOCAReason5",
                                             text: "To be on par with other students in terms of involvement in activities"
                                         },
                                         {
-                                            name: "noOCAReason6",
-                                            value: "6",
+                                            value: "noOCAReason6",
                                             text: "To break down barriers of any kind (i.e., religion, race, Gender, sexual orientation)"
                                         }, {
-                                            name: "noOCAReason7",
-                                            value: "7",
+                                            value: "noOCAReason7",
                                             text: "To create positive impact on campus/community"
                                         }, {
-                                            name: "noOCAReason8",
-                                            value: "8",
+                                            value: "noOCAReason8",
                                             text: "To follow encouragement from an advisor or faculty member"
                                         }, {
-                                            name: "noOCAReason9",
-                                            value: "9",
+                                            value: "noOCAReason9",
                                             text: "To fulfill my personal interests"
                                         }, {
-                                            name: "noOCAReason10",
-                                            value: "10",
+                                            value: "noOCAReason10",
                                             text: "To gain experiences that make me competitive in the job market"
                                         }, {
-                                            name: "noOCAReason11",
-                                            value: "11",
+                                            value: "noOCAReason11",
                                             text: "To provide entertainment"
                                         }, {
-                                            name: "noOCAReason12",
-                                            value: "12",
+                                            value: "noOCAReason12",
                                             text: "To relieve stress"
                                         }, {
-                                            name: "noOCAReason13",
-                                            value: "13",
+                                            value: "noOCAReason13",
                                             text: "To try something new"
                                         }, {
-                                            name: "noOCAReason14",
-                                            value: "14",
+                                            value: "noOCAReason14",
                                             text: "Because of my parents influence"
                                         }
                                     ],
@@ -655,85 +643,69 @@ export default {
                             name: "page6",
                             elements: [
                                 {
-                                    type: "radiogroup",
+                                    type: "matrix",
                                     name: "participationPrevention",
                                     title: "To what extent do you agree the following reasons could prevent you from participating in out-of-classroom activities?",
                                     isRequired: true,
-                                    rateValues: [
+                                    columns: [
                                         {value: 1, text: "Strongly Disagree"},
                                         {value: 2, text: "Disagree"},
                                         {value: 3, text: "Agree"},
                                         {value: 4, text: "Strongly Agree"}
                                     ],
-                                    choices: [
+                                    rows: [
                                         {
-                                            name: "noOCAReason15",
-                                            value: "1",
+                                            value: "noOCAReason15",
                                             text: "Cost (time and money) of joining was too high"
                                         },
                                         {
-                                            name: "noOCAReason16",
-                                            value: "2",
+                                            value: "noOCAReason16",
                                             text: "Didn't feel supported by faculty advisor"
                                         },
                                         {
-                                            name: "noOCAReason17",
-                                            value: "3",
+                                            value: "noOCAReason17",
                                             text: "Don't contribute to what I want to learn"
                                         },
                                         {
-                                            name: "noOCAReason18",
-                                            value: "4",
+                                            value: "noOCAReason18",
                                             text: "Personal matters prevent me (i.e., I became pregnant, I am married, I have children, etc.)"
                                         },
                                         {
-                                            name: "noOCAReason19",
-                                            value: "5",
+                                            value: "noOCAReason19",
                                             text: "Gender issue (i.e., awkward interactions between sexes)"
                                         },
                                         {
-                                            name: "noOCAReason20",
-                                            value: "6",
+                                            value: "noOCAReason20",
                                             text: "I am not a \"joiner\" (i.e., value personal goals above that of the group, emphasis on personal achievement)"
                                         }, {
-                                            name: "noOCAReason21",
-                                            value: "7",
+                                            value: "noOCAReason21",
                                             text: "Introverted personality (i.e., focus on internal thoughts, feelings)"
                                         }, {
-                                            name: "noOCAReason22",
-                                            value: "8",
+                                            value: "noOCAReason22",
                                             text: "Lack of motivation (i.e., I do not want to join, not interesting to me)"
                                         }, {
-                                            name: "noOCAReason23",
-                                            value: "9",
+                                            value: "noOCAReason23",
                                             text: "Lack of time, scheduling issue (i.e., great workload of the current major)"
                                         }, {
-                                            name: "noOCAReason24",
-                                            value: "10",
+                                            value: "noOCAReason24",
                                             text: "Lack the knowledge about the opportunities (i.e., lack the information of the out of class activities)"
                                         }, {
-                                            name: "noOCAReason25",
-                                            value: "11",
+                                            value: "noOCAReason25",
                                             text: "Lengthy, difficult membership process"
                                         }, {
-                                            name: "noOCAReason26",
-                                            value: "12",
+                                            value: "noOCAReason26",
                                             text: "Limit to number of participants; a competitive process to join"
                                         }, {
-                                            name: "noOCAReason27",
-                                            value: "13",
+                                            value: "noOCAReason27",
                                             text: "Possibility of negative impact"
                                         }, {
-                                            name: "noOCAReason28",
-                                            value: "14",
+                                            value: "noOCAReason28",
                                             text: "Race/ethnicity issues (i.e., not feeling welcomed; seemed like non-inclusive environment)"
                                         }, {
-                                            name: "noOCAReason29",
-                                            value: "15",
+                                            value: "noOCAReason29",
                                             text: "Social inertia (i.e., I joined something else and it became too hard to leave after joining)"
                                         }, {
-                                            name: "noOCAReason30",
-                                            value: "16",
+                                            value: "noOCAReason30",
                                             text: "Family matters prevent me (e.g. my family obligations prevent me from joining, etc.)"
                                         }
                                     ],
@@ -747,165 +719,129 @@ export default {
                             name: "page7",
                             elements: [
                                 {
-                                    type: "radiogroup",
+                                    type: "matrix",
                                     name: "ae",
                                     title: "Please indicate the extent to which you agree with the following statements.",
                                     isRequired: true,
-                                    rateValues: [
+                                    colmuns: [
                                         {value: 1, text: "Strongly Disagree"},
                                         {value: 2, text: "Disagree"},
                                         {value: 3, text: "Agree"},
                                         {value: 4, text: "Strongly Agree"}
                                     ],
-                                    choices: [
+                                    rows: [
                                         {
-                                            name: "ae1",
-                                            value: "1",
+                                            value: "ae1",
                                             text: "My major is interesting to me."
                                         },
                                         {
-                                            name: "ae2",
-                                            value: "2",
+                                            value: "ae2",
                                             text: "I regret having entered in my major."
                                         },
                                         {
-                                            name: "ae3",
-                                            value: "3",
+                                            value: "ae3",
                                             text: "I am enthusiastic about my major."
                                         },
                                         {
-                                            name: "ae4",
-                                            value: "4",
+                                            value: "ae4",
                                             text: "I think I will be very happy to spend the rest of my career in my current academic discipline."
                                         },
                                         {
-                                            name: "ae5",
-                                            value: "5",
-                                            text: "I do <strong>not </strong>feel a strong sense of “belonging” to my academic discipline."
+                                            value: "ae5",
+                                            text: "I do not feel a strong sense of “belonging” to my academic discipline."
                                         },
                                         {
-                                            name: "ae6",
-                                            value: "6",
-                                            text: "I do <strong>not </strong> feel “emotionally attached” to my academic discipline."
+                                            value: "ae6",
+                                            text: "I do not feel “emotionally attached” to my academic discipline."
                                         }, {
-                                            name: "ae7",
-                                            value: "7",
+                                            value: "ae7",
                                             text: "I do <strong>not </strong> feel like “part of the family” in my academic discipline."
                                         }, {
-                                            name: "ae8",
-                                            value: "8",
+                                            value: "ae8",
                                             text: "My eventual career will directly relate to a job in my academic discipline."
                                         }, {
-                                            name: "ae9",
-                                            value: "9",
+                                            value: "ae9",
                                             text: "In the future, I will <strong>not </strong>have a career that requires me to have skills of my academic discipline."
                                         }, {
-                                            name: "ae10",
-                                            value: "10",
+                                            value: "ae10",
                                             text: "I believe I can meet the demands of a job in my academic discipline."
                                         }, {
-                                            name: "ae11",
-                                            value: "11",
+                                            value: "ae11",
                                             text: "Being good at my major is an important part of who I am."
                                         }, {
-                                            name: "ae12",
-                                            value: "12",
+                                            value: "ae12",
                                             text: "Success in my major at school is very valuable to me."
                                         }, {
-                                            name: "ae13",
-                                            value: "13",
+                                            value: "ae13",
                                             text: "It matters to me how well I do in my major at school."
                                         }, {
-                                            name: "ae14",
-                                            value: "14",
+                                            value: "ae14",
                                             text: "I am constantly on the lookout for new ways to improve my life."
                                         }, {
-                                            name: "ae15",
-                                            value: "15",
+                                            value: "ae15",
                                             text: "If I see something I don’t like, I fix it."
                                         }, {
-                                            name: "ae16",
-                                            value: "16",
+                                            value: "ae16",
                                             text: "I love being a champion for my ideas, even against others’ opposition."
                                         }, {
-                                            name: "ae17",
-                                            value: "17",
+                                            value: "ae17",
                                             text: "I excel at identifying opportunities."
                                         }, {
-                                            name: "ae18",
-                                            value: "18",
+                                            value: "ae18",
                                             text: "If I believe in an idea, no obstacle will prevent me from making it happen."
                                         }, {
-                                            name: "ae19",
-                                            value: "19",
+                                            value: "ae19",
                                             text: "I feel like a real part of the field of my current academic discipline."
                                         }, {
-                                            name: "ae20",
-                                            value: "20",
+                                            value: "ae20",
                                             text: "I am treated with as much respect by faculty as other students in my major."
                                         }, {
-                                            name: "ae21",
-                                            value: "21",
+                                            value: "ae21",
                                             text: "The instructors in my major respect me."
                                         }, {
-                                            name: "ae22",
-                                            value: "22",
+                                            value: "ae22",
                                             text: "I am satisfied with the faculty in my major."
                                         }, {
-                                            name: "ae23",
-                                            value: "23",
-                                            text: "I don&#39;t intend to change from my current major to another major."
+                                            value: "ae23",
+                                            text: "I don't intend to change from my current major to another major."
                                         }, {
-                                            name: "ae24",
-                                            value: "24",
+                                            value: "ae24",
                                             text: "Overall, I am happy with the major I've chosen."
                                         }, {
-                                            name: "ae25",
-                                            value: "25",
+                                            value: "ae25",
                                             text: "I discuss academic issues with peers."
                                         }, {
-                                            name: "ae26",
-                                            value: "26",
+                                            value: "ae26",
                                             text: "I discuss career issues with peers."
                                         }, {
-                                            name: "ae27",
-                                            value: "27",
+                                            value: "ae27",
                                             text: "I discuss social issues with peers."
                                         }, {
-                                            name: "ae28",
-                                            value: "28",
+                                            value: "ae28",
                                             text: "I discuss cultural issues with peers."
                                         }, {
-                                            name: "grit1",
-                                            value: "29",
+                                            value: "grit1",
                                             text: "New ideas and projects sometimes distract me from previous ones."
                                         }, {
-                                            name: "grit2",
-                                            value: "30",
+                                            value: "grit2",
                                             text: "Setbacks don’t discourage me."
                                         }, {
-                                            name: "grit3",
-                                            value: "31",
+                                            value: "grit3",
                                             text: "I have been obsessed with a certain idea or project for a short time but later lost interest."
                                         }, {
-                                            name: "grit4",
-                                            value: "32",
+                                            value: "grit4",
                                             text: "I am a hard worker."
                                         }, {
-                                            name: "grit5",
-                                            value: "33",
+                                            value: "grit5",
                                             text: "I often set a goal but later choose to pursue a different one."
                                         }, {
-                                            name: "grit6",
-                                            value: "34",
+                                            value: "grit6",
                                             text: "I have difficulty maintaining my focus on projects that take more than a few months to complete."
                                         }, {
-                                            name: "grit7",
-                                            value: "35",
+                                            value: "grit7",
                                             text: "I finish whatever I begin."
                                         }, {
-                                            name: "grit8",
-                                            value: "36",
+                                            value: "grit8",
                                             text: "I am diligent."
                                         }
                                     ]
@@ -991,10 +927,7 @@ export default {
                                     text: "On a system where the maximum GPA is"
                                 }
                             ]
-                        }
-                    ]
-                    ,
-                },
+                        },
 
                 {
                     name: "page9",
@@ -1110,7 +1043,7 @@ export default {
                                             value: 5,
                                             text: "Associate or other 2-year degree"
                                         }, {
-                                            value: 6,
+                                        value: 6,
                                             text: "Bachelor's or other 4-year degree"
                                         }, {
                                             value: 7,
@@ -1125,12 +1058,10 @@ export default {
                                     ],
                                     rows: [
                                         {
-                                            name: "guardian1SchoolLevel",
-                                            value: "guardian1",
+                                            value: "guardian1SchoolLevel",
                                             text: "Guardian 1"
                                         }, {
-                                            name: "guardian2SchoolLevel",
-                                            value: "guardian2",
+                                            value: "guardian2SchoolLevel",
                                             text: "Guardian 2"
                                         }
                                     ]
@@ -1404,6 +1335,7 @@ export default {
                                     type: "text",
                                     name: "hs2",
                                     title: "What is the name of your high school?",
+                                    visibleIf: "{hs1} = '1'",
                                     isRequired: true,
                                     inputType: "text"
                                 },
@@ -1412,6 +1344,7 @@ export default {
                                     type: "text",
                                     name: "hs3",
                                     title: "What is the zip code of the town you attended your high school?",
+                                    visibleIf: "{hs1} = '1'",
                                     isRequired: true,
                                     inputType: "number"
                                 },
@@ -1438,6 +1371,8 @@ export default {
                                 {
                                     type: "dropdown",
                                     name: "hs5",
+                                    title: "How many out-of-class activities were you involved in during your last year of high school?",
+                                    visibleIf:"{hs4} = '1'",
                                     isRequired: true,
                                     titleLocation: "hidden",
                                     choices: [
@@ -1493,6 +1428,7 @@ export default {
                                     type: "radiogroup",
                                     name: "hs6",
                                     title: "How actively did you participate in out-of-class activities in high school?",
+                                    visibleIf: "{hs4} = '1'}",
                                     isRequired: true,
                                     choices: [
                                         {
@@ -1555,6 +1491,7 @@ export default {
                                     type: "multipletext",
                                     name: "info",
                                     title: "Please provide your contact information below.",
+                                    visibleIf: "{contact2} = '1'",
                                     rowCount: 3,
                                     items: [
                                         {
@@ -1631,103 +1568,83 @@ export default {
                                     ],
                                     rows: [
                                         {
-                                            name: "levelAct1",
-                                            value: "1",
+                                            value: "levelAct1",
                                             text: "Design competition team"
                                         },
                                         {
-                                            name: "levelAct2",
-                                            value: "2",
+                                            value: "levelAct2",
                                             text: "Culture, faith, gender, identity"
                                         },
                                         {
-                                            name: "levelAct3",
-                                            value: "3",
+                                            value: "levelAct3",
                                             text: "Environmental"
                                         },
                                         {
-                                            name: "levelAct4",
-                                            value: "4",
+                                            value: "levelAct4",
                                             text: "Engineering outreach support"
                                         },
                                         {
-                                            name: "levelAct5",
-                                            value: "5",
+                                            value: "levelAct5",
                                             text: "Film, Theater, Visual Arts"
                                         },
                                         {
-                                            name: "levelAct6",
-                                            value: "6",
+                                            value: "levelAct6",
                                             text: "Fraternity or sorority, social"
                                         },
                                         {
-                                            name: "levelAct7",
-                                            value: "7",
+                                            value: "levelAct7",
                                             text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services"
                                         },
                                         {
-                                            name: "levelAct8",
-                                            value: "8",
+                                            value: "levelAct8",
                                             text: "International experiences"
                                         },
                                         {
-                                            name: "levelAct9",
-                                            value: "9",
+                                            value: "levelAct9",
                                             text: "Job"
                                         },
                                         {
-                                            name: "levelAct10",
-                                            value: "10",
+                                            value: "levelAct10",
                                             text: "Living-learning community"
                                         },
                                         {
-                                            name: "levelAct11",
-                                            value: "11",
+                                            value: "levelAct11",
                                             text: "Media, publications, and journalism"
                                         },
                                         {
-                                            name: "levelAct12",
-                                            value: "12",
+                                            value: "levelAct12",
                                             text: "Military"
                                         },
                                         {
-                                            name: "levelAct13",
-                                            value: "13",
+                                            value: "levelAct13",
                                             text: "Music/Dance"
                                         },
                                         {
-                                            name: "levelAct14",
-                                            value: "14",
+                                            value: "levelAct14",
                                             text: "Pre-professional"
                                         },
                                         {
-                                            name: "levelAct15",
-                                            value: "15",
+                                            value: "levelAct15",
                                             text: "Professional experiences"
                                         },
                                         {
-                                            name: "levelAct16",
-                                            value: "16",
+                                            value: "levelAct16",
                                             text: "Research"
                                         },
                                         {
-                                            name: "levelAct17",
-                                            value: "17",
+                                            value: "levelAct17",
                                             text: "Service, public service"
                                         },
                                         {
-                                            name: "levelAct18",
-                                            value: "18",
+                                            value: "levelAct18",
                                             text: "Sports"
                                         },
                                         {
-                                            name: "levelAct19",
-                                            value: "19",
+                                            value: "levelAct19",
                                             text: "Student government"
                                         },
                                         {
-                                            name: "levelAct20",
-                                            value: "20",
+                                            value: "levelAct20",
                                             text: "Other student clubs & organizations. Please specify below."
                                         }
                                     ]
@@ -1810,7 +1727,7 @@ export default {
 
                 {
                     name: "page21",
-                    elements: [
+                    questions: [
                         {
                             type: "matrix",
                             name: "extent",
@@ -1832,157 +1749,127 @@ export default {
                             ],
                             rows: [
                                 {
-                                    name: "allOut1",
-                                    value: "1",
+                                    value: "allOut1",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., problem solving skills, analytical skills, critical thinking skills)\">Intellectual development</span>"
                                 },
                                 {
-                                    name: "allOut2",
-                                    value: "2",
+                                    value: "allOut2",
                                     text: "<span style=\"color:blue;\" title=\"(e.g., self-confidence, identity development, time management skills)\">Personal development</span>"
                                 },
                                 {
-                                    name: "allOut3",
-                                    value: "3",
+                                    value: "allOut3",
                                     text: "<span style=\"color:blue;\" title=\"(e. g., awareness of social issues, treat each other fairly, and civic activism)\">Social development</span>"
                                 },
                                 {
-                                    name: "allOut4",
-                                    value: "4",
+                                    value: "allOut4",
                                     text: "<span style=\"color:blue;\" title=\"(e. g., academic effort, active and collaborative learning, and interaction with peers and faculty)\">Academic engagement</span>"
                                 },
                                 {
-                                    name: "allOut5",
-                                    value: "5",
+                                    value: "allOut5",
                                     text: "<span style=\"color:blue;\" title=\"(e.g., comfort in various environments and with various persons, campus involvement, and student chapters)\">Social engagement</span>"
                                 },
                                 {
-                                    name: "allOut6",
-                                    value: "6",
+                                    value: "allOut6",
                                     text: "<span style=\"color:blue;\" title=\"(e. g., professional skills; use of communication, knowledge, technical skills, clinical reasoning, emotions, values, and reflection in daily practice; able to integrate theory and practice)\">Professional development</span>"
                                 },
                                 {
-                                    name: "allOut7",
-                                    value: "7",
+                                    value: "allOut7",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., knowledge, skills, and affect/motivation that enable individuals to adapt effectively with different cultures; promoting racial understanding; socializing with people from different racial/ethnic groups)\">Cross-cultural awareness</span>"
                                 },
                                 {
-                                    name: "allOut8",
-                                    value: "8",
+                                    value: "allOut8",
                                     text: "<span style=\"color:blue;\" title=\"(e. g., working to make a difference within a community; development gained through service learning, community service, and voluntarism)\">Civic development</span>"
                                 },
                                 {
-                                    name: "allOut9",
-                                    value: "9",
+                                    value: "allOut9",
                                     text: "Communication skills"
                                 },
                                 {
-                                    name: "allOut10",
-                                    value: "10",
+                                    value: "allOut10",
                                     text: "Leadership skills"
                                 },
                                 {
-                                    name: "allOut11",
-                                    value: "11",
+                                    value: "allOut11",
                                     text: "<span style=\"color:blue;\" title=\"(e. g., satisfaction with the major, satisfaction with the advising quality)\">Satisfaction with the college experience</span>"
                                 },
                                 {
-                                    name: "allOut12",
-                                    value: "12",
+                                    value: "allOut12",
                                     text: "Sense of belonging to college"
                                 },
                                 {
-                                    name: "allOut13",
-                                    value: "13",
+                                    value: "allOut13",
                                     text: "Opportunity to be independent"
                                 },
                                 {
-                                    name: "allOut14",
-                                    value: "14",
+                                    value: "allOut14",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., thinking outside the box, art, invention, innovation; ability to perceive the world in new ways, to find hidden patterns, to make connections between seemingly unrelated phenomena, and to generate solutions. Creativity involves two processes: thinking, then producing. If you have ideas, but don’t act on them, you are imaginative but not creative.)\">Creativity</span>"
                                 },
                                 {
-                                    name: "allOut15",
-                                    value: "15",
+                                    value: "allOut15",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., acquisition of in-depth. knowledge and understanding of international issues, an appreciation of and ability to learn and work with. people from diverse linguistic and cultural backgrounds)\"> Global competence </span>"
                                 },
                                 {
-                                    name: "allOut16",
-                                    value: "16",
+                                    value: "allOut16",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., skill in planning, combining, and adapting in a clever way; Manner in which one identifies problems and finds solutions; skill or cleverness that allows someone to solve problems, invent things, etc.)\"> Practical ingenuity/inventiveness</span>"
                                 },
                                 {
-                                    name: "allOut17",
-                                    value: "17",
+                                    value: "allOut17",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., ability to learn new things quickly, deal with changing world and apply knowledge to new problems and new contexts)\"> Resilience and flexibility </span>"
                                 },
                                 {
-                                    name: "allOut18",
-                                    value: "18",
+                                    value: "allOut18",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., pertaining to or dealing with morals or the principles of morality; pertaining to right and wrong in conduct. 2. being in accordance with the rules or standards for right conduct or practice, especially the standards of a profession.)\"> Ethical Standards</span>"
                                 },
                                 {
-                                    name: "allOut19",
-                                    value: "19",
+                                    value: "allOut19",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., able to understand and make physical, human, and political decisions; interdependence between technology and the economic and social foundations of modern society)\"> Business and management skills</span>"
                                 },
                                 {
-                                    name: "allOut20",
-                                    value: "20",
+                                    value: "allOut20",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., the degree of attention, curiosity, interest, optimism, and passion that I showed lowered)\">Decreased academic engagement</span>"
                                 },
                                 {
-                                    name: "allOut21",
-                                    value: "21",
+                                    value: "allOut21",
                                     text: "<span style=\"color:blue;\" title=\"(extended time to graduate, i.e., because participating in study abroad, co-op, internship which add to graduate timeline)\">Academic timeline extended</span>"
                                 },
                                 {
-                                    name: "allOut22",
-                                    value: "22",
+                                    value: "allOut22",
                                     text: "Consumed my time therefore my schedule was less flexible"
                                 },
                                 {
-                                    name: "allOut23",
-                                    value: "23",
+                                    value: "allOut23",
                                     text: "Consumed my time therefore my free time was reduced"
                                 },
                                 {
-                                    name: "allOut24",
-                                    value: "24",
+                                    value: "allOut24",
                                     text: "Damaged interpersonal relationships"
                                 },
                                 {
-                                    name: "allOut25",
-                                    value: "25",
+                                    value: "allOut25",
                                     text: "Decreased my GPA in college"
                                 },
                                 {
-                                    name: "allOut26",
-                                    value: "26",
+                                    value: "allOut26",
                                     text: "Increased expense"
                                 },
                                 {
-                                    name: "allOut27",
-                                    value: "27",
+                                    value: "allOut27",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., social transition to the college, less open to new people)\">Social development negatively impacted</span>"
                                 },
                                 {
-                                    name: "allOut28",
-                                    value: "28",
+                                    value: "allOut28",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., physical health, mental health)\">Declined personal health</span>"
                                 },
                                 {
-                                    name: "allOut29",
-                                    value: "29",
+                                    value: "allOut29",
                                     text: "Decreased social engagement&nbsp;"
                                 },
                                 {
-                                    name: "allOut30",
-                                    value: "30",
+                                    value: "allOut30",
                                     text: "<span style=\"color:blue;\" title=\"(i.e., poor decision making skills)\">Personal development negatively impacted</span>"
                                 }
                             ]
-                        }],
+                        }]
                 },
 
 
@@ -2015,73 +1902,59 @@ export default {
                             ],
                             rows: [
                                 {
-                                    name: "allReason1",
-                                    value: "1",
+                                    value: "allReason1",
                                     text: "Because I could afford the costs/expense"
                                 },
                                 {
-                                    name: "allReason2",
-                                    value: "2",
+                                    value: "allReason2",
                                     text: "Because I had the time"
                                 },
                                 {
-                                    name: "allReason3",
-                                    value: "3",
+                                    value: "allReason3",
                                     text: "Because I was provided information concerning the activities"
                                 },
                                 {
-                                    name: "allReason4",
-                                    value: "4",
+                                    value: "allReason4",
                                     text: "Because I agree with goals of organization"
                                 },
                                 {
-                                    name: "allReason5",
-                                    value: "5",
+                                    value: "allReason5",
                                     text: "To be on par with other students in terms of involvement in activities"
                                 },
                                 {
-                                    name: "allReason6",
-                                    value: "6",
+                                    value: "allReason6",
                                     text: "To break down barriers of any kind (i.e., religion, race, Gender, sexual orientation)"
                                 },
                                 {
-                                    name: "allReason7",
-                                    value: "7",
+                                    value: "allReason7",
                                     text: "To create positive impact on campus /community"
                                 },
                                 {
-                                    name: "allReason8",
-                                    value: "8",
+                                    value: "allReason8",
                                     text: "To follow encouragement from an advisor or faculty member"
                                 },
                                 {
-                                    name: "allReason9",
-                                    value: "9",
+                                    value: "allReason9",
                                     text: "To fulfill my personal interests"
                                 },
                                 {
-                                    name: "allReason10",
-                                    value: "10",
+                                    value: "allReason10",
                                     text: "To gain experiences that make me more competitive in the job market"
                                 },
                                 {
-                                    name: "allReason11",
-                                    value: "11",
+                                    value: "allReason11",
                                     text: "To provide entertainment"
                                 },
                                 {
-                                    name: "allReason12",
-                                    value: "12",
+                                    value: "allReason12",
                                     text: "To relieve stress"
                                 },
                                 {
-                                    name: "allReason13",
-                                    value: "13",
+                                    value: "allReason13",
                                     text: "To try something new"
                                 },
                                 {
-                                    name: "allReason14",
-                                    value: "14",
+                                    value: "allReason14",
                                     text: "Because of my parents influence"
                                 }
                             ]
@@ -2120,83 +1993,67 @@ export default {
                         ],
                         rows: [
                             {
-                                name: "allReason15",
-                                value: "1",
+                                value: "allReason15",
                                 text: "Cost (time and money) of joining was too high"
                             },
                             {
-                                name: "allReason16",
-                                value: "2",
+                                value: "allReason16",
                                 text: "Didn’t feel supported by the faculty advisor"
                             },
                             {
-                                name: "allReason17",
-                                value: "3",
+                                value: "allReason17",
                                 text: "Don’t contribute to what I want to learn"
                             },
                             {
-                                name: "allReason18",
-                                value: "4",
+                                value: "allReason18",
                                 text: "Family matters (i.e., my family obligations prevent me from joining)"
                             },
                             {
-                                name: "allReason19",
-                                value: "5",
+                                value: "allReason19",
                                 text: "Gender issue (i.e., awkward interactions between sexes)"
                             },
                             {
-                                name: "allReason20",
-                                value: "6",
+                                value: "allReason20",
                                 text: "I am not a “joiner” (i.e., value personal goals above that of the group, emphasis on personal achievement)"
                             },
                             {
-                                name: "allReason21",
-                                value: "7",
+                                value: "allReason21",
                                 text: "Introverted personality (i.e., focus on internal thoughts, feelings)"
                             },
                             {
-                                name: "allReason22",
-                                value: "8",
+                                value: "allReason22",
                                 text: "Lack of motivation (i.e., I do not want to join, not interesting to me)"
                             },
                             {
-                                name: "allReason23",
-                                value: "9",
+                                value: "allReason23",
                                 text: "Lack of time, scheduling issue (i.e., great workload of the current major)"
                             },
                             {
-                                name: "allReason24",
-                                value: "10",
+                                value: "allReason24",
                                 text: "Lack the knowledge about the opportunities (i.e., lack the information of the out of class activities)"
                             },
                             {
-                                name: "allReaso25",
-                                value: "11",
+                                value: "allReason25",
                                 text: "Lengthy, difficult membership process"
                             },
                             {
-                                name: "allReason26",
-                                value: "12",
+                                value: "allReason26",
                                 text: "Limit to number of participants; a competitive process to join"
                             },
                             {
-                                name: "allReason27",
-                                value: "13",
+                                value: "allReason27",
                                 text: "Possibility of negative impact"
                             },
                             {
-                                name: "allReason28",
-                                value: "14",
+                                value: "allReason28",
                                 text: "Race/ethnicity issues (i.e., not feeling welcomed; seemed like non-inclusive environment)"
                             },
                             {
-                                name: "allReason29",
-                                value: "15",
+                                value: "allReason29",
                                 text: "Social inertia (i.e., I joined something else and it became too hard to leave after joining)"
                             },
                             {
-                                name: "allReason30",
-                                value: "16",
+                                value: "allReason30",
                                 text: "Personal matters (e.g. I became pregnant, I am married, I have children, etc.)"
                             }
                         ]
@@ -2320,153 +2177,123 @@ export default {
                         ],
                         rows: [
                             {
-                                name: "topOut1",
-                                value: "1",
+                                value: "topOut1",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., problem solving skills, analytical skills, critical thinking skills)\">Intellectual development</span>"
                             },
                             {
-                                name: "topOut2",
-                                value: "2",
+                                value: "topOut2",
                                 text: "<span style=\"color:blue;\" title=\"(e.g., self-confidence, identity development, time management skills)\">Personal development</span>"
                             },
                             {
-                                name: "topOut3",
-                                value: "3",
+                                value: "topOut3",
                                 text: "<span style=\"color:blue;\" title=\"(e. g., awareness of social issues, treat each other fairly, and civic activism)\">Social development</span>"
                             },
                             {
-                                name: "topOut4",
-                                value: "4",
+                                value: "topOut4",
                                 text: "<span style=\"color:blue;\" title=\"(e. g., academic effort, active and collaborative learning, and interaction with peers and faculty)\">Academic engagement</span>"
                             },
                             {
-                                name: "topOut5",
-                                value: "5",
+                                value: "topOut5",
                                 text: "<span style=\"color:blue;\" title=\"(e.g., comfort in various environments and with various persons, campus involvement, and student chapters)\">Social engagement</span>"
                             },
                             {
-                                name: "topOut6",
-                                value: "6",
+                                value: "topOut6",
                                 text: "<span style=\"color:blue;\" title=\"(e. g., professional skills; use of communication, knowledge, technical skills, clinical reasoning, emotions, values, and reflection in daily practice; able to integrate theory and practice)\">Professional development</span>"
                             },
                             {
-                                name: "topOut7",
-                                value: "7",
+                                value: "topOut7",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., knowledge, skills, and affect/motivation that enable individuals to adapt effectively with different cultures; promoting racial understanding; socializing with people from different racial/ethnic groups)\">Cross-cultural awareness</span>"
                             },
                             {
-                                name: "topOut8",
-                                value: "8",
+                                value: "topOut8",
                                 text: "<span style=\"color:blue;\" title=\"(e. g., working to make a difference within a community; development gained through service learning, community service, and voluntarism)\">Civic development</span>"
                             },
                             {
-                                name: "topOut9",
-                                value: "9",
+                                value: "topOut9",
                                 text: "Communication skills"
                             },
                             {
-                                name: "topOut10",
-                                value: "10",
+                                value: "topOut10",
                                 text: "Leadership skills"
                             },
                             {
-                                name: "topOut11",
-                                value: "11",
+                                value: "topOut11",
                                 text: "<span style=\"color:blue;\" title=\"(e. g., satisfaction with the major, satisfaction with the advising quality)\">Satisfaction with the college experience</span>"
                             },
                             {
-                                name: "topOut12",
-                                value: "12",
+                                value: "topOut12",
                                 text: "Sense of belonging to college"
                             },
                             {
-                                name: "topOut13",
-                                value: "13",
+                                value: "topOut13",
                                 text: "Opportunity to be independent"
                             },
                             {
-                                name: "topOut14",
-                                value: "14",
+                                value: "topOut14",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., thinking outside the box, art, invention, innovation; ability to perceive the world in new ways, to find hidden patterns, to make connections between seemingly unrelated phenomena, and to generate solutions. Creativity involves two processes: thinking, then producing. If you have ideas, but don’t act on them, you are imaginative but not creative.)\">Creativity</span>"
                             },
                             {
-                                name: "topOut15",
-                                value: "15",
+                                value: "topOut15",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., acquisition of in-depth. knowledge and understanding of international issues, an appreciation of and ability to learn and work with. people from diverse linguistic and cultural backgrounds)\"> Global competence </span>"
                             },
                             {
-                                name: "topOut16",
-                                value: "16",
+                                value: "topOut16",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., skill in planning, combining, and adapting in a clever way; Manner in which one identifies problems and finds solutions; skill or cleverness that allows someone to solve problems, invent things, etc.)\"> Practical ingenuity/inventiveness</span>"
                             },
                             {
-                                name: "topOut17",
-                                value: "17",
+                                value: "topOut17",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., ability to learn new things quickly, deal with changing world and apply knowledge to new problems and new contexts)\"> Resilience and flexibility </span>"
                             },
                             {
-                                name: "topOut18",
-                                value: "18",
+                                value: "topOut18",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., pertaining to or dealing with morals or the principles of morality; pertaining to right and wrong in conduct. 2. being in accordance with the rules or standards for right conduct or practice, especially the standards of a profession.)\"> Ethical Standards</span>"
                             },
                             {
-                                name: "topOut19",
-                                value: "19",
+                                value: "topOut19",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., able to understand and make physical, human, and political decisions; interdependence between technology and the economic and social foundations of modern society)\"> Business and management skills</span>"
                             },
                             {
-                                name: "topOut20",
-                                value: "20",
+                                value: "topOut20",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., the degree of attention, curiosity, interest, optimism, and passion that I showed lowered)\">Decreased academic engagement</span>"
                             },
                             {
-                                name: "topOut21",
-                                value: "21",
+                                value: "topOut21",
                                 text: "<span style=\"color:blue;\" title=\"(extended time to graduate, i.e., because participating in study abroad, co-op, internship which add to graduate timeline)\">Academic timeline extended</span>"
                             },
                             {
-                                name: "topOut22",
-                                value: "22",
+                                value: "topOut22",
                                 text: "Consumed my time therefore my schedule was less flexible"
                             },
                             {
-                                name: "topOut23",
-                                value: "23",
+                                value: "topOut23",
                                 text: "Consumed my time therefore my free time was reduced"
                             },
                             {
-                                name: "topOut24",
-                                value: "24",
+                                value: "topOut24",
                                 text: "Damaged interpersonal relationships"
                             },
                             {
-                                name: "topOut25",
-                                value: "25",
+                                value: "topOut25",
                                 text: "Decreased my GPA in college"
                             },
                             {
-                                name: "topOut26",
-                                value: "26",
+                                value: "topOut26",
                                 text: "Increased expense"
                             },
                             {
-                                name: "topOut27",
-                                value: "27",
+                                value: "topOut27",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., social transition to the college, less open to new people)\">Social development negatively impacted</span>"
                             },
                             {
-                                name: "topOut28",
-                                value: "28",
+                                value: "topOut28",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., physical health, mental health)\">Declined personal health</span>"
                             },
                             {
-                                name: "topOut29",
-                                value: "29",
+                                value: "topOut29",
                                 text: "Decreased social engagement&nbsp;"
                             },
                             {
-                                name: "topOut30",
-                                value: "30",
+                                value: "topOut30",
                                 text: "<span style=\"color:blue;\" title=\"(i.e., poor decision making skills)\">Personal development negatively impacted</span>"
                             }
                         ]
@@ -2502,73 +2329,59 @@ export default {
                         ],
                         rows: [
                             {
-                                name: "topReason1",
-                                value: "1",
+                                value: "topReason1",
                                 text: "Because I could afford the costs/expense"
                             },
                             {
-                                name: "topReason2",
-                                value: "2",
+                                value: "topReason2",
                                 text: "Because I had the time"
                             },
                             {
-                                name: "topReason3",
-                                value: "3",
+                                value: "topReason3",
                                 text: "Because I was provided information concerning the activities"
                             },
                             {
-                                name: "topReason4",
-                                value: "4",
+                                value: "topReason4",
                                 text: "Because I agree with goals of organization"
                             },
                             {
-                                name: "topReason5",
-                                value: "5",
+                                value: "topReason5",
                                 text: "To be on par with other students in terms of involvement in activities"
                             },
                             {
-                                name: "topReason6",
-                                value: "6",
+                                value: "topReason6",
                                 text: "To break down barriers of any kind (i.e., religion, race, Gender, sexual orientation)"
                             },
                             {
-                                name: "topReason7",
-                                value: "7",
+                                value: "topReason7",
                                 text: "To create positive impact on campus /community"
                             },
                             {
-                                name: "topReason8",
-                                value: "8",
+                                value: "topReason8",
                                 text: "To follow encouragement from an advisor or faculty member"
                             },
                             {
-                                name: "topReason9",
-                                value: "9",
+                                value: "topReason9",
                                 text: "To fulfill my personal interests"
                             },
                             {
-                                name: "topReason10",
-                                value: "10",
+                                value: "topReason10",
                                 text: "To gain experiences that make me more competitive in the job market"
                             },
                             {
-                                name: "topReason11",
-                                value: "11",
+                                value: "topReason11",
                                 text: "To provide entertainment"
                             },
                             {
-                                name: "topReason12",
-                                value: "12",
+                                value: "topReason12",
                                 text: "To relieve stress"
                             },
                             {
-                                name: "topReason13",
-                                value: "13",
+                                value: "topReason13",
                                 text: "To try something new"
                             },
                             {
-                                name: "topReason14",
-                                value: "14",
+                                value: "topReason14",
                                 text: "Because of my parents influence"
                             }
                         ]
@@ -2817,7 +2630,7 @@ export default {
                 }
             ],
             showProgressBar: "top"
-        },]
-}
+        }
+
 
 
