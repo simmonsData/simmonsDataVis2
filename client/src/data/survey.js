@@ -64,6 +64,7 @@ export default {
                             name: "gender",
                             title: "What gender do you most identify with?",
                             isRequired: true,
+                            hasOther: true,
                             choices: [
                                 {
                                     value: "1",
@@ -78,20 +79,18 @@ export default {
                                     text: "Trans"
                                 },
                                 {
-                                    value: "4",
-                                    text: "Other (please fill in below)"
-                                },
-                                {
                                     value: "5",
                                     text: "I don't want to respond."
                                 }
-                            ]
+                            ],
+                            otherText: "Other (please specify)."
                         },
                         {
                             type: "radiogroup",
                             name: "ethnicity",
                             title: "What is your race/ethnicity? (check all that apply.)",
                             isRequired: true,
+                            hasOther: true,
                             choices: [
                                 {
                                     value: "1",
@@ -116,13 +115,9 @@ export default {
                                 {
                                     value: "6",
                                     text: "Native Hawaiian or Other Pacific Islander"
-                                },
-                                {
-                                    value: "7",
-                                    text: "Some other race, ethnicity, or origin (please specify)"
                                 }
                             ],
-                            optionsCaption: "Select your Race/Ethnicity here"
+                            otherText: "Some other race, ethnicity, or origin (please specify)"
                         }
                     ],
                     title: "General"
@@ -143,6 +138,7 @@ export default {
                             name: "institution",
                             title: "What is the name of your institution?",
                             isRequired: true,
+                            hasOther: true,
                             choices: [
                                 {
                                     value: "1",
@@ -163,12 +159,9 @@ export default {
                                 {
                                     value: "5",
                                     text: "Virginia Tech"
-                                },
-                                {
-                                    value: "6",
-                                    text: "Other (please specify)"
                                 }
                             ],
+                            otherText: "Other (please specify)"
                         },
                         {
                             type: "radiogroup",
@@ -184,8 +177,7 @@ export default {
                                     value: "2",
                                     text: "Part-time"
                                 }
-                            ],
-                            optionsCaption: "Select your enrollment status here"
+                            ]
                         },
                         {
                             type: "radiogroup",
@@ -217,8 +209,7 @@ export default {
                                     value: "6",
                                     text: "Graduate student"
                                 }
-                            ],
-                            optionsCaption: "Select your year here"
+                            ]
                         },
 
                         {
@@ -226,6 +217,7 @@ export default {
                             name: "beforeFirstSemester",
                             title: "Where were you immediately before your first semester/term at this institution?",
                             isRequired: true,
+                            hasOther: true,
                             choices: [
                                 {
                                     value: "1",
@@ -246,13 +238,9 @@ export default {
                                 {
                                     value: "5",
                                     text: "Working a full-time job (worked more than just the summer between high school and college -- more than 8 months)"
-                                },
-                                {
-                                    value: "6",
-                                    text: "Other (please specify)"
                                 }
                             ],
-                            optionsCaption: "Where were you immediately before your first semester/term at this institution? "
+                            otherText: "Other (please specify)"
                         }
                     ],
                 }]
@@ -291,8 +279,7 @@ export default {
                                     value: "5",
                                     text: "Non-STEM"
                                 }
-                            ],
-                            optionsCaption: "What is your specific major in engineering or construction?"
+                            ]
                         },
                         {
                             type: "radiogroup",
@@ -369,8 +356,7 @@ export default {
                                     value: "17",
                                     text: "Other"
                                 }
-                            ],
-                            optionsCaption: "Select your major here"
+                            ]
                         }
                     ],
                     title: "College",
@@ -419,8 +405,7 @@ export default {
                                     value: "2",
                                     text: "No"
                                 }
-                            ],
-                            optionsCaption: "Where were you immediately before your first semester/term at this institution? "
+                            ]
                         },
                         {
                             type: "radiogroup",
@@ -462,8 +447,7 @@ export default {
                             value: "2",
                             text: "No"
                         }
-                    ],
-                    optionsCaption: ""
+                    ]
                 }
 
             ],
@@ -473,6 +457,7 @@ export default {
 
         {
             name: "page5",
+            visibleIf: "{involvedInActivity} = '2'",
             elements: [
                 {
                     type: "panel",
@@ -562,7 +547,7 @@ export default {
                                 },
                                 {
                                     value: "20",
-                                    text: "Other student clubs & organization?"
+                                    text: "Other student clubs or organizations"
                                 }
                             ]}]}],
                             navigationButtonsVisibility: "show"
@@ -571,9 +556,10 @@ export default {
 
                         {
                             name: "pagePrompt",
+                            visibleIf: "{involvedInActivity} = '2'",
                             elements: [
                                 {
-                                    type: "matri",
+                                    type: "matrix",
                                     name: "participate",
                                     title: "To what extent do you agree the following reasons could prompt you to participate in out-of-classroom activities?",
                                     isRequired: true,
@@ -632,8 +618,7 @@ export default {
                                             value: "noOCAReason14",
                                             text: "Because of my parents influence"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 }
                             ],
                         },
@@ -641,6 +626,7 @@ export default {
 
                         {
                             name: "page6",
+                            visibleIf: "{involvedInActivity} = '2'",
                             elements: [
                                 {
                                     type: "matrix",
@@ -708,11 +694,964 @@ export default {
                                             value: "noOCAReason30",
                                             text: "Family matters prevent me (e.g. my family obligations prevent me from joining, etc.)"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 }
                             ],
                         },
+
+
+        {
+            name: "page7",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [
+                {
+                    type: "panel",
+                    elements: [
+                        {
+                            type: "checkbox",
+                            name: "all",
+                            title: "Which of the following out-of-classroom activities do you intend to participate in?(You can choose multiple items.)",
+                            isRequired: true,
+                            choices: [
+                                {
+                                    value: "1",
+                                    text: "Design Competition Team"
+                                },
+                                {
+                                    value: "2",
+                                    text: "Culture, Faith, Gender, Identity"
+                                },
+                                {
+                                    value: "3",
+                                    text: "Engineering outreach support"
+                                },
+                                {
+                                    value: "4",
+                                    text: "Environmental"
+                                },
+                                {
+                                    value: "5",
+                                    text: "Film, Theatre, Visual Arts"
+                                },
+                                {
+                                    value: "6",
+                                    text: "Fraternity or Sorority, social"
+                                },
+                                {
+                                    value: "7",
+                                    text: "Fraternity or Sorority, coeducation related to your major, for instance business, engineering, or services"
+                                },
+                                {
+                                    value: "8",
+                                    text: "International experiences"
+                                },
+                                {
+                                    value: "9",
+                                    text: "Job"
+                                },
+                                {
+                                    value: "10",
+                                    text: "Living-Learning Community"
+                                },
+                                {
+                                    value: "11",
+                                    text: "Media, Publications and Journalism"
+                                },
+                                {
+                                    value: "12",
+                                    text: "Military"
+                                },
+                                {
+                                    value: "13",
+                                    text: "Music/Dance"
+                                },
+                                {
+                                    value: "14",
+                                    text: "Preprofessional"
+                                },
+                                {
+                                    value: "15",
+                                    text: "Professional Experiences"
+                                },
+                                {
+                                    value: "16",
+                                    text: "Research"
+                                },
+                                {
+                                    value: "17",
+                                    text: "Service, Public Service"
+                                },
+                                {
+                                    value: "18",
+                                    text: "Sports"
+                                },
+                                {
+                                    value: "19",
+                                    text: "Student Government"
+                                },
+                                {
+                                    value: "20",
+                                    text: "Other student clubs or organizations"
+                                }
+                            ]}]}],
+            navigationButtonsVisibility: "show"
+        },
+
+
+
+
+        {
+            name: "page19",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [
+                {
+                    type: "panel",
+                    name: "activitiesPanelMatrix",
+                    elements: [
+                        {
+                            type: "matrix",
+                            name: "",
+                            title: "How actively have you participated in the activities you selected?",
+                            columns: [
+                                {
+                                    value: 1,
+                                    text: "Not Active At All"
+                                }, {
+                                    value: 2,
+                                    text: "Minimally Active"
+                                }, {
+                                    value: 3,
+                                    text: "Moderately Active"
+                                }, {
+                                    value: 4,
+                                    text: "Highly Active"
+                                }
+                            ],
+                            rows: [
+                                {
+                                    value: "levelAct1",
+                                    text: "Design competition team"
+                                },
+                                {
+                                    value: "levelAct2",
+                                    text: "Culture, faith, gender, identity"
+                                },
+                                {
+                                    value: "levelAct3",
+                                    text: "Environmental"
+                                },
+                                {
+                                    value: "levelAct4",
+                                    text: "Engineering outreach support"
+                                },
+                                {
+                                    value: "levelAct5",
+                                    text: "Film, Theater, Visual Arts"
+                                },
+                                {
+                                    value: "levelAct6",
+                                    text: "Fraternity or sorority, social"
+                                },
+                                {
+                                    value: "levelAct7",
+                                    text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services"
+                                },
+                                {
+                                    value: "levelAct8",
+                                    text: "International experiences"
+                                },
+                                {
+                                    value: "levelAct9",
+                                    text: "Job"
+                                },
+                                {
+                                    value: "levelAct10",
+                                    text: "Living-learning community"
+                                },
+                                {
+                                    value: "levelAct11",
+                                    text: "Media, publications, and journalism"
+                                },
+                                {
+                                    value: "levelAct12",
+                                    text: "Military"
+                                },
+                                {
+                                    value: "levelAct13",
+                                    text: "Music/Dance"
+                                },
+                                {
+                                    value: "levelAct14",
+                                    text: "Pre-professional"
+                                },
+                                {
+                                    value: "levelAct15",
+                                    text: "Professional experiences"
+                                },
+                                {
+                                    value: "levelAct16",
+                                    text: "Research"
+                                },
+                                {
+                                    value: "levelAct17",
+                                    text: "Service, public service"
+                                },
+                                {
+                                    value: "levelAct18",
+                                    text: "Sports"
+                                },
+                                {
+                                    value: "levelAct19",
+                                    text: "Student government"
+                                },
+                                {
+                                    value: "levelAct20",
+                                    text: "Other student clubs & organizations. Please specify below."
+                                }
+                            ]
+                        },
+
+                        {
+                            type: "radiogroup",
+                            name: "participationHours",
+                            title: "Overall, how many hours in a week have you participated in the activities you selected?",
+                            isRequired: true,
+                            choices: [
+                                {
+                                    value: "1",
+                                    text: "1-3"
+                                },
+                                {
+                                    value: "2",
+                                    text: "4-6"
+                                },
+                                {
+                                    value: "3",
+                                    text: "7-9"
+                                },
+                                {
+                                    value: "4",
+                                    text: "10-12"
+                                },
+                                {
+                                    value: "5",
+                                    text: "12+"
+                                }
+                            ]
+                        }
+                    ],
+                }]
+        },
+
+
+        {
+            name: "page20",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [
+                {
+                    type: "radiogroup",
+                    name: "participationCredit",
+                    title: "Did you get course credit for participating in any out-of-classroom activity in the current/previous semesters?",
+                    isRequired: true,
+                    choices: [
+                        {
+                            value: "1",
+                            text: "Yes"
+                        },
+                        {
+                            value: "2",
+                            text: "No"
+                        }
+                    ]
+                },
+
+                {
+                    type: "radiogroup",
+                    name: "participationPaid",
+                    title: "Did you get paid for participating in any out-of-classroom activity in the current/previous semesters?",
+                    isRequired: true,
+                    choices: [
+                        {
+                            value: "1",
+                            text: "Yes"
+                        },
+                        {
+                            value: "2",
+                            text: "No"
+                        }
+                    ]
+                }],
+        },
+
+
+        {
+            name: "page21",
+            visibleIf: "{involvedInActivity} = '1'",
+            questions: [
+                {
+                    type: "matrix",
+                    name: "extent",
+                    title: "To what extent do you agree that you gained the following outcomes from your involvement in out-of-classroom activities?",
+                    columns: [
+                        {
+                            value: 1,
+                            text: "Strongly Disagree"
+                        }, {
+                            value: 2,
+                            text: "Disagree"
+                        }, {
+                            value: 3,
+                            text: "Agree"
+                        }, {
+                            value: 4,
+                            text: "Strongly Agree"
+                        }
+                    ],
+                    rows: [
+                        {
+                            value: "allOut1",
+                            text: "Intellectual development(i.e., problem solving skills, analytical skills, critical thinking skills)"
+                        },
+                        {
+                            value: "allOut2",
+                            text: "Personal development (e.g., self-confidence, identity development, time management skills)"
+                        },
+                        {
+                            value: "allOut3",
+                            text: "Social development (e. g., awareness of social issues, treat each other fairly, and civic activism)"
+                        },
+                        {
+                            value: "allOut4",
+                            text: "Academic engagement (e. g., academic effort, active and collaborative learning, and interaction with peers and faculty)"
+                        },
+                        {
+                            value: "allOut5",
+                            text: "Social engagement (e.g., comfort in various environments and with various persons, campus involvement, and student chapters)"
+                        },
+                        {
+                            value: "allOut6",
+                            text: "Professional development (e. g., professional skills; use of communication, knowledge, technical skills, clinical reasoning, emotions, values, and reflection in daily practice; able to integrate theory and practice)"
+                        },
+                        {
+                            value: "allOut7",
+                            text: "Cross-cultural awareness (i.e., knowledge, skills, and affect/motivation that enable individuals to adapt effectively with different cultures; promoting racial understanding; socializing with people from different racial/ethnic groups)"
+                        },
+                        {
+                            value: "allOut8",
+                            text: "Civic development (e. g., working to make a difference within a community; development gained through service learning, community service, and voluntarism)"
+                        },
+                        {
+                            value: "allOut9",
+                            text: "Communication skills"
+                        },
+                        {
+                            value: "allOut10",
+                            text: "Leadership skills"
+                        },
+                        {
+                            value: "allOut11",
+                            text: "Satisfaction with the college experience (e. g., satisfaction with the major, satisfaction with the advising quality)"
+                        },
+                        {
+                            value: "allOut12",
+                            text: "Sense of belonging to college"
+                        },
+                        {
+                            value: "allOut13",
+                            text: "Opportunity to be independent"
+                        },
+                        {
+                            value: "allOut14",
+                            text: "Creativity (i.e., thinking outside the box, art, invention, innovation; ability to perceive the world in new ways, to find hidden patterns, to make connections between seemingly unrelated phenomena, and to generate solutions. Creativity involves two processes: thinking, then producing. If you have ideas, but don’t act on them, you are imaginative but not creative.)"
+                        },
+                        {
+                            value: "allOut15",
+                            text: "Global competence (i.e., acquisition of in-depth. knowledge and understanding of international issues, an appreciation of and ability to learn and work with. people from diverse linguistic and cultural backgrounds)"
+                        },
+                        {
+                            value: "allOut16",
+                            text: " Practical ingenuity/inventiveness (i.e., skill in planning, combining, and adapting in a clever way; Manner in which one identifies problems and finds solutions; skill or cleverness that allows someone to solve problems, invent things, etc.)"
+                        },
+                        {
+                            value: "allOut17",
+                            text: "Resilience and flexibility (i.e., ability to learn new things quickly, deal with changing world and apply knowledge to new problems and new contexts)"
+                        },
+                        {
+                            value: "allOut18",
+                            text: " Ethical Standards (i.e., pertaining to or dealing with morals or the principles of morality; pertaining to right and wrong in conduct. 2. being in accordance with the rules or standards for right conduct or practice, especially the standards of a profession.)"
+                        },
+                        {
+                            value: "allOut19",
+                            text: " Business and management skills (i.e., able to understand and make physical, human, and political decisions; interdependence between technology and the economic and social foundations of modern society)"
+                        },
+                        {
+                            value: "allOut20",
+                            text: "Decreased academic engagement(i.e., the degree of attention, curiosity, interest, optimism, and passion that I showed lowered)"
+                        },
+                        {
+                            value: "allOut21",
+                            text: "Academic timeline extended (extended time to graduate, i.e., because participating in study abroad, co-op, internship which add to graduate timeline)"
+                        },
+                        {
+                            value: "allOut22",
+                            text: "Consumed my time therefore my schedule was less flexible"
+                        },
+                        {
+                            value: "allOut23",
+                            text: "Consumed my time therefore my free time was reduced"
+                        },
+                        {
+                            value: "allOut24",
+                            text: "Damaged interpersonal relationships"
+                        },
+                        {
+                            value: "allOut25",
+                            text: "Decreased my GPA in college"
+                        },
+                        {
+                            value: "allOut26",
+                            text: "Increased expense"
+                        },
+                        {
+                            value: "allOut27",
+                            text: "Social development negatively impacted (i.e., social transition to the college, less open to new people)"
+                        },
+                        {
+                            value: "allOut28",
+                            text: "Declined personal health(i.e., physical health, mental health)"
+                        },
+                        {
+                            value: "allOut29",
+                            text: "Decreased social engagement&nbsp;"
+                        },
+                        {
+                            value: "allOut30",
+                            text: "Personal development negatively impacted (i.e., poor decision making skills)"
+                        }
+                    ]
+                }]
+        },
+
+
+        {
+            name: "page22",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [
+                {
+                    type: "matrix",
+                    name: "prompted",
+                    title: "Reasons\n" +
+                        " \n" +
+                        "To what extent do you agree the following reasons prompted you to participate in out-of-classroom activities? \n" +
+                        " \n" +
+                        " Consider the statement: I participate in out-of-class activities because ________ [fill in a reason below].\n" +
+                        " ",
+                    columns: [
+                        {
+                            value: 1,
+                            text: "Strongly Disagree"
+                        }, {
+                            value: 2,
+                            text: "Disagree"
+                        }, {
+                            value: 3,
+                            text: "Agree"
+                        }, {
+                            value: 4,
+                            text: "Strongly Agree"
+                        }
+                    ],
+                    rows: [
+                        {
+                            value: "allReason1",
+                            text: "Because I could afford the costs/expense"
+                        },
+                        {
+                            value: "allReason2",
+                            text: "Because I had the time"
+                        },
+                        {
+                            value: "allReason3",
+                            text: "Because I was provided information concerning the activities"
+                        },
+                        {
+                            value: "allReason4",
+                            text: "Because I agree with goals of organization"
+                        },
+                        {
+                            value: "allReason5",
+                            text: "To be on par with other students in terms of involvement in activities"
+                        },
+                        {
+                            value: "allReason6",
+                            text: "To break down barriers of any kind (i.e., religion, race, Gender, sexual orientation)"
+                        },
+                        {
+                            value: "allReason7",
+                            text: "To create positive impact on campus /community"
+                        },
+                        {
+                            value: "allReason8",
+                            text: "To follow encouragement from an advisor or faculty member"
+                        },
+                        {
+                            value: "allReason9",
+                            text: "To fulfill my personal interests"
+                        },
+                        {
+                            value: "allReason10",
+                            text: "To gain experiences that make me more competitive in the job market"
+                        },
+                        {
+                            value: "allReason11",
+                            text: "To provide entertainment"
+                        },
+                        {
+                            value: "allReason12",
+                            text: "To relieve stress"
+                        },
+                        {
+                            value: "allReason13",
+                            text: "To try something new"
+                        },
+                        {
+                            value: "allReason14",
+                            text: "Because of my parents influence"
+                        }
+                    ]
+                }],
+        },
+
+
+        {
+            name: "page23",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [{
+                type: "matrix",
+                name: "prevented",
+                title: "Reasons\n" +
+                    "\n" +
+                    " \n" +
+                    "\n" +
+                    "To what extent do you agree the following reasons prevented you from participating in out-of-classroom activites? \n" +
+                    "\n" +
+                    " \n" +
+                    "\n" +
+                    "Consider the statement: I do not participate in out-of-class activities because ________ [fill in a reason below].",
+                columns: [
+                    {
+                        value: 1,
+                        text: "Strongly Disagree"
+                    }, {
+                        value: 2,
+                        text: "Disagree"
+                    }, {
+                        value: 3,
+                        text: "Agree"
+                    }, {
+                        value: 4,
+                        text: "Strongly Agree"
+                    }
+                ],
+                rows: [
+                    {
+                        value: "allReason15",
+                        text: "Cost (time and money) of joining was too high"
+                    },
+                    {
+                        value: "allReason16",
+                        text: "Didn’t feel supported by the faculty advisor"
+                    },
+                    {
+                        value: "allReason17",
+                        text: "Don’t contribute to what I want to learn"
+                    },
+                    {
+                        value: "allReason18",
+                        text: "Family matters (i.e., my family obligations prevent me from joining)"
+                    },
+                    {
+                        value: "allReason19",
+                        text: "Gender issue (i.e., awkward interactions between sexes)"
+                    },
+                    {
+                        value: "allReason20",
+                        text: "I am not a “joiner” (i.e., value personal goals above that of the group, emphasis on personal achievement)"
+                    },
+                    {
+                        value: "allReason21",
+                        text: "Introverted personality (i.e., focus on internal thoughts, feelings)"
+                    },
+                    {
+                        value: "allReason22",
+                        text: "Lack of motivation (i.e., I do not want to join, not interesting to me)"
+                    },
+                    {
+                        value: "allReason23",
+                        text: "Lack of time, scheduling issue (i.e., great workload of the current major)"
+                    },
+                    {
+                        value: "allReason24",
+                        text: "Lack the knowledge about the opportunities (i.e., lack the information of the out of class activities)"
+                    },
+                    {
+                        value: "allReason25",
+                        text: "Lengthy, difficult membership process"
+                    },
+                    {
+                        value: "allReason26",
+                        text: "Limit to number of participants; a competitive process to join"
+                    },
+                    {
+                        value: "allReason27",
+                        text: "Possibility of negative impact"
+                    },
+                    {
+                        value: "allReason28",
+                        text: "Race/ethnicity issues (i.e., not feeling welcomed; seemed like non-inclusive environment)"
+                    },
+                    {
+                        value: "allReason29",
+                        text: "Social inertia (i.e., I joined something else and it became too hard to leave after joining)"
+                    },
+                    {
+                        value: "allReason30",
+                        text: "Personal matters (e.g. I became pregnant, I am married, I have children, etc.)"
+                    }
+                ]
+            }],
+        },
+
+
+        {
+            name: "page24",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [{
+                type: "radiogroup",
+                name: "activitiesTopOutcome",
+                title: "From the activities you have participated in, select your top one, the one from which you gained the most outcomes.",
+                isRequired: true,
+                hasNone: true,
+                colCount: 2,
+                choices: [
+                    {
+                        value: "1",
+                        text: "Design competition team"
+                    },
+                    {
+                        value: "2",
+                        text: "Culture, faith, gender, identity"
+                    },
+                    {
+                        value: "3",
+                        text: "Environmental"
+                    },
+                    {
+                        value: "4",
+                        text: "Engineering outreach support"
+                    },
+                    {
+                        value: "5",
+                        text: "Film, Theater, Visual Arts"
+                    },
+                    {
+                        value: "6",
+                        text: "Fraternity or sorority, social"
+                    },
+                    {
+                        value: "7",
+                        text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services"
+                    },
+                    {
+                        value: "8",
+                        text: "International experiences"
+                    },
+                    {
+                        value: "9",
+                        text: "Job"
+                    },
+                    {
+                        value: "10",
+                        text: "Living-learning community"
+                    },
+                    {
+                        value: "11",
+                        text: "Media, publications, and journalism"
+                    },
+                    {
+                        value: "12",
+                        text: "Military"
+                    },
+                    {
+                        value: "13",
+                        text: "Music/Dance"
+                    },
+                    {
+                        value: "14",
+                        text: "Pre-professional"
+                    },
+                    {
+                        value: "15",
+                        text: "Professional experiences"
+                    },
+                    {
+                        value: "16",
+                        text: "Research"
+                    },
+                    {
+                        value: "17",
+                        text: "Service, public service"
+                    },
+                    {
+                        value: "18",
+                        text: "Sports"
+                    },
+                    {
+                        value: "19",
+                        text: "Student government"
+                    },
+                    {
+                        value: "20",
+                        text: "Other student clubs & organizations."
+                    }
+                ]
+            }]
+        },
+        {
+            name: "page26",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [{
+                type: "matrix",
+                name: "extentTopActivity",
+                title: "To what extent do you agree that you gained the following outcomes from your involvement in the top activity?",
+                columns: [
+                    {
+                        value: 1,
+                        text: "Strongly Disagree"
+                    }, {
+                        value: 2,
+                        text: "Disagree"
+                    }, {
+                        value: 3,
+                        text: "Agree"
+                    }, {
+                        value: 4,
+                        text: "Strongly Agree"
+                    }
+                ],
+                rows: [
+                    {
+                        value: "topOut1",
+                        text: "Intellectual development (i.e., problem solving skills, analytical skills, critical thinking skills)\">"
+                    },
+                    {
+                        value: "topOut2",
+                        text: "Personal development (e.g., self-confidence, identity development, time management skills)"
+                    },
+                    {
+                        value: "topOut3",
+                        text: "Social development (e. g., awareness of social issues, treat each other fairly, and civic activism)"
+                    },
+                    {
+                        value: "topOut4",
+                        text: "Academic engagement (e. g., academic effort, active and collaborative learning, and interaction with peers and faculty)"
+                    },
+                    {
+                        value: "topOut5",
+                        text: "Social engagement (e.g., comfort in various environments and with various persons, campus involvement, and student chapters)"
+                    },
+                    {
+                        value: "topOut6",
+                        text: ">Professional development (e. g., professional skills; use of communication, knowledge, technical skills, clinical reasoning, emotions, values, and reflection in daily practice; able to integrate theory and practice)"
+                    },
+                    {
+                        value: "topOut7",
+                        text: "Cross-cultural awareness (i.e., knowledge, skills, and affect/motivation that enable individuals to adapt effectively with different cultures; promoting racial understanding; socializing with people from different racial/ethnic groups)"
+                    },
+                    {
+                        value: "topOut8",
+                        text: "Civic development (e. g., working to make a difference within a community; development gained through service learning, community service, and voluntarism)"
+                    },
+                    {
+                        value: "topOut9",
+                        text: "Communication skills"
+                    },
+                    {
+                        value: "topOut10",
+                        text: "Leadership skills"
+                    },
+                    {
+                        value: "topOut11",
+                        text: "Satisfaction with the college experience (e. g., satisfaction with the major, satisfaction with the advising quality)"
+                    },
+                    {
+                        value: "topOut12",
+                        text: "Sense of belonging to college"
+                    },
+                    {
+                        value: "topOut13",
+                        text: "Opportunity to be independent"
+                    },
+                    {
+                        value: "topOut14",
+                        text: "Creativity (i.e., thinking outside the box, art, invention, innovation; ability to perceive the world in new ways, to find hidden patterns, to make connections between seemingly unrelated phenomena, and to generate solutions. Creativity involves two processes: thinking, then producing. If you have ideas, but don’t act on them, you are imaginative but not creative.)"
+                    },
+                    {
+                        value: "topOut15",
+                        text: "Global competence (i.e., acquisition of in-depth. knowledge and understanding of international issues, an appreciation of and ability to learn and work with. people from diverse linguistic and cultural backgrounds)"
+                    },
+                    {
+                        value: "topOut16",
+                        text: "Practical ingenuity/inventiveness (i.e., skill in planning, combining, and adapting in a clever way; Manner in which one identifies problems and finds solutions; skill or cleverness that allows someone to solve problems, invent things, etc.)"
+                    },
+                    {
+                        value: "topOut17",
+                        text: "Resilience and flexibility (i.e., ability to learn new things quickly, deal with changing world and apply knowledge to new problems and new contexts)"
+                    },
+                    {
+                        value: "topOut18",
+                        text: "Ethical Standards (i.e., pertaining to or dealing with morals or the principles of morality; pertaining to right and wrong in conduct. 2. being in accordance with the rules or standards for right conduct or practice, especially the standards of a profession.)"
+                    },
+                    {
+                        value: "topOut19",
+                        text: "Business and management skills (i.e., able to understand and make physical, human, and political decisions; interdependence between technology and the economic and social foundations of modern society)"
+                    },
+                    {
+                        value: "topOut20",
+                        text: "Decreased academic engagement(i.e., the degree of attention, curiosity, interest, optimism, and passion that I showed lowered)"
+                    },
+                    {
+                        value: "topOut21",
+                        text: "Academic timeline extended (extended time to graduate, i.e., because participating in study abroad, co-op, internship which add to graduate timeline)"
+                    },
+                    {
+                        value: "topOut22",
+                        text: "Consumed my time therefore my schedule was less flexible"
+                    },
+                    {
+                        value: "topOut23",
+                        text: "Consumed my time therefore my free time was reduced"
+                    },
+                    {
+                        value: "topOut24",
+                        text: "Damaged interpersonal relationships"
+                    },
+                    {
+                        value: "topOut25",
+                        text: "Decreased my GPA in college"
+                    },
+                    {
+                        value: "topOut26",
+                        text: "Increased expense"
+                    },
+                    {
+                        value: "topOut27",
+                        text: "Social development negatively impacted (i.e., social transition to the college, less open to new people)"
+                    },
+                    {
+                        value: "topOut28",
+                        text: "Declined personal health (i.e., physical health, mental health)"
+                    },
+                    {
+                        value: "topOut29",
+                        text: "Decreased social engagement&nbsp;"
+                    },
+                    {
+                        value: "topOut30",
+                        text: "Personal development negatively impacted (i.e., poor decision making skills)"
+                    }
+                ]
+            }]
+        },
+
+
+        {
+            page: "27",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [{
+                type: "matrix",
+                name: "promptedTopActiv",
+                title: "Reasons\n" +
+                    " \n" +
+                    "To what extent do you agree the following reasons prompted you to participate in out-of-classroom activities? \n" +
+                    " \n" +
+                    " Consider the statement: I participate in out-of-class activities because ________ [fill in a reason below].\n" +
+                    " ",
+                columns: [
+                    {
+                        value: 1,
+                        text: "Strongly Disagree"
+                    }, {
+                        value: 2,
+                        text: "Disagree"
+                    }, {
+                        value: 3,
+                        text: "Agree"
+                    }, {
+                        value: 4,
+                        text: "Strongly Agree"
+                    }
+                ],
+                rows: [
+                    {
+                        value: "topReason1",
+                        text: "Because I could afford the costs/expense"
+                    },
+                    {
+                        value: "topReason2",
+                        text: "Because I had the time"
+                    },
+                    {
+                        value: "topReason3",
+                        text: "Because I was provided information concerning the activities"
+                    },
+                    {
+                        value: "topReason4",
+                        text: "Because I agree with goals of organization"
+                    },
+                    {
+                        value: "topReason5",
+                        text: "To be on par with other students in terms of involvement in activities"
+                    },
+                    {
+                        value: "topReason6",
+                        text: "To break down barriers of any kind (i.e., religion, race, Gender, sexual orientation)"
+                    },
+                    {
+                        value: "topReason7",
+                        text: "To create positive impact on campus /community"
+                    },
+                    {
+                        value: "topReason8",
+                        text: "To follow encouragement from an advisor or faculty member"
+                    },
+                    {
+                        value: "topReason9",
+                        text: "To fulfill my personal interests"
+                    },
+                    {
+                        value: "topReason10",
+                        text: "To gain experiences that make me more competitive in the job market"
+                    },
+                    {
+                        value: "topReason11",
+                        text: "To provide entertainment"
+                    },
+                    {
+                        value: "topReason12",
+                        text: "To relieve stress"
+                    },
+                    {
+                        value: "topReason13",
+                        text: "To try something new"
+                    },
+                    {
+                        value: "topReason14",
+                        text: "Because of my parents influence"
+                    }
+                ]
+            }]
+        },
 
 
                         {
@@ -723,7 +1662,7 @@ export default {
                                     name: "ae",
                                     title: "Please indicate the extent to which you agree with the following statements.",
                                     isRequired: true,
-                                    colmuns: [
+                                    columns: [
                                         {value: 1, text: "Strongly Disagree"},
                                         {value: 2, text: "Disagree"},
                                         {value: 3, text: "Agree"},
@@ -890,44 +1829,59 @@ export default {
                                             text: "Other (please specify)"
                                         }]
                                 },
-
                                 {
-                                    type: "matrixdropdown",
+                                    type: "multipletext",
+                                    title: "Referring to your college GPA, what was your cumulative GPA at the end of the most recent academic semester/term?",
                                     name: "gpa",
-                                    title: "Please tells us your opinion about JavaScript MVVM frameworks",
+                                    descriptionLocation: "underTitle",
+                                    isRequired: true,
+                                    titleLocation: "top",
+                                    items: [
+                                        {
+                                            value: "firstYearGPA",
+                                            title: "Not applicable because this is my first year at this institution (write N/A in the box on the right)"
+                                        },
+                                        {
+                                            value: "cumulativeGPA",
+                                            title: "Cumulative GPA"
+                                        },
+                                        {
+                                            value: "maxGPA",
+                                            title: "On a system where the maximum GPA is"
+                                        }
+                                    ]
+                                },
+                              /*{
+                                    type: "matrix",
+                                    name: "gpa",
+                                    title: "Referring to your college GPA, what was your cumulative GPA at the end of the most recent academic semester/term? ",
                                     horizontalScroll: true,
-                                    columnMinWidth: "130px",
-                                    choices: [
-                                        "Excelent", "Good", "Average", "Fair", "Poor"
-                                    ],
+                                    isRequired: true,
                                     columns: [
                                         {
                                             name: "",
                                             title: "",
-                                            cellType: "text"
                                         }, {
                                             name: "",
                                             title: "GPA",
+                                            cellType: "text"
                                         }
                                     ]
-                                },
-                            ],
+                                ,
+
                             rows: [
                                 {
-                                    name: "firstYearGpa",
-                                    value: "na",
+                                    value: "firstYearGpa",
                                     text: "Not applicable because this is my first year at this institution (write N/A in the box on the right)"
                                 }, {
-                                    name: "cumulativeGPA",
-                                    value: "gpa",
+                                    value: "cumulativeGPA",
                                     text: "Cumulative GPA"
                                 }, {
-                                    name: "maxGPA",
                                     value: "maxGpa",
                                     text: "On a system where the maximum GPA is"
                                 }
                             ]
-                        },
+                        }*/]},
 
                 {
                     name: "page9",
@@ -939,6 +1893,7 @@ export default {
                                 {
                                     type: "radiogroup",
                                     name: "guardian1",
+                                    hasOther: true,
                                     title: "Please identify parent/guardian #1 from the list below: ",
                                     isRequired: true,
                                     choices: [
@@ -948,35 +1903,42 @@ export default {
                                         },
                                         {
                                             value: "2",
-                                            text: "Grandmother"
+                                            text: "Mother"
                                         },
                                         {
                                             value: "3",
-                                            text: "Grandfather"
+                                            text: "Grandmother"
                                         },
                                         {
                                             value: "4",
-                                            text: "Aunt"
+                                            text: "Grandfather"
                                         },
                                         {
                                             value: "5",
-                                            text: "Sibling"
+                                            text: "Aunt"
                                         },
                                         {
                                             value: "6",
-                                            text: "Other blood relative"
-                                        }, {
+                                            text: "Uncle"
+                                        },
+                                        {
                                             value: "7",
-                                            text: "Other family member (not related by blood)"
-                                        }
+                                            text: "Sibling"
+                                        },
+
+                                        {
+                                            value: "8",
+                                            text: "Not applicable"
+                                        },
                                     ],
-                                    optionsCaption: ""
+                                    otherText: "Other family member:"
                                 },
 
 
                                 {
                                     type: "radiogroup",
                                     name: "guardian2",
+                                    hasOther: true,
                                     title: "Please identify parent/guardian #2 from the list below. Select NOT APPLICABLE if you don't have a second parent/guardian.",
                                     isRequired: true,
                                     choices: [
@@ -986,29 +1948,35 @@ export default {
                                         },
                                         {
                                             value: "2",
-                                            text: "Grandmother"
+                                            text: "Mother"
                                         },
                                         {
                                             value: "3",
-                                            text: "Grandfather"
+                                            text: "Grandmother"
                                         },
                                         {
                                             value: "4",
-                                            text: "Aunt"
+                                            text: "Grandfather"
                                         },
                                         {
                                             value: "5",
-                                            text: "Sibling"
+                                            text: "Aunt"
                                         },
                                         {
                                             value: "6",
-                                            text: "Other blood relative"
-                                        }, {
+                                            text: "Uncle"
+                                        },
+                                        {
                                             value: "7",
-                                            text: "Other family member (not related by blood)"
-                                        }
+                                            text: "Sibling"
+                                        },
+
+                                        {
+                                            value: "8",
+                                            text: "Not applicable"
+                                        },
                                     ],
-                                    optionsCaption: ""
+                                    otherText: "Other family member: "
                                 },
 
                             ],
@@ -1025,6 +1993,7 @@ export default {
                                 {
                                     type: "matrix",
                                     name: "parentEducation",
+                                    isRequired: "true",
                                     title: "What is the highest level of formal schooling completed by parent(s)/guardian(s)?",
                                     columns: [
                                         {
@@ -1101,8 +2070,7 @@ export default {
                                             value: "4",
                                             text: "I don't know."
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 }
 
                             ],
@@ -1154,8 +2122,7 @@ export default {
                                             value: "8",
                                             text: "More than $200,000"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 },
                             ],
                         }]
@@ -1190,8 +2157,7 @@ export default {
                                             value: "4",
                                             text: "an International Student (on F-1 or J-1 visa)"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 },
 
                                 {
@@ -1208,8 +2174,7 @@ export default {
                                             value: "2",
                                             text: "No"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 },
 
 
@@ -1218,6 +2183,7 @@ export default {
                                     name: "disability",
                                     title: "Please tell us if you have any disabilities. (Mark all that apply.)",
                                     isRequired: true,
+                                    hasOther: true,
                                     choices: [
                                         {
                                             value: "1",
@@ -1248,15 +2214,11 @@ export default {
                                             text: "Visual impairment"
                                         },
                                         {
-                                            value: "8",
-                                            text: "Other: (please specify)"
-                                        },
-                                        {
                                             value: "9",
                                             text: "I choose not to respond"
                                         }
                                     ],
-                                    optionsCaption: ""
+                                    otherText: "Other: (please specify)"
                                 },
 
 
@@ -1298,8 +2260,7 @@ export default {
                                             value: "8",
                                             text: "I choose not to respond"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 }
                             ],
                         }]
@@ -1327,8 +2288,7 @@ export default {
                                             value: "2",
                                             text: "No"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 },
 
                                 {
@@ -1363,8 +2323,7 @@ export default {
                                             value: "2",
                                             text: "No"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 },
 
 
@@ -1428,7 +2387,7 @@ export default {
                                     type: "radiogroup",
                                     name: "hs6",
                                     title: "How actively did you participate in out-of-class activities in high school?",
-                                    visibleIf: "{hs4} = '1'}",
+                                    visibleIf: "{hs4} = '1'",
                                     isRequired: true,
                                     choices: [
                                         {
@@ -1447,8 +2406,7 @@ export default {
                                             value: "4",
                                             text: "Highly active"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 }
 
                             ],
@@ -1484,8 +2442,7 @@ export default {
                                             value: "2",
                                             text: "No"
                                         }
-                                    ],
-                                    optionsCaption: ""
+                                    ]
                                 },
                                 {
                                     type: "multipletext",
@@ -1529,867 +2486,11 @@ export default {
                 },
 
 
-                {
-                    name: "page18",
-                    elements: [
-                        {
-                            type: "panel",
-                            name: "activitiesPanel",
-                            elements: [],
-                        }]
-                },
 
 
-                {
-                    name: "page19",
-                    elements: [
-                        {
-                            type: "panel",
-                            name: "activitiesPanelMatrix",
-                            elements: [
-                                {
-                                    type: "matrix",
-                                    name: "",
-                                    title: "How actively have you participated in the activities you selected?",
-                                    columns: [
-                                        {
-                                            value: 1,
-                                            text: "Not Active At All"
-                                        }, {
-                                            value: 2,
-                                            text: "Minimally Active"
-                                        }, {
-                                            value: 3,
-                                            text: "Moderately Active"
-                                        }, {
-                                            value: 4,
-                                            text: "Highly Active"
-                                        }
-                                    ],
-                                    rows: [
-                                        {
-                                            value: "levelAct1",
-                                            text: "Design competition team"
-                                        },
-                                        {
-                                            value: "levelAct2",
-                                            text: "Culture, faith, gender, identity"
-                                        },
-                                        {
-                                            value: "levelAct3",
-                                            text: "Environmental"
-                                        },
-                                        {
-                                            value: "levelAct4",
-                                            text: "Engineering outreach support"
-                                        },
-                                        {
-                                            value: "levelAct5",
-                                            text: "Film, Theater, Visual Arts"
-                                        },
-                                        {
-                                            value: "levelAct6",
-                                            text: "Fraternity or sorority, social"
-                                        },
-                                        {
-                                            value: "levelAct7",
-                                            text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services"
-                                        },
-                                        {
-                                            value: "levelAct8",
-                                            text: "International experiences"
-                                        },
-                                        {
-                                            value: "levelAct9",
-                                            text: "Job"
-                                        },
-                                        {
-                                            value: "levelAct10",
-                                            text: "Living-learning community"
-                                        },
-                                        {
-                                            value: "levelAct11",
-                                            text: "Media, publications, and journalism"
-                                        },
-                                        {
-                                            value: "levelAct12",
-                                            text: "Military"
-                                        },
-                                        {
-                                            value: "levelAct13",
-                                            text: "Music/Dance"
-                                        },
-                                        {
-                                            value: "levelAct14",
-                                            text: "Pre-professional"
-                                        },
-                                        {
-                                            value: "levelAct15",
-                                            text: "Professional experiences"
-                                        },
-                                        {
-                                            value: "levelAct16",
-                                            text: "Research"
-                                        },
-                                        {
-                                            value: "levelAct17",
-                                            text: "Service, public service"
-                                        },
-                                        {
-                                            value: "levelAct18",
-                                            text: "Sports"
-                                        },
-                                        {
-                                            value: "levelAct19",
-                                            text: "Student government"
-                                        },
-                                        {
-                                            value: "levelAct20",
-                                            text: "Other student clubs & organizations. Please specify below."
-                                        }
-                                    ]
-                                },
-
-                                {
-                                    type: "radiogroup",
-                                    name: "participationHours",
-                                    title: "Overall, how many hours in a week have you participated in the activities you selected?",
-                                    isRequired: true,
-                                    choices: [
-                                        {
-                                            value: "1",
-                                            text: "1-3"
-                                        },
-                                        {
-                                            value: "2",
-                                            text: "4-6"
-                                        },
-                                        {
-                                            value: "3",
-                                            text: "7-9"
-                                        },
-                                        {
-                                            value: "4",
-                                            text: "10-12"
-                                        },
-                                        {
-                                            value: "5",
-                                            text: "12+"
-                                        }
-                                    ],
-                                    optionsCaption: ""
-                                }
-                            ],
-                        }]
-                },
 
 
-                {
-                    name: "page20",
-                    elements: [
-                        {
-                            type: "radiogroup",
-                            name: "participationCredit",
-                            title: "Did you get course credit for participating in any out-of-classroom activity in the current/previous semesters?",
-                            isRequired: true,
-                            choices: [
-                                {
-                                    value: "1",
-                                    text: "Yes"
-                                },
-                                {
-                                    value: "2",
-                                    text: "No"
-                                }
-                            ],
-                            optionsCaption: ""
-                        },
-
-                        {
-                            type: "radiogroup",
-                            name: "participationPaid",
-                            title: "Did you get paid for participating in any out-of-classroom activity in the current/previous semesters?",
-                            isRequired: true,
-                            choices: [
-                                {
-                                    value: "1",
-                                    text: "Yes"
-                                },
-                                {
-                                    value: "2",
-                                    text: "No"
-                                }
-                            ],
-                            optionsCaption: ""
-                        }],
-                },
-
-
-                {
-                    name: "page21",
-                    questions: [
-                        {
-                            type: "matrix",
-                            name: "extent",
-                            title: "To what extent do you agree that you gained the following outcomes from your involvement in out-of-classroom activities?",
-                            columns: [
-                                {
-                                    value: 1,
-                                    text: "Strongly Disagree"
-                                }, {
-                                    value: 2,
-                                    text: "Disagree"
-                                }, {
-                                    value: 3,
-                                    text: "Agree"
-                                }, {
-                                    value: 4,
-                                    text: "Strongly Agree"
-                                }
-                            ],
-                            rows: [
-                                {
-                                    value: "allOut1",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., problem solving skills, analytical skills, critical thinking skills)\">Intellectual development</span>"
-                                },
-                                {
-                                    value: "allOut2",
-                                    text: "<span style=\"color:blue;\" title=\"(e.g., self-confidence, identity development, time management skills)\">Personal development</span>"
-                                },
-                                {
-                                    value: "allOut3",
-                                    text: "<span style=\"color:blue;\" title=\"(e. g., awareness of social issues, treat each other fairly, and civic activism)\">Social development</span>"
-                                },
-                                {
-                                    value: "allOut4",
-                                    text: "<span style=\"color:blue;\" title=\"(e. g., academic effort, active and collaborative learning, and interaction with peers and faculty)\">Academic engagement</span>"
-                                },
-                                {
-                                    value: "allOut5",
-                                    text: "<span style=\"color:blue;\" title=\"(e.g., comfort in various environments and with various persons, campus involvement, and student chapters)\">Social engagement</span>"
-                                },
-                                {
-                                    value: "allOut6",
-                                    text: "<span style=\"color:blue;\" title=\"(e. g., professional skills; use of communication, knowledge, technical skills, clinical reasoning, emotions, values, and reflection in daily practice; able to integrate theory and practice)\">Professional development</span>"
-                                },
-                                {
-                                    value: "allOut7",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., knowledge, skills, and affect/motivation that enable individuals to adapt effectively with different cultures; promoting racial understanding; socializing with people from different racial/ethnic groups)\">Cross-cultural awareness</span>"
-                                },
-                                {
-                                    value: "allOut8",
-                                    text: "<span style=\"color:blue;\" title=\"(e. g., working to make a difference within a community; development gained through service learning, community service, and voluntarism)\">Civic development</span>"
-                                },
-                                {
-                                    value: "allOut9",
-                                    text: "Communication skills"
-                                },
-                                {
-                                    value: "allOut10",
-                                    text: "Leadership skills"
-                                },
-                                {
-                                    value: "allOut11",
-                                    text: "<span style=\"color:blue;\" title=\"(e. g., satisfaction with the major, satisfaction with the advising quality)\">Satisfaction with the college experience</span>"
-                                },
-                                {
-                                    value: "allOut12",
-                                    text: "Sense of belonging to college"
-                                },
-                                {
-                                    value: "allOut13",
-                                    text: "Opportunity to be independent"
-                                },
-                                {
-                                    value: "allOut14",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., thinking outside the box, art, invention, innovation; ability to perceive the world in new ways, to find hidden patterns, to make connections between seemingly unrelated phenomena, and to generate solutions. Creativity involves two processes: thinking, then producing. If you have ideas, but don’t act on them, you are imaginative but not creative.)\">Creativity</span>"
-                                },
-                                {
-                                    value: "allOut15",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., acquisition of in-depth. knowledge and understanding of international issues, an appreciation of and ability to learn and work with. people from diverse linguistic and cultural backgrounds)\"> Global competence </span>"
-                                },
-                                {
-                                    value: "allOut16",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., skill in planning, combining, and adapting in a clever way; Manner in which one identifies problems and finds solutions; skill or cleverness that allows someone to solve problems, invent things, etc.)\"> Practical ingenuity/inventiveness</span>"
-                                },
-                                {
-                                    value: "allOut17",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., ability to learn new things quickly, deal with changing world and apply knowledge to new problems and new contexts)\"> Resilience and flexibility </span>"
-                                },
-                                {
-                                    value: "allOut18",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., pertaining to or dealing with morals or the principles of morality; pertaining to right and wrong in conduct. 2. being in accordance with the rules or standards for right conduct or practice, especially the standards of a profession.)\"> Ethical Standards</span>"
-                                },
-                                {
-                                    value: "allOut19",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., able to understand and make physical, human, and political decisions; interdependence between technology and the economic and social foundations of modern society)\"> Business and management skills</span>"
-                                },
-                                {
-                                    value: "allOut20",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., the degree of attention, curiosity, interest, optimism, and passion that I showed lowered)\">Decreased academic engagement</span>"
-                                },
-                                {
-                                    value: "allOut21",
-                                    text: "<span style=\"color:blue;\" title=\"(extended time to graduate, i.e., because participating in study abroad, co-op, internship which add to graduate timeline)\">Academic timeline extended</span>"
-                                },
-                                {
-                                    value: "allOut22",
-                                    text: "Consumed my time therefore my schedule was less flexible"
-                                },
-                                {
-                                    value: "allOut23",
-                                    text: "Consumed my time therefore my free time was reduced"
-                                },
-                                {
-                                    value: "allOut24",
-                                    text: "Damaged interpersonal relationships"
-                                },
-                                {
-                                    value: "allOut25",
-                                    text: "Decreased my GPA in college"
-                                },
-                                {
-                                    value: "allOut26",
-                                    text: "Increased expense"
-                                },
-                                {
-                                    value: "allOut27",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., social transition to the college, less open to new people)\">Social development negatively impacted</span>"
-                                },
-                                {
-                                    value: "allOut28",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., physical health, mental health)\">Declined personal health</span>"
-                                },
-                                {
-                                    value: "allOut29",
-                                    text: "Decreased social engagement&nbsp;"
-                                },
-                                {
-                                    value: "allOut30",
-                                    text: "<span style=\"color:blue;\" title=\"(i.e., poor decision making skills)\">Personal development negatively impacted</span>"
-                                }
-                            ]
-                        }]
-                },
-
-
-                {
-                    name: "page22",
-                    elements: [
-                        {
-                            type: "matrix",
-                            name: "prompted",
-                            title: "Reasons\n" +
-                                " \n" +
-                                "To what extent do you agree the following reasons prompted you to participate in out-of-classroom activities? \n" +
-                                " \n" +
-                                " Consider the statement: I participate in out-of-class activities because ________ [fill in a reason below].\n" +
-                                " ",
-                            columns: [
-                                {
-                                    value: 1,
-                                    text: "Strongly Disagree"
-                                }, {
-                                    value: 2,
-                                    text: "Disagree"
-                                }, {
-                                    value: 3,
-                                    text: "Agree"
-                                }, {
-                                    value: 4,
-                                    text: "Strongly Agree"
-                                }
-                            ],
-                            rows: [
-                                {
-                                    value: "allReason1",
-                                    text: "Because I could afford the costs/expense"
-                                },
-                                {
-                                    value: "allReason2",
-                                    text: "Because I had the time"
-                                },
-                                {
-                                    value: "allReason3",
-                                    text: "Because I was provided information concerning the activities"
-                                },
-                                {
-                                    value: "allReason4",
-                                    text: "Because I agree with goals of organization"
-                                },
-                                {
-                                    value: "allReason5",
-                                    text: "To be on par with other students in terms of involvement in activities"
-                                },
-                                {
-                                    value: "allReason6",
-                                    text: "To break down barriers of any kind (i.e., religion, race, Gender, sexual orientation)"
-                                },
-                                {
-                                    value: "allReason7",
-                                    text: "To create positive impact on campus /community"
-                                },
-                                {
-                                    value: "allReason8",
-                                    text: "To follow encouragement from an advisor or faculty member"
-                                },
-                                {
-                                    value: "allReason9",
-                                    text: "To fulfill my personal interests"
-                                },
-                                {
-                                    value: "allReason10",
-                                    text: "To gain experiences that make me more competitive in the job market"
-                                },
-                                {
-                                    value: "allReason11",
-                                    text: "To provide entertainment"
-                                },
-                                {
-                                    value: "allReason12",
-                                    text: "To relieve stress"
-                                },
-                                {
-                                    value: "allReason13",
-                                    text: "To try something new"
-                                },
-                                {
-                                    value: "allReason14",
-                                    text: "Because of my parents influence"
-                                }
-                            ]
-                        }],
-                },
-
-
-                {
-                    name: "page23",
-                    elements: [{
-                        type: "matrix",
-                        name: "prevented",
-                        title: "Reasons\n" +
-                            "\n" +
-                            " \n" +
-                            "\n" +
-                            "To what extent do you agree the following reasons prevented you from participating in out-of-classroom activites? \n" +
-                            "\n" +
-                            " \n" +
-                            "\n" +
-                            "Consider the statement: I do not participate in out-of-class activities because ________ [fill in a reason below].",
-                        columns: [
-                            {
-                                value: 1,
-                                text: "Strongly Disagree"
-                            }, {
-                                value: 2,
-                                text: "Disagree"
-                            }, {
-                                value: 3,
-                                text: "Agree"
-                            }, {
-                                value: 4,
-                                text: "Strongly Agree"
-                            }
-                        ],
-                        rows: [
-                            {
-                                value: "allReason15",
-                                text: "Cost (time and money) of joining was too high"
-                            },
-                            {
-                                value: "allReason16",
-                                text: "Didn’t feel supported by the faculty advisor"
-                            },
-                            {
-                                value: "allReason17",
-                                text: "Don’t contribute to what I want to learn"
-                            },
-                            {
-                                value: "allReason18",
-                                text: "Family matters (i.e., my family obligations prevent me from joining)"
-                            },
-                            {
-                                value: "allReason19",
-                                text: "Gender issue (i.e., awkward interactions between sexes)"
-                            },
-                            {
-                                value: "allReason20",
-                                text: "I am not a “joiner” (i.e., value personal goals above that of the group, emphasis on personal achievement)"
-                            },
-                            {
-                                value: "allReason21",
-                                text: "Introverted personality (i.e., focus on internal thoughts, feelings)"
-                            },
-                            {
-                                value: "allReason22",
-                                text: "Lack of motivation (i.e., I do not want to join, not interesting to me)"
-                            },
-                            {
-                                value: "allReason23",
-                                text: "Lack of time, scheduling issue (i.e., great workload of the current major)"
-                            },
-                            {
-                                value: "allReason24",
-                                text: "Lack the knowledge about the opportunities (i.e., lack the information of the out of class activities)"
-                            },
-                            {
-                                value: "allReason25",
-                                text: "Lengthy, difficult membership process"
-                            },
-                            {
-                                value: "allReason26",
-                                text: "Limit to number of participants; a competitive process to join"
-                            },
-                            {
-                                value: "allReason27",
-                                text: "Possibility of negative impact"
-                            },
-                            {
-                                value: "allReason28",
-                                text: "Race/ethnicity issues (i.e., not feeling welcomed; seemed like non-inclusive environment)"
-                            },
-                            {
-                                value: "allReason29",
-                                text: "Social inertia (i.e., I joined something else and it became too hard to leave after joining)"
-                            },
-                            {
-                                value: "allReason30",
-                                text: "Personal matters (e.g. I became pregnant, I am married, I have children, etc.)"
-                            }
-                        ]
-                    }],
-                },
-
-
-                {
-                    name: "page24",
-                    elements: [{
-                        type: "radiogroup",
-                        name: "activitiesTopOutcome",
-                        title: "From the activities you have participated in, select your top one, the one from which you gained the most outcomes.",
-                        isRequired: true,
-                        hasNone: true,
-                        colCount: 2,
-                        choices: [
-                            {
-                                value: "1",
-                                text: "Design competition team"
-                            },
-                            {
-                                value: "2",
-                                text: "Culture, faith, gender, identity"
-                            },
-                            {
-                                value: "3",
-                                text: "Environmental"
-                            },
-                            {
-                                value: "4",
-                                text: "Engineering outreach support"
-                            },
-                            {
-                                value: "5",
-                                text: "Film, Theater, Visual Arts"
-                            },
-                            {
-                                value: "6",
-                                text: "Fraternity or sorority, social"
-                            },
-                            {
-                                value: "7",
-                                text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services"
-                            },
-                            {
-                                value: "8",
-                                text: "International experiences"
-                            },
-                            {
-                                value: "9",
-                                text: "Job"
-                            },
-                            {
-                                value: "10",
-                                text: "Living-learning community"
-                            },
-                            {
-                                value: "11",
-                                text: "Media, publications, and journalism"
-                            },
-                            {
-                                value: "12",
-                                text: "Military"
-                            },
-                            {
-                                value: "13",
-                                text: "Music/Dance"
-                            },
-                            {
-                                value: "14",
-                                text: "Pre-professional"
-                            },
-                            {
-                                value: "15",
-                                text: "Professional experiences"
-                            },
-                            {
-                                value: "16",
-                                text: "Research"
-                            },
-                            {
-                                value: "17",
-                                text: "Service, public service"
-                            },
-                            {
-                                value: "18",
-                                text: "Sports"
-                            },
-                            {
-                                value: "19",
-                                text: "Student government"
-                            },
-                            {
-                                value: "20",
-                                text: "Other student clubs & organizations."
-                            }
-                        ]
-                    }]
-                },
-                {
-                    name: "page26",
-                    elements: [{
-                        type: "matrix",
-                        name: "extentTopActivity",
-                        title: "To what extent do you agree that you gained the following outcomes from your involvement in the top activity?",
-                        columns: [
-                            {
-                                value: 1,
-                                text: "Strongly Disagree"
-                            }, {
-                                value: 2,
-                                text: "Disagree"
-                            }, {
-                                value: 3,
-                                text: "Agree"
-                            }, {
-                                value: 4,
-                                text: "Strongly Agree"
-                            }
-                        ],
-                        rows: [
-                            {
-                                value: "topOut1",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., problem solving skills, analytical skills, critical thinking skills)\">Intellectual development</span>"
-                            },
-                            {
-                                value: "topOut2",
-                                text: "<span style=\"color:blue;\" title=\"(e.g., self-confidence, identity development, time management skills)\">Personal development</span>"
-                            },
-                            {
-                                value: "topOut3",
-                                text: "<span style=\"color:blue;\" title=\"(e. g., awareness of social issues, treat each other fairly, and civic activism)\">Social development</span>"
-                            },
-                            {
-                                value: "topOut4",
-                                text: "<span style=\"color:blue;\" title=\"(e. g., academic effort, active and collaborative learning, and interaction with peers and faculty)\">Academic engagement</span>"
-                            },
-                            {
-                                value: "topOut5",
-                                text: "<span style=\"color:blue;\" title=\"(e.g., comfort in various environments and with various persons, campus involvement, and student chapters)\">Social engagement</span>"
-                            },
-                            {
-                                value: "topOut6",
-                                text: "<span style=\"color:blue;\" title=\"(e. g., professional skills; use of communication, knowledge, technical skills, clinical reasoning, emotions, values, and reflection in daily practice; able to integrate theory and practice)\">Professional development</span>"
-                            },
-                            {
-                                value: "topOut7",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., knowledge, skills, and affect/motivation that enable individuals to adapt effectively with different cultures; promoting racial understanding; socializing with people from different racial/ethnic groups)\">Cross-cultural awareness</span>"
-                            },
-                            {
-                                value: "topOut8",
-                                text: "<span style=\"color:blue;\" title=\"(e. g., working to make a difference within a community; development gained through service learning, community service, and voluntarism)\">Civic development</span>"
-                            },
-                            {
-                                value: "topOut9",
-                                text: "Communication skills"
-                            },
-                            {
-                                value: "topOut10",
-                                text: "Leadership skills"
-                            },
-                            {
-                                value: "topOut11",
-                                text: "<span style=\"color:blue;\" title=\"(e. g., satisfaction with the major, satisfaction with the advising quality)\">Satisfaction with the college experience</span>"
-                            },
-                            {
-                                value: "topOut12",
-                                text: "Sense of belonging to college"
-                            },
-                            {
-                                value: "topOut13",
-                                text: "Opportunity to be independent"
-                            },
-                            {
-                                value: "topOut14",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., thinking outside the box, art, invention, innovation; ability to perceive the world in new ways, to find hidden patterns, to make connections between seemingly unrelated phenomena, and to generate solutions. Creativity involves two processes: thinking, then producing. If you have ideas, but don’t act on them, you are imaginative but not creative.)\">Creativity</span>"
-                            },
-                            {
-                                value: "topOut15",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., acquisition of in-depth. knowledge and understanding of international issues, an appreciation of and ability to learn and work with. people from diverse linguistic and cultural backgrounds)\"> Global competence </span>"
-                            },
-                            {
-                                value: "topOut16",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., skill in planning, combining, and adapting in a clever way; Manner in which one identifies problems and finds solutions; skill or cleverness that allows someone to solve problems, invent things, etc.)\"> Practical ingenuity/inventiveness</span>"
-                            },
-                            {
-                                value: "topOut17",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., ability to learn new things quickly, deal with changing world and apply knowledge to new problems and new contexts)\"> Resilience and flexibility </span>"
-                            },
-                            {
-                                value: "topOut18",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., pertaining to or dealing with morals or the principles of morality; pertaining to right and wrong in conduct. 2. being in accordance with the rules or standards for right conduct or practice, especially the standards of a profession.)\"> Ethical Standards</span>"
-                            },
-                            {
-                                value: "topOut19",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., able to understand and make physical, human, and political decisions; interdependence between technology and the economic and social foundations of modern society)\"> Business and management skills</span>"
-                            },
-                            {
-                                value: "topOut20",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., the degree of attention, curiosity, interest, optimism, and passion that I showed lowered)\">Decreased academic engagement</span>"
-                            },
-                            {
-                                value: "topOut21",
-                                text: "<span style=\"color:blue;\" title=\"(extended time to graduate, i.e., because participating in study abroad, co-op, internship which add to graduate timeline)\">Academic timeline extended</span>"
-                            },
-                            {
-                                value: "topOut22",
-                                text: "Consumed my time therefore my schedule was less flexible"
-                            },
-                            {
-                                value: "topOut23",
-                                text: "Consumed my time therefore my free time was reduced"
-                            },
-                            {
-                                value: "topOut24",
-                                text: "Damaged interpersonal relationships"
-                            },
-                            {
-                                value: "topOut25",
-                                text: "Decreased my GPA in college"
-                            },
-                            {
-                                value: "topOut26",
-                                text: "Increased expense"
-                            },
-                            {
-                                value: "topOut27",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., social transition to the college, less open to new people)\">Social development negatively impacted</span>"
-                            },
-                            {
-                                value: "topOut28",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., physical health, mental health)\">Declined personal health</span>"
-                            },
-                            {
-                                value: "topOut29",
-                                text: "Decreased social engagement&nbsp;"
-                            },
-                            {
-                                value: "topOut30",
-                                text: "<span style=\"color:blue;\" title=\"(i.e., poor decision making skills)\">Personal development negatively impacted</span>"
-                            }
-                        ]
-                    }]
-                },
-
-
-                {
-                    page: "27",
-                    elements: [{
-                        type: "matrix",
-                        name: "promptedTopActiv",
-                        title: "Reasons\n" +
-                            " \n" +
-                            "To what extent do you agree the following reasons prompted you to participate in out-of-classroom activities? \n" +
-                            " \n" +
-                            " Consider the statement: I participate in out-of-class activities because ________ [fill in a reason below].\n" +
-                            " ",
-                        columns: [
-                            {
-                                value: 1,
-                                text: "Strongly Disagree"
-                            }, {
-                                value: 2,
-                                text: "Disagree"
-                            }, {
-                                value: 3,
-                                text: "Agree"
-                            }, {
-                                value: 4,
-                                text: "Strongly Agree"
-                            }
-                        ],
-                        rows: [
-                            {
-                                value: "topReason1",
-                                text: "Because I could afford the costs/expense"
-                            },
-                            {
-                                value: "topReason2",
-                                text: "Because I had the time"
-                            },
-                            {
-                                value: "topReason3",
-                                text: "Because I was provided information concerning the activities"
-                            },
-                            {
-                                value: "topReason4",
-                                text: "Because I agree with goals of organization"
-                            },
-                            {
-                                value: "topReason5",
-                                text: "To be on par with other students in terms of involvement in activities"
-                            },
-                            {
-                                value: "topReason6",
-                                text: "To break down barriers of any kind (i.e., religion, race, Gender, sexual orientation)"
-                            },
-                            {
-                                value: "topReason7",
-                                text: "To create positive impact on campus /community"
-                            },
-                            {
-                                value: "topReason8",
-                                text: "To follow encouragement from an advisor or faculty member"
-                            },
-                            {
-                                value: "topReason9",
-                                text: "To fulfill my personal interests"
-                            },
-                            {
-                                value: "topReason10",
-                                text: "To gain experiences that make me more competitive in the job market"
-                            },
-                            {
-                                value: "topReason11",
-                                text: "To provide entertainment"
-                            },
-                            {
-                                value: "topReason12",
-                                text: "To relieve stress"
-                            },
-                            {
-                                value: "topReason13",
-                                text: "To try something new"
-                            },
-                            {
-                                value: "topReason14",
-                                text: "Because of my parents influence"
-                            }
-                        ]
-                    }]
-                },
-
-
-                {
+                                    /*{
                     type: "panel",
                     name: "E2Panel",
                     elements: [
@@ -2415,8 +2516,7 @@ export default {
                                     value: 4,
                                     text: "Strongly Agree"
                                 }
-                            ],
-                            optionsCaption: "Select your opinion here"
+                            ]
                         },
                         {
                             type: "dropdown",
@@ -2440,8 +2540,7 @@ export default {
                                     value: 4,
                                     text: "Strongly Agree"
                                 }
-                            ],
-                            optionsCaption: "Select your opinion here"
+                            ]
                         },
                         {
                             type: "dropdown",
@@ -2465,8 +2564,7 @@ export default {
                                     value: 4,
                                     text: "Strongly Agree"
                                 }
-                            ],
-                            optionsCaption: "Select your opinion here"
+                            ]
                         },
                         {
                             type: "dropdown",
@@ -2490,8 +2588,7 @@ export default {
                                     value: 4,
                                     text: "Strongly Agree"
                                 }
-                            ],
-                            optionsCaption: "Select your opinion here"
+                            ]
                         },
                         {
                             type: "dropdown",
@@ -2515,8 +2612,7 @@ export default {
                                     value: 4,
                                     text: "Strongly Agree"
                                 }
-                            ],
-                            optionsCaption: "Select your opinion here"
+                            ]
                         },
                         {
                             type: "dropdown",
@@ -2540,8 +2636,7 @@ export default {
                                     value: 4,
                                     text: "Strongly Agree"
                                 }
-                            ],
-                            optionsCaption: "Select your opinion here"
+                            ]
                         },
                         {
                             type: "dropdown",
@@ -2565,8 +2660,7 @@ export default {
                                     value: 4,
                                     text: "Strongly Agree"
                                 }
-                            ],
-                            optionsCaption: "Select your opinion here"
+                            ]
                         },
                         {
                             type: "dropdown",
@@ -2590,13 +2684,12 @@ export default {
                                     value: 4,
                                     text: "Strongly Agree"
                                 }
-                            ],
-                            optionsCaption: "Select your opinion here"
+                            ]
                         }
                     ],
                     title: "Engineering 2020 Outcomes",
                     isRequired: true
-                },
+                },*/
                 {
 
                     name: "page5",
