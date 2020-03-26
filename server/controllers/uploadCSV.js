@@ -1,9 +1,12 @@
-const mongodb = require("mongodb").MongoClient;
-const csvtojson = require("csvtojson");
+const mongodb = require("mongodb").MongoClient,
+    csvtojson = require("csvtojson");
 
-let url = process.env.MONGODB_URI || require('../config').db.uri;
 
-csvtojson()
+const url = process.env.MONGODB_URI || require('../config').db.uri;
+
+exports.upload = (req, res) => {
+  
+  csvtojson()
   .fromFile("DatabaseData.csv")                                     // Which csv file to use for uploading
   .then(csvData => {
     //console.log(csvData);
@@ -27,3 +30,4 @@ csvtojson()
       }
     );
   });
+};

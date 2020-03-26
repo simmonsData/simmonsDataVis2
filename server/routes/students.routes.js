@@ -22,6 +22,9 @@ router.route('/register')
 router.route('/login')
     .post(students.login);
 
+router.route('${')
+    .get(students.getByCriteria);
+
 router.param('studentId', students.studentByID);
 
 module.exports = router;

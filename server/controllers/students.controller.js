@@ -184,6 +184,25 @@ exports.login = (req, res) => {
     })
 }
 
+exports.getByCriteria = (req, res) => {
+    let queryObject = {};
+    for(let key in req.body) {
+        if(req.body.hasOwnProperty(key)){
+          //do something with e.g. req.body[key]
+          queryObject.push({key: key[object]});
+    }
+    Student.find({queryObject}, (err, student) => {
+        if(err){
+            console.log("student not found");
+            res.status(400).send(err);
+        }
+        else{
+            console.log("found student");
+            res.status(200).send(student)
+        }
+    });
+}
+
 // ROUTER.PARAM MIDDLEWARE
 
 // Middleware for locating student entry in database by their id
