@@ -185,20 +185,32 @@ exports.login = (req, res) => {
 }
 
 exports.getByCriteria = (req, res) => {
+    console.log("get by criteria");
     let queryObject = {};
+    // Looks inside req.body for user selected criteria and stores it inside queryObject
+    
     for(let key in req.body) {
         if(req.body.hasOwnProperty(key)){
           //do something with e.g. req.body[key]
-          queryObject.push({key: key[object]});
+          const item = req.body[key];
+         
+          queryObject[key] = item;
+          console.log(queryObject);
+        }
     }
-    Student.find({queryObject}, (err, student) => {
+
+    // Makes query with user selected criteria
+    Student.find(queryObject.survey, (err, student) => {
         if(err){
-            console.log("student not found");
+            console.log("Error");
             res.status(400).send(err);
         }
+        else if(student.length === 0){
+            res.status(200).send({studentNotFound: "No students found"});
+        }
         else{
-            console.log("found student");
-            res.status(200).send(student)
+            console.log("Found student");
+            res.status(200).send(student);
         }
     });
 }
