@@ -186,21 +186,21 @@ exports.login = (req, res) => {
 
 exports.getByCriteria = (req, res) => {
     console.log("get by criteria");
-    let queryObject = {};
+    let queryObject = {}
     // Looks inside req.body for user selected criteria and stores it inside queryObject
     
     for(let key in req.body) {
         if(req.body.hasOwnProperty(key)){
-          //do something with e.g. req.body[key]
-          const item = req.body[key];
-         
-          queryObject[key] = item;
-          console.log(queryObject);
+            //do something with e.g. req.body[key]
+            const item = req.body[key];
+            const newKey = "survey." + key;
+            queryObject[newKey] = item;
+            //console.log(queryObject);
         }
     }
 
     // Makes query with user selected criteria
-    Student.find(queryObject.survey, (err, student) => {
+    Student.find(queryObject, (err, student) => {
         if(err){
             console.log("Error");
             res.status(400).send(err);
