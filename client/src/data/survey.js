@@ -356,7 +356,8 @@ export default {
                                     value: "17",
                                     text: "Other"
                                 }
-                            ]
+                            ],
+                            choicesVisibleIf: "{major} = '3'"
                         }
                     ],
                     title: "College",
@@ -560,7 +561,7 @@ export default {
                             elements: [
                                 {
                                     type: "matrix",
-                                    name: "participate",
+                                    name: "no_OCA_1to14:",
                                     title: "To what extent do you agree the following reasons could prompt you to participate in out-of-classroom activities?",
                                     isRequired: true,
                                     columns: [
@@ -630,7 +631,7 @@ export default {
                             elements: [
                                 {
                                     type: "matrix",
-                                    name: "participationPrevention",
+                                    name: "no_OCA_15to30:",
                                     title: "To what extent do you agree the following reasons could prevent you from participating in out-of-classroom activities?",
                                     isRequired: true,
                                     columns: [
@@ -710,7 +711,7 @@ export default {
                         {
                             type: "checkbox",
                             name: "all",
-                            title: "Which of the following out-of-classroom activities do you intend to participate in?(You can choose multiple items.)",
+                            title: "Which of the following out-of-classroom activities have you participated in for the current/previous semesters?(You can choose multiple items.)",
                             isRequired: true,
                             choices: [
                                 {
@@ -810,7 +811,7 @@ export default {
                     elements: [
                         {
                             type: "matrix",
-                            name: "",
+                            name: "levelAct",
                             title: "How actively have you participated in the activities you selected?",
                             columns: [
                                 {
@@ -830,83 +831,103 @@ export default {
                             rows: [
                                 {
                                     value: "levelAct1",
-                                    text: "Design competition team"
+                                    text: "Design competition team",
+                                    visibleIf: "{all} contains '1'"
                                 },
                                 {
                                     value: "levelAct2",
-                                    text: "Culture, faith, gender, identity"
+                                    text: "Culture, faith, gender, identity",
+                                    visibleIf: "{all} contains '2'"
                                 },
                                 {
                                     value: "levelAct3",
-                                    text: "Environmental"
+                                    text: "Environmental",
+                                    visibleIf: "{all} contains '3'"
                                 },
                                 {
                                     value: "levelAct4",
-                                    text: "Engineering outreach support"
+                                    text: "Engineering outreach support",
+                                    visibleIf: "{all} contains '4'"
                                 },
                                 {
                                     value: "levelAct5",
-                                    text: "Film, Theater, Visual Arts"
+                                    text: "Film, Theater, Visual Arts",
+                                    visibleIf: "{all} contains '5'"
                                 },
                                 {
                                     value: "levelAct6",
-                                    text: "Fraternity or sorority, social"
+                                    text: "Fraternity or sorority, social",
+                                    visibleIf: "{all} contains '6'"
                                 },
                                 {
                                     value: "levelAct7",
-                                    text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services"
+                                    text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services",
+                                    visibleIf: "{all} contains '7'"
                                 },
                                 {
                                     value: "levelAct8",
-                                    text: "International experiences"
+                                    text: "International experiences",
+                                    visibleIf: "{all} contains '8'"
                                 },
                                 {
                                     value: "levelAct9",
-                                    text: "Job"
+                                    text: "Job",
+                                    visibleIf: "{all} contains '9'"
                                 },
                                 {
                                     value: "levelAct10",
-                                    text: "Living-learning community"
+                                    text: "Living-learning community",
+                                    visibleIf: "{all} contains '10'"
                                 },
                                 {
                                     value: "levelAct11",
-                                    text: "Media, publications, and journalism"
+                                    text: "Media, publications, and journalism",
+                                    visibleIf: "{all} contains '11'"
                                 },
                                 {
                                     value: "levelAct12",
-                                    text: "Military"
+                                    text: "Military",
+                                    visibleIf: "{all} contains '12'"
                                 },
                                 {
                                     value: "levelAct13",
-                                    text: "Music/Dance"
+                                    text: "Music/Dance",
+                                    visibleIf: "{all} contains '13'"
                                 },
                                 {
                                     value: "levelAct14",
-                                    text: "Pre-professional"
+                                    text: "Pre-professional",
+                                    visibleIf: "{all} contains '14'"
                                 },
                                 {
                                     value: "levelAct15",
-                                    text: "Professional experiences"
+                                    text: "Professional experiences",
+                                    visibleIf: "{all} contains '15'"
                                 },
                                 {
                                     value: "levelAct16",
-                                    text: "Research"
+                                    text: "Research",
+                                    visibleIf: "{all} contains '16'"
                                 },
                                 {
                                     value: "levelAct17",
-                                    text: "Service, public service"
+                                    text: "Service, public service",
+                                    visibleIf: "{all} contains '17'"
                                 },
                                 {
                                     value: "levelAct18",
-                                    text: "Sports"
+                                    text: "Sports",
+                                    visibleIf: "{all} contains '18'"
                                 },
                                 {
                                     value: "levelAct19",
-                                    text: "Student government"
+                                    text: "Student government",
+                                    visibleIf: "{all} contains '19'"
                                 },
                                 {
                                     value: "levelAct20",
-                                    text: "Other student clubs & organizations. Please specify below."
+                                    text: "Other student clubs & organizations. Please specify below.",
+                                    visibleIf: "{all} contains '20'"
                                 }
                             ]
                         },
@@ -990,7 +1011,7 @@ export default {
             questions: [
                 {
                     type: "matrix",
-                    name: "extent",
+                    name: "allOut",
                     title: "To what extent do you agree that you gained the following outcomes from your involvement in out-of-classroom activities?",
                     columns: [
                         {
@@ -1122,7 +1143,7 @@ export default {
                         },
                         {
                             value: "allOut29",
-                            text: "Decreased social engagement&nbsp;"
+                            text: "Decreased social engagement"
                         },
                         {
                             value: "allOut30",
@@ -1139,7 +1160,7 @@ export default {
             elements: [
                 {
                     type: "matrix",
-                    name: "prompted",
+                    name: "allReason_1to14",
                     title: "Reasons\n" +
                         " \n" +
                         "To what extent do you agree the following reasons prompted you to participate in out-of-classroom activities? \n" +
@@ -1228,12 +1249,12 @@ export default {
             visibleIf: "{involvedInActivity} = '1'",
             elements: [{
                 type: "matrix",
-                name: "prevented",
+                name: "allReason_15to30",
                 title: "Reasons\n" +
                     "\n" +
                     " \n" +
                     "\n" +
-                    "To what extent do you agree the following reasons prevented you from participating in out-of-classroom activites? \n" +
+                    "To what extent do you agree the following reasons prevented you from participating in out-of-classroom activities? \n" +
                     "\n" +
                     " \n" +
                     "\n" +
@@ -1328,7 +1349,7 @@ export default {
             visibleIf: "{involvedInActivity} = '1'",
             elements: [{
                 type: "radiogroup",
-                name: "activitiesTopOutcome",
+                name: "top",
                 title: "From the activities you have participated in, select your top one, the one from which you gained the most outcomes.",
                 isRequired: true,
                 hasNone: true,
@@ -1336,83 +1357,103 @@ export default {
                 choices: [
                     {
                         value: "1",
-                        text: "Design competition team"
+                        text: "Design competition team",
+                        visibleIf: "{all} contains '1'"
                     },
                     {
                         value: "2",
-                        text: "Culture, faith, gender, identity"
+                        text: "Culture, faith, gender, identity",
+                        visibleIf: "{all} contains '2'"
                     },
                     {
                         value: "3",
-                        text: "Environmental"
+                        text: "Environmental",
+                        visibleIf: "{all} contains '3'"
                     },
                     {
                         value: "4",
-                        text: "Engineering outreach support"
+                        text: "Engineering outreach support",
+                        visibleIf: "{all} contains '4'"
                     },
                     {
                         value: "5",
-                        text: "Film, Theater, Visual Arts"
+                        text: "Film, Theater, Visual Arts",
+                        visibleIf: "{all} contains '5'"
                     },
                     {
                         value: "6",
-                        text: "Fraternity or sorority, social"
+                        text: "Fraternity or sorority, social",
+                        visibleIf: "{all} contains '6'"
                     },
                     {
                         value: "7",
-                        text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services"
+                        text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services",
+                        visibleIf: "{all} contains '7'"
                     },
                     {
                         value: "8",
-                        text: "International experiences"
+                        text: "International experiences",
+                        visibleIf: "{all} contains '8'"
                     },
                     {
                         value: "9",
-                        text: "Job"
+                        text: "Job",
+                        visibleIf: "{all} contains '9'"
                     },
                     {
                         value: "10",
-                        text: "Living-learning community"
+                        text: "Living-learning community",
+                        visibleIf: "{all} contains '10'"
                     },
                     {
                         value: "11",
-                        text: "Media, publications, and journalism"
+                        text: "Media, publications, and journalism",
+                        visibleIf: "{all} contains '11'"
                     },
                     {
                         value: "12",
-                        text: "Military"
+                        text: "Military",
+                        visibleIf: "{all} contains '12'"
                     },
                     {
                         value: "13",
-                        text: "Music/Dance"
+                        text: "Music/Dance",
+                        visibleIf: "{all} contains '13'"
                     },
                     {
                         value: "14",
-                        text: "Pre-professional"
+                        text: "Pre-professional",
+                        visibleIf: "{all} contains '14'"
                     },
                     {
                         value: "15",
-                        text: "Professional experiences"
+                        text: "Professional experiences",
+                        visibleIf: "{all} contains '15'"
                     },
                     {
                         value: "16",
-                        text: "Research"
+                        text: "Research",
+                        visibleIf: "{all} contains '16'"
                     },
                     {
                         value: "17",
-                        text: "Service, public service"
+                        text: "Service, public service",
+                        visibleIf: "{all} contains '17'"
                     },
                     {
                         value: "18",
-                        text: "Sports"
+                        text: "Sports",
+                        visibleIf: "{all} contains '18'"
                     },
                     {
                         value: "19",
-                        text: "Student government"
+                        text: "Student government",
+                        visibleIf: "{all} contains '19'"
                     },
                     {
                         value: "20",
-                        text: "Other student clubs & organizations."
+                        text: "Other student clubs & organizations.",
+                        visibleIf: "{all} contains '20'"
                     }
                 ]
             }]
@@ -1422,7 +1463,7 @@ export default {
             visibleIf: "{involvedInActivity} = '1'",
             elements: [{
                 type: "matrix",
-                name: "extentTopActivity",
+                name: "topOut",
                 title: "To what extent do you agree that you gained the following outcomes from your involvement in the top activity?",
                 columns: [
                     {
@@ -1554,7 +1595,7 @@ export default {
                     },
                     {
                         value: "topOut29",
-                        text: "Decreased social engagement&nbsp;"
+                        text: "Decreased social engagement"
                     },
                     {
                         value: "topOut30",
@@ -1570,7 +1611,7 @@ export default {
             visibleIf: "{involvedInActivity} = '1'",
             elements: [{
                 type: "matrix",
-                name: "promptedTopActiv",
+                name: "topReason",
                 title: "Reasons\n" +
                     " \n" +
                     "To what extent do you agree the following reasons prompted you to participate in out-of-classroom activities? \n" +
@@ -1659,7 +1700,7 @@ export default {
                             elements: [
                                 {
                                     type: "matrix",
-                                    name: "ae",
+                                    name: "ae_grit",
                                     title: "Please indicate the extent to which you agree with the following statements.",
                                     isRequired: true,
                                     columns: [
@@ -1694,13 +1735,13 @@ export default {
                                             text: "I do not feel “emotionally attached” to my academic discipline."
                                         }, {
                                             value: "ae7",
-                                            text: "I do <strong>not </strong> feel like “part of the family” in my academic discipline."
+                                            text: "I do not feel like “part of the family” in my academic discipline."
                                         }, {
                                             value: "ae8",
                                             text: "My eventual career will directly relate to a job in my academic discipline."
                                         }, {
                                             value: "ae9",
-                                            text: "In the future, I will <strong>not </strong>have a career that requires me to have skills of my academic discipline."
+                                            text: "In the future, I will not have a career that requires me to have skills of my academic discipline."
                                         }, {
                                             value: "ae10",
                                             text: "I believe I can meet the demands of a job in my academic discipline."
@@ -1838,15 +1879,15 @@ export default {
                                     titleLocation: "top",
                                     items: [
                                         {
-                                            value: "firstYearGPA",
+                                            name: "firstYearGPA",
                                             title: "Not applicable because this is my first year at this institution (write N/A in the box on the right)"
                                         },
                                         {
-                                            value: "cumulativeGPA",
+                                            name: "cumulativeGPA",
                                             title: "Cumulative GPA"
                                         },
                                         {
-                                            value: "maxGPA",
+                                            name: "maxGPA",
                                             title: "On a system where the maximum GPA is"
                                         }
                                     ]
@@ -2050,7 +2091,7 @@ export default {
                             elements: [
                                 {
                                     type: "radiogroup",
-                                    name: "siblingsCompleteDegree",
+                                    name: "siblingCompleteDegree",
                                     title: "Has one of your siblings (sister or brother) completed a four-year degree or higher?",
                                     isRequired: true,
                                     choices: [
@@ -2224,7 +2265,7 @@ export default {
 
                                 {
                                     type: "radiogroup",
-                                    name: "lbgt",
+                                    name: "lgbt",
                                     title: "You consider yourself to be:",
                                     isRequired: true,
                                     choices: [
@@ -2270,13 +2311,10 @@ export default {
                 {
                     name: "page14",
                     elements: [
-                        {
-                            type: "panel",
-                            name: "agePanel",
-                            elements: [
+
                                 {
                                     type: "radiogroup",
-                                    name: "hs1",
+                                    name: "highschool1",
                                     title: "Did you graduate from a high school in the United States?",
                                     isRequired: true,
                                     choices: [
@@ -2293,25 +2331,25 @@ export default {
 
                                 {
                                     type: "text",
-                                    name: "hs2",
+                                    name: "highschool2",
                                     title: "What is the name of your high school?",
-                                    visibleIf: "{hs1} = '1'",
+                                    visibleIf: "{highschool1} = '1'",
                                     isRequired: true,
                                     inputType: "text"
                                 },
 
                                 {
                                     type: "text",
-                                    name: "hs3",
+                                    name: "highschool3",
                                     title: "What is the zip code of the town you attended your high school?",
-                                    visibleIf: "{hs1} = '1'",
+                                    visibleIf: "{highschool1} = '1'",
                                     isRequired: true,
                                     inputType: "number"
                                 },
 
                                 {
                                     type: "radiogroup",
-                                    name: "hs4",
+                                    name: "highschool4",
                                     title: "Were you involved in out-of-class activities in high school?",
                                     isRequired: true,
                                     choices: [
@@ -2329,11 +2367,10 @@ export default {
 
                                 {
                                     type: "dropdown",
-                                    name: "hs5",
+                                    name: "highschool5",
                                     title: "How many out-of-class activities were you involved in during your last year of high school?",
-                                    visibleIf:"{hs4} = '1'",
+                                    visibleIf:"{highschool4} = '1'",
                                     isRequired: true,
-                                    titleLocation: "hidden",
                                     choices: [
                                         {
                                             value: "1",
@@ -2385,9 +2422,9 @@ export default {
 
                                 {
                                     type: "radiogroup",
-                                    name: "hs6",
+                                    name: "highschool6",
                                     title: "How actively did you participate in out-of-class activities in high school?",
-                                    visibleIf: "{hs4} = '1'",
+                                    visibleIf: "{highschool4} = '1'",
                                     isRequired: true,
                                     choices: [
                                         {
@@ -2409,9 +2446,8 @@ export default {
                                     ]
                                 }
 
-                            ],
-                        }]
-                },
+                            ]
+                        },
 
 
                 {
@@ -2446,7 +2482,7 @@ export default {
                                 },
                                 {
                                     type: "multipletext",
-                                    name: "info",
+                                    name: "contactInfo",
                                     title: "Please provide your contact information below.",
                                     visibleIf: "{contact2} = '1'",
                                     rowCount: 3,
