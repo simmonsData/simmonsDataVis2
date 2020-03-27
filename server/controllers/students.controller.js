@@ -124,22 +124,7 @@ exports.register = (req, res) => {
                 return res.status(400).json({emailFound: "Email already created"}); 
             }
         }
-    });
-    
-    // // Saving email into database
-    // newStudent.save( (err, savedStudent) => {
-    //     if(err) {
-    //         console.log(err);
-    //         return res.status(400).send(err);
-    //     } 
-    //     // If match found, returns student id and email with link to survey is sent to given email 
-    //     else {
-    //         const id = savedStudent.id;
-    //         emailSystem.send(id, studentEmail);
-    //         return res.json(id);
-    //     }
-    // });
-                
+    });         
         
 }
 
@@ -184,6 +169,7 @@ exports.login = (req, res) => {
     })
 }
 
+// Returns students that match the criteria passed into req.body
 exports.getByCriteria = (req, res) => {
     let querySurveyObject = {};
     let queryNotSurveyObject = {};
@@ -203,56 +189,16 @@ exports.getByCriteria = (req, res) => {
     ])
         .then(student => {
             if(student.length === 0){
-                console.log("no students 2 found" );
                 res.status(200).send({studentNotFound: "No students found"});
             }
             else{
-                console.log("Found student 2");
                 res.status(200).send(student);
             }
         })
         .catch(err => {
-            console.log("Error");
             console.log(err);
             res.status(400).send(err);
         });
-
-    /*
-    let combinedStudents;
-
-    // Makes query with user selected criteria in survey object
-    Student.find(querySurveyObject, (err, student) => {
-        if(err){
-            console.log("Error");
-            res.status(400).send(err);
-        }
-        else if(student.length === 0){
-            console.log("no students 1 found");
-            //res.status(200).send({studentNotFound: "No students found"});
-        }
-        else{
-            console.log("Found student 1");
-            combinedStudents = student;
-            //res.status(200).send(student);
-        }
-    });
-    console.log(combinedStudents);
-    // Makes query with user selected criteria that are not in survey object
-    Student.find(queryNotSurveyObject, (err, student) => {
-        if(err){
-            console.log("Error");
-            res.status(400).send(err);
-        }
-        else if(student.length === 0){
-            console.log("no students 2 found" );
-        }
-        else{
-            console.log("Found student 2");
-            combinedStudents.push(student); 
-            res.status(200).send(combinedStudents);
-        }
-    })
-    */
 }
 
 // ROUTER.PARAM MIDDLEWARE
