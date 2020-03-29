@@ -5,9 +5,10 @@
     justify-content: center;
     align-items: center;
     height: 85vh;
+    padding-bottom: 8em;
 }
 
-.emailInput {
+.emailInput, .passwordInput, .confirmPasswordInput {
     align-self: flex-start;
     flex: 2;
     display: flex;
@@ -23,6 +24,11 @@
 
 .emailForms {
     padding-top: 100;
+}
+
+.ui.form .field>label {
+    font-size: 1.14em;
+    font-weight: 550;
 }
 
 /*Applied to the list containing

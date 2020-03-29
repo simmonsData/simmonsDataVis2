@@ -91,21 +91,32 @@ exports.register = (req, res) => {
             if(student === null){
                 console.log("Creating new student");
                 const newStudent = new Student({
-                    email: req.body.email
+                    email: req.body.email,
+                    password: req.body.password
                 });
 
-                // Saving email into database
-                newStudent.save( (err, savedStudent) => {
-                    if(err) {
-                        console.log(err);
-                        return res.status(400).send(err);
-                    } 
-                    // If match found, returns student id and email with link to survey is sent to given email 
-                    else {
-                        const id = savedStudent.id;
-                        emailSystem.send(id, studentEmail);
-                        return res.json(id);
-                    }
+                // Hashing password before saving into the database
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newStudent.password, salt, (err, hash) => {
+                        if (err){
+                            //console.log(err);
+                            throw err;
+                        }
+                        console.log("hash: " + hash);
+                        newStudent.password = hash;
+                        newStudent
+                            .save()
+                            .then( (student) => {
+                                const id = student.id;
+                                //console.log("id: " + id);
+                                emailSystem.send(id, studentEmail);
+                                return res.json(id);
+                            })
+                            .catch( (err) => {
+                                console.log(err)
+                                return res.status(400).send(err);
+                            });
+                    })
                 });
             }
             // Match found
@@ -113,7 +124,23 @@ exports.register = (req, res) => {
                 return res.status(400).json({emailFound: "Email already created"}); 
             }
         }
-    })
+    });
+    
+    // // Saving email into database
+    // newStudent.save( (err, savedStudent) => {
+    //     if(err) {
+    //         console.log(err);
+    //         return res.status(400).send(err);
+    //     } 
+    //     // If match found, returns student id and email with link to survey is sent to given email 
+    //     else {
+    //         const id = savedStudent.id;
+    //         emailSystem.send(id, studentEmail);
+    //         return res.json(id);
+    //     }
+    // });
+                
+        
 }
 
 // Logins student by email address - post request
@@ -125,22 +152,33 @@ exports.login = (req, res) => {
         return res.status(400).json(errors);
     }
     const studentEmail = req.body.email;
-    
+    const studentPassword = req.body.password;
+   
     Student.findOne({email: studentEmail}, (err, student) => {
         if(err){
             return res.status(400).send(err); 
         }
         else{
-            // If no match found, returns "Email not found"
+            // If no email found, returns error
             if(student === null){
                 res.status(400);
-                return res.json({emailNotFound: "Email not found"}); 
+                return res.json({emailPasswordIncorrect: "Your email/password is incorrect"}); 
             }
-            // If match found, returns student id and email with link to survey is sent to given email 
+            // If match found, returns student id and email
             else if(student !== null){
-                const id = student.id;
-                emailSystem.send(id, studentEmail);
-                return res.json(id);
+                // console.log("comparing passwords");
+                bcrypt.compare(studentPassword, student.password).then(passwordMatch => {
+                    if(passwordMatch){
+                        const id = student.id;
+                        // emailSystem.send(id, studentEmail);
+                        return res.json(id);
+                    }
+                    else{
+                        res.status(400);
+                        return res.json({emailPasswordIncorrect: "Your email/password is incorrect"});          // Change email and password to have same error messages (notFound error)
+                    }
+                });
+                
             }
         }
     })

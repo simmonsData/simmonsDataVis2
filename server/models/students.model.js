@@ -2,12 +2,6 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 const studentSchema = new Schema({
-    email: {
-        type: String,
-        trim: true,
-        unique: true,
-        required: true
-    },
     loginRole: {type: String, default: 'PLACEHOLDER'},
     loginEmail: {type: String, default: 'PLACEHOLDER'},
     loginPassword: {type: String, default: 'PLACEHOLDER'},
