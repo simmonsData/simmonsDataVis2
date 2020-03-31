@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Pages
@@ -11,6 +11,7 @@ import SurveyPage from './pages/SurveyPage'
 import DataPage from './pages/DataPage'
 import StatisticsPage from './pages/StatisticsPage'
 
+import Home from './pages/Home'
 
 //Components
 import Header from './components/Header'
@@ -20,16 +21,26 @@ import './styles/App.css'
 
 function App() {
 
-  function loggedIn() {
+  const [userID, setUserID] =   useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  function adminLoggedIn() {
     // ...
     return true;
   }
   function requireAuth(nextState, replace) {
-   if (!loggedIn()) {
+   if (!adminLoggedIn()) {
       replace({
         pathname: '/admin' // not working yet to prevent access of other pages
       })
    }
+  }
+
+  function userIDUpdate() {
+    setUserID(userID);
+  }
+  function loggedInUpdate() {
+    setIsLoggedIn(isLoggedIn);
   }
 
   function getIdFromUrl() {
@@ -45,12 +56,14 @@ function App() {
 
                   <Switch> 
                     <Route exact path="/homepage/:userId" render={(props) => <Homepage {...props} getId={getIdFromUrl()} />}/>
+                    <Route exact path="/survey/" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
                     <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
                     <Route exact path="/data/:userId" render={(props) => <DataPage {...props} getId={getIdFromUrl()} />}/>
                     <Route exact path="/admin" component={adminEntry} />
                     <Route exact path="/adminPanel" component={adminPanel} onEnter = {requireAuth}/>
                     <Route exact path="/statistics" component={StatisticsPage} onEnter = {requireAuth}/>
-                    <Route component={EmailEntry} /> 
+                    <Route exact path="/access" component={EmailEntry}></Route>
+                    <Route component={Home} /> 
                   </Switch>
 
               </main>
