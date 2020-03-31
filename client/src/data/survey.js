@@ -565,10 +565,10 @@ export default {
                                     title: "To what extent do you agree the following reasons could prompt you to participate in out-of-classroom activities?",
                                     isRequired: true,
                                     columns: [
-                                        {value: 1, text: "Strongly Disagree"},
-                                        {value: 2, text: "Disagree"},
-                                        {value: 3, text: "Agree"},
-                                        {value: 4, text: "Strongly Agree"}
+                                        {value: "1", text: "Strongly Disagree"},
+                                        {value: "2", text: "Disagree"},
+                                        {value: "3", text: "Agree"},
+                                        {value: "4", text: "Strongly Agree"}
                                     ],
                                     rows: [
                                         {
@@ -635,10 +635,10 @@ export default {
                                     title: "To what extent do you agree the following reasons could prevent you from participating in out-of-classroom activities?",
                                     isRequired: true,
                                     columns: [
-                                        {value: 1, text: "Strongly Disagree"},
-                                        {value: 2, text: "Disagree"},
-                                        {value: 3, text: "Agree"},
-                                        {value: 4, text: "Strongly Agree"}
+                                        {value: "1", text: "Strongly Disagree"},
+                                        {value: "2", text: "Disagree"},
+                                        {value: "3", text: "Agree"},
+                                        {value: "4", text: "Strongly Agree"}
                                     ],
                                     rows: [
                                         {
@@ -815,16 +815,16 @@ export default {
                             title: "How actively have you participated in the activities you selected?",
                             columns: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Not Active At All"
                                 }, {
-                                    value: 2,
+                                    value: "2",
                                     text: "Minimally Active"
                                 }, {
-                                    value: 3,
+                                    value: "3",
                                     text: "Moderately Active"
                                 }, {
-                                    value: 4,
+                                    value: "4",
                                     text: "Highly Active"
                                 }
                             ],
@@ -1015,16 +1015,16 @@ export default {
                     title: "To what extent do you agree that you gained the following outcomes from your involvement in out-of-classroom activities?",
                     columns: [
                         {
-                            value: 1,
+                            value: "1",
                             text: "Strongly Disagree"
                         }, {
-                            value: 2,
+                            value: "2",
                             text: "Disagree"
                         }, {
-                            value: 3,
+                            value: "3",
                             text: "Agree"
                         }, {
-                            value: 4,
+                            value: "4",
                             text: "Strongly Agree"
                         }
                     ],
@@ -1169,16 +1169,16 @@ export default {
                         " ",
                     columns: [
                         {
-                            value: 1,
+                            value: "1",
                             text: "Strongly Disagree"
                         }, {
-                            value: 2,
+                            value: "2",
                             text: "Disagree"
                         }, {
-                            value: 3,
+                            value: "3",
                             text: "Agree"
                         }, {
-                            value: 4,
+                            value: "4",
                             text: "Strongly Agree"
                         }
                     ],
@@ -1261,16 +1261,16 @@ export default {
                     "Consider the statement: I do not participate in out-of-class activities because ________ [fill in a reason below].",
                 columns: [
                     {
-                        value: 1,
+                        value: "1",
                         text: "Strongly Disagree"
                     }, {
-                        value: 2,
+                        value: "2",
                         text: "Disagree"
                     }, {
-                        value: 3,
+                        value: "3",
                         text: "Agree"
                     }, {
-                        value: 4,
+                        value: "4",
                         text: "Strongly Agree"
                     }
                 ],
@@ -1467,16 +1467,16 @@ export default {
                 title: "To what extent do you agree that you gained the following outcomes from your involvement in the top activity?",
                 columns: [
                     {
-                        value: 1,
+                        value: "1",
                         text: "Strongly Disagree"
                     }, {
-                        value: 2,
+                        value: "2",
                         text: "Disagree"
                     }, {
-                        value: 3,
+                        value: "3",
                         text: "Agree"
                     }, {
-                        value: 4,
+                        value: "4",
                         text: "Strongly Agree"
                     }
                 ],
@@ -1620,16 +1620,16 @@ export default {
                     " ",
                 columns: [
                     {
-                        value: 1,
+                        value: "1",
                         text: "Strongly Disagree"
                     }, {
-                        value: 2,
+                        value: "2",
                         text: "Disagree"
                     }, {
-                        value: 3,
+                        value: "3",
                         text: "Agree"
                     }, {
-                        value: 4,
+                        value: "4",
                         text: "Strongly Agree"
                     }
                 ],
@@ -1704,10 +1704,10 @@ export default {
                                     title: "Please indicate the extent to which you agree with the following statements.",
                                     isRequired: true,
                                     columns: [
-                                        {value: 1, text: "Strongly Disagree"},
-                                        {value: 2, text: "Disagree"},
-                                        {value: 3, text: "Agree"},
-                                        {value: 4, text: "Strongly Agree"}
+                                        {value: "1", text: "Strongly Disagree"},
+                                        {value: "2", text: "Disagree"},
+                                        {value: "3", text: "Agree"},
+                                        {value: "4", text: "Strongly Agree"}
                                     ],
                                     rows: [
                                         {
@@ -2038,31 +2038,31 @@ export default {
                                     title: "What is the highest level of formal schooling completed by parent(s)/guardian(s)?",
                                     columns: [
                                         {
-                                            value: 1,
+                                            value: "1",
                                             text: "Did not finish high school"
                                         }, {
-                                            value: 2,
+                                            value: "2",
                                             text: "High school graduate or GED"
                                         }, {
-                                            value: 3,
+                                            value: "3",
                                             text: "Attended college but did not receive a degree"
                                         }, {
-                                            value: 4,
+                                            value: "4",
                                             text: "Vocational/technical certificate or diploma"
                                         }, {
-                                            value: 5,
+                                            value: "5",
                                             text: "Associate or other 2-year degree"
                                         }, {
-                                        value: 6,
+                                        value: "6",
                                             text: "Bachelor's or other 4-year degree"
                                         }, {
-                                            value: 7,
+                                            value: "7",
                                             text: "Master's degree (M.A., M.S., M.B.A., etc.)"
                                         }, {
-                                            value: 8,
+                                            value: "8",
                                             text: "Doctoral degree (Ph.D., M.D., etc."
                                         }, {
-                                            value: 9,
+                                            value: "9",
                                             text: "Unknown/Not applicable"
                                         }
                                     ],
@@ -2537,19 +2537,19 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Strongly Disagree"
                                 },
                                 {
-                                    value: 2,
+                                    value: "2",
                                     text: "Disagree"
                                 },
                                 {
-                                    value: 3,
+                                    value: "3",
                                     text: "Agree"
                                 },
                                 {
-                                    value: 4,
+                                    value: "4",
                                     text: "Strongly Agree"
                                 }
                             ]
@@ -2561,19 +2561,19 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Strongly Disagree"
                                 },
                                 {
-                                    value: 2,
+                                    value: "2",
                                     text: "Disagree"
                                 },
                                 {
-                                    value: 3,
+                                    value: "3",
                                     text: "Agree"
                                 },
                                 {
-                                    value: 4,
+                                    value: "4",
                                     text: "Strongly Agree"
                                 }
                             ]
@@ -2585,19 +2585,19 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Strongly Disagree"
                                 },
                                 {
-                                    value: 2,
+                                    value: "2",
                                     text: "Disagree"
                                 },
                                 {
-                                    value: 3,
+                                    value: "3",
                                     text: "Agree"
                                 },
                                 {
-                                    value: 4,
+                                    value: "4",
                                     text: "Strongly Agree"
                                 }
                             ]
@@ -2609,19 +2609,19 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Strongly Disagree"
                                 },
                                 {
-                                    value: 2,
+                                    value: "2",
                                     text: "Disagree"
                                 },
                                 {
-                                    value: 3,
+                                    value: "3",
                                     text: "Agree"
                                 },
                                 {
-                                    value: 4,
+                                    value: "4",
                                     text: "Strongly Agree"
                                 }
                             ]
@@ -2633,19 +2633,19 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Strongly Disagree"
                                 },
                                 {
-                                    value: 2,
+                                    value: "2",
                                     text: "Disagree"
                                 },
                                 {
-                                    value: 3,
+                                    value: "3",
                                     text: "Agree"
                                 },
                                 {
-                                    value: 4,
+                                    value: "4",
                                     text: "Strongly Agree"
                                 }
                             ]
@@ -2657,19 +2657,19 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Strongly Disagree"
                                 },
                                 {
-                                    value: 2,
+                                    value: "2",
                                     text: "Disagree"
                                 },
                                 {
-                                    value: 3,
+                                    value: "3",
                                     text: "Agree"
                                 },
                                 {
-                                    value: 4,
+                                    value: "4",
                                     text: "Strongly Agree"
                                 }
                             ]
@@ -2681,19 +2681,19 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Strongly Disagree"
                                 },
                                 {
-                                    value: 2,
+                                    value: "2",
                                     text: "Disagree"
                                 },
                                 {
-                                    value: 3,
+                                    value: "3",
                                     text: "Agree"
                                 },
                                 {
-                                    value: 4,
+                                    value: "4",
                                     text: "Strongly Agree"
                                 }
                             ]
@@ -2705,19 +2705,19 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: 1,
+                                    value: "1",
                                     text: "Strongly Disagree"
                                 },
                                 {
-                                    value: 2,
+                                    value: "2",
                                     text: "Disagree"
                                 },
                                 {
-                                    value: 3,
+                                    value: "3",
                                     text: "Agree"
                                 },
                                 {
-                                    value: 4,
+                                    value: "4",
                                     text: "Strongly Agree"
                                 }
                             ]
