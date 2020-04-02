@@ -2,15 +2,14 @@ const mongodb = require("mongodb").MongoClient,
     csvtojson = require("csvtojson");
 
 
-const url = process.env.MONGODB_URI || require('../config').db.uri;
+const url = process.env.MONGODB_URI || require('../config/config.js').db.uri;
 
-exports.upload = (req, res) => {
+//exports.upload = (req, res) => {
   
-  csvtojson()
-  .fromFile("DatabaseData.csv")                                     // Which csv file to use for uploading
+  csvtojson({checkType:true})
+  .fromFile("DatabaseComplete.csv")                                     // Which csv file to use for uploading
   .then(csvData => {
     //console.log(csvData);
-
     mongodb.connect(
       url,
       { useNewUrlParser: true, useUnifiedTopology: true },
@@ -30,4 +29,4 @@ exports.upload = (req, res) => {
       }
     );
   });
-};
+// };
