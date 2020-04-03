@@ -44,10 +44,16 @@ export default {
                         {
                             type: "text",
                             name: "demoAge",
-                            title: "Age",
+                            title: "What is your age?",
                             isRequired: true,
                             inputType: "number",
-                            placeHolder: "Enter your age here"
+                            validators: [{
+                                type: "numeric",
+                                text: "Sorry, but you must be at least 18 years old to complete this survey. Thank you",
+                                minValue: 18,
+                                maxValue: 100
+                            }
+                            ]
                         }
                     ],
                 }]
@@ -393,6 +399,14 @@ export default {
                             ]
                         },
                         {
+                            type: "text",
+                            name: "prevMajor",
+                            title: "What was your previous major?",
+                            isRequired: true,
+                            choicesVisibleIf: "{switchFromStem} = '1' or {switchFromStem} = '2'"
+
+                        },
+                        {
                             type: "radiogroup",
                             name: "intendToSwitch",
                             title: "Do you intend to switch your current major to another one?",
@@ -409,21 +423,11 @@ export default {
                             ]
                         },
                         {
-                            type: "radiogroup",
+                            type: "textbox",
                             name: "intendedMajor",
                             title: "What major do you intend to switch to?",
                             visibleIf: "{intendToSwitch} = '1'",
                             isRequired: true,
-                            choices: [
-                                {
-                                    value: "1",
-                                    text: "Engineering"
-                                },
-                                {
-                                    value: "2",
-                                    text: "Non-Engineering"
-                                }
-                            ]
                         }
                     ],
                 }]
@@ -552,6 +556,135 @@ export default {
                                 }
                             ]}]}],
                             navigationButtonsVisibility: "show"
+                        },
+
+                        {
+                            name: "pageActSpec",
+                            visibleIf: "{involvedInActivity} = '2'",
+                            elements: [
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act1Spec",
+                                    visibleIf: "{intendedActivity contains '1'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act2Spec",
+                                    visibleIf: "{intendedActivity contains '2'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act3Spec",
+                                    visibleIf: "{intendedActivity contains '3'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act4Spec",
+                                    visibleIf: "{intendedActivity contains '4'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act5Spec",
+                                    visibleIf: "{intendedActivity contains '5'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act6Spec",
+                                    visibleIf: "{intendedActivity contains '6'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act7Spec",
+                                    visibleIf: "{intendedActivity contains '7'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act8Spec",
+                                    visibleIf: "{intendedActivity contains '8'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act9Spec",
+                                    visibleIf: "{intendedActivity contains '9'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act10Spec",
+                                    visibleIf: "{intendedActivity contains '10'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act11Spec",
+                                    visibleIf: "{intendedActivity contains '11'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act12Spec",
+                                    visibleIf: "{intendedActivity contains '12'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act13Spec",
+                                    visibleIf: "{intendedActivity contains '13'}",
+                                },{
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act14Spec",
+                                    visibleIf: "{intendedActivity contains '14'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act15Spec",
+                                    visibleIf: "{intendedActivity contains '15'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act16Spec",
+                                    visibleIf: "{intendedActivity contains '16'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act17Spec",
+                                    visibleIf: "{intendedActivity contains '17'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act18Spec",
+                                    visibleIf: "{intendedActivity contains '18'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act19Spec",
+                                    visibleIf: "{intendedActivity contains '19'}",
+                                },
+                                {
+                                    type: text,
+                                    isRequired: true,
+                                    name: "act20Spec",
+                                    visibleIf: "{intendedActivity contains '20'}",
+                                },
+
+
+                            ]
+
                         },
 
 
@@ -964,6 +1097,178 @@ export default {
                 }]
         },
 
+        {
+            name: "hoursPage",
+            visibleIf: "{involvedInActivity} = '1'",
+            elements: [
+                {
+                    type: "text",
+                    name: "act1Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Design Competition Team?",
+                    visibleIf: "{levelAct} contains '1'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act2Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Culture, Faith, Gender, or Identity activities?",
+                    visibleIf: "{levelAct} contains '2'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act3Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Engineering Outreach Support?",
+                    visibleIf: "{levelAct} contains '3'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act4Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Environmental activities?",
+                    visibleIf: "{levelAct} contains '4'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act5Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Film, Theater, or Visual Arts activities?",
+                    visibleIf: "{levelAct} contains '5'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act6Hours",
+                    inputType: "number",
+                    title: "How many hours did a week you participate in a Social Fraternity or Sorority?",
+                    visibleIf: "{levelAct} contains '6'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act7Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in major-related (ex: Engineering) Coeducational Fraternity or Sorority?",
+                    visibleIf: "{levelAct} contains '7'",
+                    isRequired: true,
+                }
+                ,
+                {
+                    type: "text",
+                    name: "act8Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in International Experiences?",
+                    visibleIf: "{levelAct} contains '8'",
+                    isRequired: true,
+                }
+                ,
+                {
+                    type: "text",
+                    name: "act9Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you work for your Job(s)?",
+                    visibleIf: "{levelAct} contains '9'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act10Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in a Living-Learning Community?",
+                    visibleIf: "{levelAct} contains '10'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act11Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Media, Publications, or Journalism activities?",
+                    visibleIf: "{levelAct} contains '11'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act12Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Military activities?",
+                    visibleIf: "{levelAct} contains '12'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act13Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Music or Dance activities?",
+                    visibleIf: "{levelAct} contains '13'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act14Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Pre-professional activities",
+                    visibleIf: "{levelAct} contains '14'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act15Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Professional Experiences?",
+                    visibleIf: "{levelAct} contains '15'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act16Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Research?",
+                    visibleIf: "{levelAct} contains '16'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act17Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Service or Public Service?",
+                    visibleIf: "{levelAct} contains '17'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act18Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Sports?",
+                    visibleIf: "{levelAct} contains '18'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act19Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in Student Government?",
+                    visibleIf: "{levelAct} contains '19'",
+                    isRequired: true,
+                },
+                {
+                    type: "text",
+                    name: "act20Hours",
+                    inputType: "number",
+                    title: "How many hours a week did you participate in other student clubs or organizations?",
+                    visibleIf: "{levelAct} contains '20'",
+                    isRequired: true,
+                }
+
+
+
+            ]
+        },
+
 
         {
             name: "page20",
@@ -1104,50 +1409,6 @@ export default {
                         {
                             value: "allOut19",
                             text: " Business and management skills (i.e., able to understand and make physical, human, and political decisions; interdependence between technology and the economic and social foundations of modern society)"
-                        },
-                        {
-                            value: "allOut20",
-                            text: "Decreased academic engagement(i.e., the degree of attention, curiosity, interest, optimism, and passion that I showed lowered)"
-                        },
-                        {
-                            value: "allOut21",
-                            text: "Academic timeline extended (extended time to graduate, i.e., because participating in study abroad, co-op, internship which add to graduate timeline)"
-                        },
-                        {
-                            value: "allOut22",
-                            text: "Consumed my time therefore my schedule was less flexible"
-                        },
-                        {
-                            value: "allOut23",
-                            text: "Consumed my time therefore my free time was reduced"
-                        },
-                        {
-                            value: "allOut24",
-                            text: "Damaged interpersonal relationships"
-                        },
-                        {
-                            value: "allOut25",
-                            text: "Decreased my GPA in college"
-                        },
-                        {
-                            value: "allOut26",
-                            text: "Increased expense"
-                        },
-                        {
-                            value: "allOut27",
-                            text: "Social development negatively impacted (i.e., social transition to the college, less open to new people)"
-                        },
-                        {
-                            value: "allOut28",
-                            text: "Declined personal health(i.e., physical health, mental health)"
-                        },
-                        {
-                            value: "allOut29",
-                            text: "Decreased social engagement"
-                        },
-                        {
-                            value: "allOut30",
-                            text: "Personal development negatively impacted (i.e., poor decision making skills)"
                         }
                     ]
                 }]
@@ -1557,50 +1818,6 @@ export default {
                         value: "topOut19",
                         text: "Business and management skills (i.e., able to understand and make physical, human, and political decisions; interdependence between technology and the economic and social foundations of modern society)"
                     },
-                    {
-                        value: "topOut20",
-                        text: "Decreased academic engagement(i.e., the degree of attention, curiosity, interest, optimism, and passion that I showed lowered)"
-                    },
-                    {
-                        value: "topOut21",
-                        text: "Academic timeline extended (extended time to graduate, i.e., because participating in study abroad, co-op, internship which add to graduate timeline)"
-                    },
-                    {
-                        value: "topOut22",
-                        text: "Consumed my time therefore my schedule was less flexible"
-                    },
-                    {
-                        value: "topOut23",
-                        text: "Consumed my time therefore my free time was reduced"
-                    },
-                    {
-                        value: "topOut24",
-                        text: "Damaged interpersonal relationships"
-                    },
-                    {
-                        value: "topOut25",
-                        text: "Decreased my GPA in college"
-                    },
-                    {
-                        value: "topOut26",
-                        text: "Increased expense"
-                    },
-                    {
-                        value: "topOut27",
-                        text: "Social development negatively impacted (i.e., social transition to the college, less open to new people)"
-                    },
-                    {
-                        value: "topOut28",
-                        text: "Declined personal health (i.e., physical health, mental health)"
-                    },
-                    {
-                        value: "topOut29",
-                        text: "Decreased social engagement"
-                    },
-                    {
-                        value: "topOut30",
-                        text: "Personal development negatively impacted (i.e., poor decision making skills)"
-                    }
                 ]
             }]
         },
@@ -1706,6 +1923,7 @@ export default {
                                     columns: [
                                         {value: "1", text: "Strongly Disagree"},
                                         {value: "2", text: "Disagree"},
+                                        {value: "3", text: "Neutral"},
                                         {value: "3", text: "Agree"},
                                         {value: "4", text: "Strongly Agree"}
                                     ],
@@ -1714,120 +1932,151 @@ export default {
                                             value: "ae1",
                                             text: "My major is interesting to me."
                                         },
+
                                         {
                                             value: "ae2",
-                                            text: "I regret having entered in my major."
-                                        },
-                                        {
-                                            value: "ae3",
                                             text: "I am enthusiastic about my major."
                                         },
                                         {
-                                            value: "ae4",
+                                            value: "ae3",
                                             text: "I think I will be very happy to spend the rest of my career in my current academic discipline."
                                         },
                                         {
-                                            value: "ae5",
+                                            value: "ae4",
                                             text: "I do not feel a strong sense of “belonging” to my academic discipline."
                                         },
                                         {
-                                            value: "ae6",
+                                            value: "ae5",
                                             text: "I do not feel “emotionally attached” to my academic discipline."
                                         }, {
-                                            value: "ae7",
+                                            value: "ae6",
                                             text: "I do not feel like “part of the family” in my academic discipline."
                                         }, {
-                                            value: "ae8",
-                                            text: "My eventual career will directly relate to a job in my academic discipline."
-                                        }, {
-                                            value: "ae9",
-                                            text: "In the future, I will not have a career that requires me to have skills of my academic discipline."
-                                        }, {
-                                            value: "ae10",
-                                            text: "I believe I can meet the demands of a job in my academic discipline."
-                                        }, {
-                                            value: "ae11",
+                                            value: "ae7",
                                             text: "Being good at my major is an important part of who I am."
                                         }, {
-                                            value: "ae12",
+                                            value: "ae8",
                                             text: "Success in my major at school is very valuable to me."
                                         }, {
-                                            value: "ae13",
+                                            value: "ae9",
                                             text: "It matters to me how well I do in my major at school."
                                         }, {
-                                            value: "ae14",
+                                            value: "ae10",
                                             text: "I am constantly on the lookout for new ways to improve my life."
                                         }, {
-                                            value: "ae15",
+                                            value: "ae11",
                                             text: "If I see something I don’t like, I fix it."
                                         }, {
-                                            value: "ae16",
+                                            value: "ae12",
                                             text: "I love being a champion for my ideas, even against others’ opposition."
                                         }, {
-                                            value: "ae17",
+                                            value: "ae13",
                                             text: "I excel at identifying opportunities."
                                         }, {
-                                            value: "ae18",
+                                            value: "ae14",
                                             text: "If I believe in an idea, no obstacle will prevent me from making it happen."
-                                        }, {
-                                            value: "ae19",
-                                            text: "I feel like a real part of the field of my current academic discipline."
-                                        }, {
-                                            value: "ae20",
+                                        },  {
+                                            value: "ae15",
                                             text: "I am treated with as much respect by faculty as other students in my major."
                                         }, {
-                                            value: "ae21",
+                                            value: "ae16",
                                             text: "The instructors in my major respect me."
                                         }, {
-                                            value: "ae22",
+                                            value: "ae17",
                                             text: "I am satisfied with the faculty in my major."
                                         }, {
-                                            value: "ae23",
+                                            value: "ae18",
                                             text: "I don't intend to change from my current major to another major."
                                         }, {
-                                            value: "ae24",
+                                            value: "ae19",
                                             text: "Overall, I am happy with the major I've chosen."
                                         }, {
-                                            value: "ae25",
+                                            value: "ae20",
                                             text: "I discuss academic issues with peers."
                                         }, {
-                                            value: "ae26",
+                                            value: "ae21",
                                             text: "I discuss career issues with peers."
                                         }, {
-                                            value: "ae27",
+                                            value: "ae22",
                                             text: "I discuss social issues with peers."
                                         }, {
-                                            value: "ae28",
+                                            value: "ae23",
                                             text: "I discuss cultural issues with peers."
-                                        }, {
-                                            value: "grit1",
-                                            text: "New ideas and projects sometimes distract me from previous ones."
-                                        }, {
-                                            value: "grit2",
-                                            text: "Setbacks don’t discourage me."
-                                        }, {
-                                            value: "grit3",
-                                            text: "I have been obsessed with a certain idea or project for a short time but later lost interest."
-                                        }, {
-                                            value: "grit4",
-                                            text: "I am a hard worker."
-                                        }, {
-                                            value: "grit5",
-                                            text: "I often set a goal but later choose to pursue a different one."
-                                        }, {
-                                            value: "grit6",
-                                            text: "I have difficulty maintaining my focus on projects that take more than a few months to complete."
-                                        }, {
-                                            value: "grit7",
-                                            text: "I finish whatever I begin."
-                                        }, {
-                                            value: "grit8",
-                                            text: "I am diligent."
                                         }
                                     ]
                                 }
                             ],
                         },
+
+        {
+            name: "pagegrit",
+            elements: [
+                {
+                    type: "matrix",
+                    name: "grit",
+                    title: "Please indicate the extent to which you agree with the following statements.",
+                    isRequired: true,
+                    columns: [
+                        {value: "1", text: "Strongly Disagree"},
+                        {value: "2", text: "Disagree"},
+                        {value: "3", text: "Neutral"},
+                        {value: "4", text: "Agree"},
+                        {value: "5", text: "Strongly Agree"}
+                    ],
+                    rows: [
+                        {
+                            value: "grit1",
+                            text: "New ideas and projects sometimes distract me from previous ones."
+                        }, {
+                            value: "grit2",
+                            text: "Setbacks don’t discourage me."
+                        }, {
+                            value: "grit3",
+                            text: "I have been obsessed with a certain idea or project for a short time but later lost interest."
+                        }, {
+                            value: "grit4",
+                            text: "I am a hard worker."
+                        }, {
+                            value: "grit5",
+                            text: "I often set a goal but later choose to pursue a different one."
+                        }, {
+                            value: "grit6",
+                            text: "I have difficulty maintaining my focus on projects that take more than a few months to complete."
+                        }, {
+                            value: "grit7",
+                            text: "I finish whatever I begin."
+                        }, {
+                            value: "grit8",
+                            text: "I am diligent."
+                        }
+                        ]
+                },
+                {
+                    name: "discuss1",
+                    type: "text",
+                    visibleIf: "{ae.20} = 4 or {ae.20} = 5",
+                    title: "What specific academic issues do your discuss with your peers?"
+                },
+                {
+                    name: "discuss2",
+                    type: "text",
+                    visibleIf: "{ae.21} = 4 or {ae.21} = 5",
+                    title: "What specific career issues do your discuss with your peers?"
+                },
+                {
+                    name: "discuss3",
+                    type: "text",
+                    visibleIf: "{ae.22} = 4 or {ae.22} = 5",
+                    title: "What specific social issues do your discuss with your peers?"
+                },
+                {
+                    name: "discuss4",
+                    type: "text",
+                    visibleIf: "{ae.23} = 4 or {ae.23} = 5",
+                    title: "What specific cultural issues do your discuss with your peers?"
+                }
+            ]
+        },
 
 
                         {
@@ -1880,14 +2129,17 @@ export default {
                                     items: [
                                         {
                                             name: "firstYearGPA",
+                                            inputType: "Number",
                                             title: "Not applicable because this is my first year at this institution (write N/A in the box on the right)"
                                         },
                                         {
                                             name: "cumulativeGPA",
+                                            inputType: "number",
                                             title: "Cumulative GPA"
                                         },
                                         {
                                             name: "maxGPA",
+                                            inputType: "number",
                                             title: "On a system where the maximum GPA is"
                                         }
                                     ]
@@ -2165,6 +2417,63 @@ export default {
                                         }
                                     ]
                                 },
+                                {
+                                    type: "dropdown",
+                                    name: "houseNum",
+                                    choices: [
+                                        {
+                                            value: "1",
+                                            text: "1"
+                                        },
+
+                                        {
+                                            value: "2",
+                                            text: "2",
+                                        },
+
+                                        {
+                                            value: "3",
+                                            text: "3"
+                                        },
+
+                                        {
+                                            value: "4",
+                                            text: "4"
+                                        },
+                                        {
+                                            value: "5",
+                                            text: "5"
+                                        },
+                                        {
+                                            value: "6",
+                                            text: "6"
+                                        },
+                                        {
+                                            value: "7",
+                                            text: "7"
+                                        },
+                                        {
+                                            value: "8",
+                                            text: "8"
+                                        },
+                                        {
+                                            value: "9",
+                                            text: "9"
+                                        },
+                                        {
+                                            value: "10",
+                                            text: "10"
+                                        },
+                                        {
+                                            value: "10+",
+                                            text: "10+"
+                                        }
+
+
+
+                                        ]
+
+                                }
                             ],
                         }]
                 },
@@ -2329,27 +2638,10 @@ export default {
                                     ]
                                 },
 
-                                {
-                                    type: "text",
-                                    name: "highschool2",
-                                    title: "What is the name of your high school?",
-                                    visibleIf: "{highschool1} = '1'",
-                                    isRequired: true,
-                                    inputType: "text"
-                                },
-
-                                {
-                                    type: "text",
-                                    name: "highschool3",
-                                    title: "What is the zip code of the town you attended your high school?",
-                                    visibleIf: "{highschool1} = '1'",
-                                    isRequired: true,
-                                    inputType: "number"
-                                },
 
                                 {
                                     type: "radiogroup",
-                                    name: "highschool4",
+                                    name: "highschool2",
                                     title: "Were you involved in out-of-class activities in high school?",
                                     isRequired: true,
                                     choices: [
@@ -2367,9 +2659,9 @@ export default {
 
                                 {
                                     type: "dropdown",
-                                    name: "highschool5",
+                                    name: "highschool3",
                                     title: "How many out-of-class activities were you involved in during your last year of high school?",
-                                    visibleIf:"{highschool4} = '1'",
+                                    visibleIf:"{highschool2} = '1'",
                                     isRequired: true,
                                     choices: [
                                         {
@@ -2422,9 +2714,9 @@ export default {
 
                                 {
                                     type: "radiogroup",
-                                    name: "highschool6",
+                                    name: "highschool4",
                                     title: "How actively did you participate in out-of-class activities in high school?",
-                                    visibleIf: "{highschool4} = '1'",
+                                    visibleIf: "{highschool2} = '1'",
                                     isRequired: true,
                                     choices: [
                                         {
@@ -2435,6 +2727,7 @@ export default {
                                             value: "2",
                                             text: "Minimally active"
                                         },
+
                                         {
                                             value: "3",
                                             text: "Moderately active"
@@ -2504,22 +2797,6 @@ export default {
                         }]
                 },
 
-                {
-                    name: "page17",
-                    elements: [
-                        {
-                            type: "panel",
-                            name: "drawingPanel",
-                            elements: [
-                                {
-                                    type: "text",
-                                    name: "contact6",
-                                    title: "If you want to enter into the drawing for the gift card, please add your email address.",
-                                    inputType: "text"
-                                },
-                            ],
-                        }]
-                },
 
 
 
