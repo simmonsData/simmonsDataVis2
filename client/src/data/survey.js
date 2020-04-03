@@ -2420,6 +2420,7 @@ export default {
                                 {
                                     type: "dropdown",
                                     name: "houseNum",
+                                    title: "How many people live in your household?",
                                     choices: [
                                         {
                                             value: "1",
