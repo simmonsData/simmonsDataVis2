@@ -92,7 +92,7 @@ export default {
                             otherText: "Other (please specify)."
                         },
                         {
-                            type: "radiogroup",
+                            type: 'checkbox',
                             name: "ethnicity",
                             title: "What is your race/ethnicity? (check all that apply.)",
                             isRequired: true,
