@@ -18,7 +18,7 @@ const url = process.env.MONGODB_URI || require('../config/config.js').db.uri;
 
         client
           .db("test")                                         // Which database to upload csv data to
-          .collection("students2")                                   // Which collection in database to upload csv data to
+          .collection("students")                                   // Which collection in database to upload csv data to
           .insertMany(csvData, (err, res) => {
             if (err) 
               throw err;
