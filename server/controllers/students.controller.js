@@ -81,8 +81,8 @@ exports.register = (req, res) => {
     if(!isValid){
         return res.status(400).json(errors);
     }
-    const studentEmail = req.body.email;
-    Student.findOne({email: studentEmail}, (err, student) => {
+    const studentEmail = req.body.loginEmail;
+    Student.findOne({loginEmail: studentEmail}, (err, student) => {
         if(err){
             return res.status(400).send(err);          
         }
@@ -91,19 +91,20 @@ exports.register = (req, res) => {
             if(student === null){
                 console.log("Creating new student");
                 const newStudent = new Student({
-                    email: req.body.email,
-                    password: req.body.password
+                    loginEmail: req.body.loginEmail,
+                    loginPassword: req.body.loginPassword,
+                    loginRole: "Student"
                 });
 
                 // Hashing password before saving into the database
                 bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newStudent.password, salt, (err, hash) => {
+                    bcrypt.hash(newStudent.loginPassword, salt, (err, hash) => {
                         if (err){
                             //console.log(err);
                             throw err;
                         }
                         console.log("hash: " + hash);
-                        newStudent.password = hash;
+                        newStudent.loginPassword = hash;
                         newStudent
                             .save()
                             .then( (student) => {
@@ -136,10 +137,10 @@ exports.login = (req, res) => {
     if(!isValid){
         return res.status(400).json(errors);
     }
-    const studentEmail = req.body.email;
-    const studentPassword = req.body.password;
+    const studentEmail = req.body.loginEmail;
+    const studentPassword = req.body.loginPassword;
    
-    Student.findOne({email: studentEmail}, (err, student) => {
+    Student.findOne({loginEmail: studentEmail}, (err, student) => {
         if(err){
             return res.status(400).send(err); 
         }
@@ -152,7 +153,7 @@ exports.login = (req, res) => {
             // If match found, returns student id and email
             else if(student !== null){
                 // console.log("comparing passwords");
-                bcrypt.compare(studentPassword, student.password).then(passwordMatch => {
+                bcrypt.compare(studentPassword, student.loginPassword).then(passwordMatch => {
                     if(passwordMatch){
                         const id = student.id;
                         // emailSystem.send(id, studentEmail);
@@ -183,6 +184,17 @@ exports.getByCriteria = (req, res) => {
             //console.log(queryObject);
         }
     }
+    Student.find(querySurveyObject, (err, students) =>{
+        if(err){
+            console.log(err);
+            res.status(400).send(err);
+        }
+        else{
+            console.log(students);
+            res.status(200);
+            res.json(students);
+        }
+    })
     Promise.all([
         Student.find(querySurveyObject),
         Student.find(queryNotSurveyObject)
