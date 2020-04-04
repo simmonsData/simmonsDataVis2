@@ -40,7 +40,7 @@ module.exports.init = function() {
     require("./passport")(passport);
 
     app.use('/api/students', studentsRouter);
-    app.use('/api/admin', adminRouter);
+   // app.use('/api/admin', adminRouter);
 
     // If web app is in production, serves build folder
     if(process.env.NODE_ENV === 'production'){
