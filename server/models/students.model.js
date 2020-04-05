@@ -10,8 +10,8 @@ const studentSchema = new Schema({
     survey: {
         demoAge: {type: String},
         gender: {type: String},
-        //genderOther: {type: String},
-        ethnicity: {type: String},
+       //genderOther: {type: String},
+        ethnicity: {type: Array, default: []},
         //ethnicityOther: {type: String},
         institution: {type: String},
         enrollStatus: {type: String},
@@ -25,7 +25,7 @@ const studentSchema = new Schema({
         intendToSwitch: {type: String, default: ''},
         intendedMajor: {type: String, default: ''},
         involvedInActivity: {type: String, default: ''},
-        intendedActivity: {type: String, default: ''},
+        intendedActivity: {type: Array, default: []},
         act1Spec: {type: String},
         act2Spec: {type: String},
         act3Spec: {type: String},
@@ -46,8 +46,6 @@ const studentSchema = new Schema({
         act18Spec: {type: String},
         act19Spec: {type: String},
         act20Spec: {type: String},
-
-
 
         no_OCA_1to14: {
             //default: [],
@@ -145,7 +143,7 @@ const studentSchema = new Schema({
         houseNum: {type: String},
         usCitizen: {type: String},
         military: {type: String},
-        disability: {type: String},
+        disability: {type: Array, default: []},
         //disability_other: {type: String},
         lgbt: {type: String},
         highschool1: {type: String, default: ''},
