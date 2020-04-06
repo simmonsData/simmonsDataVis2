@@ -20,7 +20,8 @@ exports.list = (req, res) => {
         res.status(200);
         res.json(student);
       }
-    });
+    })
+    .lean();
 };
 
 // STUDENT ID ROUTES
@@ -184,7 +185,7 @@ exports.getByCriteria = (req, res) => {
             //console.log(queryObject);
         }
     }
-    Student.find(querySurveyObject, (err, students) =>{
+    Student.find(querySurveyObject, (err, students) => {
         if(err){
             console.log(err);
             res.status(400).send(err);
@@ -195,22 +196,23 @@ exports.getByCriteria = (req, res) => {
             res.json(students);
         }
     })
-    Promise.all([
-        Student.find(querySurveyObject),
-        Student.find(queryNotSurveyObject)
-    ])
-        .then(student => {
-            if(student.length === 0){
-                res.status(200).send({studentNotFound: "No students found"});
-            }
-            else{
-                res.status(200).send(student);
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(400).send(err);
-        });
+    .lean();
+    // Promise.all([
+    //     Student.find(querySurveyObject),
+    //     Student.find(queryNotSurveyObject)
+    // ])
+    //     .then(student => {
+    //         if(student.length === 0){
+    //             res.status(200).send({studentNotFound: "No students found"});
+    //         }
+    //         else{
+    //             res.status(200).send(student);
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //         res.status(400).send(err);
+    //     });
 }
 
 // ROUTER.PARAM MIDDLEWARE
@@ -251,7 +253,7 @@ exports.studentsByDataSet = (req,res) => {
         console.log(data);
         //console.log(" options chosen: " + data);
         if (err) {
-            res.status(400).send(err);
+            return res.status(400).send(err);
         }
        /*
         If we decide to switch to dummy data here, rather than populate the Database:
@@ -295,7 +297,7 @@ exports.studentsByDataSet = (req,res) => {
             }
             if(studentsMatch.length === 0){
                 //console.log("No students fit search criteria");
-                res.json(studentsMatch);
+                return res.json(studentsMatch);
             }
 
             if (Array.isArray(studentsMatch) && studentsMatch.length) {
@@ -648,5 +650,6 @@ exports.studentsByDataSet = (req,res) => {
         else {
             //
         }
-    });
+    })
+    // .lean();
 }
