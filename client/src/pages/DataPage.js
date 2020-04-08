@@ -246,17 +246,20 @@ class DataPage extends Component {
                 /* this.setState({bgGender: 0});*/
             }
             if (this.state.raceEthnicity != -1) { //swap to !=
+                const stateEthnicity = Number(this.state.raceEthnicity);                
                 filteredData = filteredData.filter(entry => {
                     this.setState({bgRace: Number(this.state.raceEthnicity)});
-                    return (entry.survey.ethnicity === this.state.raceEthnicity);
+                    return (entry.survey.ethnicity[0] === stateEthnicity);
                 })
+                console.log(filteredData.length);
             } else if (this.state.raceEthnicity == -1) {
                 this.setState({bgRace: 0});
             }
             if (this.state.major != -1) { //swap to !=
                 filteredData = filteredData.filter(entry => {
+                    const stateMajor = Number(this.state.major);
                     this.setState({bgMajor: Number(this.state.major)});
-                    return (entry.survey.major === this.state.major);
+                    return (entry.survey.major === stateMajor);
                 })
             } else if (this.state.major == -1) {
                 this.setState({bgMajor: 0});
@@ -285,9 +288,10 @@ class DataPage extends Component {
                 });
                 this.onComplete([this.state.bgGender, this.state.bgRace, this.state.bgMajor]);
                 console.log(filteredData);
-                let sumE2 = 0, sumE3 = 0, sumE4 = 0, sumE5 = 0, sumE6 = 0, sumE7 = 0, sumE8 = 0, sumE9 = 0;
+                let sumE1 = 0, sumE2 = 0, sumE3 = 0, sumE4 = 0, sumE5 = 0, sumE6 = 0, sumE7 = 0, sumE8 = 0, sumE9 = 0;
                 let newDataSet = [];
                 for (let entry = 0, len = size; entry < len; entry++) {
+                    sumE1 += Number(filteredData[entry].survey.topOut.topOut1);  // E1: "Intellectual Development"
                     sumE2 += Number(filteredData[entry].survey.topOut.topOut15); // E2: "Practical Ingenuity"
                     sumE3 += Number(filteredData[entry].survey.topOut.topOut16); // E3: "Creativity"
                     sumE4 += Number(filteredData[entry].survey.topOut.topOut9);  // E4: "Communication"
@@ -302,6 +306,7 @@ class DataPage extends Component {
                         gender: this.state.gender,
                         raceEthnicity: this.state.raceEthnicity,
                         major: this.state.major,
+                        E1: (sumE1 / size) / 4,
                         E2: (sumE2 / size) / 4,
                         E3: (sumE3 / size) / 4,
                         E4: (sumE4 / size) / 4,
@@ -382,6 +387,7 @@ class DataPage extends Component {
                         gender: res.data.survey.gender,
                         raceEthnicity: res.data.survey.ethnicity,
                         major: res.data.survey.major,
+                        E1: res.data.survey.topOut.topOut1 / 4,
                         E2: res.data.survey.topOut.topOut15 / 4,
                         E3: res.data.survey.topOut.topOut16 / 4,
                         E4: res.data.survey.topOut.topOut9 / 4,
