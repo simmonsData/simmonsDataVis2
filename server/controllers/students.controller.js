@@ -218,8 +218,12 @@ exports.studentsByDataSet = (req,res) => {
         skill17 = [], skill18 = [], skill19 = [], skill20 = [];
     Student.find({}, (err, student) => {
         console.log(student.length);
-        let data = req.body.arr;
+        //let data = req.body.all;
+        let data = req.body;
+        console.log("datagoesbelow");
+        console.log(req.body); //{options: [ '3', '5', '13' ]}
         console.log(data);
+        console.log(data.options[0]);
         //console.log(" options chosen: " + data);
         if (err) {
             res.status(400).send(err);
@@ -237,39 +241,53 @@ exports.studentsByDataSet = (req,res) => {
         else if (student.length) {
             //console.log(student.length);
             let studentsMatch = [];
-            for (let b = 0, v = student.length; b < v; b++) {
-                if ( Number(data[0]) !== 0 && Number(data[1]) !== 0 && Number(data[2]) !== 0 && student[b].survey.gender === data[0] && student[b].survey.raceEthnicity === data [1] && student[b].survey.major === data [2]) {
+            for (let b = 0, v = student.length; b < v; b++) {/*
+                console.log("Gender Match v1: " + (student[b].survey.gender == Number(data.options[0])));
+                console.log("Ethnicity Match v1: " + (Number(student[b].survey.ethnicity[0]) == Number(data.options[1])));
+                console.log("Major Match v1: " + (student[b].survey.major == Number(data.options[2])));*/
+                //console.log("Ethnicity length" + student[b].survey.ethnicity.length);
+                //console.log(Object.values(student[b].survey.ethnicity));
+                //console.log(Array.isArray(student[b].survey.ethnicity));
+
+                //console.log("gender is" + (data.options[0]));
+                /*console.log("single" +data.options[0] != 0);
+                console.log("double" + data.options[0] !== 0);*/
+                //console.log(data.options[3] === student[b].survey.ethnicity.(data.options[2]));
+                if ((data.options[0]) !== 0 && (data.options[1]) !== 0 && (data.options[2]) !== 0 && student[b].survey.gender == Number(data.options[0]) && student[b].survey.ethnicity.includes(Number(data.options [1])) && student[b].survey.major == Number(data.options [2])) {
                     studentsMatch.push(student[b]);
+                    //console.log("matchingstudent");
                 }
-                else if (student[b].survey.gender === data[0] && Number(data[0])!== 0 && Number(data[1]) === 0 && Number(data[2]) === 0) {
+                else if (student[b].survey.gender === data.options[0] && Number(data.options[0])!== 0 && Number(data.options[1]) === 0 && Number(data.options[2]) === 0) {
                     //Sort by Gender
                     studentsMatch.push(student[b]);
-                } else if (student[b].survey.raceEthnicity === data [1] && Number(data[1]) !== 0 && Number(data[0]) === 0 && Number(data[2]) === 0) {
+                } else if (student[b].survey.ethnicity === data.options [1] && Number(data.options[1]) !== 0 && Number(data.options[0]) === 0 && Number(data.options[2]) === 0) {
                     //Sort by Race
                     studentsMatch.push(student[b]);
-                } else if (student[b].survey.major === data [2] && Number(data[2]) !== 0 && Number(data[0]) === 0 && Number(data[1]) === 0) {
+                } else if (student[b].survey.major === data.options [2] && Number(data.options[2]) !== 0 && Number(data.options[0]) === 0 && Number(data.options[1]) === 0) {
                     //Sort by Major
                     studentsMatch.push(student[b]);
-                } else if (Number(data[0]) !== 0 && Number(data [1]) !== 0 && student[b].survey.gender === data[0] && student[b].survey.raceEthnicity === data[1]) {
+                } else if (Number(data.options[0]) !== 0 && Number(data.options [1]) !== 0 && student[b].survey.gender === data.options[0] && student[b].survey.ethnicity === data.options[1]) {
                     //Sort by Gender and Race
                     studentsMatch.push(student[b]);
-                } else if (Number(data[0]) !== 0 && Number(data [2]) !== 0 && student[b].survey.gender === data[0] && student[b].survey.major ===data[2]) {
+                } else if (Number(data.options[0]) !== 0 && Number(data.options [2]) !== 0 && student[b].survey.gender === data.options[0] && student[b].survey.major ===data.options[2]) {
                     //Sort by Gender and Major
                     studentsMatch.push(student[b]);
-                } else if (Number(data[1]) !== 0 && Number(data [2]) !== 0 && student[b].survey.raceEthnicity === data[1] && student[b].survey.major === data[2]) {
+                } else if (Number(data.options[1]) !== 0 && Number(data.options [2]) !== 0 && student[b].survey.ethnicity === data.options[1] && student[b].survey.major === data.options[2]) {
                     //Sort by Gender and Race
                     studentsMatch.push(student[b]);
-                } else if (Number(data[0]) === 0 && Number(data[1]) === 0 && Number(data[2]) === 0) {
+                } else if (Number(data.options[0]) === 0 && Number(data.options[1]) === 0 && Number(data.options[2]) === 0) {
                     //NO sort specified (ALL students in the database)
                     studentsMatch.push(student[b]);
                 }
             }
             if(studentsMatch.length === 0){
-                //console.log("No students fit search criteria");
+                console.log("No students fit search criteria");
                 res.json(studentsMatch);
             }
+            console.log(studentsMatch.length);
 
             if (Array.isArray(studentsMatch) && studentsMatch.length) {
+                console.log("studentsmatch is array");
                 function assign(skillNum, len, activity) {
                     /* console.log("////////////" + activity);
                      console.log("Number of students with " + activity + ": " + len);
@@ -283,12 +301,16 @@ exports.studentsByDataSet = (req,res) => {
                     //console.log("////////////\n")
                 }
                 for (let sel = 0, selLength = studentsMatch.length; sel < selLength; sel++) {
-                    let outComes = [studentsMatch[sel].survey.E2, studentsMatch[sel].survey.E3,
-                        studentsMatch[sel].survey.E4, studentsMatch[sel].survey.E5, studentsMatch[sel].survey.E6,
-                        studentsMatch[sel].survey.E7, studentsMatch[sel].survey.E8, studentsMatch[sel].survey.E9];
-                    if (Array.isArray(studentsMatch[sel].survey.activities) && studentsMatch[sel].survey.activities.length >= 1 && studentsMatch[sel].survey.activities && outComes.length === 8) {
+                    //console.log([studentsMatch[sel].survey.top]);
+                    let outComes = [studentsMatch[sel].survey.topOut.topOut1, studentsMatch[sel].survey.topOut.topOut16, studentsMatch[sel].survey.topOut.topOut14,
+                        studentsMatch[sel].survey.topOut.topOut9, studentsMatch[sel].survey.topOut.topOut19, studentsMatch[sel].survey.topOut.topOut9,
+                        studentsMatch[sel].survey.topOut.topOut18, studentsMatch[sel].survey.topOut.topOut6, studentsMatch[sel].survey.topOut.topOut17];
+                    if (studentsMatch[sel].survey.topOut.length !== 0 && outComes.length === 9) {
                         //console.log("//////New Student//////");
-                        let arrNum = studentsMatch[sel].survey.activities.map(Number);
+                        if((studentsMatch[sel].survey.top === 1)){
+                            console.log("top outcome 1 ");
+                        }
+                        let arrNum = studentsMatch[sel].survey.all.map(Number);
                         //caused errors if the order of activities was incorrect on survey
                         arrNum.sort(function (a, b) {
                             return a - b
@@ -302,8 +324,9 @@ exports.studentsByDataSet = (req,res) => {
                         console.log(outComes); //[2,4,1,2,2,4,1,1]
                         console.log(studentsMatch[sel]._id);
                         console.log("//////End Student//////\n");*/
-                        for (let i = 0; i < studentsMatch[sel].survey.activities.length; i++) {
+                        for (let i = 0; i < studentsMatch[sel].survey.all.length; i++) {
                             if (strArr[i] === "1") {
+                                //console.log("students with topOutCome 1" + len1);
                                 len1++;
                                 skill1.push(outComes);
                                 if (Array.isArray(skill1) && skill1.length) {
@@ -614,7 +637,7 @@ exports.studentsByDataSet = (req,res) => {
             }
             act.push(studentsMatch.length);
             console.log(act);
-            return res.json(act);
+            //return res.json(act);
         }
         else {
             //

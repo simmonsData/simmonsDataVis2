@@ -11,7 +11,7 @@ const studentSchema = new Schema({
         demoAge: {type: String},
         gender: {type: String},
         //genderOther: {type: String},
-        ethnicity: {type: String},
+        ethnicity: {type: Array},
         //ethnicityOther: {type: String},
         institution: {type: String},
         enrollStatus: {type: String},
