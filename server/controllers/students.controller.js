@@ -178,17 +178,21 @@ exports.getByCriteria = (req, res) => {
     // Looks inside req.body for user selected criteria and stores it inside queryObject
     for(let key in req.body) {
         if(req.body.hasOwnProperty(key)){
-            const item = req.body[key];
-            const newKey = "survey." + key;
+            let item = req.body[key];
+            let newKey = "survey." + key;
             querySurveyObject[newKey] = item;
             queryNotSurveyObject[key] = item;
             //console.log(queryObject);
         }
     }
-    Student.find(querySurveyObject, (err, students) => {
+    Student.find({"survey.demoAge" : 20  }, (err, students) => {
         if(err){
             console.log(err);
             res.status(400).send(err);
+        }
+        else if (students.length === 0){
+            res.status(200);
+            res.json({studentNotFound: "Student not found"});
         }
         else{
             console.log(students);
@@ -196,7 +200,6 @@ exports.getByCriteria = (req, res) => {
             res.json(students);
         }
     })
-    .lean();
     // Promise.all([
     //     Student.find(querySurveyObject),
     //     Student.find(queryNotSurveyObject)
