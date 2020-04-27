@@ -350,7 +350,7 @@ class DataPage extends Component {
     removeDataSet = () => {
         /* update: length !==1..... you shouldn't be able to remove the student's spider chart.
         A student would have to refresh the page to see their Spider Chart.*/
-        if (this.state.dataSets.length > 1) {
+        if (this.state.dataSets.length >= 1) {
             /*Will eventually change so upon removal of an option, it loads the most recently added
             data in the Bar Graph, rather than the default "all users" criteria.*/
             let _thisRef = this;
