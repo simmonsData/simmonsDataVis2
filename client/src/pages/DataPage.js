@@ -633,6 +633,9 @@ class DataPage extends Component {
                 <SpiderChart
                     dataSets={this.state.dataSets}
                 />
+
+                 <Divider hidden/>
+                 
                 <div className="bar">
                     <Menu inverted color='grey' className="menu">
                         <Menu.Menu className='menu' fluid>

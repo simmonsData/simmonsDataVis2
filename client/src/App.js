@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import EmailEntry from './pages/EmailEntry'
 import adminEntry from './pages/adminEntry'
 import adminPanel from './pages/adminPanel'
-import Homepage from './pages/Homepage'
 
 import SurveyPage from './pages/SurveyPage'
 import DataPage from './pages/DataPage'
@@ -56,15 +55,16 @@ function App() {
               <main>
 
                   <Switch> 
-                    <Route exact path="/homepage/:userId" render={(props) => <Homepage {...props} getId={getIdFromUrl()} />}/>
+                    <Route exact path="/dashboard/" render={(props) => <Dashboard {...props} getId={getIdFromUrl()} />}/>
+                    {/* <Route exact path="/dashboard/:userId" render={(props) => <Dashboard {...props} getId={getIdFromUrl()} />}/> */}
                     <Route exact path="/survey/" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
-                    <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} />
-                    <Route exact path="/data/:userId" render={(props) => <DataPage {...props} getId={getIdFromUrl()} />}/>
+                    {/* <Route exact path="/survey/:userId" render={(props) => <SurveyPage {...props} getId={getIdFromUrl()} />} /> */}
+                    <Route exact path="/data/" render={(props) => <DataPage {...props} getId={getIdFromUrl()} />}/>
+                    {/* <Route exact path="/data/:userId" render={(props) => <DataPage {...props} getId={getIdFromUrl()} />}/> */}
                     <Route exact path="/admin" component={adminEntry} />
                     <Route exact path="/adminPanel" component={adminPanel} onEnter = {requireAuth}/>
                     <Route exact path="/statistics" component={StatisticsPage} onEnter = {requireAuth}/>
                     <Route exact path="/access" component={EmailEntry}></Route>
-                    <Route exact path="/dashboard" component={Dashboard}></Route>
                     <Route component={Home} /> 
                   </Switch>
 

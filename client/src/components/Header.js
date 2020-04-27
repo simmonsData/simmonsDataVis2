@@ -14,10 +14,10 @@ function Header () {
       <Grid id="headerMenu" columns={3} verticalAlign="middle">
         <Grid.Row>
           <Grid.Column width="3">
-              <Image id="logo" src={Logo}></Image>
+              <Image id="logo" src={Logo} as={Link} to='/'></Image>
           </Grid.Column>
 
-          <Grid.Column width="1">
+          <Grid.Column width="5">
             <Button 
               className="menuText" 
               name="home"
@@ -27,17 +27,19 @@ function Header () {
               >
                 Home
             </Button>
-          </Grid.Column>
-          <Grid.Column width="2">
             <a className="menuText"  href='https://faculty.eng.ufl.edu/simmons-research-lab/about/'>About Us</a> 
+            <Button className="menuText" name="dashboard" as={Link} to='/dashboard/'>Dashboard</Button>
           </Grid.Column>
-          <Grid.Column width="2">
-            <Button className="menuText" name="dashboard" as={Link} to='/dashboard'>Dashboard</Button>
-          </Grid.Column>
+          {/* <Grid.Column width="2">
+            <a className="menuText"  href='https://faculty.eng.ufl.edu/simmons-research-lab/about/'>About Us</a> 
+          {/* </Grid.Column>
+          <Grid.Column width="2"> 
+            <Button className="menuText" name="dashboard" as={Link} to='/dashboard/'>Dashboard</Button>
+           </Grid.Column> */}
 
           <Grid.Column width="3"/>
 
-          <Grid.Column id="rightColumn" width="1">
+          <Grid.Column id="rightColumn" width="3">
             <Button className="menuText loginReg" as={Link} to='/access'>Login/Register</Button>
             <Menu.Item as={Link} to='/survey/'>
               <Button id="surveyButtonMenu">Take Survey</Button>
