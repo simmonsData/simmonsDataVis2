@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Pages
@@ -21,8 +21,8 @@ import './styles/App.css'
 
 function App() {
 
-  const [userID, setUserID] =   useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //const [userID, setUserID] =   useState('');
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function adminLoggedIn() {
     // ...
@@ -34,13 +34,6 @@ function App() {
         pathname: '/admin' // not working yet to prevent access of other pages
       })
    }
-  }
-
-  function userIDUpdate() {
-    setUserID(userID);
-  }
-  function loggedInUpdate() {
-    setIsLoggedIn(isLoggedIn);
   }
 
   function getIdFromUrl() {

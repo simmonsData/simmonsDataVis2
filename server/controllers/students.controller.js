@@ -20,7 +20,8 @@ exports.list = (req, res) => {
         res.status(200);
         res.json(student);
       }
-    });
+    })
+    .lean();
 };
 
 // STUDENT ID ROUTES
@@ -81,8 +82,8 @@ exports.register = (req, res) => {
     if(!isValid){
         return res.status(400).json(errors);
     }
-    const studentEmail = req.body.email;
-    Student.findOne({email: studentEmail}, (err, student) => {
+    const studentEmail = req.body.loginEmail;
+    Student.findOne({loginEmail: studentEmail}, (err, student) => {
         if(err){
             return res.status(400).send(err);          
         }
@@ -91,19 +92,20 @@ exports.register = (req, res) => {
             if(student === null){
                 console.log("Creating new student");
                 const newStudent = new Student({
-                    email: req.body.email,
-                    password: req.body.password
+                    loginEmail: req.body.loginEmail,
+                    loginPassword: req.body.loginPassword,
+                    loginRole: "Student"
                 });
 
                 // Hashing password before saving into the database
                 bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newStudent.password, salt, (err, hash) => {
+                    bcrypt.hash(newStudent.loginPassword, salt, (err, hash) => {
                         if (err){
                             //console.log(err);
                             throw err;
                         }
                         console.log("hash: " + hash);
-                        newStudent.password = hash;
+                        newStudent.loginPassword = hash;
                         newStudent
                             .save()
                             .then( (student) => {
@@ -124,22 +126,7 @@ exports.register = (req, res) => {
                 return res.status(400).json({emailFound: "Email already created"}); 
             }
         }
-    });
-    
-    // // Saving email into database
-    // newStudent.save( (err, savedStudent) => {
-    //     if(err) {
-    //         console.log(err);
-    //         return res.status(400).send(err);
-    //     } 
-    //     // If match found, returns student id and email with link to survey is sent to given email 
-    //     else {
-    //         const id = savedStudent.id;
-    //         emailSystem.send(id, studentEmail);
-    //         return res.json(id);
-    //     }
-    // });
-                
+    });         
         
 }
 
@@ -151,10 +138,10 @@ exports.login = (req, res) => {
     if(!isValid){
         return res.status(400).json(errors);
     }
-    const studentEmail = req.body.email;
-    const studentPassword = req.body.password;
+    const studentEmail = req.body.loginEmail;
+    const studentPassword = req.body.loginPassword;
    
-    Student.findOne({email: studentEmail}, (err, student) => {
+    Student.findOne({loginEmail: studentEmail}, (err, student) => {
         if(err){
             return res.status(400).send(err); 
         }
@@ -167,7 +154,7 @@ exports.login = (req, res) => {
             // If match found, returns student id and email
             else if(student !== null){
                 // console.log("comparing passwords");
-                bcrypt.compare(studentPassword, student.password).then(passwordMatch => {
+                bcrypt.compare(studentPassword, student.loginPassword).then(passwordMatch => {
                     if(passwordMatch){
                         const id = student.id;
                         // emailSystem.send(id, studentEmail);
@@ -182,6 +169,53 @@ exports.login = (req, res) => {
             }
         }
     })
+}
+
+// Returns students that match the criteria passed into req.body
+exports.getByCriteria = (req, res) => {
+    let querySurveyObject = {};
+    let queryNotSurveyObject = {};
+    // Looks inside req.body for user selected criteria and stores it inside queryObject
+    for(let key in req.body) {
+        if(req.body.hasOwnProperty(key)){
+            let item = req.body[key];
+            let newKey = "survey." + key;
+            querySurveyObject[newKey] = item;
+            queryNotSurveyObject[key] = item;
+            //console.log(queryObject);
+        }
+    }
+    Student.find({"survey.demoAge" : 20  }, (err, students) => {
+        if(err){
+            console.log(err);
+            res.status(400).send(err);
+        }
+        else if (students.length === 0){
+            res.status(200);
+            res.json({studentNotFound: "Student not found"});
+        }
+        else{
+            console.log(students);
+            res.status(200);
+            res.json(students);
+        }
+    })
+    // Promise.all([
+    //     Student.find(querySurveyObject),
+    //     Student.find(queryNotSurveyObject)
+    // ])
+    //     .then(student => {
+    //         if(student.length === 0){
+    //             res.status(200).send({studentNotFound: "No students found"});
+    //         }
+    //         else{
+    //             res.status(200).send(student);
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //         res.status(400).send(err);
+    //     });
 }
 
 // ROUTER.PARAM MIDDLEWARE
@@ -222,7 +256,7 @@ exports.studentsByDataSet = (req,res) => {
         console.log(data);
         //console.log(" options chosen: " + data);
         if (err) {
-            res.status(400).send(err);
+            return res.status(400).send(err);
         }
        /*
         If we decide to switch to dummy data here, rather than populate the Database:
@@ -266,7 +300,7 @@ exports.studentsByDataSet = (req,res) => {
             }
             if(studentsMatch.length === 0){
                 //console.log("No students fit search criteria");
-                res.json(studentsMatch);
+                return res.json(studentsMatch);
             }
 
             if (Array.isArray(studentsMatch) && studentsMatch.length) {
@@ -619,5 +653,6 @@ exports.studentsByDataSet = (req,res) => {
         else {
             //
         }
-    });
+    })
+    // .lean();
 }

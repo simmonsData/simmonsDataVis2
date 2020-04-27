@@ -4,7 +4,7 @@ import SpiderChart from '../components/SpiderChart'
 import '../styles/DataPage.css'
 import axios from 'axios';
 import {ResponsiveBar} from "@nivo/bar";
-import data from '../data/data.js';
+//import data from '../data/data.js';
 
 class DataPage extends Component {
     state = {
@@ -227,35 +227,45 @@ class DataPage extends Component {
         let colors = ["black", "aqua", "red", "yellow", "blue", "pink", "grey", "brown", "orange", "purple"];
         let filteredData = [];
         axios.get(
-            '/api/students/'
+            '/api/students/',
+            // {
+            //     gender: this.state.gender,
+            //     ethnicity: this.state.ethnicity,
+            //     major: this.state.major
+            // }
         ).then(res => {
             filteredData = res.data;
             if (this.state.gender != -1) { //swap to !=
+                const stateGender = Number(this.state.gender);
                 filteredData = filteredData.filter(entry => {
                     this.setState({bgGender: Number(this.state.gender)});
-                    return (entry.survey.gender === this.state.gender);
+                    return (entry.survey.gender === stateGender);
                 })
             } else if (this.state.gender == -1) {
                 this.setState({bgGender: 0});
                 /* this.setState({bgGender: 0});*/
             }
             if (this.state.raceEthnicity != -1) { //swap to !=
+                const stateEthnicity = Number(this.state.raceEthnicity);                
                 filteredData = filteredData.filter(entry => {
                     this.setState({bgRace: Number(this.state.raceEthnicity)});
-                    return (entry.survey.raceEthnicity === this.state.raceEthnicity);
+                    return (entry.survey.ethnicity[0] === stateEthnicity);
                 })
+                console.log(filteredData.length);
             } else if (this.state.raceEthnicity == -1) {
                 this.setState({bgRace: 0});
             }
             if (this.state.major != -1) { //swap to !=
                 filteredData = filteredData.filter(entry => {
+                    const stateMajor = Number(this.state.major);
                     this.setState({bgMajor: Number(this.state.major)});
-                    return (entry.survey.major === this.state.major);
+                    return (entry.survey.major === stateMajor);
                 })
-            } else if (this.state.major === -1) {
+            } else if (this.state.major == -1) {
                 this.setState({bgMajor: 0});
             }
-            var size = filteredData.length;
+            let size = filteredData.length;
+            console.log("size: " + size);
             this.setState({
                 numObservations: size
             });
@@ -278,23 +288,25 @@ class DataPage extends Component {
                 });
                 this.onComplete([this.state.bgGender, this.state.bgRace, this.state.bgMajor]);
                 console.log(filteredData);
-                let sumE2 = 0, sumE3 = 0, sumE4 = 0, sumE5 = 0, sumE6 = 0, sumE7 = 0, sumE8 = 0, sumE9 = 0;
+                let sumE1 = 0, sumE2 = 0, sumE3 = 0, sumE4 = 0, sumE5 = 0, sumE6 = 0, sumE7 = 0, sumE8 = 0, sumE9 = 0;
                 let newDataSet = [];
                 for (let entry = 0, len = size; entry < len; entry++) {
-                    sumE2 += filteredData[entry].survey.E2;
-                    sumE3 += filteredData[entry].survey.E3;
-                    sumE4 += filteredData[entry].survey.E4;
-                    sumE5 += filteredData[entry].survey.E5;
-                    sumE6 += filteredData[entry].survey.E6;
-                    sumE7 += filteredData[entry].survey.E7;
-                    sumE8 += filteredData[entry].survey.E8;
-                    sumE9 += filteredData[entry].survey.E9;
+                    sumE1 += Number(filteredData[entry].survey.topOut.topOut1);  // E1: "Intellectual Development"
+                    sumE2 += Number(filteredData[entry].survey.topOut.topOut15); // E2: "Practical Ingenuity"
+                    sumE3 += Number(filteredData[entry].survey.topOut.topOut16); // E3: "Creativity"
+                    sumE4 += Number(filteredData[entry].survey.topOut.topOut9);  // E4: "Communication"
+                    sumE5 += Number(filteredData[entry].survey.topOut.topOut18); // E5: "Business & Management"
+                    sumE6 += Number(filteredData[entry].survey.topOut.topOut10); // E6: "Leadership"
+                    sumE7 += Number(filteredData[entry].survey.topOut.topOut19); // E7: "High Ethical Standards"
+                    sumE8 += Number(filteredData[entry].survey.topOut.topOut6);  // E8: "Professionalism"
+                    sumE9 += Number(filteredData[entry].survey.topOut.topOut17); // E9: "Dynamism, Agility, Resilience, and Flexibility" 
                 }
                 newDataSet = [{
                     data: {
                         gender: this.state.gender,
                         raceEthnicity: this.state.raceEthnicity,
                         major: this.state.major,
+                        E1: (sumE1 / size) / 4,
                         E2: (sumE2 / size) / 4,
                         E3: (sumE3 / size) / 4,
                         E4: (sumE4 / size) / 4,
@@ -338,7 +350,7 @@ class DataPage extends Component {
     removeDataSet = () => {
         /* update: length !==1..... you shouldn't be able to remove the student's spider chart.
         A student would have to refresh the page to see their Spider Chart.*/
-        if (this.state.dataSets.length > 1) {
+        if (this.state.dataSets.length >= 1) {
             /*Will eventually change so upon removal of an option, it loads the most recently added
             data in the Bar Graph, rather than the default "all users" criteria.*/
             let _thisRef = this;
@@ -373,16 +385,17 @@ class DataPage extends Component {
                 newDataSet = [{
                     data: {
                         gender: res.data.survey.gender,
-                        raceEthnicity: res.data.survey.raceEthnicity,
+                        raceEthnicity: res.data.survey.ethnicity,
                         major: res.data.survey.major,
-                        E2: res.data.survey.E2 / 4,
-                        E3: res.data.survey.E3 / 4,
-                        E4: res.data.survey.E4 / 4,
-                        E5: res.data.survey.E5 / 4,
-                        E6: res.data.survey.E6 / 4,
-                        E7: res.data.survey.E7 / 4,
-                        E8: res.data.survey.E8 / 4,
-                        E9: res.data.survey.E9 / 4,
+                        E1: res.data.survey.topOut.topOut1 / 4,
+                        E2: res.data.survey.topOut.topOut15 / 4,
+                        E3: res.data.survey.topOut.topOut16 / 4,
+                        E4: res.data.survey.topOut.topOut9 / 4,
+                        E5: res.data.survey.topOut.topOut18 / 4,
+                        E6: res.data.survey.topOut.topOut10 / 4,
+                        E7: res.data.survey.topOut.topOut19 / 4,
+                        E8: res.data.survey.topOut.topOut6 / 4,
+                        E9: res.data.survey.topOut.topOut17 / 4,
                     },
                     meta: {color: "green"}
                 }];
@@ -429,6 +442,8 @@ class DataPage extends Component {
                 let d = [];
                 let act = [];
                 this.setState({numObservations: res.data[res.data.length - 1]});
+                console.log(res);
+                console.log("numObservations: " + this.state.numObservations);
                 for (let i = 0, n = res.data.length - 1; i < n; i++) {
                     d.push([res.data[i][0], res.data[i][1][0]]);
                     this.state.x.push([res.data[i][0], res.data[i][1][0]]);
@@ -611,7 +626,7 @@ class DataPage extends Component {
                         <Grid.Column verticalAlign="center">
                             {this.state.popUp === true &&
                             <Button size='medium' color='yellow' onClick={this.closeModal} toggle={!this.popUp}>
-                                <Icon name='remove' color="black"/><b className="text">Warning: no Students Match the
+                                <Icon name='remove' color="black"/><b className="text">Warning: No Students Match the
                                 Criteria!</b>
                             </Button>
                             }
