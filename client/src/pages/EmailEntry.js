@@ -223,7 +223,7 @@ function EmailEntry(props) {
     } 
     else if (redirectingLogin) {
         return (
-            <Redirect to={'/homepage/' + userId}></Redirect>
+            <Redirect to={'/dashboard/' + userId}></Redirect>
         )
     }
     else {
