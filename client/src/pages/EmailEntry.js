@@ -145,6 +145,8 @@ function EmailEntry(props) {
             .then(function (response) {
                 // props.userLogged(response.data);
                 setRedirectingRegister(true);
+                sessionStorage.setItem('id', response.data);
+                sessionStorage.setItem('loggedIn', true);
             })
             .catch(function (error) {
                 if (error.response.data.emailFound) {
@@ -186,8 +188,8 @@ function EmailEntry(props) {
             console.log(response.data);
             setUserId(response.data);
             setRedirectingLogin(true);
-            // localStorage.setItem('id', response.data);
-            // localStorage.setItem('loggedIn', true);
+            sessionStorage.setItem('id', response.data);
+            sessionStorage.setItem('loggedIn', true);
         })
          .catch(function (error) {
             if(error.response.data.email){
