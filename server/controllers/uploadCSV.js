@@ -7,7 +7,7 @@ const url = process.env.MONGODB_URI || require('../config/config.js').db.uri;
 //exports.upload = (req, res) => {
   
   csvtojson({checkType:true})
-  .fromFile("OldData.csv")                                     // Which csv file to use for uploading
+  .fromFile("OldData.csv")                                          // Which csv file to use for uploading
   .then(csvData => {
     //console.log(csvData);
     mongodb.connect(
@@ -17,7 +17,7 @@ const url = process.env.MONGODB_URI || require('../config/config.js').db.uri;
         if (err) throw err;
 
         client
-          .db("test")                                         // Which database to upload csv data to
+          .db("test")                                               // Which database to upload csv data to
           .collection("students")                                   // Which collection in database to upload csv data to
           .insertMany(csvData, (err, res) => {
             if (err) 

@@ -58,7 +58,7 @@ class DataPage extends Component {
         this.onHomePress = this.onHomePress.bind(this);
     }
     onHomePress = () => {
-        this.props.history.push('/homepage/' + this.props.getId);
+        this.props.history.push('/dashboard/' + this.props.getId);
     };
     avgIngenuity = () => {
         /*Runs and shows the Average ingenuity by skill; sorted first by value (average),
@@ -379,7 +379,13 @@ class DataPage extends Component {
         }
     };
     componentDidMount() {
-        const id = this.props.getId;
+        const isLoggedIn = sessionStorage.getItem("loggedIn");
+        let id = '';
+        if(this.props.getID)
+            id = this.props.getId;
+        else if(isLoggedIn)
+            id = sessionStorage.getItem("id");
+        
         let newDataSet = [];
         axios.get(
             '/api/students/' + id,
@@ -756,7 +762,7 @@ class DataPage extends Component {
                                     <Grid textAlign='center'>
                                         <Button size='tiny' basic color="black" onClick={this.onHomePress}>
                                             <Icon name='home'/>
-                                            Home
+                                            Dashboard
                                         </Button>
                                     </Grid>
                                 </Grid.Column>
