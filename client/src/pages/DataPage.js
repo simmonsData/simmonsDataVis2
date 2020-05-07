@@ -408,7 +408,13 @@ class DataPage extends Component {
                 console.log(err);
             });
         this.handleCurrDataSets(''); //Runs to add "All Users as an option in the bar graph dropdown"
-        this.setState({numObservations: newDataSet.length});
+        axios.get(
+            '/api/students/'
+        )
+            .then(res => {
+                this.setState({numObservations: res.data.length});
+            })
+        //this.setState({numObservations: newDataSet.length});
         //this.onComplete([0, 0, 0]); //runs the default all users option for the bar graph
     }
 
