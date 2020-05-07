@@ -634,7 +634,6 @@ exports.studentsByDataSet = (req,res) => {
             return res.json(act);
         }
         else {
-            console.log("line 632: " + studentsMatch.length);
             //
         }
     })

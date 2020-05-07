@@ -450,8 +450,8 @@ class DataPage extends Component {
             .then(res => {
                 let d = [];
                 let act = [];
-                if(res.data[res.data.length-1])
-                    this.setState({numObservations: res.data[res.data.length - 1]});
+                //if(res.data[res.data.length-1])
+                this.setState({numObservations: res.data[res.data.length - 1]});
                 console.log(res);
                 console.log("numObservations: " + this.state.numObservations);
                 for (let i = 0, n = res.data.length - 1; i < n; i++) {
@@ -469,7 +469,7 @@ class DataPage extends Component {
                 return this.avgIngenuity(this.state.bgGender, this.state.bgRace, this.state.bgMajor);
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.response);
             })
     };
     handleCurrDataSets = () => {
