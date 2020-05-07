@@ -18,7 +18,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footerleft">
-          <div className="copyright">
+          <div class="copyright">
           Copyright © 2019 Anh Chau
           </div>
         </div>

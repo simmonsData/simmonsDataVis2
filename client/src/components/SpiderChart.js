@@ -12,7 +12,6 @@ class SpiderChart extends Component {
         
         //Captions for the SpiderChart. Entries in Label:Value. 
         const captions = {
-            E1: "Intellectual Development",
             E2: "Practical Ingenuity",
             E3: "Creativity",
             E4: "Communication",

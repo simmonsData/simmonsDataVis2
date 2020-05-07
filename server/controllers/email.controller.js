@@ -7,7 +7,7 @@ function body(userId){
 }
 
 function establishTransport() {
-  let transport = {
+  var transport = {
     host: 'smtp.gmail.com',
     auth: {
       user: process.env.CREDS_EMAIL_USERNAME || require('../config/config.js').email.username,
@@ -32,7 +32,7 @@ function send (userId, email) {
 
   const message = body(userId);
 
-  let mail = {
+  var mail = {
     from: 'Simmons Lab',
     to: email,  
     subject: 'Access your survey',
@@ -40,7 +40,7 @@ function send (userId, email) {
     html: message
   }
 
-  let transporter = establishTransport();
+  var transporter = establishTransport();
   
   transporter.sendMail(mail, (err, data) => {
     if (err) {

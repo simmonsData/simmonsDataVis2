@@ -1,9 +1,10 @@
 
 //In Progress of Adding CSV button and download button
 import React, { Component } from 'react';
-import { Button, Form, Grid, Segment, Label, Icon } from 'semantic-ui-react'
+import { Button, Header, Form, Grid, Divider, Segment, Label, Icon } from 'semantic-ui-react'
+import { redirect } from 'react-router-dom'
 import SpiderChart from '../components/SpiderChart'
-//import data from '../data/data.js'
+import data from '../data/data.js'
 import '../styles/DataPage.css'
 import axios from 'axios';
 //import CsvDownload from 'react-json-to-csv' unable to import 
@@ -34,43 +35,43 @@ class StatisticsPage extends Component {
     // that gets passed onto SpiderChart.js. T
     addDataSet(e){
         //var filteredData = data;
-        let filteredData = [];
+        var filteredData = [];
 
         axios.get(
-            '/api/students/'
+            'http://localhost:8080/api/students/'
         ).then(res => {
             filteredData = res.data;
             console.log(filteredData);
-            if (this.state.gender !== -1){
+            if (this.state.gender != -1){
                 filteredData = filteredData.filter(entry => {
-                    return (entry.survey.gender === this.state.gender);
+                    return (entry.survey.gender == this.state.gender);
                 })
             }
-            if (this.state.raceEthnicity !== -1){
+            if (this.state.raceEthnicity != -1){
                 filteredData = filteredData.filter(entry => {
-                    return (entry.survey.raceEthnicity === this.state.raceEthnicity);
+                    return (entry.survey.raceEthnicity == this.state.raceEthnicity);
                 })
             }
-            if (this.state.major !== -1){
+            if (this.state.major != -1){
                 filteredData = filteredData.filter(entry => {
-                    return (entry.survey.major === this.state.major);
+                    return (entry.survey.major == this.state.major);
                 })
             }
             console.log(filteredData);
-            let sumE2 = 0;
-            let sumE3 = 0;
-            let sumE4 = 0;
-            let sumE5 = 0;
-            let sumE6 = 0;
-            let sumE7 = 0;
-            let sumE8 = 0;
-            let sumE9 = 0;
-            let newDataSet = [];
-            let size = filteredData.length;
+            var sumE2 = 0;
+            var sumE3 = 0;
+            var sumE4 = 0;
+            var sumE5 = 0;
+            var sumE6 = 0;
+            var sumE7 = 0;
+            var sumE8 = 0;
+            var sumE9 = 0;
+            var newDataSet = [];
+            var size = filteredData.length;
             this.setState({
                 numObservations: size
             })
-            for (let entry in filteredData){
+            for (var entry in filteredData){
                 sumE2 += filteredData[entry].survey.E2; 
                 sumE3 += filteredData[entry].survey.E3; 
                 sumE4 += filteredData[entry].survey.E4; 
@@ -80,7 +81,7 @@ class StatisticsPage extends Component {
                 sumE8 += filteredData[entry].survey.E8; 
                 sumE9 += filteredData[entry].survey.E9;  
             }
-//            let colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+            var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
     
             newDataSet = [{
                 data: {
@@ -102,7 +103,7 @@ class StatisticsPage extends Component {
             console.log('Gender: ' + this.state.gender);
             console.log('Race: ' + this.state.raceEthnicity);
             console.log('Major: ' + this.state.major);
-            if (size === 0){
+            if (size == 0){
                 return false;
             }
             this.setState({
@@ -124,17 +125,21 @@ class StatisticsPage extends Component {
 
     // Pops the last element of the array. 
     removeDataSet(e) {
-        let index = this.state.dataSets.length - 1;
+        var index = this.state.dataSets.length - 1;
         this.setState({
-            dataSets: this.state.dataSets.filter((_, i) => i !== index)
+            dataSets: this.state.dataSets.filter((_, i) => i != index)
         });
         console.log("removeDataSet called: ");
+    }
+    // Prints the data set that gets passed to Spider Chart. 
+    test(e) {
+        console.log(this.state.dataSets);
     }
 
     DownloadCSV(e) {
       //const { Parser } = require('json2csv');
               axios({
-        url: '/api/students/', //your url
+        url: 'http://localhost:8080/api/students/', //your url
         method: 'GET',
         responseType: 'blob', // important
       }).then((response) => {
@@ -154,10 +159,10 @@ class StatisticsPage extends Component {
 
     componentDidMount(){
         const id = this.props.getId;
-        let newDataSet = [];
+        var newDataSet = [];
         console.log(id)
         axios.get(
-            '/api/students/' + id,
+            'http://localhost:8080/api/students/' + id,
         )
         .then(res => {
             console.log(res);
@@ -186,12 +191,12 @@ class StatisticsPage extends Component {
         })
     }
     render(){
-        // const genders = ['Woman', 'Man', 'Trans', 'Other', 'I don\'t want to respond'];
-        // const race = ['Asian', 'Black', 'Hispanic', 'Pacific', 'White', 'Other', 'Mix'];
-        // const major = ['General Engineering', 'Civil Engineering', 'Construction', 'Agricultural Engineering', 'Applied Engineering', 
-        // 'Biomedical Engineering', 'Chemical Engineering', 'Electrical Engineering', 'Engineering Management', 'Engineering Physics', 
-        // 'Engineering Science', 'Industrial Engineering', 'Materials Engineering', 'Mechanical Engineering', 'Nanoengineering', 
-        // 'Nuclear Engineering', 'Other']
+        const genders = ['Woman', 'Man', 'Trans', 'Other', 'I don\'t want to respond'];
+        const race = ['Asian', 'Black', 'Hispanic', 'Pacific', 'White', 'Other', 'Mix'];
+        const major = ['General Engineering', 'Civil Engineering', 'Construction', 'Agricultural Engineering', 'Applied Engineering', 
+        'Biomedical Engineering', 'Chemical Engineering', 'Electrical Engineering', 'Engineering Management', 'Engineering Physics', 
+        'Engineering Science', 'Industrial Engineering', 'Materials Engineering', 'Mechanical Engineering', 'Nanoengineering', 
+        'Nuclear Engineering', 'Other']
 
         return (
             <div class="box">
@@ -202,7 +207,7 @@ class StatisticsPage extends Component {
                         <Segment>
                         <Form onSubmit={this.handleSubmit} class="form-gender-col">
                                 <label>Gender:</label>
-                                <select value={this.state.value} id="gender" onChange={this.handleChange.bind(this)} >
+                                <select value={this.state.value} id="gender" onChange={this.handleChange.bind(this)} value={this.state.gender}>
                                     <option value="-1">None</option>
                                     <option value="1">Woman</option>
                                     <option value="2">Man</option>
@@ -217,7 +222,7 @@ class StatisticsPage extends Component {
                             <Segment>
                             <Form onSubmit={this.handleSubmit} class="form-race-col">
                                 <label>Race/Ethnicty:</label>
-                                <select value={this.state.raceEthnicity} id="raceEthnicity" onChange={this.handleChange.bind(this)} >
+                                <select value={this.state.raceEthnicity} id="raceEthnicity" onChange={this.handleChange.bind(this)} value={this.state.raceEthnicity}>
                                     <option value="-1">None</option>
                                     <option value="1">Asian</option>
                                     <option value="2">Black or African American</option>
@@ -234,7 +239,7 @@ class StatisticsPage extends Component {
                             <Segment>
                             <form onSubmit={this.handleSubmit} class="form-major-col">
                                 <label>Major:</label>
-                                <select value={this.state.major} id="major" onChange={this.handleChange.bind(this)} >
+                                <select value={this.state.major} id="major" onChange={this.handleChange.bind(this)} value={this.state.major}>
                                     <option value="-1">None</option>
                                     <option value="1">General Engineering</option>
                                     <option value="2">Civil Engineering</option>

@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Header, Button, Divider, Segment} from 'semantic-ui-react'
 import '../styles/Homepage.css'
 
-function Dashboard(props) {
+function Homepage(props) {
 
     function onDataPress() {
         props.history.push('/data/' + props.getId);
@@ -55,4 +55,4 @@ function Dashboard(props) {
     );
 }
 
-export default Dashboard;
+export default Homepage;
