@@ -374,14 +374,11 @@ class DataPage extends Component {
         }
     };
     componentDidMount() {
-        const id = this.props.getId;
-        /*
         let id = '';
         if(this.props.getID)
             id = this.props.getId;
         else if(sessionStorage.getItem("loggedIn"))
-            id = sessionStorage.getItem("id");
-        */
+            id = sessionStorage.getItem("id");       
         let newDataSet = [];
         axios.get(
             '/api/students/' + id,
@@ -432,7 +429,6 @@ class DataPage extends Component {
         /*console.log(this.state.bgGender);
         console.log(this.state.bgMajor);
         console.log(this.state.bgRace);
-        console.log(genderBg);
         console.log(genderBg);
         console.log(raceBg);
         console.log(majorBg);*/
