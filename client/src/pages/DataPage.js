@@ -58,7 +58,7 @@ class DataPage extends Component {
         this.onHomePress = this.onHomePress.bind(this);
     }
     onHomePress = () => {
-        this.props.history.push('/homepage/' + this.props.getId);
+        this.props.history.push('/dashboard/' + this.props.getId);
     };
     avgIngenuity = () => {
         /*Runs and shows the Average ingenuity by skill; sorted first by value (average),
@@ -301,23 +301,26 @@ class DataPage extends Component {
                     sumE8 += Number(filteredData[entry].survey.topOut.topOut6);  // E8: "Professionalism"
                     sumE9 += Number(filteredData[entry].survey.topOut.topOut17); // E9: "Dynamism, Agility, Resilience, and Flexibility" 
                 }
+                
                 newDataSet = [{
                     data: {
                         gender: this.state.gender,
                         raceEthnicity: this.state.raceEthnicity,
                         major: this.state.major,
-                        E1: (sumE1 / size) / 4,
-                        E2: (sumE2 / size) / 4,
-                        E3: (sumE3 / size) / 4,
-                        E4: (sumE4 / size) / 4,
-                        E5: (sumE5 / size) / 4,
-                        E6: (sumE6 / size) / 4,
-                        E7: (sumE7 / size) / 4,
-                        E8: (sumE8 / size) / 4,
-                        E9: (sumE9 / size) / 4,
+                        E1: (sumE1 / size) / 3,
+                        E2: (sumE2 / size) / 3,
+                        E3: (sumE3 / size) / 3,
+                        E4: (sumE4 / size) / 3,
+                        E5: (sumE5 / size) / 3,
+                        E6: (sumE6 / size) / 3,
+                        E7: (sumE7 / size) / 3,
+                        E8: (sumE8 / size) / 3,
+                        E9: (sumE9 / size) / 3,
                     },
                     meta: {color: colors[this.state.graphColor]}
                 }];
+                console.log("sumE1: " + sumE1 + " size: " + size);
+                console.log("E1: " +(sumE1 / size));
                 console.log("addDataSet called: ");
                 console.log('Gender: ' + this.state.gender);
                 console.log('Race: ' + this.state.raceEthnicity);
@@ -376,7 +379,13 @@ class DataPage extends Component {
         }
     };
     componentDidMount() {
-        const id = this.props.getId;
+        const isLoggedIn = sessionStorage.getItem("loggedIn");
+        let id = '';
+        if(this.props.getID)
+            id = this.props.getId;
+        else if(isLoggedIn)
+            id = sessionStorage.getItem("id");
+        
         let newDataSet = [];
         axios.get(
             '/api/students/' + id,
@@ -387,15 +396,15 @@ class DataPage extends Component {
                         gender: res.data.survey.gender,
                         raceEthnicity: res.data.survey.ethnicity,
                         major: res.data.survey.major,
-                        E1: res.data.survey.topOut.topOut1 / 4,
-                        E2: res.data.survey.topOut.topOut15 / 4,
-                        E3: res.data.survey.topOut.topOut16 / 4,
-                        E4: res.data.survey.topOut.topOut9 / 4,
-                        E5: res.data.survey.topOut.topOut18 / 4,
-                        E6: res.data.survey.topOut.topOut10 / 4,
-                        E7: res.data.survey.topOut.topOut19 / 4,
-                        E8: res.data.survey.topOut.topOut6 / 4,
-                        E9: res.data.survey.topOut.topOut17 / 4,
+                        E1: res.data.survey.topOut.topOut1 / 3,
+                        E2: res.data.survey.topOut.topOut15 / 3,
+                        E3: res.data.survey.topOut.topOut16 / 3,
+                        E4: res.data.survey.topOut.topOut9 / 3,
+                        E5: res.data.survey.topOut.topOut18 / 3,
+                        E6: res.data.survey.topOut.topOut10 / 3,
+                        E7: res.data.survey.topOut.topOut19 / 3,
+                        E8: res.data.survey.topOut.topOut6 / 3,
+                        E9: res.data.survey.topOut.topOut17 / 3,
                     },
                     meta: {color: "green"}
                 }];
@@ -441,7 +450,8 @@ class DataPage extends Component {
             .then(res => {
                 let d = [];
                 let act = [];
-                this.setState({numObservations: res.data[res.data.length - 1]});
+                if(res.data[res.data.length-1])
+                    this.setState({numObservations: res.data[res.data.length - 1]});
                 console.log(res);
                 console.log("numObservations: " + this.state.numObservations);
                 for (let i = 0, n = res.data.length - 1; i < n; i++) {
@@ -648,7 +658,9 @@ class DataPage extends Component {
                 <SpiderChart
                     dataSets={this.state.dataSets}
                 />
-                <Divider hidden/>
+
+                 <Divider hidden/>
+                 
                 <div className="bar">
                     <Menu inverted color='grey' className="menu">
                         <Menu.Menu className='menu' fluid>
@@ -751,7 +763,7 @@ class DataPage extends Component {
                                     <Grid textAlign='center'>
                                         <Button size='tiny' basic color="black" onClick={this.onHomePress}>
                                             <Icon name='home'/>
-                                            Home
+                                            Dashboard
                                         </Button>
                                     </Grid>
                                 </Grid.Column>

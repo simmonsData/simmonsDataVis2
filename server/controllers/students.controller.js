@@ -174,18 +174,17 @@ exports.login = (req, res) => {
 // Returns students that match the criteria passed into req.body
 exports.getByCriteria = (req, res) => {
     let querySurveyObject = {};
-    let queryNotSurveyObject = {};
+    
     // Looks inside req.body for user selected criteria and stores it inside queryObject
     for(let key in req.body) {
         if(req.body.hasOwnProperty(key)){
             let item = req.body[key];
             let newKey = "survey." + key;
             querySurveyObject[newKey] = item;
-            queryNotSurveyObject[key] = item;
             //console.log(queryObject);
         }
     }
-    Student.find({"survey.demoAge" : 20  }, (err, students) => {
+    Student.find( querySurveyObject, (err, students) => {
         if(err){
             console.log(err);
             res.status(400).send(err);
@@ -200,22 +199,6 @@ exports.getByCriteria = (req, res) => {
             res.json(students);
         }
     })
-    // Promise.all([
-    //     Student.find(querySurveyObject),
-    //     Student.find(queryNotSurveyObject)
-    // ])
-    //     .then(student => {
-    //         if(student.length === 0){
-    //             res.status(200).send({studentNotFound: "No students found"});
-    //         }
-    //         else{
-    //             res.status(200).send(student);
-    //         }
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(400).send(err);
-    //     });
 }
 
 // ROUTER.PARAM MIDDLEWARE
@@ -651,8 +634,9 @@ exports.studentsByDataSet = (req,res) => {
             return res.json(act);
         }
         else {
+            console.log("line 632: " + studentsMatch.length);
             //
         }
     })
-    // .lean();
+
 }

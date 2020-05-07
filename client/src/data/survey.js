@@ -73,19 +73,19 @@ export default {
                             hasOther: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Man"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Woman"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Trans"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "I don't want to respond."
                                 }
                             ],
@@ -99,27 +99,27 @@ export default {
                             hasOther: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "White"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "American Indian or Alaskan Native"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Asian"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "Black or African American"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "Hispanic, Latino or Spanish Origin"
                                 },
                                 {
-                                    value: "6",
+                                    value: 6,
                                     text: "Native Hawaiian or Other Pacific Islander"
                                 }
                             ],
@@ -147,23 +147,23 @@ export default {
                             hasOther: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Georgia Tech"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "North Carolina State University"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Tennessee State University"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "The University of Texas Rio Grande Valley / University of Texas-Pan America"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "Virginia Tech"
                                 }
                             ],
@@ -176,11 +176,11 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Full-time"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Part-time"
                                 }
                             ]
@@ -192,27 +192,27 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "First Year"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Sophomore Year"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Junior Year"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "Senior Year"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "Fifth year and beyond"
                                 },
                                 {
-                                    value: "6",
+                                    value: 6,
                                     text: "Graduate student"
                                 }
                             ]
@@ -226,23 +226,23 @@ export default {
                             hasOther: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "High school"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Two-year college, vocational/technical school"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Four-year college"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "Military"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "Working a full-time job (worked more than just the summer between high school and college -- more than 8 months)"
                                 }
                             ],
@@ -266,23 +266,23 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Science"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Technology"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Engineering or construction"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "Mathematics"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "Non-STEM"
                                 }
                             ]
@@ -295,71 +295,71 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "General Engineering"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Civil Engineering"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Construction"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "Agricultural Engineering"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "Applied Engineering"
                                 },
                                 {
-                                    value: "6",
+                                    value: 6,
                                     text: "Biomedical Engineering"
                                 },
                                 {
-                                    value: "7",
+                                    value: 7,
                                     text: "Chemical Engineering"
                                 },
                                 {
-                                    value: "8",
+                                    value: 8,
                                     text: "Electrical Engineering"
                                 },
                                 {
-                                    value: "9",
+                                    value: 9,
                                     text: "Engineering Management"
                                 },
                                 {
-                                    value: "10",
+                                    value: 10,
                                     text: "Engineering Physics"
                                 },
                                 {
-                                    value: "11",
+                                    value: 11,
                                     text: "Engineering Science"
                                 },
                                 {
-                                    value: "12",
+                                    value: 12,
                                     text: "Industrial Engineering"
                                 },
                                 {
-                                    value: "13",
+                                    value: 13,
                                     text: "Materials Engineering"
                                 },
                                 {
-                                    value: "14",
+                                    value: 14,
                                     text: "Mechanical Engineering"
                                 },
                                 {
-                                    value: "15",
+                                    value: 15,
                                     text: "Nanoengineering"
                                 },
                                 {
-                                    value: "16",
+                                    value: 16,
                                     text: "Nuclear Engineering"
                                 },
                                 {
-                                    value: "17",
+                                    value: 17,
                                     text: "Other"
                                 }
                             ],
@@ -385,15 +385,15 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Yes, from a STEM major"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Yes, from a non-STEM major"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "No"
                                 }
                             ]
@@ -413,11 +413,11 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Yes"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "No"
                                 }
                             ]
@@ -444,12 +444,12 @@ export default {
                     isRequired: true,
                     choices: [
                         {
-                            value: "1",
+                            value: 1,
                             text: "Yes"
                         },
 
                         {
-                            value: "2",
+                            value: 2,
                             text: "No"
                         }
                     ]
@@ -475,83 +475,83 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Design Competition Team"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Culture, Faith, Gender, Identity"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Engineering outreach support"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "Environmental"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "Film, Theatre, Visual Arts"
                                 },
                                 {
-                                    value: "6",
+                                    value: 6,
                                     text: "Fraternity or Sorority, social"
                                 },
                                 {
-                                    value: "7",
+                                    value: 7,
                                     text: "Fraternity or Sorority, coeducation related to your major, for instance business, engineering, or services"
                                 },
                                 {
-                                    value: "8",
+                                    value: 8,
                                     text: "International experiences"
                                 },
                                 {
-                                    value: "9",
+                                    value: 9,
                                     text: "Job"
                                 },
                                 {
-                                    value: "10",
+                                    value: 10,
                                     text: "Living-Learning Community"
                                 },
                                 {
-                                    value: "11",
+                                    value: 11,
                                     text: "Media, Publications and Journalism"
                                 },
                                 {
-                                    value: "12",
+                                    value: 12,
                                     text: "Military"
                                 },
                                 {
-                                    value: "13",
+                                    value: 13,
                                     text: "Music/Dance"
                                 },
                                 {
-                                    value: "14",
+                                    value: 14,
                                     text: "Preprofessional"
                                 },
                                 {
-                                    value: "15",
+                                    value: 15,
                                     text: "Professional Experiences"
                                 },
                                 {
-                                    value: "16",
+                                    value: 16,
                                     text: "Research"
                                 },
                                 {
-                                    value: "17",
+                                    value: 17,
                                     text: "Service, Public Service"
                                 },
                                 {
-                                    value: "18",
+                                    value: 18,
                                     text: "Sports"
                                 },
                                 {
-                                    value: "19",
+                                    value: 19,
                                     text: "Student Government"
                                 },
                                 {
-                                    value: "20",
+                                    value: 20,
                                     text: "Other student clubs or organizations"
                                 }
                             ]}]}],
@@ -698,10 +698,10 @@ export default {
                                     title: "To what extent do you agree the following reasons could prompt you to participate in out-of-classroom activities?",
                                     isRequired: true,
                                     columns: [
-                                        {value: "1", text: "Strongly Disagree"},
-                                        {value: "2", text: "Disagree"},
-                                        {value: "3", text: "Agree"},
-                                        {value: "4", text: "Strongly Agree"}
+                                        {value: 1, text: "Strongly Disagree"},
+                                        {value: 2, text: "Disagree"},
+                                        {value: 3, text: "Agree"},
+                                        {value: 4, text: "Strongly Agree"}
                                     ],
                                     rows: [
                                         {
@@ -768,10 +768,10 @@ export default {
                                     title: "To what extent do you agree the following reasons could prevent you from participating in out-of-classroom activities?",
                                     isRequired: true,
                                     columns: [
-                                        {value: "1", text: "Strongly Disagree"},
-                                        {value: "2", text: "Disagree"},
-                                        {value: "3", text: "Agree"},
-                                        {value: "4", text: "Strongly Agree"}
+                                        {value: 1, text: "Strongly Disagree"},
+                                        {value: 2, text: "Disagree"},
+                                        {value: 3, text: "Agree"},
+                                        {value: 4, text: "Strongly Agree"}
                                     ],
                                     rows: [
                                         {
@@ -848,83 +848,83 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Design Competition Team"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "Culture, Faith, Gender, Identity"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "Engineering outreach support"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "Environmental"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "Film, Theatre, Visual Arts"
                                 },
                                 {
-                                    value: "6",
+                                    value: 6,
                                     text: "Fraternity or Sorority, social"
                                 },
                                 {
-                                    value: "7",
+                                    value: 7,
                                     text: "Fraternity or Sorority, coeducation related to your major, for instance business, engineering, or services"
                                 },
                                 {
-                                    value: "8",
+                                    value: 8,
                                     text: "International experiences"
                                 },
                                 {
-                                    value: "9",
+                                    value: 9,
                                     text: "Job"
                                 },
                                 {
-                                    value: "10",
+                                    value: 10,
                                     text: "Living-Learning Community"
                                 },
                                 {
-                                    value: "11",
+                                    value: 11,
                                     text: "Media, Publications and Journalism"
                                 },
                                 {
-                                    value: "12",
+                                    value: 12,
                                     text: "Military"
                                 },
                                 {
-                                    value: "13",
+                                    value: 13,
                                     text: "Music/Dance"
                                 },
                                 {
-                                    value: "14",
+                                    value: 14,
                                     text: "Preprofessional"
                                 },
                                 {
-                                    value: "15",
+                                    value: 15,
                                     text: "Professional Experiences"
                                 },
                                 {
-                                    value: "16",
+                                    value: 16,
                                     text: "Research"
                                 },
                                 {
-                                    value: "17",
+                                    value: 17,
                                     text: "Service, Public Service"
                                 },
                                 {
-                                    value: "18",
+                                    value: 18,
                                     text: "Sports"
                                 },
                                 {
-                                    value: "19",
+                                    value: 19,
                                     text: "Student Government"
                                 },
                                 {
-                                    value: "20",
+                                    value: 20,
                                     text: "Other student clubs or organizations"
                                 }
                             ]}]}],
@@ -948,16 +948,16 @@ export default {
                             title: "How actively have you participated in the activities you selected?",
                             columns: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "Not Active At All"
                                 }, {
-                                    value: "2",
+                                    value: 2,
                                     text: "Minimally Active"
                                 }, {
-                                    value: "3",
+                                    value: 3,
                                     text: "Moderately Active"
                                 }, {
-                                    value: "4",
+                                    value: 4,
                                     text: "Highly Active"
                                 }
                             ],
@@ -1072,23 +1072,23 @@ export default {
                             isRequired: true,
                             choices: [
                                 {
-                                    value: "1",
+                                    value: 1,
                                     text: "1-3"
                                 },
                                 {
-                                    value: "2",
+                                    value: 2,
                                     text: "4-6"
                                 },
                                 {
-                                    value: "3",
+                                    value: 3,
                                     text: "7-9"
                                 },
                                 {
-                                    value: "4",
+                                    value: 4,
                                     text: "10-12"
                                 },
                                 {
-                                    value: "5",
+                                    value: 5,
                                     text: "12+"
                                 }
                             ]
@@ -1281,11 +1281,11 @@ export default {
                     isRequired: true,
                     choices: [
                         {
-                            value: "1",
+                            value: 1,
                             text: "Yes"
                         },
                         {
-                            value: "2",
+                            value: 2,
                             text: "No"
                         }
                     ]
@@ -1298,11 +1298,11 @@ export default {
                     isRequired: true,
                     choices: [
                         {
-                            value: "1",
+                            value: 1,
                             text: "Yes"
                         },
                         {
-                            value: "2",
+                            value: 2,
                             text: "No"
                         }
                     ]
@@ -1320,16 +1320,16 @@ export default {
                     title: "To what extent do you agree that you gained the following outcomes from your involvement in out-of-classroom activities?",
                     columns: [
                         {
-                            value: "1",
+                            value: 1,
                             text: "Strongly Disagree"
                         }, {
-                            value: "2",
+                            value: 2,
                             text: "Disagree"
                         }, {
-                            value: "3",
+                            value: 3,
                             text: "Agree"
                         }, {
-                            value: "4",
+                            value: 4,
                             text: "Strongly Agree"
                         }
                     ],
@@ -1430,16 +1430,16 @@ export default {
                         " ",
                     columns: [
                         {
-                            value: "1",
+                            value: 1,
                             text: "Strongly Disagree"
                         }, {
-                            value: "2",
+                            value: 2,
                             text: "Disagree"
                         }, {
-                            value: "3",
+                            value: 3,
                             text: "Agree"
                         }, {
-                            value: "4",
+                            value: 4,
                             text: "Strongly Agree"
                         }
                     ],
@@ -1522,16 +1522,16 @@ export default {
                     "Consider the statement: I do not participate in out-of-class activities because ________ [fill in a reason below].",
                 columns: [
                     {
-                        value: "1",
+                        value: 1,
                         text: "Strongly Disagree"
                     }, {
-                        value: "2",
+                        value: 2,
                         text: "Disagree"
                     }, {
-                        value: "3",
+                        value: 3,
                         text: "Agree"
                     }, {
-                        value: "4",
+                        value: 4,
                         text: "Strongly Agree"
                     }
                 ],
@@ -1617,102 +1617,102 @@ export default {
                 colCount: 2,
                 choices: [
                     {
-                        value: "1",
+                        value: 1,
                         text: "Design competition team",
                         visibleIf: "{all} contains '1'"
                     },
                     {
-                        value: "2",
+                        value: 2,
                         text: "Culture, faith, gender, identity",
                         visibleIf: "{all} contains '2'"
                     },
                     {
-                        value: "3",
+                        value: 3,
                         text: "Environmental",
                         visibleIf: "{all} contains '3'"
                     },
                     {
-                        value: "4",
+                        value: 4,
                         text: "Engineering outreach support",
                         visibleIf: "{all} contains '4'"
                     },
                     {
-                        value: "5",
+                        value: 5,
                         text: "Film, Theater, Visual Arts",
                         visibleIf: "{all} contains '5'"
                     },
                     {
-                        value: "6",
+                        value: 6,
                         text: "Fraternity or sorority, social",
                         visibleIf: "{all} contains '6'"
                     },
                     {
-                        value: "7",
+                        value: 7,
                         text: "Fraternity or sorority,coeducation related to your major, for instance business, engineering, or services",
                         visibleIf: "{all} contains '7'"
                     },
                     {
-                        value: "8",
+                        value: 8,
                         text: "International experiences",
                         visibleIf: "{all} contains '8'"
                     },
                     {
-                        value: "9",
+                        value: 9,
                         text: "Job",
                         visibleIf: "{all} contains '9'"
                     },
                     {
-                        value: "10",
+                        value: 10,
                         text: "Living-learning community",
                         visibleIf: "{all} contains '10'"
                     },
                     {
-                        value: "11",
+                        value: 11,
                         text: "Media, publications, and journalism",
                         visibleIf: "{all} contains '11'"
                     },
                     {
-                        value: "12",
+                        value: 12,
                         text: "Military",
                         visibleIf: "{all} contains '12'"
                     },
                     {
-                        value: "13",
+                        value: 13,
                         text: "Music/Dance",
                         visibleIf: "{all} contains '13'"
                     },
                     {
-                        value: "14",
+                        value: 14,
                         text: "Pre-professional",
                         visibleIf: "{all} contains '14'"
                     },
                     {
-                        value: "15",
+                        value: 15,
                         text: "Professional experiences",
                         visibleIf: "{all} contains '15'"
                     },
                     {
-                        value: "16",
+                        value: 16,
                         text: "Research",
                         visibleIf: "{all} contains '16'"
                     },
                     {
-                        value: "17",
+                        value: 17,
                         text: "Service, public service",
                         visibleIf: "{all} contains '17'"
                     },
                     {
-                        value: "18",
+                        value: 18,
                         text: "Sports",
                         visibleIf: "{all} contains '18'"
                     },
                     {
-                        value: "19",
+                        value: 19,
                         text: "Student government",
                         visibleIf: "{all} contains '19'"
                     },
                     {
-                        value: "20",
+                        value: 20,
                         text: "Other student clubs & organizations.",
                         visibleIf: "{all} contains '20'"
                     }
@@ -1728,16 +1728,16 @@ export default {
                 title: "To what extent do you agree that you gained the following outcomes from your involvement in the top activity?",
                 columns: [
                     {
-                        value: "1",
+                        value: 1,
                         text: "Strongly Disagree"
                     }, {
-                        value: "2",
+                        value: 2,
                         text: "Disagree"
                     }, {
-                        value: "3",
+                        value: 3,
                         text: "Agree"
                     }, {
-                        value: "4",
+                        value: 4,
                         text: "Strongly Agree"
                     }
                 ],
@@ -1837,16 +1837,16 @@ export default {
                     " ",
                 columns: [
                     {
-                        value: "1",
+                        value: 1,
                         text: "Strongly Disagree"
                     }, {
-                        value: "2",
+                        value: 2,
                         text: "Disagree"
                     }, {
-                        value: "3",
+                        value: 3,
                         text: "Agree"
                     }, {
-                        value: "4",
+                        value: 4,
                         text: "Strongly Agree"
                     }
                 ],
@@ -1921,11 +1921,11 @@ export default {
                                     title: "Please indicate the extent to which you agree with the following statements.",
                                     isRequired: true,
                                     columns: [
-                                        {value: "1", text: "Strongly Disagree"},
-                                        {value: "2", text: "Disagree"},
-                                        {value: "3", text: "Neutral"},
-                                        {value: "3", text: "Agree"},
-                                        {value: "4", text: "Strongly Agree"}
+                                        {value: 1, text: "Strongly Disagree"},
+                                        {value: 2, text: "Disagree"},
+                                        {value: 3, text: "Neutral"},
+                                        {value: 4, text: "Agree"},
+                                        {value: 5, text: "Strongly Agree"}
                                     ],
                                     rows: [
                                         {
@@ -2017,11 +2017,11 @@ export default {
                     title: "Please indicate the extent to which you agree with the following statements.",
                     isRequired: true,
                     columns: [
-                        {value: "1", text: "Strongly Disagree"},
-                        {value: "2", text: "Disagree"},
-                        {value: "3", text: "Neutral"},
-                        {value: "4", text: "Agree"},
-                        {value: "5", text: "Strongly Agree"}
+                        {value: 1, text: "Strongly Disagree"},
+                        {value: 2, text: "Disagree"},
+                        {value: 3, text: "Neutral"},
+                        {value: 4, text: "Agree"},
+                        {value: 5, text: "Strongly Agree"}
                     ],
                     rows: [
                         {
@@ -2089,33 +2089,33 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "A living learning/program related to science and engineering in a residence hall"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "A non-science or non-engineering living/learning program in a residence hall"
                                         },
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "A residence hall, but not as part of a living/learning program"
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "A fraternity or sorority residence"
                                         },
                                         {
-                                            value: "5",
+                                            value: 5,
                                             text: "Off campus by myself"
                                         },
                                         {
-                                            value: "6",
+                                            value: 6,
                                             text: "Off campus with friends/peers"
                                         }, {
-                                            value: "7",
+                                            value: 7,
                                             text: "Off campus with family"
                                         }, {
-                                            value: "8",
+                                            value: 8,
                                             text: "Other (please specify)"
                                         }]
                                 },
@@ -2191,36 +2191,36 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Father"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "Mother"
                                         },
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "Grandmother"
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "Grandfather"
                                         },
                                         {
-                                            value: "5",
+                                            value: 5,
                                             text: "Aunt"
                                         },
                                         {
-                                            value: "6",
+                                            value: 6,
                                             text: "Uncle"
                                         },
                                         {
-                                            value: "7",
+                                            value: 7,
                                             text: "Sibling"
                                         },
 
                                         {
-                                            value: "8",
+                                            value: 8,
                                             text: "Not applicable"
                                         },
                                     ],
@@ -2236,36 +2236,36 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Father"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "Mother"
                                         },
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "Grandmother"
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "Grandfather"
                                         },
                                         {
-                                            value: "5",
+                                            value: 5,
                                             text: "Aunt"
                                         },
                                         {
-                                            value: "6",
+                                            value: 6,
                                             text: "Uncle"
                                         },
                                         {
-                                            value: "7",
+                                            value: 7,
                                             text: "Sibling"
                                         },
 
                                         {
-                                            value: "8",
+                                            value: 8,
                                             text: "Not applicable"
                                         },
                                     ],
@@ -2290,31 +2290,31 @@ export default {
                                     title: "What is the highest level of formal schooling completed by parent(s)/guardian(s)?",
                                     columns: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Did not finish high school"
                                         }, {
-                                            value: "2",
+                                            value: 2,
                                             text: "High school graduate or GED"
                                         }, {
-                                            value: "3",
+                                            value: 3,
                                             text: "Attended college but did not receive a degree"
                                         }, {
-                                            value: "4",
+                                            value: 4,
                                             text: "Vocational/technical certificate or diploma"
                                         }, {
-                                            value: "5",
+                                            value: 5,
                                             text: "Associate or other 2-year degree"
                                         }, {
-                                        value: "6",
+                                            value: 6,
                                             text: "Bachelor's or other 4-year degree"
                                         }, {
-                                            value: "7",
+                                            value: 7,
                                             text: "Master's degree (M.A., M.S., M.B.A., etc.)"
                                         }, {
-                                            value: "8",
+                                            value: 8,
                                             text: "Doctoral degree (Ph.D., M.D., etc."
                                         }, {
-                                            value: "9",
+                                            value: 9,
                                             text: "Unknown/Not applicable"
                                         }
                                     ],
@@ -2348,19 +2348,19 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Yes"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "No"
                                         },
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "I don't have a sibling."
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "I don't know."
                                         }
                                     ]
@@ -2384,35 +2384,35 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Less than $19,999"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "$20,000 - $39,999"
                                         },
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "$40,000 - $59,999"
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "$60,000 - $79,999"
                                         },
                                         {
-                                            value: "5",
+                                            value: 5,
                                             text: "$80,000 - $99,999"
                                         },
                                         {
-                                            value: "6",
+                                            value: 6,
                                             text: "$100,000 - $149,999"
                                         },
                                         {
-                                            value: "7",
+                                            value: 7,
                                             text: "$150,000 - $200,000"
                                         },
                                         {
-                                            value: "8",
+                                            value: 8,
                                             text: "More than $200,000"
                                         }
                                     ]
@@ -2423,51 +2423,51 @@ export default {
                                     title: "How many people live in your household?",
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "1"
                                         },
 
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "2",
                                         },
 
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "3"
                                         },
 
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "4"
                                         },
                                         {
-                                            value: "5",
+                                            value: 5,
                                             text: "5"
                                         },
                                         {
-                                            value: "6",
+                                            value: 6,
                                             text: "6"
                                         },
                                         {
-                                            value: "7",
+                                            value: 7,
                                             text: "7"
                                         },
                                         {
-                                            value: "8",
+                                            value: 8,
                                             text: "8"
                                         },
                                         {
-                                            value: "9",
+                                            value: 9,
                                             text: "9"
                                         },
                                         {
-                                            value: "10",
+                                            value: 10,
                                             text: "10"
                                         },
                                         {
-                                            value: "10+",
-                                            text: "10+"
+                                            value: 11,
+                                            text: "11+"
                                         }
 
 
@@ -2493,19 +2493,19 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "a U.S. Citizen"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "a U.S. Citizen: naturalized"
                                         },
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "a Permanent Resident"
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "an International Student (on F-1 or J-1 visa)"
                                         }
                                     ]
@@ -2518,11 +2518,11 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Yes"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "No"
                                         }
                                     ]
@@ -2537,35 +2537,35 @@ export default {
                                     hasOther: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "I have no disabilities."
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "Coordination impairment"
                                         },
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "Hearing impairment"
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "Learning disability"
                                         },
                                         {
-                                            value: "5",
+                                            value: 5,
                                             text: "Mobility impairment"
                                         },
                                         {
-                                            value: "6",
+                                            value: 6,
                                             text: "Speech impairment"
                                         },
                                         {
-                                            value: "7",
+                                            value: 7,
                                             text: "Visual impairment"
                                         },
                                         {
-                                            value: "9",
+                                            value: 9,
                                             text: "I choose not to respond"
                                         }
                                     ],
@@ -2580,35 +2580,35 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value:  1,
                                             text: "Bisexual"
                                         },
                                         {
-                                            value: "2",
+                                            value:  2,
                                             text: "Gay"
                                         },
                                         {
-                                            value: "3",
+                                            value:  3,
                                             text: "Lesbian"
                                         },
                                         {
-                                            value: "4",
+                                            value:  4,
                                             text: "Heterosexual(or Straight)"
                                         },
                                         {
-                                            value: "5",
+                                            value:  5,
                                             text: "Queer or questioning"
                                         },
                                         {
-                                            value: "6",
+                                            value:  6,
                                             text: "Asexual"
                                         },
                                         {
-                                            value: "7",
+                                            value: 7,
                                             text: "Uncertain"
                                         },
                                         {
-                                            value: "8",
+                                            value: 8,
                                             text: "I choose not to respond"
                                         }
                                     ]
@@ -2629,11 +2629,11 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Yes"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "No"
                                         }
                                     ]
@@ -2647,11 +2647,11 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Yes"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "No"
                                         }
                                     ]
@@ -2666,47 +2666,47 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "1"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "2"
                                         },
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "3"
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "4"
                                         },
                                         {
-                                            value: "5",
+                                            value: 5,
                                             text: "5"
                                         },
                                         {
-                                            value: "6",
+                                            value: 6,
                                             text: "6"
                                         },
                                         {
-                                            value: "7",
+                                            value: 7,
                                             text: "7"
                                         },
                                         {
-                                            value: "8",
+                                            value: 8,
                                             text: "8"
                                         },
                                         {
-                                            value: "9",
+                                            value: 9,
                                             text: "9"
                                         },
                                         {
-                                            value: "10",
+                                            value:  10,
                                             text: "10"
                                         },
                                         {
-                                            value: "11",
+                                            value: 11,
                                             text: "11+"
                                         }
                                     ]
@@ -2721,20 +2721,20 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Not at all active"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "Minimally active"
                                         },
 
                                         {
-                                            value: "3",
+                                            value: 3,
                                             text: "Moderately active"
                                         },
                                         {
-                                            value: "4",
+                                            value: 4,
                                             text: "Highly active"
                                         }
                                     ]
@@ -2765,11 +2765,11 @@ export default {
                                     isRequired: true,
                                     choices: [
                                         {
-                                            value: "1",
+                                            value: 1,
                                             text: "Yes"
                                         },
                                         {
-                                            value: "2",
+                                            value: 2,
                                             text: "No"
                                         }
                                     ]
