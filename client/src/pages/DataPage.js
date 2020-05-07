@@ -469,7 +469,7 @@ class DataPage extends Component {
                 return this.avgIngenuity(this.state.bgGender, this.state.bgRace, this.state.bgMajor);
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.response);
             })
     };
     handleCurrDataSets = () => {
