@@ -104,13 +104,11 @@ exports.register = (req, res) => {
                             //console.log(err);
                             throw err;
                         }
-                        console.log("hash: " + hash);
                         newStudent.loginPassword = hash;
                         newStudent
                             .save()
                             .then( (student) => {
                                 const id = student.id;
-                                //console.log("id: " + id);
                                 emailSystem.send(id, studentEmail);
                                 return res.json(id);
                             })
