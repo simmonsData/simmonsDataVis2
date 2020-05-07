@@ -9,11 +9,15 @@ https://simmons-data-vis-2.herokuapp.com/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Features Implemented
-### Register/Login Page
-![alt test](client/src/img/login_register.png)
-  
+
 ### Homepage
 ![alt test](client/src/img/homepage.png)
+
+### Register/Login Page
+![alt test](client/src/img/login_register.png)
+
+### Dashboard
+![alt test](client/src/img/dashboard.png)
   
 #### Survey Page
 ![alt test](client/src/img/survey_1_1.png)
@@ -24,10 +28,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ![alt test](client/src/img/data_2.png)
   
 #### Admin Login Page
-![alt test](client/src/img/adminlogin.jpeg)
+![alt test](client/src/img/adminlogin.png)
   
 #### Admin Statistics Page
-![alt test](client/src/img/adminstats.jpeg)
+![alt test](client/src/img/adminstats.png)
   
 ## Run Project
 Go into the develop branch 
