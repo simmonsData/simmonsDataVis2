@@ -8,9 +8,6 @@ router.route('/')
 router.route('/data')
     .post(students.studentsByDataSet);
 
-router.route('/search')
-    .get(students.getByCriteria);
-
 router.route('/:studentId')
     .get(students.read)
     .put(students.update)

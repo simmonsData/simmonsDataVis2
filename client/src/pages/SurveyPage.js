@@ -50,7 +50,7 @@ class SurveyPage extends Component {
     };
 
     onHomePress() {
-        this.props.history.push('/dashboard/' + this.props.getId);
+        this.props.history.push('/Homepage/' + this.props.getId);
     }
 
     openModal() {
@@ -81,7 +81,7 @@ class SurveyPage extends Component {
                 <Grid>
                     <Grid.Row centered stretched>
                         <Modal open={this.state.modalIsOpen} size="tiny" trigger={<Button basic color = "black" centered = {"true"} onClick={this.openModal}>
-                                <Icon name='home'/> Dashboard
+                                <Icon name='home'/> Home
                             </Button>}
                     >
                         <Modal.Header>
