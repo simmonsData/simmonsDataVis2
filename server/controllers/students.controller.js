@@ -21,7 +21,7 @@ exports.list = (req, res) => {
         res.json(student);
       }
     })
-    .lean();
+    // .lean();
 };
 
 // STUDENT ID ROUTES
