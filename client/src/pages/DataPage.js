@@ -374,12 +374,14 @@ class DataPage extends Component {
         }
     };
     componentDidMount() {
+        const id = this.props.getId;
+        /*
         let id = '';
         if(this.props.getID)
             id = this.props.getId;
         else if(sessionStorage.getItem("loggedIn"))
             id = sessionStorage.getItem("id");
-        
+        */
         let newDataSet = [];
         axios.get(
             '/api/students/' + id,
