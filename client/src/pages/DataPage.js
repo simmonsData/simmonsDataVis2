@@ -276,7 +276,7 @@ class DataPage extends Component {
                 this.setState({
                     numObservations: size
                 });
-                //this.onComplete([this.state.bgGender, this.state.bgRace, this.state.bgMajor]);
+                this.onComplete([this.state.bgGender, this.state.bgRace, this.state.bgMajor]);
                 console.log(filteredData);
                 let sumE2 = 0, sumE3 = 0, sumE4 = 0, sumE5 = 0, sumE6 = 0, sumE7 = 0, sumE8 = 0, sumE9 = 0;
                 let newDataSet = [];
@@ -354,7 +354,7 @@ class DataPage extends Component {
                 console.log(_thisRef.state.con);
                 _thisRef.setState({disp: [..._thisRef.state.disp]});
                 console.log(_thisRef.state.disp);
-                //_thisRef.onComplete.call(this, [0, 0, 0]);
+                _thisRef.onComplete.call(this, [0, 0, 0]);
             });
             this.setState({gender: '-1'});
             this.setState({raceEthnicity: '-1'});
@@ -393,14 +393,8 @@ class DataPage extends Component {
                 console.log(err);
             });
         this.handleCurrDataSets(''); //Runs to add "All Users as an option in the bar graph dropdown"
-        axios.get(
-            '/api/students/'
-        )
-            .then(res => {
-                this.setState({numObservations: res.data.length});
-            })
-        //this.setState({numObservations: newDataSet.length});
-        //this.onComplete([0, 0, 0]); //runs the default all users option for the bar graph
+        this.setState({numObservations: newDataSet.length});
+        this.onComplete([0, 0, 0]); //runs the default all users option for the bar graph
     }
 
     onComplete = ([genderBg, raceBg, majorBg]) => {
@@ -513,7 +507,7 @@ class DataPage extends Component {
                 con: [...this.state.con, {
                     key: this.state.con.length + 9,
                     text: concept, value: this.state.con.length + 9,
-                    //onClick: (this.onComplete.bind(this, [this.state.bgGender, this.state.bgRace, this.state.bgMajor, this.state.bgGender], concept)),
+                    onClick: (this.onComplete.bind(this, [this.state.bgGender, this.state.bgRace, this.state.bgMajor, this.state.bgGender], concept)),
                     selected: this.state.visCrt === 1 + 9
                 }],
             });
