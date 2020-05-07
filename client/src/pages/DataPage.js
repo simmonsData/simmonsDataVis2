@@ -228,11 +228,6 @@ class DataPage extends Component {
         let filteredData = [];
         axios.get(
             '/api/students/',
-            // {
-            //     gender: this.state.gender,
-            //     ethnicity: this.state.ethnicity,
-            //     major: this.state.major
-            // }
         ).then(res => {
             filteredData = res.data;
             if (this.state.gender != -1) { //swap to !=
@@ -379,13 +374,11 @@ class DataPage extends Component {
         }
     };
     componentDidMount() {
-        const isLoggedIn = sessionStorage.getItem("loggedIn");
         let id = '';
         if(this.props.getID)
             id = this.props.getId;
-        else if(isLoggedIn)
-            id = sessionStorage.getItem("id");
-        
+        else if(sessionStorage.getItem("loggedIn"))
+            id = sessionStorage.getItem("id");       
         let newDataSet = [];
         axios.get(
             '/api/students/' + id,
@@ -437,7 +430,6 @@ class DataPage extends Component {
         console.log(this.state.bgMajor);
         console.log(this.state.bgRace);
         console.log(genderBg);
-        console.log(genderBg);
         console.log(raceBg);
         console.log(majorBg);*/
         let options = [genderBg, raceBg, majorBg];
@@ -450,8 +442,8 @@ class DataPage extends Component {
             .then(res => {
                 let d = [];
                 let act = [];
-                //if(res.data[res.data.length-1])
-                this.setState({numObservations: res.data[res.data.length - 1]});
+                if(res.data[res.data.length-1])
+                    this.setState({numObservations: res.data[res.data.length - 1]});
                 console.log(res);
                 console.log("numObservations: " + this.state.numObservations);
                 for (let i = 0, n = res.data.length - 1; i < n; i++) {
