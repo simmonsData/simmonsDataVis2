@@ -450,8 +450,8 @@ class DataPage extends Component {
             .then(res => {
                 let d = [];
                 let act = [];
-                if(res.data[res.data.length-1])
-                    this.setState({numObservations: res.data[res.data.length - 1]});
+                //if(res.data[res.data.length-1])
+                this.setState({numObservations: res.data[res.data.length - 1]});
                 console.log(res);
                 console.log("numObservations: " + this.state.numObservations);
                 for (let i = 0, n = res.data.length - 1; i < n; i++) {
