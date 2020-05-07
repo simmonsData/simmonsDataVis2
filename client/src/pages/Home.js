@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid, Button, Container, Icon} from 'semantic-ui-react'
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import '../styles/Home.css'
 
 function Home(props) {

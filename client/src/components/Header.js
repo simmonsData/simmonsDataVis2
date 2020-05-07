@@ -26,16 +26,10 @@ function Header () {
           </Grid.Column>
 
           <Grid.Column width="5">
-            <Button className="menuText" name="home" value="/" onClick={onButtonPress} active>Home</Button>
+            <Button className="menuText" name="home" as={Link} to="/" active>Home</Button>
             <a className="menuText"  href="https://faculty.eng.ufl.edu/simmons-research-lab/about/">About Us</a> 
             <Button className="menuText" name="dashboard" value="/dashboard/" onClick={onButtonPress}>Dashboard</Button>
           </Grid.Column>
-          {/* <Grid.Column width="2">
-            <a className="menuText"  href='https://faculty.eng.ufl.edu/simmons-research-lab/about/'>About Us</a> 
-          {/* </Grid.Column>
-          <Grid.Column width="2"> 
-            <Button className="menuText" name="dashboard" as={Link} to='/dashboard/'>Dashboard</Button>
-           </Grid.Column> */}
 
           <Grid.Column width="3"/>
 
