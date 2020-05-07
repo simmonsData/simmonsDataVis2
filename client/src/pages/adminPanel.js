@@ -1,8 +1,19 @@
 import React, { Component } from "react";
-import { Button, Grid } from "semantic-ui-react";
-import { withRouter } from "react-router-dom";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment,
+  Container
+} from "semantic-ui-react";
+import { Route, withRouter, Redirect } from "react-router-dom";
 
 class adminPanel extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   onSurveyPress = () => {
     this.props.history.push("/survey");
