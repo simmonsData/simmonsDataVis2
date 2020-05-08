@@ -4,7 +4,8 @@ const express = require('express'),
     morgan = require('morgan'),
     path = require('path'),
     passport = require('passport'),
-    studentsRouter = require('../routes/students.routes');
+    studentsRouter = require('../routes/students.routes'),
+    adminRouter = require('../routes/admin.routes');
 
 module.exports.init = function() {
     mongoose.set('useCreateIndex', true);
@@ -39,6 +40,7 @@ module.exports.init = function() {
     require("./passport")(passport);
 
     app.use('/api/students', studentsRouter);
+   // app.use('/api/admin', adminRouter);
 
     // If web app is in production, serves build folder
     if(process.env.NODE_ENV === 'production'){
