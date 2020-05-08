@@ -136,15 +136,17 @@ function EmailEntry(props) {
         await axios.post(
             '/api/students/register',
             {
-             email: registerInput,
-             password: registerPasswordInput,
-             password2: confirmRegisterPasswordInput
+             loginEmail: registerInput,
+             loginPassword: registerPasswordInput,
+             password2: confirmRegisterPasswordInput,
             },
             {headers: {'Content-Type': 'application/json'}}
         )
             .then(function (response) {
                 // props.userLogged(response.data);
                 setRedirectingRegister(true);
+                sessionStorage.setItem('id', response.data);
+                sessionStorage.setItem('loggedIn', true);
             })
             .catch(function (error) {
                 if (error.response.data.emailFound) {
@@ -178,16 +180,16 @@ function EmailEntry(props) {
         await axios.post(
             '/api/students/login',
             {
-             email: loginInput,
-             password: loginPasswordInput
+             loginEmail: loginInput,
+             loginPassword: loginPasswordInput
             },
             {headers: {'Content-Type': 'application/json'}}
         ).then(function (response) {
             console.log(response.data);
             setUserId(response.data);
             setRedirectingLogin(true);
-            // localStorage.setItem('id', response.data);
-            // localStorage.setItem('loggedIn', true);
+            sessionStorage.setItem('id', response.data);
+            sessionStorage.setItem('loggedIn', true);
         })
          .catch(function (error) {
             if(error.response.data.email){
@@ -223,7 +225,7 @@ function EmailEntry(props) {
     } 
     else if (redirectingLogin) {
         return (
-            <Redirect to={'/homepage/' + userId}></Redirect>
+            <Redirect to={'/dashboard/' + userId}></Redirect>
         )
     }
     else {
